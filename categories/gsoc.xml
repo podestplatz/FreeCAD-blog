@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>FreeCAD Development Blog (Posts about GSoC)</title><link>https://podestplatz.github.io/FreeCAD-blog</link><description></description><atom:link href="https://podestplatz.github.io/FreeCAD-blog/categories/gsoc.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:info@freecadweb.org"&gt;FreeCAD Community&lt;/a&gt; </copyright><lastBuildDate>Sat, 11 May 2019 11:37:59 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>BCF Reference Collection - GSoC 2019 </title><link>https://podestplatz.github.io/FreeCAD-blog/posts/references-to-read/</link><dc:creator>FreeCAD Community</dc:creator><description>&lt;div&gt;&lt;p&gt;Following is a list of all references that were mentioned in the forum. I split
+them into two categories (for now): Documentation, Implementation Reference. In
+former category standards and definitions are to be found (e.g.: BCF-XML
+Documentation). The category "Implementation Reference" shall hold links to
+examples, tutorials etc.&lt;/p&gt;
+&lt;p&gt;This list of references is most likely to grow over time.&lt;/p&gt;
+&lt;div class="section" id="diskussion"&gt;
+&lt;h2&gt;Diskussion&lt;/h2&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://forum.freecadweb.org/viewtopic.php?style=4&amp;amp;f=23&amp;amp;t=22641&amp;amp;start=10"&gt;Forum topic on BCF&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class="section" id="documentation"&gt;
+&lt;h2&gt;Documentation&lt;/h2&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://www.linkedin.com/pulse/how-get-most-out-open-bim-alejandro-mata/"&gt;How to Get Most out of OpenBim&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://github.com/BuildingSMART/BCF-XML/tree/master/Documentation"&gt;BCF-XML Documentation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://forum.freecadweb.org/viewtopic.php?f=18&amp;amp;t=12833"&gt;FEM Python coding standard&lt;/a&gt;: coding guidlines that I want to adhere to
+during development (written by PrzemoF).&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class="section" id="implementation-reference"&gt;
+&lt;h2&gt;Implementation Reference&lt;/h2&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://github.com/opensourceBIM/BIMbots-FreeCAD"&gt;BIMBots-FreeCAD&lt;/a&gt;: standalone plugin created by Yorik, serves as example on
+plugin programming in FreeCAD&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://doc.qt.io/qt-5/qtdesigner-manual.html"&gt;QTDesigner Tutorial&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://github.com/teocomi"&gt;Matteo Cominetti&lt;/a&gt;: Author of the GNU BCFier plugin. May be a useful contact
+on questions regarding BCF definition.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://github.com/opensourceBIM/BCF-Forum"&gt;BCF Server and Forum&lt;/a&gt;: "[...] Wordpress plugin to create a 'BCF topic
+server' from your wordpress installation [...]"&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>bcf</category><category>bim</category><category>GSoC</category><guid>https://podestplatz.github.io/FreeCAD-blog/posts/references-to-read/</guid><pubDate>Sat, 11 May 2019 08:08:01 GMT</pubDate></item></channel></rss>
