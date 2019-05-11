@@ -21,7 +21,7 @@ BLOG_AUTHOR = "FreeCAD Community"  # (translatable)
 BLOG_TITLE = "FreeCAD Development Blog"  # (translatable)
 # This is the main URL for your site. It will be used
 # in a prominent link. Don't forget the protocol (http/https)!
-SITE_URL = "https://freecad.github.io/"
+SITE_URL = "https://podestplatz.github.io/FreeCAD-blog"
 # This is the URL where Nikola's output will be deployed.
 # If not set, defaults to SITE_URL
 # BASE_URL = "https://freecad.github.io/"
@@ -653,7 +653,7 @@ GITHUB_COMMIT_SOURCE = True
 # Where the output site should be located
 # If you don't use an absolute path, it will be considered as relative
 # to the location of conf.py
-OUTPUT_FOLDER = 'freecad.github.io'
+OUTPUT_FOLDER = 'podestplatz.github.io'
 
 # where the "cache" of partial generated content should be located
 # default: 'cache'

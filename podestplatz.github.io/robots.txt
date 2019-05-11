@@ -1,0 +1,4 @@
+Sitemap: https://podestplatz.github.io/FreeCAD-blog/sitemapindex.xml
+
+User-Agent: *
+Host: podestplatz.github.io
