@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to represent extension.xsd constraints | FreeCAD Development Blog</title>
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../rss.xml">
+<link rel="canonical" href="https://podestplatz.github.io/FreeCAD-blog/posts/how-to-represent-extensionxsd-constraints/">
+<link rel="icon" href="../../favicon-16.ico" sizes="16x16">
+<link rel="icon" href="../../favicon-32.ico" sizes="32x32">
+<link rel="icon" href="../../favicon-256.ico" sizes="256x256">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="FreeCAD Community">
+<link rel="prev" href="../references-to-read/" title="BCF Reference Collection - GSoC 2019 " type="text/html">
+<meta property="og:site_name" content="FreeCAD Development Blog">
+<meta property="og:title" content="How to represent extension.xsd constraints">
+<meta property="og:url" content="https://podestplatz.github.io/FreeCAD-blog/posts/how-to-represent-extensionxsd-constraints/">
+<meta property="og:description" content="So by now this repository exists, which already houses two example BCF files in
+examples/,
+supplied by yorik. This repository is intended to be the main development repository.
+I started a little UML ">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2019-05-12T15:54:21Z">
+<meta property="article:tag" content="bcf">
+<meta property="article:tag" content="bim">
+<meta property="article:tag" content="class-diagram">
+<meta property="article:tag" content="GSoC">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-inverse navbar-static-top"><div class="container">
+<!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://podestplatz.github.io/FreeCAD-blog/">
+
+                <span id="blog-title">FreeCAD Development Blog</span>
+            </a>
+        </div>
+<!-- /.navbar-header -->
+        <div class="collapse navbar-collapse" id="bs-navbar" aria-expanded="false">
+            <ul class="nav navbar-nav">
+<li>
+<a href="../../archive.html">Archive</a>
+                </li>
+<li>
+<a href="../../categories/">Tags</a>
+                </li>
+<li>
+<a href="../../rss.xml">RSS feed</a>
+
+                
+            </li>
+</ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+    <a href="index.rst" id="sourcelink">Source</a>
+    </li>
+
+                
+            </ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">How to represent extension.xsd constraints</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                    <a href="../../authors/freecad-community/">FreeCAD Community</a>
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2019-05-12T15:54:21Z" itemprop="datePublished" title="2019-05-12 15:54">2019-05-12 15:54</time></a>
+            </p>
+            
+        <p class="sourceline"><a href="index.rst" class="sourcelink">Source</a></p>
+
+        </div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p>So by now this <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD">repository</a> exists, which already houses two example BCF files in
+<tt class="docutils literal">examples/</tt>,
+supplied by <a class="reference external" href="https://forum.freecadweb.org/memberlist.php?mode=viewprofile&amp;u=68">yorik</a>. This repository is intended to be the main development repository.
+I started a little UML class diagram, which you can find in
+the folder <tt class="docutils literal">doc/</tt> in the root directory of the repository.</p>
+<p>Note however, the class "Template" is just used for copy and paste. I used it to
+set the font to Sourcecode Pro, which was kind of tedious, and since I didn't
+know if these font changes translate to newly created classes too I have gone
+with the copy&amp;paste approach. The classes presented in this diagram are all for
+representing the data from the markup.bcf file (except for the class "Project").
+For the creation of these class diagrams I use <a class="reference external" href="http://dia-installer.de/download/linux.html.de">Dia</a>.</p>
+<p>The current problem I am facing is: how to represent the constraints given in
+the <tt class="docutils literal">extension.xsd</tt> file (a link to it <a class="reference external" href="https://github.com/buildingSMART/BCF-XML/tree/master/Extension%20Schemas">here</a>). The most constraints listed in
+this file are just listings of valid values for some nodes or attributes. What I
+want to do is to force the user of this classes to use one of the valid values
+and not have to implement extra code that checks each time the value is set or
+written to a file for that matter.</p>
+<p><strong>So what possibilities do I have to choose from?</strong></p>
+<p>Probably most intuitively would be to create one enumeration class (<a class="reference external" href="https://docs.python.org/3/library/enum.html">python
+reference</a>) for each attibute or node listed in <tt class="docutils literal">extensions.xsd</tt>. The main
+disadvantage her ist that these enumerations have to be maintained by hand, in
+the case of a change to <tt class="docutils literal">extensions.xsd</tt>. That makes this first intuitive
+option quite unattractive.</p>
+<p>The second option that comes to mind would be to parse <tt class="docutils literal">extensions.xsd</tt> and
+then programmatically define the enumerations. This is possible due to the
+dynamically typed nature of python. However this also implies that the classes,
+containing a representation of an affected attribute or node, also have to be
+modified every time the plugin starts and <tt class="docutils literal">extensions.xsd</tt> is parsed. This is
+because the classes, of which type the class variables are, do not exist before
+runtime.</p>
+<p>A third approach would also be possible where one enumeration class is written,
+before runtime, with no values. Then during startup <tt class="docutils literal">extensions.xsd</tt> gets
+parsed and the valid values are added to the enumerations. That however has one
+drawback: if the standard gets updated, and a new constraint is put upon another
+field then an according class would have to be created manually.</p>
+<p>In the end I still have to think about how it is done best, and what is the most
+maintainable version. Already I tend to latter option, because when the standard
+changes, most probably also the implementation of this plugin has to change.</p>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../categories/bcf/" rel="tag">bcf</a></li>
+            <li><a class="tag p-category" href="../../categories/bim/" rel="tag">bim</a></li>
+            <li><a class="tag p-category" href="../../categories/class-diagram/" rel="tag">class-diagram</a></li>
+            <li><a class="tag p-category" href="../../categories/gsoc/" rel="tag">GSoC</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../references-to-read/" rel="prev" title="BCF Reference Collection - GSoC 2019 ">Previous post</a>
+            </li>
+        </ul></nav></aside></article>
+</div>
+        <!--End of body content-->
+
+        <footer id="footer">
+            Contents © 2019         <a href="mailto:info@freecadweb.org">FreeCAD Community</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+            
+        </footer>
+</div>
+</div>
+
+
+            <script src="../../assets/js/all-nocdn.js"></script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(0, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates --><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
+</body>
+</html>
