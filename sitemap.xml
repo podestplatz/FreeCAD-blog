@@ -19,7 +19,7 @@
  </url>
  <url>
   <loc>https://podestplatz.github.io/FreeCAD-blog/archive.html</loc>
-  <lastmod>2019-05-11T11:37:00Z</lastmod>
+  <lastmod>2019-05-12T16:09:00Z</lastmod>
  </url>
  <url>
   <loc>https://podestplatz.github.io/FreeCAD-blog/authors/</loc>
@@ -35,7 +35,7 @@
  </url>
  <url>
   <loc>https://podestplatz.github.io/FreeCAD-blog/categories/</loc>
-  <lastmod>2019-05-11T11:37:00Z</lastmod>
+  <lastmod>2019-05-12T16:48:00Z</lastmod>
  </url>
  <url>
   <loc>https://podestplatz.github.io/FreeCAD-blog/categories/bcf/</loc>
@@ -54,6 +54,10 @@
   <lastmod>2019-05-11T11:37:00Z</lastmod>
  </url>
  <url>
+  <loc>https://podestplatz.github.io/FreeCAD-blog/categories/class-diagram/</loc>
+  <lastmod>2019-05-12T16:48:00Z</lastmod>
+ </url>
+ <url>
   <loc>https://podestplatz.github.io/FreeCAD-blog/categories/gsoc/</loc>
   <lastmod>2019-05-11T11:37:00Z</lastmod>
  </url>
@@ -68,6 +72,10 @@
  <url>
   <loc>https://podestplatz.github.io/FreeCAD-blog/posts/announcing-the-freecad-development-blog/</loc>
   <lastmod>2019-05-11T11:37:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://podestplatz.github.io/FreeCAD-blog/posts/how-to-represent-extensionxsd-constraints/</loc>
+  <lastmod>2019-05-12T16:09:00Z</lastmod>
  </url>
  <url>
   <loc>https://podestplatz.github.io/FreeCAD-blog/posts/introduction-to-freecad-development/</loc>

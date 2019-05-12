@@ -13,7 +13,7 @@
 <link rel="icon" href="favicon-16.ico" sizes="16x16">
 <link rel="icon" href="favicon-32.ico" sizes="32x32">
 <link rel="icon" href="favicon-256.ico" sizes="256x256">
-<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/references-to-read/" type="text/html">
+<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/how-to-represent-extensionxsd-constraints/" type="text/html">
 </head>
 <body>
 <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
@@ -66,7 +66,59 @@
 
     
 <div class="postindex">
-    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/references-to-read/" class="u-url">BCF Reference Collection - GSoC 2019 </a></h1>
+    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/how-to-represent-extensionxsd-constraints/" class="u-url">How to represent extension.xsd constraints</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                <a href="authors/freecad-community/">FreeCAD Community</a>
+            </span></p>
+            <p class="dateline">
+            <a href="posts/how-to-represent-extensionxsd-constraints/" rel="bookmark">
+            <time class="published dt-published" datetime="2019-05-12T15:54:21Z" itemprop="datePublished" title="2019-05-12 15:54">2019-05-12 15:54</time></a>
+            </p>
+        </div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>So by now this <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD">repository</a> exists, which already houses two example BCF files in
+<tt class="docutils literal">examples/</tt>,
+supplied by <a class="reference external" href="https://forum.freecadweb.org/memberlist.php?mode=viewprofile&amp;u=68">yorik</a>. This repository is intended to be the main development repository.
+I started a little UML class diagram, which you can find in
+the folder <tt class="docutils literal">doc/</tt> in the root directory of the repository.</p>
+<p>Note however, the class "Template" is just used for copy and paste. I used it to
+set the font to Sourcecode Pro, which was kind of tedious, and since I didn't
+know if these font changes translate to newly created classes too I have gone
+with the copy&amp;paste approach. The classes presented in this diagram are all for
+representing the data from the markup.bcf file (except for the class "Project").
+For the creation of these class diagrams I use <a class="reference external" href="http://dia-installer.de/download/linux.html.de">Dia</a>.</p>
+<p>The current problem I am facing is: how to represent the constraints given in
+the <tt class="docutils literal">extension.xsd</tt> file (a link to it <a class="reference external" href="https://github.com/buildingSMART/BCF-XML/tree/master/Extension%20Schemas">here</a>). The most constraints listed in
+this file are just listings of valid values for some nodes or attributes. What I
+want to do is to force the user of this classes to use one of the valid values
+and not have to implement extra code that checks each time the value is set or
+written to a file for that matter.</p>
+<p><strong>So what possibilities do I have to choose from?</strong></p>
+<p>Probably most intuitively would be to create one enumeration class (<a class="reference external" href="https://docs.python.org/3/library/enum.html">python
+reference</a>) for each attibute or node listed in <tt class="docutils literal">extensions.xsd</tt>. The main
+disadvantage her ist that these enumerations have to be maintained by hand, in
+the case of a change to <tt class="docutils literal">extensions.xsd</tt>. That makes this first intuitive
+option quite unattractive.</p>
+<p>The second option that comes to mind would be to parse <tt class="docutils literal">extensions.xsd</tt> and
+then programmatically define the enumerations. This is possible due to the
+dynamically typed nature of python. However this also implies that the classes,
+containing a representation of an affected attribute or node, also have to be
+modified every time the plugin starts and <tt class="docutils literal">extensions.xsd</tt> is parsed. This is
+because the classes, of which type the class variables are, do not exist before
+runtime.</p>
+<p>A third approach would also be possible where one enumeration class is written,
+before runtime, with no values. Then during startup <tt class="docutils literal">extensions.xsd</tt> gets
+parsed and the valid values are added to the enumerations. That however has one
+drawback: if the standard gets updated, and a new constraint is put upon another
+field then an according class would have to be created manually.</p>
+<p>In the end I still have to think about how it is done best, and what is the most
+maintainable version. Already I tend to latter option, because when the standard
+changes, most probably also the implementation of this plugin has to change.</p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/references-to-read/" class="u-url">BCF Reference Collection - GSoC 2019 </a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                 <a href="authors/freecad-community/">FreeCAD Community</a>
