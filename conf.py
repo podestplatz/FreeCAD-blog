@@ -631,8 +631,8 @@ REDIRECTIONS = []
 # in a `nikola deploy` command as you like.
 DEPLOY_COMMANDS = {
     'default': [
-         'cd freecad.github.io && git add . && git commit -m "Automatic deploy with Nikola" && git push && \
-          cd .. && git add freecad.github.io && git commit -m "Update deployed site" && git push',
+         'cd podestplatz.github.io && git add . && git commit -m "Automatic deploy with Nikola" && git push && \
+          cd .. && git add podestplatz.github.io && git commit -m "Update deployed site" && git push',
     ]
 }
 
