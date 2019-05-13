@@ -28,3 +28,6 @@ conclusion that it would be the best approach to go with the last option I
 listed. That means that for every node, for which constraints are listed in
 ``extensions.xsd``, an empty enumeration/class is created which then, during
 runtime, gets populated with the valid values.
+
+UPDATE (2019-05-13): The inconsistency is resolved. The BimSnippet node just references one
+file that does not have to be inside the topic folder. 
