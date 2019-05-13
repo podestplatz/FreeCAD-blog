@@ -13,7 +13,7 @@
 <link rel="icon" href="favicon-16.ico" sizes="16x16">
 <link rel="icon" href="favicon-32.ico" sizes="32x32">
 <link rel="icon" href="favicon-256.ico" sizes="256x256">
-<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/how-to-represent-extensionxsd-constraints/" type="text/html">
+<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/representing-markupbcf-in-uml/" type="text/html">
 </head>
 <body>
 <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
@@ -66,7 +66,38 @@
 
     
 <div class="postindex">
-    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/how-to-represent-extensionxsd-constraints/" class="u-url">How to represent extension.xsd constraints</a></h1>
+    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/representing-markupbcf-in-uml/" class="u-url">Representing markup.bcf in UML</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                <a href="authors/freecad-community/">FreeCAD Community</a>
+            </span></p>
+            <p class="dateline">
+            <a href="posts/representing-markupbcf-in-uml/" rel="bookmark">
+            <time class="published dt-published" datetime="2019-05-13T17:43:03Z" itemprop="datePublished" title="2019-05-13 17:43">2019-05-13 17:43</time></a>
+            </p>
+        </div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>Today I mostly finished the UML class diagram in regard to representing the data
+of the <tt class="docutils literal">markup.bcf</tt> file. One think I found kind of interesing while creating
+the diagram is that in the <a class="reference external" href="https://github.com/BuildingSMART/BCF-XML/tree/master/Documentation">BCF-XML-Documentation</a> There is no link between a
+topic and a comment, so no id of one is stored in the other. That didn't make
+sense at first because I thought that one <tt class="docutils literal">markup</tt> could have multiple topics,
+which is <strong>not</strong> the case.</p>
+<p>However one think what is not that obvious to me is the case with the <tt class="docutils literal">BIMSnippet</tt>.
+On the documentation page it says that: "BimSnippet is an additional file containing
+information related to one or multiple topics.". This would imply that there
+would be more topics inside one <tt class="docutils literal">markup.bcf</tt> file, because <tt class="docutils literal">BimSnippet</tt> is,
+as I understand, also just a node inside <tt class="docutils literal">markup.bcf</tt>.</p>
+<p>Regarding the open question from the previous post: How to represent constraints
+defined in <tt class="docutils literal">extensions.xsd</tt>; I thought about it a little today and came to the
+conclusion that it would be the best approach to go with the last option I
+listed. That means that for every node, for which constraints are listed in
+<tt class="docutils literal">extensions.xsd</tt>, an empty enumeration/class is created which then, during
+runtime, gets populated with the valid values.</p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/how-to-represent-extensionxsd-constraints/" class="u-url">How to represent extension.xsd constraints</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                 <a href="authors/freecad-community/">FreeCAD Community</a>
