@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>FreeCAD Development Blog (Posts about GSoC)</title><link>https://podestplatz.github.io/FreeCAD-blog</link><description></description><atom:link href="https://podestplatz.github.io/FreeCAD-blog/categories/gsoc.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:info@freecadweb.org"&gt;FreeCAD Community&lt;/a&gt; </copyright><lastBuildDate>Mon, 13 May 2019 18:11:07 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Representing markup.bcf in UML</title><link>https://podestplatz.github.io/FreeCAD-blog/posts/representing-markupbcf-in-uml/</link><dc:creator>FreeCAD Community</dc:creator><description>&lt;div&gt;&lt;p&gt;Today I mostly finished the UML class diagram in regard to representing the data
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>FreeCAD Development Blog (Posts about GSoC)</title><link>https://podestplatz.github.io/FreeCAD-blog</link><description></description><atom:link href="https://podestplatz.github.io/FreeCAD-blog/categories/gsoc.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:info@freecadweb.org"&gt;FreeCAD Community&lt;/a&gt; </copyright><lastBuildDate>Tue, 14 May 2019 17:46:20 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Advancing to the Viewpoint.bcf part</title><link>https://podestplatz.github.io/FreeCAD-blog/posts/finishing-up-the-datamodel-uml/</link><dc:creator>FreeCAD Community</dc:creator><description>&lt;div&gt;&lt;p&gt;In the &lt;a class="reference external" href="https://forum.freecadweb.org/viewtopic.php?p=308095#p308095"&gt;forum post&lt;/a&gt; yesterday, Yorik pointed out that, although part of the
+specification, the BimSnippet does not have to be treated with high priority. He
+also referred me to Bernd and Duncan in case of questions arising.
+As advised, I will consider the BimSnippet in the data model but probably won't
+implement it right away.&lt;/p&gt;
+&lt;p&gt;The progress I made today was mostly in understanding the BCF specification in
+regards to the viewpoint.bcfv file. Multiple viewpoint files can be contained
+within the folder of one topic. At the beginning of the day I thought that the
+data model would be finished rather quick but as it turned out the documentation
+on it is not as concise as one might wish it to be. To be more precise: the
+whole section about the "Components" element is a bit confusing. It lists
+multiple "properties", like &lt;cite&gt;Selection&lt;/cite&gt; and &lt;cite&gt;Visibility&lt;/cite&gt;. My intuition says that
+&lt;cite&gt;Selection&lt;/cite&gt; contains a list of components that are selected, and &lt;cite&gt;Visibility&lt;/cite&gt;
+specifies whether these components shall be visible or not. But in reality each
+contains a list of components onto which the values of the attributes of the
+respective property shall be applied.&lt;/p&gt;
+&lt;p&gt;This is a bit confusing at first, and still is for me. Because of this ambiguity
+I decided, for the further data model design, that refer to the related XML
+schemas rather than the written documentation. For example here you can find the
+schema for the &lt;a class="reference external" href="https://github.com/buildingSMART/BCF-XML/blob/master/Schemas/visinfo.xsd"&gt;viewpoint.bcf&lt;/a&gt; file.&lt;/p&gt;
+&lt;p&gt;But since the last time I have worked with XML schemas was in vocational school
+(I think 2012) I have to refresh my memory on it. For that I will go through the
+relevant parts of the &lt;a class="reference external" href="https://www.w3schools.com/xml/schema_intro.asp"&gt;W3CSchools: XML Schema Tutorial&lt;/a&gt;. Tomorrow.&lt;/p&gt;&lt;/div&gt;</description><category>bcf</category><category>bim</category><category>class-diagram</category><category>GSoC</category><guid>https://podestplatz.github.io/FreeCAD-blog/posts/finishing-up-the-datamodel-uml/</guid><pubDate>Tue, 14 May 2019 03:42:30 GMT</pubDate></item><item><title>Representing markup.bcf in UML</title><link>https://podestplatz.github.io/FreeCAD-blog/posts/representing-markupbcf-in-uml/</link><dc:creator>FreeCAD Community</dc:creator><description>&lt;div&gt;&lt;p&gt;Today I mostly finished the UML class diagram in regard to representing the data
 of the &lt;tt class="docutils literal"&gt;markup.bcf&lt;/tt&gt; file. One think I found kind of interesing while creating
 the diagram is that in the &lt;a class="reference external" href="https://github.com/BuildingSMART/BCF-XML/tree/master/Documentation"&gt;BCF-XML-Documentation&lt;/a&gt; There is no link between a
 topic and a comment, so no id of one is stored in the other. That didn't make
