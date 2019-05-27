@@ -7,35 +7,19 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
   <loc>https://podestplatz.github.io/FreeCAD-blog/</loc>
-  <lastmod>2019-05-27T17:10:00Z</lastmod>
- </url>
- <url>
-  <loc>https://podestplatz.github.io/FreeCAD-blog/2018/</loc>
-  <lastmod>2019-05-27T17:10:00Z</lastmod>
+  <lastmod>2019-05-27T17:17:00Z</lastmod>
  </url>
  <url>
   <loc>https://podestplatz.github.io/FreeCAD-blog/2019/</loc>
-  <lastmod>2019-05-27T17:10:00Z</lastmod>
+  <lastmod>2019-05-27T17:17:00Z</lastmod>
  </url>
  <url>
   <loc>https://podestplatz.github.io/FreeCAD-blog/archive.html</loc>
-  <lastmod>2019-05-27T17:11:00Z</lastmod>
- </url>
- <url>
-  <loc>https://podestplatz.github.io/FreeCAD-blog/authors/</loc>
-  <lastmod>2019-05-27T17:10:00Z</lastmod>
- </url>
- <url>
-  <loc>https://podestplatz.github.io/FreeCAD-blog/authors/freecad-community/</loc>
-  <lastmod>2019-05-27T17:10:00Z</lastmod>
- </url>
- <url>
-  <loc>https://podestplatz.github.io/FreeCAD-blog/authors/kurt-kremitzki/</loc>
-  <lastmod>2019-05-27T17:10:00Z</lastmod>
+  <lastmod>2019-05-27T17:18:00Z</lastmod>
  </url>
  <url>
   <loc>https://podestplatz.github.io/FreeCAD-blog/categories/</loc>
-  <lastmod>2019-05-27T17:10:00Z</lastmod>
+  <lastmod>2019-05-27T17:17:00Z</lastmod>
  </url>
  <url>
   <loc>https://podestplatz.github.io/FreeCAD-blog/categories/bcf/</loc>
@@ -70,18 +54,6 @@
   <lastmod>2019-05-27T17:10:00Z</lastmod>
  </url>
  <url>
-  <loc>https://podestplatz.github.io/FreeCAD-blog/categories/mathjax/</loc>
-  <lastmod>2019-05-27T17:10:00Z</lastmod>
- </url>
- <url>
-  <loc>https://podestplatz.github.io/FreeCAD-blog/posts/09-07-2018-Summary/</loc>
-  <lastmod>2019-05-27T17:10:00Z</lastmod>
- </url>
- <url>
-  <loc>https://podestplatz.github.io/FreeCAD-blog/posts/announcing-the-freecad-development-blog/</loc>
-  <lastmod>2019-05-27T17:10:00Z</lastmod>
- </url>
- <url>
   <loc>https://podestplatz.github.io/FreeCAD-blog/posts/dev-logs/</loc>
   <lastmod>2019-05-27T17:10:00Z</lastmod>
  </url>
@@ -94,12 +66,8 @@
   <lastmod>2019-05-27T17:10:00Z</lastmod>
  </url>
  <url>
-  <loc>https://podestplatz.github.io/FreeCAD-blog/posts/introduction-to-freecad-development/</loc>
-  <lastmod>2019-05-27T17:10:00Z</lastmod>
- </url>
- <url>
   <loc>https://podestplatz.github.io/FreeCAD-blog/posts/learning-xsd-syntax/</loc>
-  <lastmod>2019-05-27T17:10:00Z</lastmod>
+  <lastmod>2019-05-27T17:17:00Z</lastmod>
  </url>
  <url>
   <loc>https://podestplatz.github.io/FreeCAD-blog/posts/references-to-read/</loc>
@@ -107,6 +75,6 @@
  </url>
  <url>
   <loc>https://podestplatz.github.io/FreeCAD-blog/posts/representing-markupbcf-in-uml/</loc>
-  <lastmod>2019-05-27T17:10:00Z</lastmod>
+  <lastmod>2019-05-27T17:17:00Z</lastmod>
  </url>
 </urlset>
