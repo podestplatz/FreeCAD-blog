@@ -1,5 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>FreeCAD Development Blog (Posts about class-diagram)</title><link>https://podestplatz.github.io/FreeCAD-blog</link><description></description><atom:link href="https://podestplatz.github.io/FreeCAD-blog/categories/class-diagram.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:info@freecadweb.org"&gt;FreeCAD Community&lt;/a&gt; </copyright><lastBuildDate>Sun, 12 May 2019 16:48:36 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>How to represent extension.xsd constraints</title><link>https://podestplatz.github.io/FreeCAD-blog/posts/how-to-represent-extensionxsd-constraints/</link><dc:creator>FreeCAD Community</dc:creator><description>&lt;div&gt;&lt;p&gt;So by now this &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD"&gt;repository&lt;/a&gt; exists, which already houses two example BCF files in
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>FreeCAD Development Blog (Posts about class-diagram)</title><link>https://podestplatz.github.io/FreeCAD-blog</link><description></description><atom:link href="https://podestplatz.github.io/FreeCAD-blog/categories/class-diagram.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:info@freecadweb.org"&gt;FreeCAD Community&lt;/a&gt; </copyright><lastBuildDate>Sat, 25 May 2019 07:17:28 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Learning XSD Syntax</title><link>https://podestplatz.github.io/FreeCAD-blog/posts/learning-xsd-syntax/</link><dc:creator>FreeCAD Community</dc:creator><description>&lt;div&gt;&lt;p&gt;The main takeaway from the XML Schema Definition Tutorial I went through today
+was the following:&lt;/p&gt;
+&lt;blockquote&gt;
+So the node &lt;cite&gt;&amp;lt;xs:sequence&amp;gt;...&amp;lt;/xs:sequence&amp;gt;&lt;/cite&gt; is part of the definition of a
+complex type, it is also called an indicator. What it does is that it tells the
+XML checker that the elements specified inside have to occur in the same order
+in the XML document to be valid. Also it specifies what elements may be
+contained in the complex node.&lt;/blockquote&gt;
+&lt;p&gt;This greatly improved my understanding of &lt;cite&gt;visinfo.xsd&lt;/cite&gt; which describes how a
+&lt;cite&gt;viewpoint.bcfv&lt;/cite&gt; file is built. As I learned during design, the representation
+of a viewpoint is almost as complex as the representation of the remaining
+contents of a BCF file.&lt;/p&gt;
+&lt;p&gt;I thought about how I coudl read the contents of a BCF into this file structure.
+As my brain always does, it thinks through the whole process, from checking if
+the given file is valid till the point where all the data resides in an object
+in memory. This makes me prone to "reinventing the wheel" as I also design a XSD
+parser/checker in my head which I then would use to check the given files before
+reading them in. But a quick google search brought up a better option, namely an
+offical &lt;a class="reference external" href="https://pypi.org/project/xmlschema/"&gt;python library&lt;/a&gt; for checking XML files against a schema.&lt;/p&gt;
+&lt;p&gt;Last but not least: I am pleased to announce that the first draft of the class
+diagram is ready. You can find it &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/master/doc"&gt;here&lt;/a&gt; if you are interested.&lt;/p&gt;&lt;/div&gt;</description><category>bcf</category><category>bim</category><category>class-diagram</category><category>GSoC</category><guid>https://podestplatz.github.io/FreeCAD-blog/posts/learning-xsd-syntax/</guid><pubDate>Wed, 15 May 2019 04:24:35 GMT</pubDate></item><item><title>Advancing to the Viewpoint.bcf part</title><link>https://podestplatz.github.io/FreeCAD-blog/posts/finishing-up-the-datamodel-uml/</link><dc:creator>FreeCAD Community</dc:creator><description>&lt;div&gt;&lt;p&gt;In the &lt;a class="reference external" href="https://forum.freecadweb.org/viewtopic.php?p=308095#p308095"&gt;forum post&lt;/a&gt; yesterday, Yorik pointed out that, although part of the
+specification, the BimSnippet does not have to be treated with high priority. He
+also referred me to Bernd and Duncan in case of questions arising.
+As advised, I will consider the BimSnippet in the data model but probably won't
+implement it right away.&lt;/p&gt;
+&lt;p&gt;The progress I made today was mostly in understanding the BCF specification in
+regards to the viewpoint.bcfv file. Multiple viewpoint files can be contained
+within the folder of one topic. At the beginning of the day I thought that the
+data model would be finished rather quick but as it turned out the documentation
+on it is not as concise as one might wish it to be. To be more precise: the
+whole section about the "Components" element is a bit confusing. It lists
+multiple "properties", like &lt;cite&gt;Selection&lt;/cite&gt; and &lt;cite&gt;Visibility&lt;/cite&gt;. My intuition says that
+&lt;cite&gt;Selection&lt;/cite&gt; contains a list of components that are selected, and &lt;cite&gt;Visibility&lt;/cite&gt;
+specifies whether these components shall be visible or not. But in reality each
+contains a list of components onto which the values of the attributes of the
+respective property shall be applied.&lt;/p&gt;
+&lt;p&gt;This is a bit confusing at first, and still is for me. Because of this ambiguity
+I decided, for the further data model design, that refer to the related XML
+schemas rather than the written documentation. For example here you can find the
+schema for the &lt;a class="reference external" href="https://github.com/buildingSMART/BCF-XML/blob/master/Schemas/visinfo.xsd"&gt;viewpoint.bcf&lt;/a&gt; file.&lt;/p&gt;
+&lt;p&gt;But since the last time I have worked with XML schemas was in vocational school
+(I think 2012) I have to refresh my memory on it. For that I will go through the
+relevant parts of the &lt;a class="reference external" href="https://www.w3schools.com/xml/schema_intro.asp"&gt;W3CSchools: XML Schema Tutorial&lt;/a&gt;. Tomorrow.&lt;/p&gt;&lt;/div&gt;</description><category>bcf</category><category>bim</category><category>class-diagram</category><category>GSoC</category><guid>https://podestplatz.github.io/FreeCAD-blog/posts/finishing-up-the-datamodel-uml/</guid><pubDate>Tue, 14 May 2019 03:42:30 GMT</pubDate></item><item><title>Representing markup.bcf in UML</title><link>https://podestplatz.github.io/FreeCAD-blog/posts/representing-markupbcf-in-uml/</link><dc:creator>FreeCAD Community</dc:creator><description>&lt;div&gt;&lt;p&gt;Today I mostly finished the UML class diagram in regard to representing the data
+of the &lt;tt class="docutils literal"&gt;markup.bcf&lt;/tt&gt; file. One think I found kind of interesing while creating
+the diagram is that in the &lt;a class="reference external" href="https://github.com/BuildingSMART/BCF-XML/tree/master/Documentation"&gt;BCF-XML-Documentation&lt;/a&gt; There is no link between a
+topic and a comment, so no id of one is stored in the other. That didn't make
+sense at first because I thought that one &lt;tt class="docutils literal"&gt;markup&lt;/tt&gt; could have multiple topics,
+which is &lt;strong&gt;not&lt;/strong&gt; the case.&lt;/p&gt;
+&lt;p&gt;However one think what is not that obvious to me is the case with the &lt;tt class="docutils literal"&gt;BIMSnippet&lt;/tt&gt;.
+On the documentation page it says that: "BimSnippet is an additional file containing
+information related to one or multiple topics.". This would imply that there
+would be more topics inside one &lt;tt class="docutils literal"&gt;markup.bcf&lt;/tt&gt; file, because &lt;tt class="docutils literal"&gt;BimSnippet&lt;/tt&gt; is,
+as I understand, also just a node inside &lt;tt class="docutils literal"&gt;markup.bcf&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;Regarding the open question from the previous post: How to represent constraints
+defined in &lt;tt class="docutils literal"&gt;extensions.xsd&lt;/tt&gt;; I thought about it a little today and came to the
+conclusion that it would be the best approach to go with the last option I
+listed. That means that for every node, for which constraints are listed in
+&lt;tt class="docutils literal"&gt;extensions.xsd&lt;/tt&gt;, an empty enumeration/class is created which then, during
+runtime, gets populated with the valid values.&lt;/p&gt;
+&lt;p&gt;UPDATE (2019-05-13): The inconsistency is resolved. The BimSnippet node just references one
+file that does not have to be inside the topic folder.&lt;/p&gt;&lt;/div&gt;</description><category>bcf</category><category>bim</category><category>class-diagram</category><category>GSoC</category><guid>https://podestplatz.github.io/FreeCAD-blog/posts/representing-markupbcf-in-uml/</guid><pubDate>Mon, 13 May 2019 17:43:03 GMT</pubDate></item><item><title>How to represent extension.xsd constraints</title><link>https://podestplatz.github.io/FreeCAD-blog/posts/how-to-represent-extensionxsd-constraints/</link><dc:creator>FreeCAD Community</dc:creator><description>&lt;div&gt;&lt;p&gt;So by now this &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD"&gt;repository&lt;/a&gt; exists, which already houses two example BCF files in
 &lt;tt class="docutils literal"&gt;examples/&lt;/tt&gt;,
 supplied by &lt;a class="reference external" href="https://forum.freecadweb.org/memberlist.php?mode=viewprofile&amp;amp;u=68"&gt;yorik&lt;/a&gt;. This repository is intended to be the main development repository.
 I started a little UML class diagram, which you can find in

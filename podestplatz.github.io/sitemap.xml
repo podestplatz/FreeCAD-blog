@@ -19,7 +19,7 @@
  </url>
  <url>
   <loc>https://podestplatz.github.io/FreeCAD-blog/archive.html</loc>
-  <lastmod>2019-05-12T16:09:00Z</lastmod>
+  <lastmod>2019-05-25T07:17:00Z</lastmod>
  </url>
  <url>
   <loc>https://podestplatz.github.io/FreeCAD-blog/authors/</loc>
@@ -35,7 +35,7 @@
  </url>
  <url>
   <loc>https://podestplatz.github.io/FreeCAD-blog/categories/</loc>
-  <lastmod>2019-05-12T16:48:00Z</lastmod>
+  <lastmod>2019-05-25T07:17:00Z</lastmod>
  </url>
  <url>
   <loc>https://podestplatz.github.io/FreeCAD-blog/categories/bcf/</loc>
@@ -44,6 +44,10 @@
  <url>
   <loc>https://podestplatz.github.io/FreeCAD-blog/categories/bim/</loc>
   <lastmod>2019-05-11T11:37:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://podestplatz.github.io/FreeCAD-blog/categories/cat_devlog/</loc>
+  <lastmod>2019-05-25T07:17:00Z</lastmod>
  </url>
  <url>
   <loc>https://podestplatz.github.io/FreeCAD-blog/categories/cat_gsoc-2019-bcf-integration/</loc>
@@ -56,6 +60,10 @@
  <url>
   <loc>https://podestplatz.github.io/FreeCAD-blog/categories/class-diagram/</loc>
   <lastmod>2019-05-12T16:48:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://podestplatz.github.io/FreeCAD-blog/categories/daily/</loc>
+  <lastmod>2019-05-25T07:17:00Z</lastmod>
  </url>
  <url>
   <loc>https://podestplatz.github.io/FreeCAD-blog/categories/gsoc/</loc>
@@ -74,6 +82,14 @@
   <lastmod>2019-05-11T11:37:00Z</lastmod>
  </url>
  <url>
+  <loc>https://podestplatz.github.io/FreeCAD-blog/posts/dev-logs/</loc>
+  <lastmod>2019-05-25T07:17:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://podestplatz.github.io/FreeCAD-blog/posts/finishing-up-the-datamodel-uml/</loc>
+  <lastmod>2019-05-19T16:59:00Z</lastmod>
+ </url>
+ <url>
   <loc>https://podestplatz.github.io/FreeCAD-blog/posts/how-to-represent-extensionxsd-constraints/</loc>
   <lastmod>2019-05-12T16:09:00Z</lastmod>
  </url>
@@ -82,7 +98,15 @@
   <lastmod>2019-05-11T11:37:00Z</lastmod>
  </url>
  <url>
+  <loc>https://podestplatz.github.io/FreeCAD-blog/posts/learning-xsd-syntax/</loc>
+  <lastmod>2019-05-19T16:59:00Z</lastmod>
+ </url>
+ <url>
   <loc>https://podestplatz.github.io/FreeCAD-blog/posts/references-to-read/</loc>
   <lastmod>2019-05-11T11:37:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://podestplatz.github.io/FreeCAD-blog/posts/representing-markupbcf-in-uml/</loc>
+  <lastmod>2019-05-19T16:59:00Z</lastmod>
  </url>
 </urlset>

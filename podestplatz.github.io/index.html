@@ -13,7 +13,7 @@
 <link rel="icon" href="favicon-16.ico" sizes="16x16">
 <link rel="icon" href="favicon-32.ico" sizes="32x32">
 <link rel="icon" href="favicon-256.ico" sizes="256x256">
-<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/how-to-represent-extensionxsd-constraints/" type="text/html">
+<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/dev-logs/" type="text/html">
 </head>
 <body>
 <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
@@ -66,7 +66,142 @@
 
     
 <div class="postindex">
-    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/how-to-represent-extensionxsd-constraints/" class="u-url">How to represent extension.xsd constraints</a></h1>
+    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/dev-logs/" class="u-url">Dev Logs</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                <a href="authors/freecad-community/">FreeCAD Community</a>
+            </span></p>
+            <p class="dateline">
+            <a href="posts/dev-logs/" rel="bookmark">
+            <time class="published dt-published" datetime="2019-05-25T07:15:45Z" itemprop="datePublished" title="2019-05-25 07:15">2019-05-25 07:15</time></a>
+            </p>
+        </div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>This is a daily updated log of the work I do on the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/">BCF-plugin</a> for FreeCAD</p>
+<p><strong>May 27th:</strong> Complete the python representation of the class diagram <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/0a1081bb1fe26dc729d3a2b708fde491b3a31505">commit
+0a1081b</a>. Also advanced to the point where a <cite>.bcf</cite> can be opened, every XML
+file be validated (in theory, only tested it with project.bcfp yet) and the
+contents of <cite>project.bcfp</cite> are can be written to an object of <cite>Project</cite>. For
+more details refer to following commits:</p>
+<ul class="simple">
+<li>
+<a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/bae270f1127039ae78876bf6f3785c48ec0e30b9">commit bae270f</a>: Add util.py and reader.py</li>
+<li>
+<a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/3c0b9d0a1beed02816cd15b0a5186368d7361f7d">commit 3c0b9d0</a>: util.py: add schemaValidate</li>
+<li>
+<a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/f62ed23a73e209fc69995fccedf4e20beddf7632">commit f62ed23</a>: reader.py: add buildProject</li>
+</ul>
+<p><strong>May 26th:</strong> Update Comment in class diagram. For more info see <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/1c34ad907b7fc56cd96aa2fc5aa133e3f445a24b">commit 1c34ad9</a>, and create <a class="reference external" href="https://forum.freecadweb.org/viewtopic.php?p=310515#p310515">mockup of the plugin interface</a>.
+Write part one of the class model in python see <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/31ef931b3637c90ca0c8252f71dd635e66a843fa">commit 31ef931</a>.</p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/learning-xsd-syntax/" class="u-url">Learning XSD Syntax</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                <a href="authors/freecad-community/">FreeCAD Community</a>
+            </span></p>
+            <p class="dateline">
+            <a href="posts/learning-xsd-syntax/" rel="bookmark">
+            <time class="published dt-published" datetime="2019-05-15T04:24:35Z" itemprop="datePublished" title="2019-05-15 04:24">2019-05-15 04:24</time></a>
+            </p>
+        </div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>The main takeaway from the XML Schema Definition Tutorial I went through today
+was the following:</p>
+<blockquote>
+So the node <cite>&lt;xs:sequence&gt;...&lt;/xs:sequence&gt;</cite> is part of the definition of a
+complex type, it is also called an indicator. What it does is that it tells the
+XML checker that the elements specified inside have to occur in the same order
+in the XML document to be valid. Also it specifies what elements may be
+contained in the complex node.</blockquote>
+<p>This greatly improved my understanding of <cite>visinfo.xsd</cite> which describes how a
+<cite>viewpoint.bcfv</cite> file is built. As I learned during design, the representation
+of a viewpoint is almost as complex as the representation of the remaining
+contents of a BCF file.</p>
+<p>I thought about how I coudl read the contents of a BCF into this file structure.
+As my brain always does, it thinks through the whole process, from checking if
+the given file is valid till the point where all the data resides in an object
+in memory. This makes me prone to "reinventing the wheel" as I also design a XSD
+parser/checker in my head which I then would use to check the given files before
+reading them in. But a quick google search brought up a better option, namely an
+offical <a class="reference external" href="https://pypi.org/project/xmlschema/">python library</a> for checking XML files against a schema.</p>
+<p>Last but not least: I am pleased to announce that the first draft of the class
+diagram is ready. You can find it <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/master/doc">here</a> if you are interested.</p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/finishing-up-the-datamodel-uml/" class="u-url">Advancing to the Viewpoint.bcf part</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                <a href="authors/freecad-community/">FreeCAD Community</a>
+            </span></p>
+            <p class="dateline">
+            <a href="posts/finishing-up-the-datamodel-uml/" rel="bookmark">
+            <time class="published dt-published" datetime="2019-05-14T03:42:30Z" itemprop="datePublished" title="2019-05-14 03:42">2019-05-14 03:42</time></a>
+            </p>
+        </div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>In the <a class="reference external" href="https://forum.freecadweb.org/viewtopic.php?p=308095#p308095">forum post</a> yesterday, Yorik pointed out that, although part of the
+specification, the BimSnippet does not have to be treated with high priority. He
+also referred me to Bernd and Duncan in case of questions arising.
+As advised, I will consider the BimSnippet in the data model but probably won't
+implement it right away.</p>
+<p>The progress I made today was mostly in understanding the BCF specification in
+regards to the viewpoint.bcfv file. Multiple viewpoint files can be contained
+within the folder of one topic. At the beginning of the day I thought that the
+data model would be finished rather quick but as it turned out the documentation
+on it is not as concise as one might wish it to be. To be more precise: the
+whole section about the "Components" element is a bit confusing. It lists
+multiple "properties", like <cite>Selection</cite> and <cite>Visibility</cite>. My intuition says that
+<cite>Selection</cite> contains a list of components that are selected, and <cite>Visibility</cite>
+specifies whether these components shall be visible or not. But in reality each
+contains a list of components onto which the values of the attributes of the
+respective property shall be applied.</p>
+<p>This is a bit confusing at first, and still is for me. Because of this ambiguity
+I decided, for the further data model design, that refer to the related XML
+schemas rather than the written documentation. For example here you can find the
+schema for the <a class="reference external" href="https://github.com/buildingSMART/BCF-XML/blob/master/Schemas/visinfo.xsd">viewpoint.bcf</a> file.</p>
+<p>But since the last time I have worked with XML schemas was in vocational school
+(I think 2012) I have to refresh my memory on it. For that I will go through the
+relevant parts of the <a class="reference external" href="https://www.w3schools.com/xml/schema_intro.asp">W3CSchools: XML Schema Tutorial</a>. Tomorrow.</p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/representing-markupbcf-in-uml/" class="u-url">Representing markup.bcf in UML</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                <a href="authors/freecad-community/">FreeCAD Community</a>
+            </span></p>
+            <p class="dateline">
+            <a href="posts/representing-markupbcf-in-uml/" rel="bookmark">
+            <time class="published dt-published" datetime="2019-05-13T17:43:03Z" itemprop="datePublished" title="2019-05-13 17:43">2019-05-13 17:43</time></a>
+            </p>
+        </div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>Today I mostly finished the UML class diagram in regard to representing the data
+of the <tt class="docutils literal">markup.bcf</tt> file. One think I found kind of interesing while creating
+the diagram is that in the <a class="reference external" href="https://github.com/BuildingSMART/BCF-XML/tree/master/Documentation">BCF-XML-Documentation</a> There is no link between a
+topic and a comment, so no id of one is stored in the other. That didn't make
+sense at first because I thought that one <tt class="docutils literal">markup</tt> could have multiple topics,
+which is <strong>not</strong> the case.</p>
+<p>However one think what is not that obvious to me is the case with the <tt class="docutils literal">BIMSnippet</tt>.
+On the documentation page it says that: "BimSnippet is an additional file containing
+information related to one or multiple topics.". This would imply that there
+would be more topics inside one <tt class="docutils literal">markup.bcf</tt> file, because <tt class="docutils literal">BimSnippet</tt> is,
+as I understand, also just a node inside <tt class="docutils literal">markup.bcf</tt>.</p>
+<p>Regarding the open question from the previous post: How to represent constraints
+defined in <tt class="docutils literal">extensions.xsd</tt>; I thought about it a little today and came to the
+conclusion that it would be the best approach to go with the last option I
+listed. That means that for every node, for which constraints are listed in
+<tt class="docutils literal">extensions.xsd</tt>, an empty enumeration/class is created which then, during
+runtime, gets populated with the valid values.</p>
+<p>UPDATE (2019-05-13): The inconsistency is resolved. The BimSnippet node just references one
+file that does not have to be inside the topic folder.</p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/how-to-represent-extensionxsd-constraints/" class="u-url">How to represent extension.xsd constraints</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                 <a href="authors/freecad-community/">FreeCAD Community</a>
