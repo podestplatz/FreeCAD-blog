@@ -13,7 +13,7 @@
 <link rel="icon" href="favicon-16.ico" sizes="16x16">
 <link rel="icon" href="favicon-32.ico" sizes="32x32">
 <link rel="icon" href="favicon-256.ico" sizes="256x256">
-<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/schema-constraints-revisited/" type="text/html">
+<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/dev-logs/" type="text/html">
 </head>
 <body>
 <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
@@ -66,7 +66,44 @@
 
     
 <div class="postindex">
-    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/schema-constraints-revisited/" class="u-url">Schema Constraints Revisited</a></h1>
+    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/dev-logs/" class="u-url">Dev Logs</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                Patrick Podest
+            </span></p>
+            <p class="dateline">
+            <a href="posts/dev-logs/" rel="bookmark">
+            <time class="published dt-published" datetime="2019-05-28T15:00:00Z" itemprop="datePublished" title="2019-05-28 15:00">2019-05-28 15:00</time></a>
+            </p>
+        </div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>This is a daily updated log of the work I do on the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/">BCF-plugin</a> for FreeCAD</p>
+<p><strong>May 28th:</strong> Created a new blog post about the way the schema constraints are
+handled now (<a class="reference external" href="posts/schema-constraints-revisited/">schema constraints revisited</a>). Change configuration file of the
+blog to reflect the current project, instead of the FreeCAD development blog.
+Started a unit-test suite, see <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests">branch unit_tests ./src/tests</a>, and test cases
+written for <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/991d967ab5fc00f8960bbc938c727d11e42c950c/src/bcf/reader.py#L145">reader.buildProject()</a>. Written function in <cite>reader.py</cite> that
+parses <cite>bcf.version</cite> and returns the version number as string, see <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/cccde6ae2bdf52f21f5e7ecfeb68cc89957af29e">commit
+cccde6a</a></p>
+<p><strong>May 27th:</strong> Complete the python representation of the class diagram <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/0a1081bb1fe26dc729d3a2b708fde491b3a31505">commit
+0a1081b</a>. Also advanced to the point where a <cite>.bcf</cite> can be opened, every XML
+file be validated (in theory, only tested it with project.bcfp yet) and the
+contents of <cite>project.bcfp</cite> are can be written to an object of <cite>Project</cite>. For
+more details refer to following commits:</p>
+<ul class="simple">
+<li>
+<a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/bae270f1127039ae78876bf6f3785c48ec0e30b9">commit bae270f</a>: Add util.py and reader.py</li>
+<li>
+<a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/3c0b9d0a1beed02816cd15b0a5186368d7361f7d">commit 3c0b9d0</a>: util.py: add schemaValidate</li>
+<li>
+<a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/f62ed23a73e209fc69995fccedf4e20beddf7632">commit f62ed23</a>: reader.py: add buildProject</li>
+</ul>
+<p><strong>May 26th:</strong> Update Comment in class diagram. For more info see <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/1c34ad907b7fc56cd96aa2fc5aa133e3f445a24b">commit 1c34ad9</a>, and create <a class="reference external" href="https://forum.freecadweb.org/viewtopic.php?p=310515#p310515">mockup of the plugin interface</a>.
+Write part one of the class model in python see <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/31ef931b3637c90ca0c8252f71dd635e66a843fa">commit 31ef931</a>.</p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/schema-constraints-revisited/" class="u-url">Schema Constraints Revisited</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                 Patrick Podest
@@ -175,36 +212,6 @@ set of valid values does not get overwritten, at least not that easily.</p>
 <p>This solution has, for one, the advantage of being adaptable, in case new values
 get added to the list of valid values and, for the other, through the setter function of <cite>value</cite>
 it can be enforced that the state of an object is always valid.</p>
-</div>
-    </div>
-    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/dev-logs/" class="u-url">Dev Logs</a></h1>
-        <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                Patrick Podest
-            </span></p>
-            <p class="dateline">
-            <a href="posts/dev-logs/" rel="bookmark">
-            <time class="published dt-published" datetime="2019-05-25T07:15:45Z" itemprop="datePublished" title="2019-05-25 07:15">2019-05-25 07:15</time></a>
-            </p>
-        </div>
-    </header><div class="e-content entry-content">
-    <div>
-<p>This is a daily updated log of the work I do on the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/">BCF-plugin</a> for FreeCAD</p>
-<p><strong>May 27th:</strong> Complete the python representation of the class diagram <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/0a1081bb1fe26dc729d3a2b708fde491b3a31505">commit
-0a1081b</a>. Also advanced to the point where a <cite>.bcf</cite> can be opened, every XML
-file be validated (in theory, only tested it with project.bcfp yet) and the
-contents of <cite>project.bcfp</cite> are can be written to an object of <cite>Project</cite>. For
-more details refer to following commits:</p>
-<ul class="simple">
-<li>
-<a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/bae270f1127039ae78876bf6f3785c48ec0e30b9">commit bae270f</a>: Add util.py and reader.py</li>
-<li>
-<a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/3c0b9d0a1beed02816cd15b0a5186368d7361f7d">commit 3c0b9d0</a>: util.py: add schemaValidate</li>
-<li>
-<a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/f62ed23a73e209fc69995fccedf4e20beddf7632">commit f62ed23</a>: reader.py: add buildProject</li>
-</ul>
-<p><strong>May 26th:</strong> Update Comment in class diagram. For more info see <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/1c34ad907b7fc56cd96aa2fc5aa133e3f445a24b">commit 1c34ad9</a>, and create <a class="reference external" href="https://forum.freecadweb.org/viewtopic.php?p=310515#p310515">mockup of the plugin interface</a>.
-Write part one of the class model in python see <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/31ef931b3637c90ca0c8252f71dd635e66a843fa">commit 31ef931</a>.</p>
 </div>
     </div>
     </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/learning-xsd-syntax/" class="u-url">Learning XSD Syntax</a></h1>

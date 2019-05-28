@@ -1,12 +1,11 @@
 .. title: Dev Logs
 .. slug: dev-logs
-.. date: 2019-05-25 07:15:45 UTC
+.. date: 2019-05-28 15:00:00 UTC
 .. tags: daily
 .. category: DevLog
 .. link: 
 .. description: This is a daily updated log of the work I do on the BCF-plugin for FreeCAD
 .. type: text
-.. **May 27th:** Write the python representation of the `class diagram`_.
 
 .. _`class diagram`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/master/doc
 .. _`BCF-plugin`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/
@@ -16,9 +15,21 @@
 .. _`commit bae270f`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/bae270f1127039ae78876bf6f3785c48ec0e30b9
 .. _`commit 3c0b9d0`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/3c0b9d0a1beed02816cd15b0a5186368d7361f7d
 .. _`commit f62ed23`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/f62ed23a73e209fc69995fccedf4e20beddf7632
+.. _`commit cccde6a`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/cccde6ae2bdf52f21f5e7ecfeb68cc89957af29e
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
+.. _`schema constraints revisited`: link://slug/schema-constraints-revisited
+.. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
+.. _`reader.buildProject()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/991d967ab5fc00f8960bbc938c727d11e42c950c/src/bcf/reader.py#L145
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**May 28th:** Created a new blog post about the way the schema constraints are
+handled now (`schema constraints revisited`_). Change configuration file of the
+blog to reflect the current project, instead of the FreeCAD development blog.
+Started a unit-test suite, see `branch unit_tests ./src/tests`_, and test cases
+written for `reader.buildProject()`_. Written function in `reader.py` that
+parses `bcf.version` and returns the version number as string, see `commit
+cccde6a`_
 
 **May 27th:** Complete the python representation of the class diagram `commit
 0a1081b`_. Also advanced to the point where a `.bcf` can be opened, every XML
