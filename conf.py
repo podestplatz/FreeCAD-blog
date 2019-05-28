@@ -17,16 +17,16 @@ import time
 
 
 # Data about this site
-BLOG_AUTHOR = "FreeCAD Community"  # (translatable)
-BLOG_TITLE = "FreeCAD Development Blog"  # (translatable)
+BLOG_AUTHOR = "Patrick Podest"  # (translatable)
+BLOG_TITLE = "FreeCAD BCF-Plugin development blog"  # (translatable)
 # This is the main URL for your site. It will be used
 # in a prominent link. Don't forget the protocol (http/https)!
 SITE_URL = "https://podestplatz.github.io/FreeCAD-blog"
 # This is the URL where Nikola's output will be deployed.
 # If not set, defaults to SITE_URL
 # BASE_URL = "https://freecad.github.io/"
-BLOG_EMAIL = "info@freecadweb.org"
-BLOG_DESCRIPTION = "Announcements and community progress news in FreeCAD development."  # (translatable)
+BLOG_EMAIL = "podestplatz@gmail.com"
+BLOG_DESCRIPTION = "Blog to the development of the BCF FreeCAD plugin."  # (translatable)
 
 # Nikola is multilingual!
 #

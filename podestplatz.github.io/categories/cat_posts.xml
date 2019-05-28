@@ -1,5 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>FreeCAD Development Blog (Posts about posts)</title><link>https://podestplatz.github.io/FreeCAD-blog</link><description></description><atom:link href="https://podestplatz.github.io/FreeCAD-blog/categories/cat_posts.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:info@freecadweb.org"&gt;FreeCAD Community&lt;/a&gt; </copyright><lastBuildDate>Mon, 27 May 2019 17:11:41 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Learning XSD Syntax</title><link>https://podestplatz.github.io/FreeCAD-blog/posts/learning-xsd-syntax/</link><dc:creator>FreeCAD Community</dc:creator><description>&lt;div&gt;&lt;p&gt;The main takeaway from the XML Schema Definition Tutorial I went through today
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>FreeCAD BCF-Plugin development blog (Posts about posts)</title><link>https://podestplatz.github.io/FreeCAD-blog</link><description></description><atom:link href="https://podestplatz.github.io/FreeCAD-blog/categories/cat_posts.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:podestplatz@gmail.com"&gt;Patrick Podest&lt;/a&gt; </copyright><lastBuildDate>Tue, 28 May 2019 14:06:33 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Schema Constraints Revisited</title><link>https://podestplatz.github.io/FreeCAD-blog/posts/schema-constraints-revisited/</link><dc:creator>Patrick Podest</dc:creator><description>&lt;div&gt;&lt;p&gt;In an &lt;a class="reference external" href="https://podestplatz.github.io/FreeCAD-blog/posts/how-to-represent-extensionxsd-constraints/"&gt;older post&lt;/a&gt;, one or two weeks back, I've written about a design issue I was
+facing when trying to integrate the constraints of &lt;a class="reference external" href="https://github.com/buildingSMART/BCF-XML/blob/release_2_1/Extension%20Schemas/extensions.xsd"&gt;extensions.xsd&lt;/a&gt; into my
+class model. &lt;cite&gt;extension.xsd&lt;/cite&gt; defines possible values for the XML nodes:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;TopicType&lt;/li&gt;
+&lt;li&gt;TopicLabel&lt;/li&gt;
+&lt;li&gt;TopicStatus&lt;/li&gt;
+&lt;li&gt;SnippetType&lt;/li&gt;
+&lt;li&gt;Priority&lt;/li&gt;
+&lt;li&gt;Stage&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I wanted to ensure that the variables, representing let's say &lt;cite&gt;TopicType&lt;/cite&gt;, can
+only assume valid values, as defined in &lt;cite&gt;extension.xsd&lt;/cite&gt;.  My first idea was to
+just define &lt;a class="reference external" href="https://docs.python.org/3/library/enum.html"&gt;Enums&lt;/a&gt; following the schema. Generally this idea is fine but it
+doesn't do so well with version changes. A new version of the BCF-XML standard
+would then possibly require more maintenance work than necessary. My aim with
+this &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD"&gt;BCF plugin for FreeCAD&lt;/a&gt; is it to create a data model that requires as
+little maintenance work as possible, although the code still has to be adapted
+to support any new version.&lt;/p&gt;
+&lt;p&gt;From the maintenance point of view hardcoded enumerations were not really an option.&lt;/p&gt;
+&lt;p&gt;The next idea was to create something like dynamic enumerations. These would
+have the advantage that the constraint is enforced (i.e.: a variable holding an
+enumeration value can only hold a valid value as defined in the enumeration
+itself). I knew it was possible to change a class object (not the object &lt;em&gt;of&lt;/em&gt; a
+class) during runtime and add or remove members from it.  I thought maybe this
+is also possible with classes that derive from &lt;cite&gt;Enum&lt;/cite&gt;. In python to create an
+enumeration you just have to define a class like this:&lt;/p&gt;
+&lt;pre class="code python"&gt;&lt;a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-1"&gt;&lt;/a&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;enum&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Enum&lt;/span&gt;
+&lt;a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-2"&gt;&lt;/a&gt;
+&lt;a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-3"&gt;&lt;/a&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Example&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Enum&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-4"&gt;&lt;/a&gt;  &lt;span class="n"&gt;VAL1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-5"&gt;&lt;/a&gt;  &lt;span class="n"&gt;VAL2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-6"&gt;&lt;/a&gt;  &lt;span class="o"&gt;...&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;The first obstacle was that classes can only derive from a class (that itself
+derives from &lt;cite&gt;Enum&lt;/cite&gt;) iff they don't introduce new members. Otherwise this would
+break some invariants the python interpreter has over enumerations.
+The second obstacle was a logical implication of the first: if subclasses
+couldn't add new members to an enum-super-class then it is also not possible to
+add new members to enumerations during runtime.&lt;/p&gt;
+&lt;p&gt;So another solution had to be thought of. I maintained the basic structure I
+had envisioned for the dynamic enumeration solution. Namely one superclass
+called &lt;cite&gt;SchemaConstraint&lt;/cite&gt; and one subclass for each of the above mentioned XML
+nodes. Every piece of code that wants to represent one of these XML nodes would
+store an object of one of the subclasses in a variable of type &lt;cite&gt;SchemaConstraint&lt;/cite&gt;.
+The actual value of the object is stored in a class variable, &lt;cite&gt;value&lt;/cite&gt;, that
+holds just any value of type string. This approach of course has the downside that
+basically any value can be assigned to the variable &lt;cite&gt;value&lt;/cite&gt;, if not restricted.
+In order to change this I made the class variable &lt;cite&gt;value&lt;/cite&gt; a property where the
+setter checks whether the new value is actually a valid value.&lt;/p&gt;
+&lt;p&gt;Now the question arises: How does the setter function know which value is valid?
+Every node has different valid values!&lt;/p&gt;
+&lt;p&gt;To solve this issue I introduced, for one, the list &lt;cite&gt;validValues&lt;/cite&gt; into
+&lt;cite&gt;SchemaConstraints&lt;/cite&gt; (&lt;cite&gt;value&lt;/cite&gt; does also reside there) and, for the other, a
+static function called &lt;cite&gt;parseConstraints(elementName)&lt;/cite&gt;. This static function
+reads the valid values for the XML node &lt;cite&gt;elementName&lt;/cite&gt; from &lt;cite&gt;extension.xsd&lt;/cite&gt; and
+returns them as list.  &lt;cite&gt;parseConstraints()&lt;/cite&gt; is intended to be called from the
+&lt;cite&gt;__init__()&lt;/cite&gt; function of each one of the sub classes (e.g.:
+&lt;cite&gt;TopicType.__init__()&lt;/cite&gt;). To make things clearer I put a small code example below
+showing the classes &lt;cite&gt;SchemaConstraints&lt;/cite&gt; and &lt;cite&gt;TopicType&lt;/cite&gt; as well as all the
+members of both classes.&lt;/p&gt;
+&lt;pre class="code python"&gt;&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-1"&gt;&lt;/a&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;SchemaConstraint&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-2"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;validValues&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-3"&gt;&lt;/a&gt;    &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-4"&gt;&lt;/a&gt;    &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;validValues&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;validValues&lt;/span&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-5"&gt;&lt;/a&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-6"&gt;&lt;/a&gt;  &lt;span class="nd"&gt;@property&lt;/span&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-7"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;value&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-8"&gt;&lt;/a&gt;    &lt;span class="o"&gt;...&lt;/span&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-9"&gt;&lt;/a&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-10"&gt;&lt;/a&gt;  &lt;span class="nd"&gt;@value.setter&lt;/span&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-11"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;value&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;newValue&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-12"&gt;&lt;/a&gt;    &lt;span class="o"&gt;...&lt;/span&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-13"&gt;&lt;/a&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-14"&gt;&lt;/a&gt;  &lt;span class="nd"&gt;@property&lt;/span&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-15"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;validValues&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-16"&gt;&lt;/a&gt;    &lt;span class="o"&gt;...&lt;/span&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-17"&gt;&lt;/a&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-18"&gt;&lt;/a&gt;  &lt;span class="nd"&gt;@validValues.setter&lt;/span&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-19"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;validValues&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;newValue&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-20"&gt;&lt;/a&gt;    &lt;span class="k"&gt;pass&lt;/span&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-21"&gt;&lt;/a&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-22"&gt;&lt;/a&gt;  &lt;span class="nd"&gt;@staticmethod&lt;/span&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-23"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;parseConstraints&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;elementName&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-24"&gt;&lt;/a&gt;    &lt;span class="o"&gt;...&lt;/span&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-25"&gt;&lt;/a&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-26"&gt;&lt;/a&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;TopicType&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;SchemaConstraint&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-27"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-28"&gt;&lt;/a&gt;    &lt;span class="n"&gt;validValues&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;SchemaConstraint&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;parseConstraints&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"TopicType"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-29"&gt;&lt;/a&gt;    &lt;span class="nb"&gt;super&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TopicType&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;validValues&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;validValues&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;One important thing to note here is that the setter method of &lt;cite&gt;validValues&lt;/cite&gt; has
+just one line which contains &lt;cite&gt;pass&lt;/cite&gt;. This is done in order to ensure that the
+set of valid values does not get overwritten, at least not that easily.&lt;/p&gt;
+&lt;p&gt;This solution has, for one, the advantage of being adaptable, in case new values
+get added to the list of valid values and, for the other, through the setter function of &lt;cite&gt;value&lt;/cite&gt;
+it can be enforced that the state of an object is always valid.&lt;/p&gt;&lt;/div&gt;</description><guid>https://podestplatz.github.io/FreeCAD-blog/posts/schema-constraints-revisited/</guid><pubDate>Tue, 28 May 2019 13:18:31 GMT</pubDate></item><item><title>Learning XSD Syntax</title><link>https://podestplatz.github.io/FreeCAD-blog/posts/learning-xsd-syntax/</link><dc:creator>Patrick Podest</dc:creator><description>&lt;div&gt;&lt;p&gt;The main takeaway from the XML Schema Definition Tutorial I went through today
 was the following:&lt;/p&gt;
 &lt;blockquote&gt;
 So the node &lt;cite&gt;&amp;lt;xs:sequence&amp;gt;...&amp;lt;/xs:sequence&amp;gt;&lt;/cite&gt; is part of the definition of a
@@ -19,7 +113,7 @@ parser/checker in my head which I then would use to check the given files before
 reading them in. But a quick google search brought up a better option, namely an
 offical &lt;a class="reference external" href="https://pypi.org/project/xmlschema/"&gt;python library&lt;/a&gt; for checking XML files against a schema.&lt;/p&gt;
 &lt;p&gt;Last but not least: I am pleased to announce that the first draft of the class
-diagram is ready. You can find it &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/master/doc"&gt;here&lt;/a&gt; if you are interested.&lt;/p&gt;&lt;/div&gt;</description><category>bcf</category><category>bim</category><category>class-diagram</category><category>GSoC</category><guid>https://podestplatz.github.io/FreeCAD-blog/posts/learning-xsd-syntax/</guid><pubDate>Wed, 15 May 2019 04:24:35 GMT</pubDate></item><item><title>Advancing to the Viewpoint.bcf part</title><link>https://podestplatz.github.io/FreeCAD-blog/posts/finishing-up-the-datamodel-uml/</link><dc:creator>FreeCAD Community</dc:creator><description>&lt;div&gt;&lt;p&gt;In the &lt;a class="reference external" href="https://forum.freecadweb.org/viewtopic.php?p=308095#p308095"&gt;forum post&lt;/a&gt; yesterday, Yorik pointed out that, although part of the
+diagram is ready. You can find it &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/master/doc"&gt;here&lt;/a&gt; if you are interested.&lt;/p&gt;&lt;/div&gt;</description><category>bcf</category><category>bim</category><category>class-diagram</category><category>GSoC</category><guid>https://podestplatz.github.io/FreeCAD-blog/posts/learning-xsd-syntax/</guid><pubDate>Wed, 15 May 2019 04:24:35 GMT</pubDate></item><item><title>Advancing to the Viewpoint.bcf part</title><link>https://podestplatz.github.io/FreeCAD-blog/posts/finishing-up-the-datamodel-uml/</link><dc:creator>Patrick Podest</dc:creator><description>&lt;div&gt;&lt;p&gt;In the &lt;a class="reference external" href="https://forum.freecadweb.org/viewtopic.php?p=308095#p308095"&gt;forum post&lt;/a&gt; yesterday, Yorik pointed out that, although part of the
 specification, the BimSnippet does not have to be treated with high priority. He
 also referred me to Bernd and Duncan in case of questions arising.
 As advised, I will consider the BimSnippet in the data model but probably won't
@@ -41,7 +135,7 @@ schemas rather than the written documentation. For example here you can find the
 schema for the &lt;a class="reference external" href="https://github.com/buildingSMART/BCF-XML/blob/master/Schemas/visinfo.xsd"&gt;viewpoint.bcf&lt;/a&gt; file.&lt;/p&gt;
 &lt;p&gt;But since the last time I have worked with XML schemas was in vocational school
 (I think 2012) I have to refresh my memory on it. For that I will go through the
-relevant parts of the &lt;a class="reference external" href="https://www.w3schools.com/xml/schema_intro.asp"&gt;W3CSchools: XML Schema Tutorial&lt;/a&gt;. Tomorrow.&lt;/p&gt;&lt;/div&gt;</description><category>bcf</category><category>bim</category><category>class-diagram</category><category>GSoC</category><guid>https://podestplatz.github.io/FreeCAD-blog/posts/finishing-up-the-datamodel-uml/</guid><pubDate>Tue, 14 May 2019 03:42:30 GMT</pubDate></item><item><title>Representing markup.bcf in UML</title><link>https://podestplatz.github.io/FreeCAD-blog/posts/representing-markupbcf-in-uml/</link><dc:creator>FreeCAD Community</dc:creator><description>&lt;div&gt;&lt;p&gt;Today I mostly finished the UML class diagram in regard to representing the data
+relevant parts of the &lt;a class="reference external" href="https://www.w3schools.com/xml/schema_intro.asp"&gt;W3CSchools: XML Schema Tutorial&lt;/a&gt;. Tomorrow.&lt;/p&gt;&lt;/div&gt;</description><category>bcf</category><category>bim</category><category>class-diagram</category><category>GSoC</category><guid>https://podestplatz.github.io/FreeCAD-blog/posts/finishing-up-the-datamodel-uml/</guid><pubDate>Tue, 14 May 2019 03:42:30 GMT</pubDate></item><item><title>Representing markup.bcf in UML</title><link>https://podestplatz.github.io/FreeCAD-blog/posts/representing-markupbcf-in-uml/</link><dc:creator>Patrick Podest</dc:creator><description>&lt;div&gt;&lt;p&gt;Today I mostly finished the UML class diagram in regard to representing the data
 of the &lt;tt class="docutils literal"&gt;markup.bcf&lt;/tt&gt; file. One think I found kind of interesing while creating
 the diagram is that in the &lt;a class="reference external" href="https://github.com/BuildingSMART/BCF-XML/tree/master/Documentation"&gt;BCF-XML-Documentation&lt;/a&gt; There is no link between a
 topic and a comment, so no id of one is stored in the other. That didn't make

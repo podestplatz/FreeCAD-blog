@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="description" content="Announcements and community progress news in FreeCAD development.">
+<meta name="description" content="Blog to the development of the BCF FreeCAD plugin.">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>FreeCAD Development Blog</title>
+<title>FreeCAD BCF-Plugin development blog</title>
 <link href="assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
 <meta name="theme-color" content="#5670d4">
 <meta name="generator" content="Nikola (getnikola.com)">
@@ -13,7 +13,7 @@
 <link rel="icon" href="favicon-16.ico" sizes="16x16">
 <link rel="icon" href="favicon-32.ico" sizes="32x32">
 <link rel="icon" href="favicon-256.ico" sizes="256x256">
-<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/dev-logs/" type="text/html">
+<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/schema-constraints-revisited/" type="text/html">
 </head>
 <body>
 <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
@@ -31,7 +31,7 @@
             </button>
             <a class="navbar-brand" href="https://podestplatz.github.io/FreeCAD-blog/">
 
-                <span id="blog-title">FreeCAD Development Blog</span>
+                <span id="blog-title">FreeCAD BCF-Plugin development blog</span>
             </a>
         </div>
 <!-- /.navbar-header -->
@@ -66,10 +66,121 @@
 
     
 <div class="postindex">
-    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/dev-logs/" class="u-url">Dev Logs</a></h1>
+    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/schema-constraints-revisited/" class="u-url">Schema Constraints Revisited</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                FreeCAD Community
+                Patrick Podest
+            </span></p>
+            <p class="dateline">
+            <a href="posts/schema-constraints-revisited/" rel="bookmark">
+            <time class="published dt-published" datetime="2019-05-28T13:18:31Z" itemprop="datePublished" title="2019-05-28 13:18">2019-05-28 13:18</time></a>
+            </p>
+        </div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>In an <a class="reference external" href="posts/how-to-represent-extensionxsd-constraints/">older post</a>, one or two weeks back, I've written about a design issue I was
+facing when trying to integrate the constraints of <a class="reference external" href="https://github.com/buildingSMART/BCF-XML/blob/release_2_1/Extension%20Schemas/extensions.xsd">extensions.xsd</a> into my
+class model. <cite>extension.xsd</cite> defines possible values for the XML nodes:</p>
+<ul class="simple">
+<li>TopicType</li>
+<li>TopicLabel</li>
+<li>TopicStatus</li>
+<li>SnippetType</li>
+<li>Priority</li>
+<li>Stage</li>
+</ul>
+<p>I wanted to ensure that the variables, representing let's say <cite>TopicType</cite>, can
+only assume valid values, as defined in <cite>extension.xsd</cite>.  My first idea was to
+just define <a class="reference external" href="https://docs.python.org/3/library/enum.html">Enums</a> following the schema. Generally this idea is fine but it
+doesn't do so well with version changes. A new version of the BCF-XML standard
+would then possibly require more maintenance work than necessary. My aim with
+this <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD">BCF plugin for FreeCAD</a> is it to create a data model that requires as
+little maintenance work as possible, although the code still has to be adapted
+to support any new version.</p>
+<p>From the maintenance point of view hardcoded enumerations were not really an option.</p>
+<p>The next idea was to create something like dynamic enumerations. These would
+have the advantage that the constraint is enforced (i.e.: a variable holding an
+enumeration value can only hold a valid value as defined in the enumeration
+itself). I knew it was possible to change a class object (not the object <em>of</em> a
+class) during runtime and add or remove members from it.  I thought maybe this
+is also possible with classes that derive from <cite>Enum</cite>. In python to create an
+enumeration you just have to define a class like this:</p>
+<pre class="code python"><a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-1"></a><span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+<a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-2"></a>
+<a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-3"></a><span class="k">class</span> <span class="nc">Example</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-4"></a>  <span class="n">VAL1</span> <span class="o">=</span> <span class="mi">1</span>
+<a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-5"></a>  <span class="n">VAL2</span> <span class="o">=</span> <span class="mi">2</span>
+<a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-6"></a>  <span class="o">...</span>
+</pre>
+<p>The first obstacle was that classes can only derive from a class (that itself
+derives from <cite>Enum</cite>) iff they don't introduce new members. Otherwise this would
+break some invariants the python interpreter has over enumerations.
+The second obstacle was a logical implication of the first: if subclasses
+couldn't add new members to an enum-super-class then it is also not possible to
+add new members to enumerations during runtime.</p>
+<p>So another solution had to be thought of. I maintained the basic structure I
+had envisioned for the dynamic enumeration solution. Namely one superclass
+called <cite>SchemaConstraint</cite> and one subclass for each of the above mentioned XML
+nodes. Every piece of code that wants to represent one of these XML nodes would
+store an object of one of the subclasses in a variable of type <cite>SchemaConstraint</cite>.
+The actual value of the object is stored in a class variable, <cite>value</cite>, that
+holds just any value of type string. This approach of course has the downside that
+basically any value can be assigned to the variable <cite>value</cite>, if not restricted.
+In order to change this I made the class variable <cite>value</cite> a property where the
+setter checks whether the new value is actually a valid value.</p>
+<p>Now the question arises: How does the setter function know which value is valid?
+Every node has different valid values!</p>
+<p>To solve this issue I introduced, for one, the list <cite>validValues</cite> into
+<cite>SchemaConstraints</cite> (<cite>value</cite> does also reside there) and, for the other, a
+static function called <cite>parseConstraints(elementName)</cite>. This static function
+reads the valid values for the XML node <cite>elementName</cite> from <cite>extension.xsd</cite> and
+returns them as list.  <cite>parseConstraints()</cite> is intended to be called from the
+<cite>__init__()</cite> function of each one of the sub classes (e.g.:
+<cite>TopicType.__init__()</cite>). To make things clearer I put a small code example below
+showing the classes <cite>SchemaConstraints</cite> and <cite>TopicType</cite> as well as all the
+members of both classes.</p>
+<pre class="code python"><a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-1"></a><span class="k">class</span> <span class="nc">SchemaConstraint</span><span class="p">:</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-2"></a>  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">validValues</span><span class="p">):</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-3"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-4"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">validValues</span> <span class="o">=</span> <span class="n">validValues</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-5"></a>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-6"></a>  <span class="nd">@property</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-7"></a>  <span class="k">def</span> <span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-8"></a>    <span class="o">...</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-9"></a>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-10"></a>  <span class="nd">@value.setter</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-11"></a>  <span class="k">def</span> <span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">newValue</span><span class="p">):</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-12"></a>    <span class="o">...</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-13"></a>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-14"></a>  <span class="nd">@property</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-15"></a>  <span class="k">def</span> <span class="nf">validValues</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-16"></a>    <span class="o">...</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-17"></a>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-18"></a>  <span class="nd">@validValues.setter</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-19"></a>  <span class="k">def</span> <span class="nf">validValues</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">newValue</span><span class="p">):</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-20"></a>    <span class="k">pass</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-21"></a>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-22"></a>  <span class="nd">@staticmethod</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-23"></a>  <span class="k">def</span> <span class="nf">parseConstraints</span><span class="p">(</span><span class="n">elementName</span><span class="p">):</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-24"></a>    <span class="o">...</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-25"></a>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-26"></a><span class="k">class</span> <span class="nc">TopicType</span><span class="p">(</span><span class="n">SchemaConstraint</span><span class="p">):</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-27"></a>  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-28"></a>    <span class="n">validValues</span> <span class="o">=</span> <span class="n">SchemaConstraint</span><span class="o">.</span><span class="n">parseConstraints</span><span class="p">(</span><span class="s2">"TopicType"</span><span class="p">)</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-29"></a>    <span class="nb">super</span><span class="p">(</span><span class="n">TopicType</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">validValues</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">validValues</span><span class="p">)</span>
+</pre>
+<p>One important thing to note here is that the setter method of <cite>validValues</cite> has
+just one line which contains <cite>pass</cite>. This is done in order to ensure that the
+set of valid values does not get overwritten, at least not that easily.</p>
+<p>This solution has, for one, the advantage of being adaptable, in case new values
+get added to the list of valid values and, for the other, through the setter function of <cite>value</cite>
+it can be enforced that the state of an object is always valid.</p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/dev-logs/" class="u-url">Dev Logs</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                Patrick Podest
             </span></p>
             <p class="dateline">
             <a href="posts/dev-logs/" rel="bookmark">
@@ -99,7 +210,7 @@ Write part one of the class model in python see <a class="reference external" hr
     </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/learning-xsd-syntax/" class="u-url">Learning XSD Syntax</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                FreeCAD Community
+                Patrick Podest
             </span></p>
             <p class="dateline">
             <a href="posts/learning-xsd-syntax/" rel="bookmark">
@@ -134,7 +245,7 @@ diagram is ready. You can find it <a class="reference external" href="https://gi
     </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/finishing-up-the-datamodel-uml/" class="u-url">Advancing to the Viewpoint.bcf part</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                FreeCAD Community
+                Patrick Podest
             </span></p>
             <p class="dateline">
             <a href="posts/finishing-up-the-datamodel-uml/" rel="bookmark">
@@ -171,7 +282,7 @@ relevant parts of the <a class="reference external" href="https://www.w3schools.
     </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/representing-markupbcf-in-uml/" class="u-url">Representing markup.bcf in UML</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                FreeCAD Community
+                Patrick Podest
             </span></p>
             <p class="dateline">
             <a href="posts/representing-markupbcf-in-uml/" rel="bookmark">
@@ -204,7 +315,7 @@ file that does not have to be inside the topic folder.</p>
     </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/how-to-represent-extensionxsd-constraints/" class="u-url">How to represent extension.xsd constraints</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                FreeCAD Community
+                Patrick Podest
             </span></p>
             <p class="dateline">
             <a href="posts/how-to-represent-extensionxsd-constraints/" rel="bookmark">
@@ -256,7 +367,7 @@ changes, most probably also the implementation of this plugin has to change.</p>
     </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/references-to-read/" class="u-url">BCF Reference Collection - GSoC 2019 </a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                FreeCAD Community
+                Patrick Podest
             </span></p>
             <p class="dateline">
             <a href="posts/references-to-read/" rel="bookmark">
@@ -317,7 +428,7 @@ server' from your wordpress installation [...]"</li>
         <!--End of body content-->
 
         <footer id="footer">
-            Contents © 2019         <a href="mailto:info@freecadweb.org">FreeCAD Community</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+            Contents © 2019         <a href="mailto:podestplatz@gmail.com">Patrick Podest</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
             
         </footer>
 </div>

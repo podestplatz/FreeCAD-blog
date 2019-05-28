@@ -15,7 +15,7 @@
  </url>
  <url>
   <loc>https://podestplatz.github.io/FreeCAD-blog/archive.html</loc>
-  <lastmod>2019-05-27T17:18:00Z</lastmod>
+  <lastmod>2019-05-28T14:06:00Z</lastmod>
  </url>
  <url>
   <loc>https://podestplatz.github.io/FreeCAD-blog/categories/</loc>
@@ -76,5 +76,9 @@
  <url>
   <loc>https://podestplatz.github.io/FreeCAD-blog/posts/representing-markupbcf-in-uml/</loc>
   <lastmod>2019-05-27T17:17:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://podestplatz.github.io/FreeCAD-blog/posts/schema-constraints-revisited/</loc>
+  <lastmod>2019-05-28T13:19:00Z</lastmod>
  </url>
 </urlset>
