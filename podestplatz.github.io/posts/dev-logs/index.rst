@@ -1,6 +1,6 @@
 .. title: Dev Logs
 .. slug: dev-logs
-.. date: 2019-05-28 15:00:00 UTC
+.. date: 2019-05-29 15:00:00 UTC
 .. tags: daily
 .. category: DevLog
 .. link: 
@@ -16,12 +16,24 @@
 .. _`commit 3c0b9d0`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/3c0b9d0a1beed02816cd15b0a5186368d7361f7d
 .. _`commit f62ed23`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/f62ed23a73e209fc69995fccedf4e20beddf7632
 .. _`commit cccde6a`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/cccde6ae2bdf52f21f5e7ecfeb68cc89957af29e
+.. _`commit 9a79162`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/9a791627b16b09e9c6641975e6fb0a9bf7e72856
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
 .. _`reader.buildProject()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/991d967ab5fc00f8960bbc938c727d11e42c950c/src/bcf/reader.py#L145
+.. _`reader.py`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/bcf/reader.py
+.. _`bimcollab website`: https://www.bimcollab.com/en/Support/Support/Downloads/Examples-templates
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**May 29th:** Already started refactoring a bit in `reader.py`_. Went away from
+using `ZipFile` objects when operating on the zipFile to the extracted version
+of the zip file instead. Written function `reader.readInFile()` that shall read
+the complete BCF file into the data structure (see `commit 9a79162`_). During testing 
+I noticed that the example BCF file from the `bimcollab website`_ is not valid
+becaus it defines an empty node `Header` in `markup.bcf` of topic
+`ebb1a8bf-6d1d-4aad-a875-61ad3cc40d30` which is prohibited by `markup.xsd` of
+BCF version 2.1.
 
 **May 28th:** Created a new blog post about the way the schema constraints are
 handled now (`schema constraints revisited`_). Change configuration file of the

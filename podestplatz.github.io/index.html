@@ -73,12 +73,20 @@
             </span></p>
             <p class="dateline">
             <a href="posts/dev-logs/" rel="bookmark">
-            <time class="published dt-published" datetime="2019-05-28T15:00:00Z" itemprop="datePublished" title="2019-05-28 15:00">2019-05-28 15:00</time></a>
+            <time class="published dt-published" datetime="2019-05-29T15:00:00Z" itemprop="datePublished" title="2019-05-29 15:00">2019-05-29 15:00</time></a>
             </p>
         </div>
     </header><div class="e-content entry-content">
     <div>
 <p>This is a daily updated log of the work I do on the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/">BCF-plugin</a> for FreeCAD</p>
+<p><strong>May 29th:</strong> Already started refactoring a bit in <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/bcf/reader.py">reader.py</a>. Went away from
+using <cite>ZipFile</cite> objects when operating on the zipFile to the extracted version
+of the zip file instead. Written function <cite>reader.readInFile()</cite> that shall read
+the complete BCF file into the data structure (see <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/9a791627b16b09e9c6641975e6fb0a9bf7e72856">commit 9a79162</a>). During testing
+I noticed that the example BCF file from the <a class="reference external" href="https://www.bimcollab.com/en/Support/Support/Downloads/Examples-templates">bimcollab website</a> is not valid
+becaus it defines an empty node <cite>Header</cite> in <cite>markup.bcf</cite> of topic
+<cite>ebb1a8bf-6d1d-4aad-a875-61ad3cc40d30</cite> which is prohibited by <cite>markup.xsd</cite> of
+BCF version 2.1.</p>
 <p><strong>May 28th:</strong> Created a new blog post about the way the schema constraints are
 handled now (<a class="reference external" href="posts/schema-constraints-revisited/">schema constraints revisited</a>). Change configuration file of the
 blog to reflect the current project, instead of the FreeCAD development blog.
