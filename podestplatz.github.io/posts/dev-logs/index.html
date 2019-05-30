@@ -93,6 +93,19 @@
     </header><div class="e-content entry-content" itemprop="articleBody text">
     <div>
 <p>This is a daily updated log of the work I do on the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/">BCF-plugin</a> for FreeCAD</p>
+<p><strong>May 30th:</strong> Added the folder <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/master/src/bcf/test_data">src/bcf/test_data</a> that is intended to contain
+test data for testing during development, but not primarily for unit tests now.
+Currently it contains an example compliant with the schema files. For more info
+see <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/6fb72f5bbefddc0a063f67c4d6fa806b68763ee2">commit 6fb72f5</a>. In <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/30b998d12ce4c647abc26a6e42a9a5f0efd872fd">commit 30b998d</a> I changed the type of every variable
+associated with <cite>SchemaConstraints</cite> to an elementary type. Reason being that the
+<cite>extensions.xsd</cite> file (as my understanding goes) is intended to be specified
+in the xml file itself as ... well, an extension to the existing schema.
+Finished function <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/3f5fdafb09422e0be0fb10f59f1df76619b2a3ea/src/bcf/reader.py#L350">reader.buildMarkup()</a>, although still a "#TODO" comment is
+above the function header. Also in <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/aa045980b5f2391b7d93dbf2caa163c6f7f8acac">commit aa04598</a> the class
+<cite>DocumentReference</cite> and <cite>BimSnippet</cite> was added. Last but not least: started
+working on reading in <cite>viewpoint.bcfv</cite>. But not finished, that is why this
+development is still on the branch <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commits/feature_read_viewpoint">feature_read_viewpoint</a>. For more info
+refer to <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/154630d4238172610a221dc6ae3c1023c037c553">commit 154630d</a>.</p>
 <p><strong>May 29th:</strong> Already started refactoring a bit in <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/bcf/reader.py">reader.py</a>. Went away from
 using <cite>ZipFile</cite> objects when operating on the zipFile to the extracted version
 of the zip file instead. Written function <cite>reader.readInFile()</cite> that shall read
