@@ -21,6 +21,8 @@
 .. _`commit 30b998d`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/30b998d12ce4c647abc26a6e42a9a5f0efd872fd
 .. _`commit aa04598`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/aa045980b5f2391b7d93dbf2caa163c6f7f8acac
 .. _`commit 154630d`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/154630d4238172610a221dc6ae3c1023c037c553
+.. _`commit 2922d71`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/2922d71af78845bfbdb05ac571c232cfcfdd5989
+.. _`commit 7fa127a`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/7fa127aec6847d9bd653fe43f345b7ee4eaa992b
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
@@ -33,6 +35,23 @@
 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**May 31st:** Today all work was done on the `feature_read_viewpoint`_-branch.
+Most important the function `reader.buildViewpoint()` is finished and with it
+the last step was completed to being able to read in a complete BCF file, given
+it is validated successful against the XML schemas. For more info see `commit
+2922d71`_. To test the reader "module" I created two new topics in
+`src/bcf/test_data`. One is complete in the way that it defines at least one
+element for every node in all files specified by the corresponding XSD file. The
+third topic just has a complete header element in `markup.bcf`. For more info
+see `commit 7fa127a`_. Now ViewpointReference has a reference to the
+corresponding Viewpoint object. The inheritance approach thrown away because
+after reading in all ViewpointReferences from `markup.bcf` the Viewpoint objects
+would have been created, but with no relation to their super class. This meant
+that an object of the former could not have been used as an object of the latter
+without recreation of this object. That further would have complicated the code,
+and made it hard to understand and maintain. Therefore composition was chosen in
+favor of inheritance. For more info also see `commit 2922d71`_.
 
 **May 30th:** Added the folder `src/bcf/test_data`_ that is intended to contain
 test data for testing during development, but not primarily for unit tests now.

@@ -79,6 +79,22 @@
     </header><div class="e-content entry-content">
     <div>
 <p>This is a daily updated log of the work I do on the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/">BCF-plugin</a> for FreeCAD</p>
+<p><strong>May 31st:</strong> Today all work was done on the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commits/feature_read_viewpoint">feature_read_viewpoint</a>-branch.
+Most important the function <cite>reader.buildViewpoint()</cite> is finished and with it
+the last step was completed to being able to read in a complete BCF file, given
+it is validated successful against the XML schemas. For more info see <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/2922d71af78845bfbdb05ac571c232cfcfdd5989">commit
+2922d71</a>. To test the reader "module" I created two new topics in
+<cite>src/bcf/test_data</cite>. One is complete in the way that it defines at least one
+element for every node in all files specified by the corresponding XSD file. The
+third topic just has a complete header element in <cite>markup.bcf</cite>. For more info
+see <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/7fa127aec6847d9bd653fe43f345b7ee4eaa992b">commit 7fa127a</a>. Now ViewpointReference has a reference to the
+corresponding Viewpoint object. The inheritance approach thrown away because
+after reading in all ViewpointReferences from <cite>markup.bcf</cite> the Viewpoint objects
+would have been created, but with no relation to their super class. This meant
+that an object of the former could not have been used as an object of the latter
+without recreation of this object. That further would have complicated the code,
+and made it hard to understand and maintain. Therefore composition was chosen in
+favor of inheritance. For more info also see <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/2922d71af78845bfbdb05ac571c232cfcfdd5989">commit 2922d71</a>.</p>
 <p><strong>May 30th:</strong> Added the folder <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/master/src/bcf/test_data">src/bcf/test_data</a> that is intended to contain
 test data for testing during development, but not primarily for unit tests now.
 Currently it contains an example compliant with the schema files. For more info
