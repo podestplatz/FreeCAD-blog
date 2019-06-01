@@ -1,6 +1,6 @@
 .. title: Dev Logs
 .. slug: dev-logs
-.. date: 2019-05-29 15:00:00 UTC
+.. date: 2019-06-01 08:00:00 UTC
 .. tags: daily
 .. category: DevLog
 .. link: 
@@ -23,6 +23,9 @@
 .. _`commit 154630d`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/154630d4238172610a221dc6ae3c1023c037c553
 .. _`commit 2922d71`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/2922d71af78845bfbdb05ac571c232cfcfdd5989
 .. _`commit 7fa127a`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/7fa127aec6847d9bd653fe43f345b7ee4eaa992b
+.. _`commit 0305754`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/03057542226fde14de0bf312e032ec4e41d23a4b
+.. _`commit a05e22b`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/a05e22b45d3ff86871d5ac14e355cf25e4b45596
+.. _`commit 015c2f6`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/015c2f6fc162b6dbe15a9c3bc8957679935dd1a6
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
@@ -31,10 +34,22 @@
 .. _`reader.py`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/bcf/reader.py
 .. _`bimcollab website`: https://www.bimcollab.com/en/Support/Support/Downloads/Examples-templates
 .. _`src/bcf/test_data`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/master/src/bcf/test_data
+.. _`src/bcf`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/master/src/bcf
 .. _`feature_read_viewpoint`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commits/feature_read_viewpoint
 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**June 1st:** Today not much work was done, but here is a little summary. I
+implemented the `__eq__()` function in every class I defined, see `commit
+0305754`_. This shall help me in the future when I want to write unit tests. 
+In `reader.py`_ I inserted a rather long comment about how the `buildX`
+functions, like what they do, what they expect and what they return. Since all
+behave the same I have written one big comment to document all of them, but see
+`commit a05e22b`_. The branch `feature_read_viewpoint`_ got merged into master,
+for testing I will create a own testing branch. And I created a package out of
+the `src/bcf`_ directory that just exports `reader.py`_ and `writer.py` (latter
+one I still have to write), for details see `commit 015c2f6`_.
 
 **May 31st:** Today all work was done on the `feature_read_viewpoint`_-branch.
 Most important the function `reader.buildViewpoint()` is finished and with it

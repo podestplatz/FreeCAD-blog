@@ -73,12 +73,22 @@
             </span></p>
             <p class="dateline">
             <a href="posts/dev-logs/" rel="bookmark">
-            <time class="published dt-published" datetime="2019-05-29T15:00:00Z" itemprop="datePublished" title="2019-05-29 15:00">2019-05-29 15:00</time></a>
+            <time class="published dt-published" datetime="2019-06-01T08:00:00Z" itemprop="datePublished" title="2019-06-01 08:00">2019-06-01 08:00</time></a>
             </p>
         </div>
     </header><div class="e-content entry-content">
     <div>
 <p>This is a daily updated log of the work I do on the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/">BCF-plugin</a> for FreeCAD</p>
+<p><strong>June 1st:</strong> Today not much work was done, but here is a little summary. I
+implemented the <cite>__eq__()</cite> function in every class I defined, see <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/03057542226fde14de0bf312e032ec4e41d23a4b">commit
+0305754</a>. This shall help me in the future when I want to write unit tests.
+In <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/bcf/reader.py">reader.py</a> I inserted a rather long comment about how the <cite>buildX</cite>
+functions, like what they do, what they expect and what they return. Since all
+behave the same I have written one big comment to document all of them, but see
+<a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/a05e22b45d3ff86871d5ac14e355cf25e4b45596">commit a05e22b</a>. The branch <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commits/feature_read_viewpoint">feature_read_viewpoint</a> got merged into master,
+for testing I will create a own testing branch. And I created a package out of
+the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/master/src/bcf">src/bcf</a> directory that just exports <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/bcf/reader.py">reader.py</a> and <cite>writer.py</cite> (latter
+one I still have to write), for details see <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/015c2f6fc162b6dbe15a9c3bc8957679935dd1a6">commit 015c2f6</a>.</p>
 <p><strong>May 31st:</strong> Today all work was done on the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commits/feature_read_viewpoint">feature_read_viewpoint</a>-branch.
 Most important the function <cite>reader.buildViewpoint()</cite> is finished and with it
 the last step was completed to being able to read in a complete BCF file, given
