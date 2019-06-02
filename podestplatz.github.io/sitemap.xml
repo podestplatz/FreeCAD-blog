@@ -15,11 +15,15 @@
  </url>
  <url>
   <loc>https://podestplatz.github.io/FreeCAD-blog/archive.html</loc>
-  <lastmod>2019-05-28T17:17:00Z</lastmod>
+  <lastmod>2019-06-02T17:11:00Z</lastmod>
  </url>
  <url>
   <loc>https://podestplatz.github.io/FreeCAD-blog/categories/</loc>
-  <lastmod>2019-05-27T17:17:00Z</lastmod>
+  <lastmod>2019-06-01T08:22:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://podestplatz.github.io/FreeCAD-blog/categories/bcf-schema/</loc>
+  <lastmod>2019-06-01T08:21:00Z</lastmod>
  </url>
  <url>
   <loc>https://podestplatz.github.io/FreeCAD-blog/categories/bcf/</loc>
@@ -54,12 +58,24 @@
   <lastmod>2019-05-27T17:10:00Z</lastmod>
  </url>
  <url>
+  <loc>https://podestplatz.github.io/FreeCAD-blog/categories/schema/</loc>
+  <lastmod>2019-06-01T08:22:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://podestplatz.github.io/FreeCAD-blog/categories/xml/</loc>
+  <lastmod>2019-06-01T08:22:00Z</lastmod>
+ </url>
+ <url>
   <loc>https://podestplatz.github.io/FreeCAD-blog/posts/dev-logs/</loc>
   <lastmod>2019-05-27T17:10:00Z</lastmod>
  </url>
  <url>
   <loc>https://podestplatz.github.io/FreeCAD-blog/posts/finishing-up-the-datamodel-uml/</loc>
   <lastmod>2019-05-27T17:10:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://podestplatz.github.io/FreeCAD-blog/posts/handling-non-conform-bcf-files/</loc>
+  <lastmod>2019-06-01T08:20:00Z</lastmod>
  </url>
  <url>
   <loc>https://podestplatz.github.io/FreeCAD-blog/posts/how-to-represent-extensionxsd-constraints/</loc>

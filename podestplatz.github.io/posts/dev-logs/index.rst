@@ -1,6 +1,6 @@
 .. title: Dev Logs
 .. slug: dev-logs
-.. date: 2019-06-01 08:00:00 UTC
+.. date: 2019-06-02 08:00:00 UTC
 .. tags: daily
 .. category: DevLog
 .. link: 
@@ -39,6 +39,10 @@
 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**June 2nd:** I have written on a blog post about how to handle non XSD conform
+BCF files (which is not finished, yet). Otherwise I paused development.
+Tomorrow it is gonna be picked up again!
 
 **June 1st:** Today not much work was done, but here is a little summary. I
 implemented the `__eq__()` function in every class I defined, see `commit
