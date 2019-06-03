@@ -26,19 +26,34 @@
 .. _`commit 0305754`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/03057542226fde14de0bf312e032ec4e41d23a4b
 .. _`commit a05e22b`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/a05e22b45d3ff86871d5ac14e355cf25e4b45596
 .. _`commit 015c2f6`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/015c2f6fc162b6dbe15a9c3bc8957679935dd1a6
+.. _`commit c94d812`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/c94d812af69e05cc0128b32038ab2e01927afeb0
+.. _`commit 7a31462`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/7a31462cb37e0cc94eebeda8a02af4641ab42ca6
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
 .. _`reader.buildProject()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/991d967ab5fc00f8960bbc938c727d11e42c950c/src/bcf/reader.py#L145
 .. _`reader.buildMarkup()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/3f5fdafb09422e0be0fb10f59f1df76619b2a3ea/src/bcf/reader.py#L350
+.. _`reader.buildTopic()`:
+.. _`reader.buildComment()`:
 .. _`reader.py`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/bcf/reader.py
 .. _`bimcollab website`: https://www.bimcollab.com/en/Support/Support/Downloads/Examples-templates
 .. _`src/bcf/test_data`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/master/src/bcf/test_data
 .. _`src/bcf`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/master/src/bcf
 .. _`feature_read_viewpoint`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commits/feature_read_viewpoint
+.. _`non schema conform BCF files`: link://slug/handling-non-conform-bcf-files
 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**June 3rd:** A new blog post is ready, this one elaborates a bit on the ideas I
+have in regards to handling `non schema conform BCF files`_. The `branch unit_tests`_
+got a few new commits, mainly adding test cases for the `reader.buildTopic()`
+and `reader.buildComment()` functions, for more info see `commit c94d812`_.
+`commit 7a31462`_ contains bug fixes for bugs that I became aware of due to the
+newly created test cases. Offline I thought for an extended period of time about
+how to structure an update in place approach to writing the bcf file, rather
+than writing the whole file at once. For this a new blog post is coming this
+week.
 
 **June 2nd:** I have written on a blog post about how to handle non XSD conform
 BCF files (which is not finished, yet). Otherwise I paused development.
