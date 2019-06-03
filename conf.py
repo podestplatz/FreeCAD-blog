@@ -21,10 +21,10 @@ BLOG_AUTHOR = "Patrick Podest"  # (translatable)
 BLOG_TITLE = "FreeCAD BCF-Plugin development blog"  # (translatable)
 # This is the main URL for your site. It will be used
 # in a prominent link. Don't forget the protocol (http/https)!
-SITE_URL = "https://podestplatz.github.io/FreeCAD-blog"
+SITE_URL = "https://podestplatz.github.io/FreeCAD-blog/"
 # This is the URL where Nikola's output will be deployed.
 # If not set, defaults to SITE_URL
-# BASE_URL = "https://freecad.github.io/"
+BASE_URL = "https://podestplatz.github.io/FreeCAD-blog/"
 BLOG_EMAIL = "podestplatz@gmail.com"
 BLOG_DESCRIPTION = "Blog to the development of the BCF FreeCAD plugin."  # (translatable)
 
@@ -134,14 +134,16 @@ TRANSLATIONS_PATTERN = "{path}.{lang}.{ext}"
 
 NAVIGATION_LINKS = {
     DEFAULT_LANG: (
+        ("/index.html", "Home"),
         ("/archive.html", "Archive"),
-        ("/categories/", "Tags"),
+        ("/categories/index.html", "Tags"),
         ("/rss.xml", "RSS feed"),
     ),
 }
 
+
 # Name of the theme to use.
-THEME = "bootstrap3"
+THEME = "bootblog"
 
 # Primary color of your theme. This will be used to customize your theme and
 # auto-generate related colors in POSTS_SECTION_COLORS. Must be a HEX value.
@@ -1361,7 +1363,25 @@ UNSLUGIFY_TITLES = True
 
 # Put in global_context things you want available on all your templates.
 # It can be anything, data, functions, modules, etc.
-GLOBAL_CONTEXT = {}
+GLOBAL_CONTEXT = {'blog_sidebar': """\
+<div class="sidebar-module sidebar-module-inset">
+  <h4>About</h4>
+  <p>This is the Bootstrap Blog theme by @mdo, adapted for Nikola by @Kwpolska.
+  And this sidebar is completely customizable —
+  you can put anything you want here!</p>
+</div>
+<div class="sidebar-module">
+  <h4>Links</h4>
+  <ol class="list-unstyled">
+    <li><a href="http://getbootstrap.com/examples/blog/">Bootstrap Blog Theme</a></li>
+    <li><a href="https://getnikola.com/">Nikola</a></li>
+    <li><a href="https://twitter.com/mdo">@mdo</a></li>
+    <li><a href="https://twitter.com/Kwpolska">@Kwpolska</a></li>
+    <li><a href="https://twitter.com/GetNikola">@GetNikola</a></li>
+  </ol>
+</div>
+"""}
+
 
 # Add functions here and they will be called with template
 # GLOBAL_CONTEXT as parameter when the template is about to be

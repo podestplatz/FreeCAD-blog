@@ -6,15 +6,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Dev Logs | FreeCAD BCF-Plugin development blog</title>
 <link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
-<meta name="theme-color" content="#5670d4">
-<meta name="generator" content="Nikola (getnikola.com)">
-<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../rss.xml">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
 <link rel="canonical" href="https://podestplatz.github.io/FreeCAD-blog/posts/dev-logs/">
 <link rel="icon" href="../../favicon-16.ico" sizes="16x16">
 <link rel="icon" href="../../favicon-32.ico" sizes="32x32">
 <link rel="icon" href="../../favicon-256.ico" sizes="256x256">
-<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Patrick Podest">
-<link rel="prev" href="../schema-constraints-revisited/" title="Schema Constraints Revisited" type="text/html">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="description" itemprop="description" content="This is a daily updated log of the work I do on the BCF-plugin for FreeCAD">
+<meta name="author" content="Patrick Podest">
+<link rel="prev" href="../handling-non-conform-bcf-files/" title="Handling Non-Conform BCF Files" type="text/html">
 <meta property="og:site_name" content="FreeCAD BCF-Plugin development blog">
 <meta property="og:title" content="Dev Logs">
 <meta property="og:url" content="https://podestplatz.github.io/FreeCAD-blog/posts/dev-logs/">
@@ -28,66 +27,55 @@
 
 <!-- Menubar -->
 
-<nav class="navbar navbar-inverse navbar-static-top"><div class="container">
+<div class="blog-masthead">
+    <div class="container">
 <!-- This keeps the margins nice -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="https://podestplatz.github.io/FreeCAD-blog/">
+        <nav class="blog-nav" role="navigation"><a href="../../index.html" class="blog-nav-item">Home</a>
+            <a href="../../archive.html" class="blog-nav-item">Archive</a>
+            <a href="../../categories/index.html" class="blog-nav-item">Tags</a>
+            <a href="../../rss.xml" class="blog-nav-item">RSS feed</a>
 
-                <span id="blog-title">FreeCAD BCF-Plugin development blog</span>
-            </a>
-        </div>
-<!-- /.navbar-header -->
-        <div class="collapse navbar-collapse" id="bs-navbar" aria-expanded="false">
-            <ul class="nav navbar-nav">
-<li>
-<a href="../../archive.html">Archive</a>
-                </li>
-<li>
-<a href="../../categories/">Tags</a>
-                </li>
-<li>
-<a href="../../rss.xml">RSS feed</a>
+            
 
                 
-            </li>
-</ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-    <a href="index.rst" id="sourcelink">Source</a>
-    </li>
+                
+                    
+    <a href="index.rst" class="blog-nav-item blog-nav-item-aside" id="sourcelink">Source</a>
 
                 
-            </ul>
+            
+        </nav>
 </div>
-<!-- /.navbar-collapse -->
-    </div>
 <!-- /.container -->
-</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+</div>
+<!-- End of Menubar -->
+
+<div class="container" id="content" role="main">
     <div class="body-content">
+        <div class="blog-header">
+            <h1 class="blog-title">
+                <a href="https://podestplatz.github.io/FreeCAD-blog/">
+
+                    <span id="blog-title">FreeCAD BCF-Plugin development blog</span>
+                </a>
+            </h1>
+            <p class="lead blog-description">Blog to the development of the BCF FreeCAD plugin.</p>
+            
+        </div>
         <!--Body content-->
         <div class="row">
-            
-            
-<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Dev Logs</a></h1>
+            <div class="col-sm-8 blog-main">
+                
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h2 class="p-name entry-title blog-post-title" itemprop="headline name"><a href="." class="u-url">Dev Logs</a></h2>
 
-        <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                    Patrick Podest
-            </span></p>
-            <p class="dateline">
-            <a href="." rel="bookmark">
-            <time class="published dt-published" datetime="2019-06-02T08:00:00Z" itemprop="datePublished" title="2019-06-02 08:00">2019-06-02 08:00</time></a>
-            </p>
+        <div class="metadata blog-post-meta">
+            <p class="byline author vcard"><span class="byline-name fn">Patrick Podest</span></p>
+            <p class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2019-06-02T08:00:00+00:00" itemprop="datePublished" title="2019-06-02 08:00">2019-06-02 08:00</time></a></p>
             
-        <p class="sourceline"><a href="index.rst" class="sourcelink">Source</a></p>
+        <p class="sourceline"><a href="index.rst" id="sourcelink">Source</a></p>
 
-        </div>
+                <meta name="description" itemprop="description" content="This is a daily updated log of the work I do on the BCF-plugin for FreeCAD">
+</div>
         
 
     </header><div class="e-content entry-content" itemprop="articleBody text">
@@ -172,21 +160,38 @@ Write part one of the class model in python see <a class="reference external" hr
         </ul>
 <ul class="pager hidden-print">
 <li class="previous">
-                <a href="../schema-constraints-revisited/" rel="prev" title="Schema Constraints Revisited">Previous post</a>
+                <a href="../handling-non-conform-bcf-files/" rel="prev" title="Handling Non-Conform BCF Files">Previous post</a>
             </li>
         </ul></nav></aside></article>
 </div>
+            <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+                <div class="sidebar-module sidebar-module-inset">
+  <h4>About</h4>
+  <p>This is the Bootstrap Blog theme by @mdo, adapted for Nikola by @Kwpolska.
+  And this sidebar is completely customizable —
+  you can put anything you want here!</p>
+</div>
+<div class="sidebar-module">
+  <h4>Links</h4>
+  <ol class="list-unstyled">
+<li><a href="http://getbootstrap.com/examples/blog/">Bootstrap Blog Theme</a></li>
+    <li><a href="https://getnikola.com/">Nikola</a></li>
+    <li><a href="https://twitter.com/mdo">@mdo</a></li>
+    <li><a href="https://twitter.com/Kwpolska">@Kwpolska</a></li>
+    <li><a href="https://twitter.com/GetNikola">@GetNikola</a></li>
+  </ol>
+</div>
+
+            </div>
         <!--End of body content-->
-
-        <footer id="footer">
-            Contents © 2019         <a href="mailto:podestplatz@gmail.com">Patrick Podest</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
-            
-        </footer>
-</div>
+        </div>
+    </div>
 </div>
 
-
-            <script src="../../assets/js/all-nocdn.js"></script><!-- fancy dates --><script>
+<footer class="blog-footer" id="footer">
+    Contents © 2019         <a href="mailto:podestplatz@gmail.com">Patrick Podest</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+    
+</footer><script src="../../assets/js/all-nocdn.js"></script><!-- fancy dates --><script>
     moment.locale("en");
     fancydates(0, "YYYY-MM-DD HH:mm");
     </script><!-- end fancy dates --><script>

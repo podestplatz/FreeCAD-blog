@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>FreeCAD BCF-Plugin development blog (Posts about xml)</title><link>https://podestplatz.github.io/FreeCAD-blog/</link><description></description><atom:link href="https://podestplatz.github.io/FreeCAD-blog/categories/xml.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:podestplatz@gmail.com"&gt;Patrick Podest&lt;/a&gt; </copyright><lastBuildDate>Mon, 03 Jun 2019 05:17:31 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Handling Non-Conform BCF Files</title><link>https://podestplatz.github.io/FreeCAD-blog/posts/handling-non-conform-bcf-files/</link><dc:creator>Patrick Podest</dc:creator><description>&lt;div&gt;&lt;p&gt;This post shall just collect some ideas I had about handling BCF files whose
+contents may not be (in part) conform to the &lt;a class="reference external" href="https://github.com/buildingSMART/BCF-XML/tree/master/Schemas"&gt;XSDs&lt;/a&gt; supplied by buildingSmart on
+github.&lt;/p&gt;
+&lt;div class="section" id="why-is-there-a-need-for-that"&gt;
+&lt;h2&gt;Why is there a need for that?&lt;/h2&gt;
+&lt;p&gt;Well, during testing with one of the two BCF files I currently have (here the
+&lt;a class="reference external" href="https://www.bimcollab.com/Files/Example-Projects/BIMcollab_Example_project_Issues-bcfzip.aspx"&gt;link to the first one&lt;/a&gt; to download) I wanted to validate each file I read in,
+before I read it in, to be (mostly) sure that my code does not throw unexpected
+exceptions. But already in &lt;cite&gt;markup.bcf&lt;/cite&gt; of the first topic the library I use,
+&lt;a class="reference external" href="https://pypi.org/project/xmlschema/"&gt;xmlschema&lt;/a&gt;, threw an &lt;cite&gt;XMLSchemaValidatorError&lt;/cite&gt;. The reason was that the node
+&lt;cite&gt;&amp;lt;Header /&amp;gt;&lt;/cite&gt; was defined, but it was defined empty, which is prohibited by
+&lt;a class="reference external" href="https://github.com/buildingSMART/BCF-XML/blob/master/Schemas/markup.xsd"&gt;markup.xsd&lt;/a&gt;. So as quick fix I deleted the &lt;cite&gt;&amp;lt;Header /&amp;gt;&lt;/cite&gt; node altogether to be
+able to test my code somewhat. But now on to the next section.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="how-does-xmlschema-report-parsing-errors"&gt;
+&lt;h2&gt;How does &lt;cite&gt;xmlschema&lt;/cite&gt; report parsing errors?&lt;/h2&gt;
+&lt;p&gt;Before we can go into the problem solution, a little investigation of the
+library I am using has to be done. We need to know how it handles the nodes and
+attributes that could not be parsed/decoded against the corresponding XSD
+file.
+For parsing/decoding &lt;a class="reference external" href="https://pypi.org/project/xmlschema/"&gt;xmlschema&lt;/a&gt; defines the following three &lt;a class="reference external" href="https://xmlschema.readthedocs.io/en/latest/usage.html#xsd-validation-modes"&gt;validation
+modes&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;strict&lt;/strong&gt;: Schemas are validated against the meta-schema. The processor stops
+when an error is found in a schema or during the validation/decode of XML
+data.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;lax&lt;/strong&gt;: Schemas are validated against the meta-schema. The processor collects
+the errors and continues, eventually replacing missing parts with wildcards.
+Undecodable XML data are replaced with None.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;skip&lt;/strong&gt;: Schemas are not validated against the meta-schema. The processor
+doesn't collect any error. Undecodable XML data are replaced with the original
+text.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;For the ones, like me, that got confused by the first sentence of the first two modes:
+every schema that is read in is itself validated against a schema, the
+meta-schema, before it can be used. These modes can be used separately for
+reading the schema file and for parsing/decoding a XML file. So for example it
+is possible to read the &lt;cite&gt;markup.xsd&lt;/cite&gt; in &lt;strong&gt;strict&lt;/strong&gt; mode, thereby validating it
+against a meta-schema, but then parsing/decoding the &lt;cite&gt;markup.bcf&lt;/cite&gt; file in
+&lt;strong&gt;lax&lt;/strong&gt; or &lt;strong&gt;skip&lt;/strong&gt; mode.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="in-what-way-can-errors-be-handled"&gt;
+&lt;h2&gt;In what way can errors be handled?&lt;/h2&gt;
+&lt;p&gt;Given the modes in which XML files can be read in by &lt;a class="reference external" href="https://pypi.org/project/xmlschema/"&gt;xmlschema&lt;/a&gt; I could only
+think about the following two possibilities on how to handle possible errors:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Just ignore the node that could not be parsed/decoded against the
+corresponding schema file. Easy to accomplish with &lt;strong&gt;lax&lt;/strong&gt; mode.&lt;/li&gt;
+&lt;li&gt;Read in the plain XML text for that node, store it somewhere in the data
+structure and when writing it all out again just insert the plain XML text into
+the right place. Only possible in &lt;strong&gt;skip&lt;/strong&gt; mode.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The main drawback of number 1 is clearly that the data, that couldn't be read
+in, would be lost, or only exist in an earlier version of the BCF file, after
+the datastructure got written. It would certainly be easy to implement but does
+not offer the user great value if his or her data get lost. This is, however, on
+the premise of reading in the file once and writing it once after all changes
+have been made in memory.&lt;/p&gt;
+&lt;p&gt;The second option offers a possibility to circumvent the lost data problem. The
+not-parsable elements just get read in plain.&lt;/p&gt;
+&lt;p&gt;But there may be another option that could use &lt;strong&gt;lax&lt;/strong&gt; mode without the data
+loss. This option is another approach to writing the contents of the
+datastructure to the file. Originally I planned to do it in one sweep when the
+user presses the enter key or the save button for that matter.  But then
+&lt;a class="reference external" href="https://forum.freecadweb.org/memberlist.php?mode=viewprofile&amp;amp;u=255"&gt;hardeeprai&lt;/a&gt; from the &lt;a class="reference external" href="https://forum.freecadweb.org/"&gt;freecad forum&lt;/a&gt; suggested, to another topic, that I
+write changes right after the were made. So effectively implementing an update
+driven approach to making changes permanent.&lt;/p&gt;
+&lt;p&gt;So now there are two possible approaches to handling errors that each use a
+different validation mode. In the next section I want to list some thoughts I
+came up with for each one of these approaches.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="approaches-pros-cons"&gt;
+&lt;h2&gt;Approaches: Pros &amp;amp; Cons&lt;/h2&gt;
+&lt;div class="section" id="reading-once-and-writing-once"&gt;
+&lt;h3&gt;Reading once and writing once&lt;/h3&gt;
+&lt;p&gt;As already established, &lt;strong&gt;skip&lt;/strong&gt; mode must be used here with &lt;cite&gt;xmlschema&lt;/cite&gt;. For
+every member in the data structure it has to be noted somewhere if it could be
+read in or not. That would indicate whether the node holds the acutal value of
+the intended datatype or if it holds the plain XML text as string.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Advantage:&lt;/strong&gt; writing the datastructure is fairly easy&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Disadvantage #1:&lt;/strong&gt; every class, that represents part of the XML file, has to be
+changed in order to house the additional information about every member or a
+whole new datastructure has to be created for that.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Disadvantage #2:&lt;/strong&gt; the type annotations become invalid, if this approach is
+used, which leads to confusion by the ones reading the code.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Disadvantage #3:&lt;/strong&gt; the module that reads in the XML file into the data model
+becomes much more complex, thereby not aiding the understandability of the code.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="updating-the-file-on-the-fly"&gt;
+&lt;h3&gt;Updating the file on the fly&lt;/h3&gt;
+&lt;p&gt;Here &lt;strong&gt;lax&lt;/strong&gt; mode can be used with &lt;cite&gt;xmlschema&lt;/cite&gt;. Still the whole file has to be
+read in once, but the parts that could not be parsed/decoded stay in the file and are
+not read in. To really be able to update the original file, the datamodel has to
+accommodate information for every element if it is new or updated, and therefore
+shall be written or not. The overhead here is comparable to the first approach
+but every class just needs one additional member to signify a change or that
+this object was newly created.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Advantage #1:&lt;/strong&gt; (as already mentioned) not so much overhead in the data model
+compared to the first approach.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Advantage #2:&lt;/strong&gt; The user is not exposed to the danger of losing unsaved
+changes, since it is updated every time a new change is committed to the data
+representation.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Disadvantage #1:&lt;/strong&gt; the module that writes the data to the BCF file has to have
+light parsing capabilities or a XML awareness respectively, in order to be able
+to edit XML files directly. This does not have to be the case with the first
+approach, since we could utilize the &lt;cite&gt;xmlschema&lt;/cite&gt; library.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Disadvantage #2:&lt;/strong&gt; Objects that get deleted must not be deleted right away
+from the data model. Rather a flag has to be set that it is "deleted" and the
+corresponding part in the file has to be removed as well. After that it can be
+removed from the data model.&lt;/p&gt;
+&lt;hr class="docutils"&gt;
+&lt;p&gt;I am gravitating more to the latter option, since it does not interfere with the
+type annotations, and therefore does not complicate the whole type situation
+in the data model. What I still have to face, however, is the XML aware writer
+module. This is going to be fun!&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>bcf</category><category>schema</category><category>xml</category><guid>https://podestplatz.github.io/FreeCAD-blog/posts/handling-non-conform-bcf-files/</guid><pubDate>Sat, 01 Jun 2019 07:50:16 GMT</pubDate></item></channel></rss>
