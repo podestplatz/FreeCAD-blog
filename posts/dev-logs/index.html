@@ -81,6 +81,15 @@
     </header><div class="e-content entry-content" itemprop="articleBody text">
     <div>
 <p>This is a daily updated log of the work I do on the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/">BCF-plugin</a> for FreeCAD</p>
+<p><strong>June 3rd:</strong> A new blog post is ready, this one elaborates a bit on the ideas I
+have in regards to handling <a class="reference external" href="../handling-non-conform-bcf-files/">non schema conform BCF files</a>. The <a href="#id1"><span class="problematic" id="id2">`branch unit_tests`_</span></a>
+got a few new commits, mainly adding test cases for the <cite>reader.buildTopic()</cite>
+and <cite>reader.buildComment()</cite> functions, for more info see <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/c94d812af69e05cc0128b32038ab2e01927afeb0">commit c94d812</a>.
+<a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/7a31462cb37e0cc94eebeda8a02af4641ab42ca6">commit 7a31462</a> contains bug fixes for bugs that I became aware of due to the
+newly created test cases. Offline I thought for an extended period of time about
+how to structure an update in place approach to writing the bcf file, rather
+than writing the whole file at once. For this a new blog post is coming this
+week.</p>
 <p><strong>June 2nd:</strong> I have written on a blog post about how to handle non XSD conform
 BCF files (which is not finished, yet). Otherwise I paused development.
 Tomorrow it is gonna be picked up again!</p>
@@ -153,6 +162,12 @@ more details refer to following commits:</p>
 </ul>
 <p><strong>May 26th:</strong> Update Comment in class diagram. For more info see <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/1c34ad907b7fc56cd96aa2fc5aa133e3f445a24b">commit 1c34ad9</a>, and create <a class="reference external" href="https://forum.freecadweb.org/viewtopic.php?p=310515#p310515">mockup of the plugin interface</a>.
 Write part one of the class model in python see <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/31ef931b3637c90ca0c8252f71dd635e66a843fa">commit 31ef931</a>.</p>
+<div class="system-messages section">
+<h2>Docutils System Messages</h2>
+<div class="system-message" id="id1">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">&lt;string&gt;</tt>, line 39); <em><a href="#id2">backlink</a></em></p>
+Unknown target name: "branch unit_tests".</div>
+</div>
 </div>
     </div>
     <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
