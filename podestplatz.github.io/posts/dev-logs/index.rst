@@ -28,22 +28,47 @@
 .. _`commit 015c2f6`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/015c2f6fc162b6dbe15a9c3bc8957679935dd1a6
 .. _`commit c94d812`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/c94d812af69e05cc0128b32038ab2e01927afeb0
 .. _`commit 7a31462`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/7a31462cb37e0cc94eebeda8a02af4641ab42ca6
+.. _`commit 0557bcc`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/0557bcc4eddf1175393fc26cd0526e8d0d3d55b9
+.. _`commit d6cb41c`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/d6cb41c06bf1eb77f4fdd42782e4a61fd4a1a1fd
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
+.. _`branch unit_tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commits/unit_tests
 .. _`reader.buildProject()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/991d967ab5fc00f8960bbc938c727d11e42c950c/src/bcf/reader.py#L145
 .. _`reader.buildMarkup()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/3f5fdafb09422e0be0fb10f59f1df76619b2a3ea/src/bcf/reader.py#L350
-.. _`reader.buildTopic()`:
-.. _`reader.buildComment()`:
+.. _`reader.buildTopic()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/9ecb6b1009521a147cc87bf3a37bceb905ca7f22/src/bcf/reader.py#L265
+.. _`reader.buildComment()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/9ecb6b1009521a147cc87bf3a37bceb905ca7f22/src/bcf/reader.py#L214
+.. _`reader.buildViewpoint()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/9ecb6b1009521a147cc87bf3a37bceb905ca7f22/src/bcf/reader.py#L528
 .. _`reader.py`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/bcf/reader.py
 .. _`bimcollab website`: https://www.bimcollab.com/en/Support/Support/Downloads/Examples-templates
 .. _`src/bcf/test_data`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/master/src/bcf/test_data
+.. _`./src/bcf/writer.py`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/bcf/writer.py
 .. _`src/bcf`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/master/src/bcf
 .. _`feature_read_viewpoint`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commits/feature_read_viewpoint
 .. _`non schema conform BCF files`: link://slug/handling-non-conform-bcf-files
+.. _`Comment`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/9ecb6b1009521a147cc87bf3a37bceb905ca7f22/src/bcf/markup.py#L106
+.. _`ViewpointReference`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/9ecb6b1009521a147cc87bf3a37bceb905ca7f22/src/bcf/markup.py#L43
 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**June 4th:** In `commit 0557bcc`_ I fixed the issue where the `Comment`_ s didn't
+have a valid `ViewpointReference`_ object after creation. The member
+`Comment.viewpoint` should, after creation, hold a reference to a valid
+`ViewpointReference` object that was created in `reader.buildMarkup()`. Actually it was not
+implemented till today, I just left a TODO note for me.
+In `commit 354d2c4`_ I added new testcases, all for testing the results of
+`reader.buildViewpoint()`_. `commit 0733b59`_ includes fixes of bugs I became
+aware of during testing `reader.buildViewpoint()`_, as well as the
+implementation of `__str__()` for some more classes, which helped during
+debugging. Then `commit d6cb41c`_ also contains bug fixes and debug prints were
+remove, but see more in the commit message. And finally I added the file
+`./src/bcf/writer.py`_ with some dictionaries that I will need for the writer
+module.
+
+Last but not least one thing I learned today using git: don't rebase onto
+master. Rebase master onto some branches but not the other way around. This
+makes things messy.
 
 **June 3rd:** A new blog post is ready, this one elaborates a bit on the ideas I
 have in regards to handling `non schema conform BCF files`_. The `branch unit_tests`_
