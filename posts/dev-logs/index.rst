@@ -30,9 +30,6 @@
 .. _`commit 7a31462`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/7a31462cb37e0cc94eebeda8a02af4641ab42ca6
 .. _`commit 0557bcc`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/0557bcc4eddf1175393fc26cd0526e8d0d3d55b9
 .. _`commit d6cb41c`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/d6cb41c06bf1eb77f4fdd42782e4a61fd4a1a1fd
-.. _`commit 5616fd9`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/5616fd92e0a6e1d83cd99cae0ff85f7689ae0b99
-.. _`commit ac589c8`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/ac589c8fff50d9aa2ad63a70b92479277cd6cd38
-.. _`commit c9f9ea4`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/c9f9ea41edb67a058a8d97672823803a1028d092
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
@@ -46,7 +43,6 @@
 .. _`bimcollab website`: https://www.bimcollab.com/en/Support/Support/Downloads/Examples-templates
 .. _`src/bcf/test_data`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/master/src/bcf/test_data
 .. _`./src/bcf/writer.py`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/bcf/writer.py
-.. _`./src/interfaces`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/master/src/interfaces
 .. _`src/bcf`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/master/src/bcf
 .. _`feature_read_viewpoint`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commits/feature_read_viewpoint
 .. _`non schema conform BCF files`: link://slug/handling-non-conform-bcf-files
@@ -55,32 +51,6 @@
 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
-
-**June 5th:** Today I finally followed the suggestion of @yorik and replaced my
-own code for getting the path to the temporary folder with the python module
-`tempfiles`, for more information see `commit 5616fd9`_. `commit ac589c8`_ is a
-small one, but with some repercussions. In it I added `_viewpoint` to the
-initialization sequence of the `markup.__init__()` function. Without it I
-wouldn't have been able to use the property `markup.viewpoint`. The amount the
-previous commit was smaller than usual `commit c9f9ea4` is larger. In it I
-realized some conceptual stuff, like already implementing three interfaces in
-many classes, that will make the writer module easier to write and more
-maintainable. For this I added the `./src/interfaces` folder. It is its own
-python package, and defines three modules/interfaces (atm): 
-
-- State: represents the state of an object during the plugin lifetime
-- Hierarchy: allows an object to know the object it is part of and thereby
-  somewhat implementing a doubly linked tree. For example consider an object
-  of `Markup`. It probably has one or more objects of type `Comment`. Now each
-  comment has a member `containingObject`, which in this case references the
-  one object of type `Markup` that references it. 
-- Identifiable: allows an object to define a unique Id, if it shall be
-  uniquely identifiable. This is intended to be used mainly for objects that
-  can occur multiple times. Like for example `Viewpoint`. Here the Id is the
-  id defined in the XML file.
-
-But please refer to the commit itself for more information, as it has a rather
-extensive commit message, describing the interfaces in more detail. 
 
 **June 4th:** In `commit 0557bcc`_ I fixed the issue where the `Comment`_ s didn't
 have a valid `ViewpointReference`_ object after creation. The member
