@@ -90,13 +90,15 @@ id defined in the XML file.</li>
 </ul>
 <p>But please refer to the commit itself for more information, as it has a rather
 extensive commit message, describing the interfaces in more detail.</p>
+<p>Please note: tomorrow I won't be able to do much. I try to throw in between one
+and three hours.</p>
 <p><strong>June 4th:</strong> In <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/0557bcc4eddf1175393fc26cd0526e8d0d3d55b9">commit 0557bcc</a> I fixed the issue where the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/9ecb6b1009521a147cc87bf3a37bceb905ca7f22/src/bcf/markup.py#L106">Comment</a> s didn't
 have a valid <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/9ecb6b1009521a147cc87bf3a37bceb905ca7f22/src/bcf/markup.py#L43">ViewpointReference</a> object after creation. The member
 <cite>Comment.viewpoint</cite> should, after creation, hold a reference to a valid
 <cite>ViewpointReference</cite> object that was created in <cite>reader.buildMarkup()</cite>. Actually it was not
 implemented till today, I just left a TODO note for me.
-In <a href="posts/dev-logs/#id1"><span class="problematic" id="id2">`commit 354d2c4`_</span></a> I added new testcases, all for testing the results of
-<a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/9ecb6b1009521a147cc87bf3a37bceb905ca7f22/src/bcf/reader.py#L528">reader.buildViewpoint()</a>. <a href="posts/dev-logs/#id3"><span class="problematic" id="id4">`commit 0733b59`_</span></a> includes fixes of bugs I became
+In <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/354d2c46cfcf0fc3ee0c97832447b4bc370a9cbf">commit 354d2c4</a> I added new testcases, all for testing the results of
+<a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/9ecb6b1009521a147cc87bf3a37bceb905ca7f22/src/bcf/reader.py#L528">reader.buildViewpoint()</a>. <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/0733b591b3a0871c68bd4e13c72bf80d4ccc986e">commit 0733b59</a> includes fixes of bugs I became
 aware of during testing <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/9ecb6b1009521a147cc87bf3a37bceb905ca7f22/src/bcf/reader.py#L528">reader.buildViewpoint()</a>, as well as the
 implementation of <cite>__str__()</cite> for some more classes, which helped during
 debugging. Then <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/d6cb41c06bf1eb77f4fdd42782e4a61fd4a1a1fd">commit d6cb41c</a> also contains bug fixes and debug prints were
@@ -187,15 +189,6 @@ more details refer to following commits:</p>
 </ul>
 <p><strong>May 26th:</strong> Update Comment in class diagram. For more info see <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/1c34ad907b7fc56cd96aa2fc5aa133e3f445a24b">commit 1c34ad9</a>, and create <a class="reference external" href="https://forum.freecadweb.org/viewtopic.php?p=310515#p310515">mockup of the plugin interface</a>.
 Write part one of the class model in python see <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/31ef931b3637c90ca0c8252f71dd635e66a843fa">commit 31ef931</a>.</p>
-<div class="system-messages section">
-<h2>Docutils System Messages</h2>
-<div class="system-message" id="id1">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">&lt;string&gt;</tt>, line 76); <em><a href="posts/dev-logs/#id2">backlink</a></em></p>
-Unknown target name: "commit 354d2c4".</div>
-<div class="system-message" id="id3">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">&lt;string&gt;</tt>, line 76); <em><a href="posts/dev-logs/#id4">backlink</a></em></p>
-Unknown target name: "commit 0733b59".</div>
-</div>
 </div>
     </div>
     </article><article class="blog-post h-entry post-text"><header><h2 class="p-name entry-title blog-post-title"><a href="posts/handling-non-conform-bcf-files/" class="u-url">Handling Non-Conform BCF Files</a></h2>
