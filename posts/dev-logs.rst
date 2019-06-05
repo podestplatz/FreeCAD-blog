@@ -33,6 +33,8 @@
 .. _`commit 5616fd9`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/5616fd92e0a6e1d83cd99cae0ff85f7689ae0b99
 .. _`commit ac589c8`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/ac589c8fff50d9aa2ad63a70b92479277cd6cd38
 .. _`commit c9f9ea4`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/c9f9ea41edb67a058a8d97672823803a1028d092
+.. _`commit 354d2c4`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/354d2c46cfcf0fc3ee0c97832447b4bc370a9cbf
+.. _`commit 0733b59`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/0733b591b3a0871c68bd4e13c72bf80d4ccc986e
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
@@ -81,6 +83,9 @@ python package, and defines three modules/interfaces (atm):
 
 But please refer to the commit itself for more information, as it has a rather
 extensive commit message, describing the interfaces in more detail. 
+
+Please note: tomorrow I won't be able to do much. I try to throw in between one
+and three hours.
 
 **June 4th:** In `commit 0557bcc`_ I fixed the issue where the `Comment`_ s didn't
 have a valid `ViewpointReference`_ object after creation. The member
