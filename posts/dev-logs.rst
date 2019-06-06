@@ -35,6 +35,8 @@
 .. _`commit c9f9ea4`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/c9f9ea41edb67a058a8d97672823803a1028d092
 .. _`commit 354d2c4`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/354d2c46cfcf0fc3ee0c97832447b4bc370a9cbf
 .. _`commit 0733b59`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/0733b591b3a0871c68bd4e13c72bf80d4ccc986e
+.. _`commit d6c6cc5`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/d6c6cc5f69a1b179eebae8701e86e178146a02bb
+.. _`commit de38b48`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/de38b48c9fcc200316741e85624b82275a99485b
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
@@ -45,6 +47,7 @@
 .. _`reader.buildComment()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/9ecb6b1009521a147cc87bf3a37bceb905ca7f22/src/bcf/reader.py#L214
 .. _`reader.buildViewpoint()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/9ecb6b1009521a147cc87bf3a37bceb905ca7f22/src/bcf/reader.py#L528
 .. _`reader.py`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/bcf/reader.py
+.. _`writer.getUniqueIdOfListElementInHierarchy()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/de38b48c9fcc200316741e85624b82275a99485b/src/bcf/writer.py#L61
 .. _`bimcollab website`: https://www.bimcollab.com/en/Support/Support/Downloads/Examples-templates
 .. _`src/bcf/test_data`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/master/src/bcf/test_data
 .. _`./src/bcf/writer.py`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/bcf/writer.py
@@ -54,9 +57,32 @@
 .. _`non schema conform BCF files`: link://slug/handling-non-conform-bcf-files
 .. _`Comment`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/9ecb6b1009521a147cc87bf3a37bceb905ca7f22/src/bcf/markup.py#L106
 .. _`ViewpointReference`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/9ecb6b1009521a147cc87bf3a37bceb905ca7f22/src/bcf/markup.py#L43
+.. _`Matteo Cominetti`: https://github.com/teocomi
 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**June 6th:** Most work today was organisatorial: had correspondence with
+`Matteo Cominetti`_ as well as with Paul Deckers (a Product Specialist at the
+BIMcollab Support Team) about the topic of handling non conform schema files.
+This topic bugs me! For the writer module I am starting to write, I started a
+list that contains the elements that shall be updateable/addable and deleteable,
+will be available in a future commit. 
+On to the development: `commit d6c6cc5`_ I added an own class for the labels of
+a topic. This class (`Labels`) inherits from list and also inherits the
+`Hierarchy` interface, that I introduced yesterday. The initialisation of a
+`Topic` object is unchanged, in the init function the list of string labels is passed
+to the constructor of `Labels`. The inheritance from `Hierarchy` offers the
+reader the possibility of easily generating the path that leads down to the
+corresponding label element in the XML file. 
+`commit de38b48`_ adds the parameter `guid` to the constructor of `Comment`.
+Till today I overlooked it, which lead me to a pseudo problem. Without the Guid
+of a comment I would have had the problem of uniquely identifying the comment
+that shall be updated or deleted by the writer module. Additionally the `commit
+de38b48`_ finishes the `writer.getUniqueIdOfListElementInHierarchy()`_ function
+that generates the hierarchy of a given element and checks if it contains an
+element that only occurs in a list, if that is the case then the unique id of
+that list element is returned. 
 
 **June 5th:** Today I finally followed the suggestion of @yorik and replaced my
 own code for getting the path to the temporary folder with the python module

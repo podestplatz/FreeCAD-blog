@@ -1,5 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>FreeCAD BCF-Plugin development blog (Posts about DevLog)</title><link>https://podestplatz.github.io/FreeCAD-blog/</link><description></description><atom:link href="https://podestplatz.github.io/FreeCAD-blog/categories/cat_devlog.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:podestplatz@gmail.com"&gt;Patrick Podest&lt;/a&gt; </copyright><lastBuildDate>Wed, 05 Jun 2019 16:51:58 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Dev Logs</title><link>https://podestplatz.github.io/FreeCAD-blog/posts/dev-logs/</link><dc:creator>Patrick Podest</dc:creator><description>&lt;div&gt;&lt;p&gt;This is a daily updated log of the work I do on the &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/"&gt;BCF-plugin&lt;/a&gt; for FreeCAD&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>FreeCAD BCF-Plugin development blog (Posts about DevLog)</title><link>https://podestplatz.github.io/FreeCAD-blog/</link><description></description><atom:link href="https://podestplatz.github.io/FreeCAD-blog/categories/cat_devlog.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:podestplatz@gmail.com"&gt;Patrick Podest&lt;/a&gt; </copyright><lastBuildDate>Thu, 06 Jun 2019 16:45:38 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Dev Logs</title><link>https://podestplatz.github.io/FreeCAD-blog/posts/dev-logs/</link><dc:creator>Patrick Podest</dc:creator><description>&lt;div&gt;&lt;p&gt;This is a daily updated log of the work I do on the &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/"&gt;BCF-plugin&lt;/a&gt; for FreeCAD&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;June 6th:&lt;/strong&gt; Most work today was organisatorial: had correspondence with
+&lt;a class="reference external" href="https://github.com/teocomi"&gt;Matteo Cominetti&lt;/a&gt; as well as with Paul Deckers (a Product Specialist at the
+BIMcollab Support Team) about the topic of handling non conform schema files.
+This topic bugs me! For the writer module I am starting to write, I started a
+list that contains the elements that shall be updateable/addable and deleteable,
+will be available in a future commit.
+On to the development: &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/d6c6cc5f69a1b179eebae8701e86e178146a02bb"&gt;commit d6c6cc5&lt;/a&gt; I added an own class for the labels of
+a topic. This class (&lt;cite&gt;Labels&lt;/cite&gt;) inherits from list and also inherits the
+&lt;cite&gt;Hierarchy&lt;/cite&gt; interface, that I introduced yesterday. The initialisation of a
+&lt;cite&gt;Topic&lt;/cite&gt; object is unchanged, in the init function the list of string labels is passed
+to the constructor of &lt;cite&gt;Labels&lt;/cite&gt;. The inheritance from &lt;cite&gt;Hierarchy&lt;/cite&gt; offers the
+reader the possibility of easily generating the path that leads down to the
+corresponding label element in the XML file.
+&lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/de38b48c9fcc200316741e85624b82275a99485b"&gt;commit de38b48&lt;/a&gt; adds the parameter &lt;cite&gt;guid&lt;/cite&gt; to the constructor of &lt;cite&gt;Comment&lt;/cite&gt;.
+Till today I overlooked it, which lead me to a pseudo problem. Without the Guid
+of a comment I would have had the problem of uniquely identifying the comment
+that shall be updated or deleted by the writer module. Additionally the &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/de38b48c9fcc200316741e85624b82275a99485b"&gt;commit
+de38b48&lt;/a&gt; finishes the &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/de38b48c9fcc200316741e85624b82275a99485b/src/bcf/writer.py#L61"&gt;writer.getUniqueIdOfListElementInHierarchy()&lt;/a&gt; function
+that generates the hierarchy of a given element and checks if it contains an
+element that only occurs in a list, if that is the case then the unique id of
+that list element is returned.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;June 5th:&lt;/strong&gt; Today I finally followed the suggestion of @yorik and replaced my
 own code for getting the path to the temporary folder with the python module
 &lt;cite&gt;tempfiles&lt;/cite&gt;, for more information see &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/5616fd92e0a6e1d83cd99cae0ff85f7689ae0b99"&gt;commit 5616fd9&lt;/a&gt;. &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/ac589c8fff50d9aa2ad63a70b92479277cd6cd38"&gt;commit ac589c8&lt;/a&gt; is a
