@@ -81,6 +81,27 @@
     </header><div class="e-content entry-content" itemprop="articleBody text">
     <div>
 <p>This is a daily updated log of the work I do on the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/">BCF-plugin</a> for FreeCAD</p>
+<p><strong>June 6th:</strong> Most work today was organisatorial: had correspondence with
+<a class="reference external" href="https://github.com/teocomi">Matteo Cominetti</a> as well as with Paul Deckers (a Product Specialist at the
+BIMcollab Support Team) about the topic of handling non conform schema files.
+This topic bugs me! For the writer module I am starting to write, I started a
+list that contains the elements that shall be updateable/addable and deleteable,
+will be available in a future commit.
+On to the development: <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/d6c6cc5f69a1b179eebae8701e86e178146a02bb">commit d6c6cc5</a> I added an own class for the labels of
+a topic. This class (<cite>Labels</cite>) inherits from list and also inherits the
+<cite>Hierarchy</cite> interface, that I introduced yesterday. The initialisation of a
+<cite>Topic</cite> object is unchanged, in the init function the list of string labels is passed
+to the constructor of <cite>Labels</cite>. The inheritance from <cite>Hierarchy</cite> offers the
+reader the possibility of easily generating the path that leads down to the
+corresponding label element in the XML file.
+<a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/de38b48c9fcc200316741e85624b82275a99485b">commit de38b48</a> adds the parameter <cite>guid</cite> to the constructor of <cite>Comment</cite>.
+Till today I overlooked it, which lead me to a pseudo problem. Without the Guid
+of a comment I would have had the problem of uniquely identifying the comment
+that shall be updated or deleted by the writer module. Additionally the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/de38b48c9fcc200316741e85624b82275a99485b">commit
+de38b48</a> finishes the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/de38b48c9fcc200316741e85624b82275a99485b/src/bcf/writer.py#L61">writer.getUniqueIdOfListElementInHierarchy()</a> function
+that generates the hierarchy of a given element and checks if it contains an
+element that only occurs in a list, if that is the case then the unique id of
+that list element is returned.</p>
 <p><strong>June 5th:</strong> Today I finally followed the suggestion of @yorik and replaced my
 own code for getting the path to the temporary folder with the python module
 <cite>tempfiles</cite>, for more information see <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/5616fd92e0a6e1d83cd99cae0ff85f7689ae0b99">commit 5616fd9</a>. <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/ac589c8fff50d9aa2ad63a70b92479277cd6cd38">commit ac589c8</a> is a
