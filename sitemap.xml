@@ -7,19 +7,23 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
   <loc>https://podestplatz.github.io/FreeCAD-blog/</loc>
-  <lastmod>2019-06-06T16:24:00Z</lastmod>
+  <lastmod>2019-06-07T16:56:00Z</lastmod>
  </url>
  <url>
   <loc>https://podestplatz.github.io/FreeCAD-blog/2019/</loc>
-  <lastmod>2019-06-06T16:24:00Z</lastmod>
+  <lastmod>2019-06-07T16:56:00Z</lastmod>
  </url>
  <url>
   <loc>https://podestplatz.github.io/FreeCAD-blog/archive.html</loc>
-  <lastmod>2019-06-06T16:24:00Z</lastmod>
+  <lastmod>2019-06-07T16:56:00Z</lastmod>
  </url>
  <url>
   <loc>https://podestplatz.github.io/FreeCAD-blog/categories/</loc>
-  <lastmod>2019-06-06T16:24:00Z</lastmod>
+  <lastmod>2019-06-07T16:56:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://podestplatz.github.io/FreeCAD-blog/categories/bcf-schema/</loc>
+  <lastmod>2019-06-07T16:10:00Z</lastmod>
  </url>
  <url>
   <loc>https://podestplatz.github.io/FreeCAD-blog/categories/bcf/</loc>
@@ -39,7 +43,7 @@
  </url>
  <url>
   <loc>https://podestplatz.github.io/FreeCAD-blog/categories/cat_posts/</loc>
-  <lastmod>2019-06-06T16:24:00Z</lastmod>
+  <lastmod>2019-06-07T16:56:00Z</lastmod>
  </url>
  <url>
   <loc>https://podestplatz.github.io/FreeCAD-blog/categories/class-diagram/</loc>
@@ -63,7 +67,7 @@
  </url>
  <url>
   <loc>https://podestplatz.github.io/FreeCAD-blog/posts/dev-logs/</loc>
-  <lastmod>2019-06-06T16:24:00Z</lastmod>
+  <lastmod>2019-06-07T16:56:00Z</lastmod>
  </url>
  <url>
   <loc>https://podestplatz.github.io/FreeCAD-blog/posts/finishing-up-the-datamodel-uml/</loc>
@@ -92,5 +96,9 @@
  <url>
   <loc>https://podestplatz.github.io/FreeCAD-blog/posts/schema-constraints-revisited/</loc>
   <lastmod>2019-06-06T16:24:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://podestplatz.github.io/FreeCAD-blog/posts/writing-non-schema-conform-bcf-files/</loc>
+  <lastmod>2019-06-07T16:10:00Z</lastmod>
  </url>
 </urlset>
