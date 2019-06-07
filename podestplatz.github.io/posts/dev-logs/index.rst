@@ -1,6 +1,6 @@
 .. title: Dev Logs
 .. slug: dev-logs
-.. date: 2019-06-02 08:00:00 UTC
+.. date: 2019-06-07 08:00:00 UTC
 .. tags: daily
 .. category: DevLog
 .. link: 
@@ -61,6 +61,9 @@
 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**June 7th:** Other than beginning a new blog post about the writer module and
+how I envision it, I didn't come to much today. 
 
 **June 6th:** Most work today was organisatorial: had correspondence with
 `Matteo Cominetti`_ as well as with Paul Deckers (a Product Specialist at the
