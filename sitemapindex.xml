@@ -6,10 +6,6 @@
     xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <sitemap>
-  <loc>https://podestplatz.github.io/FreeCAD-blog/categories/bcf-schema.xml</loc>
-  <lastmod>2019-06-07T16:54:00Z</lastmod>
- </sitemap>
- <sitemap>
   <loc>https://podestplatz.github.io/FreeCAD-blog/categories/bcf.xml</loc>
   <lastmod>2019-06-06T16:24:00Z</lastmod>
  </sitemap>
@@ -19,7 +15,7 @@
  </sitemap>
  <sitemap>
   <loc>https://podestplatz.github.io/FreeCAD-blog/categories/cat_devlog.xml</loc>
-  <lastmod>2019-06-06T16:45:00Z</lastmod>
+  <lastmod>2019-06-09T05:03:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://podestplatz.github.io/FreeCAD-blog/categories/cat_gsoc-2019-bcf-integration.xml</loc>
@@ -35,7 +31,7 @@
  </sitemap>
  <sitemap>
   <loc>https://podestplatz.github.io/FreeCAD-blog/categories/daily.xml</loc>
-  <lastmod>2019-06-06T16:45:00Z</lastmod>
+  <lastmod>2019-06-09T05:03:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://podestplatz.github.io/FreeCAD-blog/categories/gsoc.xml</loc>
@@ -51,10 +47,10 @@
  </sitemap>
  <sitemap>
   <loc>https://podestplatz.github.io/FreeCAD-blog/rss.xml</loc>
-  <lastmod>2019-06-07T16:56:00Z</lastmod>
+  <lastmod>2019-06-09T05:03:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://podestplatz.github.io/FreeCAD-blog/sitemap.xml</loc>
-  <lastmod>2019-06-07T16:56:00Z</lastmod>
+  <lastmod>2019-06-09T05:10:00Z</lastmod>
  </sitemap>
 </sitemapindex>
