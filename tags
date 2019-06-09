@@ -118,6 +118,10 @@
 *:before	podestplatz.github.io/assets/css/all.css	/^    *, *:before, *:after {$/;"	s
 *:before	podestplatz.github.io/assets/css/theme.css	/^    *, *:before, *:after {$/;"	s
 *:before	themes/bootstrap3/assets/css/theme.css	/^    *, *:before, *:after {$/;"	s
+./src/bcf/writer.py	podestplatz.github.io/posts/dev-logs/index.rst	/^.. _`.\/src\/bcf\/writer.py`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/blob\/maste/;"	T
+./src/bcf/writer.py	posts/dev-logs.rst	/^.. _`.\/src\/bcf\/writer.py`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/blob\/maste/;"	T
+./src/interfaces	podestplatz.github.io/posts/dev-logs/index.rst	/^.. _`.\/src\/interfaces`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/tree\/master\/s/;"	T
+./src/interfaces	posts/dev-logs.rst	/^.. _`.\/src\/interfaces`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/tree\/master\/s/;"	T
 .CodeMirror	freecad.github.io/assets/css/ipython.min.css	/^*\/.ansi-black-fg{color:#3e424d}.ansi-black-bg{background-color:#3e424d}.ansi-black-intense-fg{c/;"	c
 .CodeMirror	podestplatz.github.io/assets/css/ipython.min.css	/^*\/.ansi-black-fg{color:#3e424d}.ansi-black-bg{background-color:#3e424d}.ansi-black-intense-fg{c/;"	c
 .CodeMirror pre	freecad.github.io/assets/css/ipython.min.css	/^*\/.ansi-black-fg{color:#3e424d}.ansi-black-bg{background-color:#3e424d}.ansi-black-intense-fg{c/;"	s
@@ -16931,6 +16935,8 @@ Code	cache/posts/introduction-to-freecad-development.html	/^<h1>Code<\/h1>$/;"	h
 Code	freecad.github.io/index.html	/^<h2>Code<\/h2>$/;"	i
 Code	freecad.github.io/posts/introduction-to-freecad-development/index.html	/^<h2>Code<\/h2>$/;"	i
 Code	freecad.github.io/posts/introduction-to-freecad-development/index.rst	/^Code$/;"	c
+Comment	podestplatz.github.io/posts/dev-logs/index.rst	/^.. _`Comment`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/blob\/9ecb6b1009521a147cc8/;"	T
+Comment	posts/dev-logs.rst	/^.. _`Comment`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/blob\/9ecb6b1009521a147cc8/;"	T
 D	freecad.github.io/assets/js/all-nocdn.js	/^!function(e,a){"object"==typeof exports&&"undefined"!=typeof module?module.exports=a():"function/;"	f	function:AnonymousFunction21d20f6621e00
 D	freecad.github.io/assets/js/all-nocdn.js	/^!function(e,t){"use strict";"function"==typeof define&&define.amd?define(t):"object"==typeof exp/;"	f
 D	freecad.github.io/assets/js/all.js	/^!function(e,a){"object"==typeof exports&&"undefined"!=typeof module?module.exports=a():"function/;"	f	function:AnonymousFunction65452a870100
@@ -17163,11 +17169,15 @@ Hn	freecad.github.io/assets/js/moment-with-locales.min.js	/^!function(e,a){"obje
 Hn	podestplatz.github.io/assets/js/all-nocdn.js	/^!function(e,a){"object"==typeof exports&&"undefined"!=typeof module?module.exports=a():"function/;"	f
 Hn	podestplatz.github.io/assets/js/all.js	/^!function(e,a){"object"==typeof exports&&"undefined"!=typeof module?module.exports=a():"function/;"	f
 Hn	podestplatz.github.io/assets/js/moment-with-locales.min.js	/^!function(e,a){"object"==typeof exports&&"undefined"!=typeof module?module.exports=a():"function/;"	f
+How can additions be handled?	cache/posts/writing-non-schema-conform-bcf-files.html	/^<h2>How can additions be handled?<\/h2>$/;"	i
+How can deletions be handled?	cache/posts/writing-non-schema-conform-bcf-files.html	/^<h2>How can deletions be handled?<\/h2>$/;"	i
+How can updates be handled?	cache/posts/writing-non-schema-conform-bcf-files.html	/^<h2>How can updates be handled?<\/h2>$/;"	i
 How does `xmlschema` report parsing errors?	podestplatz.github.io/posts/handling-non-conform-bcf-files/index.rst	/^How does `xmlschema` report parsing errors?$/;"	c
 How does `xmlschema` report parsing errors?	posts/handling-non-conform-bcf-files.rst	/^How does `xmlschema` report parsing errors?$/;"	c
 How does xmlschema report parsing errors?	cache/posts/handling-non-conform-bcf-files.html	/^<h1>How does <cite>xmlschema<\/cite> report parsing errors?<\/h1>$/;"	h
 How does xmlschema report parsing errors?	podestplatz.github.io/index.html	/^<h2>How does <cite>xmlschema<\/cite> report parsing errors?<\/h2>$/;"	i
 How does xmlschema report parsing errors?	podestplatz.github.io/posts/handling-non-conform-bcf-files/index.html	/^<h2>How does <cite>xmlschema<\/cite> report parsing errors?<\/h2>$/;"	i
+How shall the interface to the writer look?	cache/posts/writing-non-schema-conform-bcf-files.html	/^<h1>How shall the interface to the writer look?<\/h1>$/;"	h
 How to Get Most out of OpenBim	freecad.github.io/posts/references-to-read/index.rst	/^.. _`How to Get Most out of OpenBim`: https:\/\/www.linkedin.com\/pulse\/how-get-most-out-open-b/;"	T
 How to Get Most out of OpenBim	podestplatz.github.io/posts/references-to-read/index.rst	/^.. _`How to Get Most out of OpenBim`: https:\/\/www.linkedin.com\/pulse\/how-get-most-out-open-b/;"	T
 How to Get Most out of OpenBim	posts/bcf_reference_collection.rst	/^.. _`How to Get Most out of OpenBim`: https:\/\/www.linkedin.com\/pulse\/how-get-most-out-open-b/;"	T
@@ -17382,8 +17392,10 @@ Ma	podestplatz.github.io/assets/js/jquery.min.js	/^}return c}function Q(a){var b
 Ma	podestplatz.github.io/assets/js/moment-with-locales.min.js	/^!function(e,a){"object"==typeof exports&&"undefined"!=typeof module?module.exports=a():"function/;"	f
 Ma	themes/bootstrap3/assets/js/jquery.min.js	/^}return c}function Q(a){var b;for(b in a)if(("data"!==b||!n.isEmptyObject(a[b]))&&"toJSON"!==b)r/;"	f
 Matteo Cominetti	freecad.github.io/posts/references-to-read/index.rst	/^.. _`Matteo Cominetti`: https:\/\/github.com\/teocomi$/;"	T
+Matteo Cominetti	podestplatz.github.io/posts/dev-logs/index.rst	/^.. _`Matteo Cominetti`: https:\/\/github.com\/teocomi$/;"	T
 Matteo Cominetti	podestplatz.github.io/posts/references-to-read/index.rst	/^.. _`Matteo Cominetti`: https:\/\/github.com\/teocomi$/;"	T
 Matteo Cominetti	posts/bcf_reference_collection.rst	/^.. _`Matteo Cominetti`: https:\/\/github.com\/teocomi$/;"	T
+Matteo Cominetti	posts/dev-logs.rst	/^.. _`Matteo Cominetti`: https:\/\/github.com\/teocomi$/;"	T
 Md	freecad.github.io/assets/js/all-nocdn.js	/^!function(e,a){"object"==typeof exports&&"undefined"!=typeof module?module.exports=a():"function/;"	f
 Md	freecad.github.io/assets/js/all.js	/^!function(e,a){"object"==typeof exports&&"undefined"!=typeof module?module.exports=a():"function/;"	f
 Md	freecad.github.io/assets/js/moment-with-locales.min.js	/^!function(e,a){"object"==typeof exports&&"undefined"!=typeof module?module.exports=a():"function/;"	f
@@ -17534,6 +17546,7 @@ Reading once and writing once	podestplatz.github.io/index.html	/^<h3>Reading onc
 Reading once and writing once	podestplatz.github.io/posts/handling-non-conform-bcf-files/index.html	/^<h3>Reading once and writing once<\/h3>$/;"	j
 Reading once and writing once	podestplatz.github.io/posts/handling-non-conform-bcf-files/index.rst	/^Reading once and writing once$/;"	s	chapter:Approaches: Pros & Cons
 Reading once and writing once	posts/handling-non-conform-bcf-files.rst	/^Reading once and writing once$/;"	s	chapter:Approaches: Pros & Cons
+Recap	cache/posts/writing-non-schema-conform-bcf-files.html	/^<h1>Recap<\/h1>$/;"	h
 Representing markup.bcf in UML	podestplatz.github.io/index.html	/^    <\/article><article class="blog-post h-entry post-text"><header><h2 class="p-name entry-titl/;"	i
 Representing markup.bcf in UML	podestplatz.github.io/posts/representing-markupbcf-in-uml/index.html	/^<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http:\/\/sche/;"	i
 S	freecad.github.io/assets/js/all-nocdn.js	/^!function(e,a){"object"==typeof exports&&"undefined"!=typeof module?module.exports=a():"function/;"	f	function:AnonymousFunction21d20f6621e00
@@ -17718,6 +17731,8 @@ Vb	freecad.github.io/assets/js/jquery.min.js	/^marginLeft:0},function(){return a
 Vb	podestplatz.github.io/assets/js/all-nocdn.js	/^marginLeft:0},function(){return a.getBoundingClientRect().left}):0))+"px":void 0}),n.each({margi/;"	f
 Vb	podestplatz.github.io/assets/js/jquery.min.js	/^marginLeft:0},function(){return a.getBoundingClientRect().left}):0))+"px":void 0}),n.each({margi/;"	f
 Vb	themes/bootstrap3/assets/js/jquery.min.js	/^marginLeft:0},function(){return a.getBoundingClientRect().left}):0))+"px":void 0}),n.each({margi/;"	f
+ViewpointReference	podestplatz.github.io/posts/dev-logs/index.rst	/^.. _`ViewpointReference`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/blob\/9ecb6b100/;"	T
+ViewpointReference	posts/dev-logs.rst	/^.. _`ViewpointReference`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/blob\/9ecb6b100/;"	T
 Vn	freecad.github.io/assets/js/all-nocdn.js	/^!function(e,a){"object"==typeof exports&&"undefined"!=typeof module?module.exports=a():"function/;"	f
 Vn	freecad.github.io/assets/js/all.js	/^!function(e,a){"object"==typeof exports&&"undefined"!=typeof module?module.exports=a():"function/;"	f
 Vn	freecad.github.io/assets/js/moment-with-locales.min.js	/^!function(e,a){"object"==typeof exports&&"undefined"!=typeof module?module.exports=a():"function/;"	f
@@ -17783,6 +17798,7 @@ Why is there a need for that?	podestplatz.github.io/index.html	/^<h2>Why is ther
 Why is there a need for that?	podestplatz.github.io/posts/handling-non-conform-bcf-files/index.html	/^<h2>Why is there a need for that?<\/h2>$/;"	i
 Why is there a need for that?	podestplatz.github.io/posts/handling-non-conform-bcf-files/index.rst	/^Why is there a need for that?$/;"	c
 Why is there a need for that?	posts/handling-non-conform-bcf-files.rst	/^Why is there a need for that?$/;"	c
+Writing actual stuff	cache/posts/writing-non-schema-conform-bcf-files.html	/^<h1>Writing actual stuff<\/h1>$/;"	h
 Wt	freecad.github.io/assets/js/all-nocdn.js	/^!function(e,a){"object"==typeof exports&&"undefined"!=typeof module?module.exports=a():"function/;"	f
 Wt	freecad.github.io/assets/js/all.js	/^!function(e,a){"object"==typeof exports&&"undefined"!=typeof module?module.exports=a():"function/;"	f
 Wt	freecad.github.io/assets/js/moment-with-locales.min.js	/^!function(e,a){"object"==typeof exports&&"undefined"!=typeof module?module.exports=a():"function/;"	f
@@ -18038,30 +18054,30 @@ _mako_inherit	cache/.mako.tmp/listing.tmpl.py	/^def _mako_inherit(template, cont
 _mako_inherit	cache/.mako.tmp/post.tmpl.py	/^def _mako_inherit(template, context):$/;"	f
 _mako_inherit	cache/.mako.tmp/tag.tmpl.py	/^def _mako_inherit(template, context):$/;"	f
 _mako_inherit	cache/.mako.tmp/tags.tmpl.py	/^def _mako_inherit(template, context):$/;"	f
-_modified_time	cache/.mako.tmp/archive_navigation_helper.tmpl.py	/^_modified_time = 1559539030.928195$/;"	v
-_modified_time	cache/.mako.tmp/base.tmpl.py	/^_modified_time = 1559539030.8874059$/;"	v
-_modified_time	cache/.mako.tmp/base_helper.tmpl.py	/^_modified_time = 1559539030.9030244$/;"	v
-_modified_time	cache/.mako.tmp/comments_helper.tmpl.py	/^_modified_time = 1559539031.0305867$/;"	v
-_modified_time	cache/.mako.tmp/comments_helper_commento.tmpl.py	/^_modified_time = 1559539031.0567806$/;"	v
-_modified_time	cache/.mako.tmp/comments_helper_disqus.tmpl.py	/^_modified_time = 1559539031.044848$/;"	v
-_modified_time	cache/.mako.tmp/comments_helper_facebook.tmpl.py	/^_modified_time = 1559539031.0517032$/;"	v
-_modified_time	cache/.mako.tmp/comments_helper_intensedebate.tmpl.py	/^_modified_time = 1559539031.047569$/;"	v
-_modified_time	cache/.mako.tmp/comments_helper_isso.tmpl.py	/^_modified_time = 1559539031.0546691$/;"	v
-_modified_time	cache/.mako.tmp/comments_helper_muut.tmpl.py	/^_modified_time = 1559539031.0496233$/;"	v
-_modified_time	cache/.mako.tmp/crumbs.tmpl.py	/^_modified_time = 1559539030.8912337$/;"	v
-_modified_time	cache/.mako.tmp/feeds_translations_helper.tmpl.py	/^_modified_time = 1559539030.9428155$/;"	v
-_modified_time	cache/.mako.tmp/index.tmpl.py	/^_modified_time = 1559539031.018452$/;"	v
-_modified_time	cache/.mako.tmp/index_helper.tmpl.py	/^_modified_time = 1559539031.0253975$/;"	v
-_modified_time	cache/.mako.tmp/list.tmpl.py	/^_modified_time = 1559539030.9688795$/;"	v
-_modified_time	cache/.mako.tmp/list_post.tmpl.py	/^_modified_time = 1559539030.9218745$/;"	v
-_modified_time	cache/.mako.tmp/listing.tmpl.py	/^_modified_time = 1559539030.8789365$/;"	v
-_modified_time	cache/.mako.tmp/math_helper.tmpl.py	/^_modified_time = 1559539031.0355709$/;"	v
-_modified_time	cache/.mako.tmp/post.tmpl.py	/^_modified_time = 1559539031.0990634$/;"	v
-_modified_time	cache/.mako.tmp/post_header.tmpl.py	/^_modified_time = 1559539031.1197312$/;"	v
-_modified_time	cache/.mako.tmp/post_helper.tmpl.py	/^_modified_time = 1559539031.112319$/;"	v
-_modified_time	cache/.mako.tmp/tag.tmpl.py	/^_modified_time = 1559539030.9941652$/;"	v
-_modified_time	cache/.mako.tmp/tags.tmpl.py	/^_modified_time = 1559539031.0695791$/;"	v
-_modified_time	cache/.mako.tmp/ui_helper.tmpl.py	/^_modified_time = 1559539030.908474$/;"	v
+_modified_time	cache/.mako.tmp/archive_navigation_helper.tmpl.py	/^_modified_time = 1560056933.8910713$/;"	v
+_modified_time	cache/.mako.tmp/base.tmpl.py	/^_modified_time = 1560056933.8825476$/;"	v
+_modified_time	cache/.mako.tmp/base_helper.tmpl.py	/^_modified_time = 1560056933.9343638$/;"	v
+_modified_time	cache/.mako.tmp/comments_helper.tmpl.py	/^_modified_time = 1560056934.027297$/;"	v
+_modified_time	cache/.mako.tmp/comments_helper_commento.tmpl.py	/^_modified_time = 1560056934.0685096$/;"	v
+_modified_time	cache/.mako.tmp/comments_helper_disqus.tmpl.py	/^_modified_time = 1560056934.0494618$/;"	v
+_modified_time	cache/.mako.tmp/comments_helper_facebook.tmpl.py	/^_modified_time = 1560056934.060437$/;"	v
+_modified_time	cache/.mako.tmp/comments_helper_intensedebate.tmpl.py	/^_modified_time = 1560056934.0537856$/;"	v
+_modified_time	cache/.mako.tmp/comments_helper_isso.tmpl.py	/^_modified_time = 1560056934.0651784$/;"	v
+_modified_time	cache/.mako.tmp/comments_helper_muut.tmpl.py	/^_modified_time = 1560056934.0570529$/;"	v
+_modified_time	cache/.mako.tmp/crumbs.tmpl.py	/^_modified_time = 1560056934.131903$/;"	v
+_modified_time	cache/.mako.tmp/feeds_translations_helper.tmpl.py	/^_modified_time = 1560056933.8644197$/;"	v
+_modified_time	cache/.mako.tmp/index.tmpl.py	/^_modified_time = 1560056934.008494$/;"	v
+_modified_time	cache/.mako.tmp/index_helper.tmpl.py	/^_modified_time = 1560056934.01926$/;"	v
+_modified_time	cache/.mako.tmp/list.tmpl.py	/^_modified_time = 1560056933.9657292$/;"	v
+_modified_time	cache/.mako.tmp/list_post.tmpl.py	/^_modified_time = 1560056933.839686$/;"	v
+_modified_time	cache/.mako.tmp/listing.tmpl.py	/^_modified_time = 1560056934.1244206$/;"	v
+_modified_time	cache/.mako.tmp/math_helper.tmpl.py	/^_modified_time = 1560056934.0351946$/;"	v
+_modified_time	cache/.mako.tmp/post.tmpl.py	/^_modified_time = 1560056934.148263$/;"	v
+_modified_time	cache/.mako.tmp/post_header.tmpl.py	/^_modified_time = 1560056934.1792731$/;"	v
+_modified_time	cache/.mako.tmp/post_helper.tmpl.py	/^_modified_time = 1560056934.1677582$/;"	v
+_modified_time	cache/.mako.tmp/tag.tmpl.py	/^_modified_time = 1560056933.8272338$/;"	v
+_modified_time	cache/.mako.tmp/tags.tmpl.py	/^_modified_time = 1560056934.0836537$/;"	v
+_modified_time	cache/.mako.tmp/ui_helper.tmpl.py	/^_modified_time = 1560056934.1404078$/;"	v
 _source_encoding	cache/.mako.tmp/archive_navigation_helper.tmpl.py	/^_source_encoding = 'utf-8'$/;"	v
 _source_encoding	cache/.mako.tmp/base.tmpl.py	/^_source_encoding = 'utf-8'$/;"	v
 _source_encoding	cache/.mako.tmp/base_helper.tmpl.py	/^_source_encoding = 'utf-8'$/;"	v
@@ -18916,6 +18932,8 @@ bodyClass	freecad.github.io/assets/js/baguetteBox.min.js	/^!function(e,t){"use s
 bodyClass	podestplatz.github.io/assets/js/all-nocdn.js	/^!function(e,t){"use strict";"function"==typeof define&&define.amd?define(t):"object"==typeof exp/;"	p	class:AnonymousFunctiona3eff01620300.m
 bodyClass	podestplatz.github.io/assets/js/all.js	/^!function(e,t){"use strict";"function"==typeof define&&define.amd?define(t):"object"==typeof exp/;"	p	class:AnonymousFunction757447370100.m
 bodyClass	podestplatz.github.io/assets/js/baguetteBox.min.js	/^!function(e,t){"use strict";"function"==typeof define&&define.amd?define(t):"object"==typeof exp/;"	p	class:AnonymousFunction706547ea0100.m
+branch unit_tests	podestplatz.github.io/posts/dev-logs/index.rst	/^.. _`branch unit_tests`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/commits\/unit_te/;"	T
+branch unit_tests	posts/dev-logs.rst	/^.. _`branch unit_tests`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/commits\/unit_te/;"	T
 branch unit_tests ./src/tests	podestplatz.github.io/posts/dev-logs/index.rst	/^.. _`branch unit_tests .\/src\/tests`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/tr/;"	T
 branch unit_tests ./src/tests	posts/dev-logs.rst	/^.. _`branch unit_tests .\/src\/tests`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/tr/;"	T
 bs-navbar	freecad.github.io/2018/index.html	/^        <div class="collapse navbar-collapse" id="bs-navbar" aria-expanded="false">$/;"	I
@@ -19245,6 +19263,10 @@ commit 015c2f6	podestplatz.github.io/posts/dev-logs/index.rst	/^.. _`commit 015c
 commit 015c2f6	posts/dev-logs.rst	/^.. _`commit 015c2f6`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/commit\/015c2f6fc16/;"	T
 commit 0305754	podestplatz.github.io/posts/dev-logs/index.rst	/^.. _`commit 0305754`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/commit\/03057542226/;"	T
 commit 0305754	posts/dev-logs.rst	/^.. _`commit 0305754`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/commit\/03057542226/;"	T
+commit 0557bcc	podestplatz.github.io/posts/dev-logs/index.rst	/^.. _`commit 0557bcc`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/commit\/0557bcc4edd/;"	T
+commit 0557bcc	posts/dev-logs.rst	/^.. _`commit 0557bcc`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/commit\/0557bcc4edd/;"	T
+commit 0733b59	podestplatz.github.io/posts/dev-logs/index.rst	/^.. _`commit 0733b59`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/commit\/0733b591b3a/;"	T
+commit 0733b59	posts/dev-logs.rst	/^.. _`commit 0733b59`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/commit\/0733b591b3a/;"	T
 commit 0a1081b	podestplatz.github.io/posts/dev-logs/index.rst	/^.. _`commit 0a1081b`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/commit\/0a1081bb1fe/;"	T
 commit 0a1081b	posts/dev-logs.rst	/^.. _`commit 0a1081b`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/commit\/0a1081bb1fe/;"	T
 commit 154630d	podestplatz.github.io/posts/dev-logs/index.rst	/^.. _`commit 154630d`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/commit\/154630d4238/;"	T
@@ -19257,10 +19279,16 @@ commit 30b998d	podestplatz.github.io/posts/dev-logs/index.rst	/^.. _`commit 30b9
 commit 30b998d	posts/dev-logs.rst	/^.. _`commit 30b998d`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/commit\/30b998d12ce/;"	T
 commit 31ef931	podestplatz.github.io/posts/dev-logs/index.rst	/^.. _`commit 31ef931`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/commit\/31ef931b363/;"	T
 commit 31ef931	posts/dev-logs.rst	/^.. _`commit 31ef931`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/commit\/31ef931b363/;"	T
+commit 354d2c4	podestplatz.github.io/posts/dev-logs/index.rst	/^.. _`commit 354d2c4`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/commit\/354d2c46cfc/;"	T
+commit 354d2c4	posts/dev-logs.rst	/^.. _`commit 354d2c4`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/commit\/354d2c46cfc/;"	T
 commit 3c0b9d0	podestplatz.github.io/posts/dev-logs/index.rst	/^.. _`commit 3c0b9d0`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/commit\/3c0b9d0a1be/;"	T
 commit 3c0b9d0	posts/dev-logs.rst	/^.. _`commit 3c0b9d0`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/commit\/3c0b9d0a1be/;"	T
+commit 5616fd9	podestplatz.github.io/posts/dev-logs/index.rst	/^.. _`commit 5616fd9`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/commit\/5616fd92e0a/;"	T
+commit 5616fd9	posts/dev-logs.rst	/^.. _`commit 5616fd9`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/commit\/5616fd92e0a/;"	T
 commit 6fb72f5	podestplatz.github.io/posts/dev-logs/index.rst	/^.. _`commit 6fb72f5`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/commit\/6fb72f5bbef/;"	T
 commit 6fb72f5	posts/dev-logs.rst	/^.. _`commit 6fb72f5`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/commit\/6fb72f5bbef/;"	T
+commit 7a31462	podestplatz.github.io/posts/dev-logs/index.rst	/^.. _`commit 7a31462`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/commit\/7a31462cb37/;"	T
+commit 7a31462	posts/dev-logs.rst	/^.. _`commit 7a31462`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/commit\/7a31462cb37/;"	T
 commit 7fa127a	podestplatz.github.io/posts/dev-logs/index.rst	/^.. _`commit 7fa127a`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/commit\/7fa127aec68/;"	T
 commit 7fa127a	posts/dev-logs.rst	/^.. _`commit 7fa127a`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/commit\/7fa127aec68/;"	T
 commit 9a79162	podestplatz.github.io/posts/dev-logs/index.rst	/^.. _`commit 9a79162`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/commit\/9a791627b16/;"	T
@@ -19269,10 +19297,22 @@ commit a05e22b	podestplatz.github.io/posts/dev-logs/index.rst	/^.. _`commit a05e
 commit a05e22b	posts/dev-logs.rst	/^.. _`commit a05e22b`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/commit\/a05e22b45d3/;"	T
 commit aa04598	podestplatz.github.io/posts/dev-logs/index.rst	/^.. _`commit aa04598`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/commit\/aa045980b5f/;"	T
 commit aa04598	posts/dev-logs.rst	/^.. _`commit aa04598`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/commit\/aa045980b5f/;"	T
+commit ac589c8	podestplatz.github.io/posts/dev-logs/index.rst	/^.. _`commit ac589c8`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/commit\/ac589c8fff5/;"	T
+commit ac589c8	posts/dev-logs.rst	/^.. _`commit ac589c8`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/commit\/ac589c8fff5/;"	T
 commit bae270f	podestplatz.github.io/posts/dev-logs/index.rst	/^.. _`commit bae270f`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/commit\/bae270f1127/;"	T
 commit bae270f	posts/dev-logs.rst	/^.. _`commit bae270f`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/commit\/bae270f1127/;"	T
+commit c94d812	podestplatz.github.io/posts/dev-logs/index.rst	/^.. _`commit c94d812`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/commit\/c94d812af69/;"	T
+commit c94d812	posts/dev-logs.rst	/^.. _`commit c94d812`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/commit\/c94d812af69/;"	T
+commit c9f9ea4	podestplatz.github.io/posts/dev-logs/index.rst	/^.. _`commit c9f9ea4`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/commit\/c9f9ea41edb/;"	T
+commit c9f9ea4	posts/dev-logs.rst	/^.. _`commit c9f9ea4`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/commit\/c9f9ea41edb/;"	T
 commit cccde6a	podestplatz.github.io/posts/dev-logs/index.rst	/^.. _`commit cccde6a`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/commit\/cccde6ae2bd/;"	T
 commit cccde6a	posts/dev-logs.rst	/^.. _`commit cccde6a`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/commit\/cccde6ae2bd/;"	T
+commit d6c6cc5	podestplatz.github.io/posts/dev-logs/index.rst	/^.. _`commit d6c6cc5`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/commit\/d6c6cc5f69a/;"	T
+commit d6c6cc5	posts/dev-logs.rst	/^.. _`commit d6c6cc5`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/commit\/d6c6cc5f69a/;"	T
+commit d6cb41c	podestplatz.github.io/posts/dev-logs/index.rst	/^.. _`commit d6cb41c`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/commit\/d6cb41c06bf/;"	T
+commit d6cb41c	posts/dev-logs.rst	/^.. _`commit d6cb41c`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/commit\/d6cb41c06bf/;"	T
+commit de38b48	podestplatz.github.io/posts/dev-logs/index.rst	/^.. _`commit de38b48`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/commit\/de38b48c9fc/;"	T
+commit de38b48	posts/dev-logs.rst	/^.. _`commit de38b48`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/commit\/de38b48c9fc/;"	T
 commit f62ed23	podestplatz.github.io/posts/dev-logs/index.rst	/^.. _`commit f62ed23`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/commit\/f62ed23a73e/;"	T
 commit f62ed23	posts/dev-logs.rst	/^.. _`commit f62ed23`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/commit\/f62ed23a73e/;"	T
 complete	freecad.github.io/assets/js/all-nocdn.js	/^marginLeft:0},function(){return a.getBoundingClientRect().left}):0))+"px":void 0}),n.each({margi/;"	f	function:d
@@ -21202,9 +21242,13 @@ hn	freecad.github.io/assets/js/moment-with-locales.min.js	/^!function(e,a){"obje
 hn	podestplatz.github.io/assets/js/all-nocdn.js	/^!function(e,a){"object"==typeof exports&&"undefined"!=typeof module?module.exports=a():"function/;"	f
 hn	podestplatz.github.io/assets/js/all.js	/^!function(e,a){"object"==typeof exports&&"undefined"!=typeof module?module.exports=a():"function/;"	f
 hn	podestplatz.github.io/assets/js/moment-with-locales.min.js	/^!function(e,a){"object"==typeof exports&&"undefined"!=typeof module?module.exports=a():"function/;"	f
+how-can-additions-be-handled	cache/posts/writing-non-schema-conform-bcf-files.html	/^<div class="section" id="how-can-additions-be-handled">$/;"	I
+how-can-deletions-be-handled	cache/posts/writing-non-schema-conform-bcf-files.html	/^<div class="section" id="how-can-deletions-be-handled">$/;"	I
+how-can-updates-be-handled	cache/posts/writing-non-schema-conform-bcf-files.html	/^<div class="section" id="how-can-updates-be-handled">$/;"	I
 how-does-xmlschema-report-parsing-errors	cache/posts/handling-non-conform-bcf-files.html	/^<div class="section" id="how-does-xmlschema-report-parsing-errors">$/;"	I
 how-does-xmlschema-report-parsing-errors	podestplatz.github.io/index.html	/^<div class="section" id="how-does-xmlschema-report-parsing-errors">$/;"	I
 how-does-xmlschema-report-parsing-errors	podestplatz.github.io/posts/handling-non-conform-bcf-files/index.html	/^<div class="section" id="how-does-xmlschema-report-parsing-errors">$/;"	I
+how-shall-the-interface-to-the-writer-look	cache/posts/writing-non-schema-conform-bcf-files.html	/^<div class="section" id="how-shall-the-interface-to-the-writer-look">$/;"	I
 hr	freecad.github.io/assets/css/all-nocdn.css	/^ *\/\/*! normalize.css v3.0.3 | MIT License | github.com\/necolas\/normalize.css *\/html{font-fa/;"	s
 hr	freecad.github.io/assets/css/bootstrap.min.css	/^ *\/\/*! normalize.css v3.0.3 | MIT License | github.com\/necolas\/normalize.css *\/html{font-fa/;"	s
 hr	podestplatz.github.io/assets/css/all-nocdn.css	/^ *\/\/*! normalize.css v3.0.3 | MIT License | github.com\/necolas\/normalize.css *\/html{font-fa/;"	s
@@ -22001,73 +22045,75 @@ nominative	freecad.github.io/assets/js/moment-with-locales.min.js	/^!function(e,
 nominative	podestplatz.github.io/assets/js/all-nocdn.js	/^!function(e,a){"object"==typeof exports&&"undefined"!=typeof module?module.exports=a():"function/;"	p	class:AnonymousFunctiona3eff01640e00.t
 nominative	podestplatz.github.io/assets/js/all.js	/^!function(e,a){"object"==typeof exports&&"undefined"!=typeof module?module.exports=a():"function/;"	p	class:AnonymousFunction7574473720c00.t
 nominative	podestplatz.github.io/assets/js/moment-with-locales.min.js	/^!function(e,a){"object"==typeof exports&&"undefined"!=typeof module?module.exports=a():"function/;"	p	class:AnonymousFunction1bb885391f100.t
+non schema conform BCF files	podestplatz.github.io/posts/dev-logs/index.rst	/^.. _`non schema conform BCF files`: link:\/\/slug\/handling-non-conform-bcf-files$/;"	T
+non schema conform BCF files	posts/dev-logs.rst	/^.. _`non schema conform BCF files`: link:\/\/slug\/handling-non-conform-bcf-files$/;"	T
 ns2b2f38970101	podestplatz.github.io/sitemap.xml	/^                        http:\/\/www.sitemaps.org\/schemas\/sitemap\/0.9\/sitemap.xsd">$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns2b2f38970201	podestplatz.github.io/sitemap.xml	/^ <url>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns2b2f38970301	podestplatz.github.io/sitemap.xml	/^  <loc>https:\/\/podestplatz.github.io\/FreeCAD-blog\/<\/loc>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
-ns2b2f38970401	podestplatz.github.io/sitemap.xml	/^  <lastmod>2019-05-27T17:17:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
+ns2b2f38970401	podestplatz.github.io/sitemap.xml	/^  <lastmod>2019-06-07T16:56:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns2b2f38970501	podestplatz.github.io/sitemap.xml	/^ <url>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns2b2f38970601	podestplatz.github.io/sitemap.xml	/^  <loc>https:\/\/podestplatz.github.io\/FreeCAD-blog\/2019\/<\/loc>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
-ns2b2f38970701	podestplatz.github.io/sitemap.xml	/^  <lastmod>2019-05-27T17:17:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
+ns2b2f38970701	podestplatz.github.io/sitemap.xml	/^  <lastmod>2019-06-07T16:56:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns2b2f38970801	podestplatz.github.io/sitemap.xml	/^ <url>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns2b2f38970901	podestplatz.github.io/sitemap.xml	/^  <loc>https:\/\/podestplatz.github.io\/FreeCAD-blog\/archive.html<\/loc>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
-ns2b2f38970a01	podestplatz.github.io/sitemap.xml	/^  <lastmod>2019-06-03T05:15:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
+ns2b2f38970a01	podestplatz.github.io/sitemap.xml	/^  <lastmod>2019-06-09T05:08:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns2b2f38970b01	podestplatz.github.io/sitemap.xml	/^ <url>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns2b2f38970c01	podestplatz.github.io/sitemap.xml	/^  <loc>https:\/\/podestplatz.github.io\/FreeCAD-blog\/categories\/<\/loc>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
-ns2b2f38970d01	podestplatz.github.io/sitemap.xml	/^  <lastmod>2019-06-03T04:18:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
+ns2b2f38970d01	podestplatz.github.io/sitemap.xml	/^  <lastmod>2019-06-07T16:58:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns2b2f38970e01	podestplatz.github.io/sitemap.xml	/^ <url>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns2b2f38970f01	podestplatz.github.io/sitemap.xml	/^  <loc>https:\/\/podestplatz.github.io\/FreeCAD-blog\/categories\/bcf\/<\/loc>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
-ns2b2f38971001	podestplatz.github.io/sitemap.xml	/^  <lastmod>2019-05-27T17:10:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
+ns2b2f38971001	podestplatz.github.io/sitemap.xml	/^  <lastmod>2019-06-06T16:24:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns2b2f38971101	podestplatz.github.io/sitemap.xml	/^ <url>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns2b2f38971201	podestplatz.github.io/sitemap.xml	/^  <loc>https:\/\/podestplatz.github.io\/FreeCAD-blog\/categories\/bim\/<\/loc>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
-ns2b2f38971301	podestplatz.github.io/sitemap.xml	/^  <lastmod>2019-05-27T17:10:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
+ns2b2f38971301	podestplatz.github.io/sitemap.xml	/^  <lastmod>2019-06-06T16:24:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns2b2f38971401	podestplatz.github.io/sitemap.xml	/^ <url>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns2b2f38971501	podestplatz.github.io/sitemap.xml	/^  <loc>https:\/\/podestplatz.github.io\/FreeCAD-blog\/categories\/cat_devlog\/<\/loc>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
-ns2b2f38971601	podestplatz.github.io/sitemap.xml	/^  <lastmod>2019-05-27T17:10:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
+ns2b2f38971601	podestplatz.github.io/sitemap.xml	/^  <lastmod>2019-06-06T16:24:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns2b2f38971701	podestplatz.github.io/sitemap.xml	/^ <url>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns2b2f38971801	podestplatz.github.io/sitemap.xml	/^  <loc>https:\/\/podestplatz.github.io\/FreeCAD-blog\/categories\/cat_gsoc-2019-bcf-integration\//;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
-ns2b2f38971901	podestplatz.github.io/sitemap.xml	/^  <lastmod>2019-05-27T17:10:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
+ns2b2f38971901	podestplatz.github.io/sitemap.xml	/^  <lastmod>2019-06-06T16:24:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns2b2f38971a01	podestplatz.github.io/sitemap.xml	/^ <url>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns2b2f38971b01	podestplatz.github.io/sitemap.xml	/^  <loc>https:\/\/podestplatz.github.io\/FreeCAD-blog\/categories\/cat_posts\/<\/loc>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
-ns2b2f38971c01	podestplatz.github.io/sitemap.xml	/^  <lastmod>2019-05-27T17:10:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
+ns2b2f38971c01	podestplatz.github.io/sitemap.xml	/^  <lastmod>2019-06-07T16:56:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns2b2f38971d01	podestplatz.github.io/sitemap.xml	/^ <url>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns2b2f38971e01	podestplatz.github.io/sitemap.xml	/^  <loc>https:\/\/podestplatz.github.io\/FreeCAD-blog\/categories\/class-diagram\/<\/loc>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
-ns2b2f38971f01	podestplatz.github.io/sitemap.xml	/^  <lastmod>2019-05-27T17:10:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
+ns2b2f38971f01	podestplatz.github.io/sitemap.xml	/^  <lastmod>2019-06-06T16:24:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns2b2f38972001	podestplatz.github.io/sitemap.xml	/^ <url>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns2b2f38972101	podestplatz.github.io/sitemap.xml	/^  <loc>https:\/\/podestplatz.github.io\/FreeCAD-blog\/categories\/daily\/<\/loc>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
-ns2b2f38972201	podestplatz.github.io/sitemap.xml	/^  <lastmod>2019-05-27T17:10:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
+ns2b2f38972201	podestplatz.github.io/sitemap.xml	/^  <lastmod>2019-06-06T16:24:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns2b2f38972301	podestplatz.github.io/sitemap.xml	/^ <url>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns2b2f38972401	podestplatz.github.io/sitemap.xml	/^  <loc>https:\/\/podestplatz.github.io\/FreeCAD-blog\/categories\/gsoc\/<\/loc>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
-ns2b2f38972501	podestplatz.github.io/sitemap.xml	/^  <lastmod>2019-05-27T17:10:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
+ns2b2f38972501	podestplatz.github.io/sitemap.xml	/^  <lastmod>2019-06-06T16:24:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns2b2f38972601	podestplatz.github.io/sitemap.xml	/^ <url>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns2b2f38972701	podestplatz.github.io/sitemap.xml	/^  <loc>https:\/\/podestplatz.github.io\/FreeCAD-blog\/categories\/schema\/<\/loc>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
-ns2b2f38972801	podestplatz.github.io/sitemap.xml	/^  <lastmod>2019-06-03T04:18:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
+ns2b2f38972801	podestplatz.github.io/sitemap.xml	/^  <lastmod>2019-06-06T16:24:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns2b2f38972901	podestplatz.github.io/sitemap.xml	/^ <url>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns2b2f38972a01	podestplatz.github.io/sitemap.xml	/^  <loc>https:\/\/podestplatz.github.io\/FreeCAD-blog\/categories\/xml\/<\/loc>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
-ns2b2f38972b01	podestplatz.github.io/sitemap.xml	/^  <lastmod>2019-06-03T04:18:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
+ns2b2f38972b01	podestplatz.github.io/sitemap.xml	/^  <lastmod>2019-06-06T16:24:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns2b2f38972c01	podestplatz.github.io/sitemap.xml	/^ <url>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns2b2f38972d01	podestplatz.github.io/sitemap.xml	/^  <loc>https:\/\/podestplatz.github.io\/FreeCAD-blog\/posts\/dev-logs\/<\/loc>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
-ns2b2f38972e01	podestplatz.github.io/sitemap.xml	/^  <lastmod>2019-05-27T17:10:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
+ns2b2f38972e01	podestplatz.github.io/sitemap.xml	/^  <lastmod>2019-06-07T16:56:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns2b2f38972f01	podestplatz.github.io/sitemap.xml	/^ <url>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns2b2f38973001	podestplatz.github.io/sitemap.xml	/^  <loc>https:\/\/podestplatz.github.io\/FreeCAD-blog\/posts\/finishing-up-the-datamodel-uml\/<\//;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
-ns2b2f38973101	podestplatz.github.io/sitemap.xml	/^  <lastmod>2019-05-27T17:10:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
+ns2b2f38973101	podestplatz.github.io/sitemap.xml	/^  <lastmod>2019-06-06T16:24:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns2b2f38973201	podestplatz.github.io/sitemap.xml	/^ <url>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns2b2f38973301	podestplatz.github.io/sitemap.xml	/^  <loc>https:\/\/podestplatz.github.io\/FreeCAD-blog\/posts\/handling-non-conform-bcf-files\/<\//;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
-ns2b2f38973401	podestplatz.github.io/sitemap.xml	/^  <lastmod>2019-06-03T04:18:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
+ns2b2f38973401	podestplatz.github.io/sitemap.xml	/^  <lastmod>2019-06-06T16:24:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns2b2f38973501	podestplatz.github.io/sitemap.xml	/^ <url>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns2b2f38973601	podestplatz.github.io/sitemap.xml	/^  <loc>https:\/\/podestplatz.github.io\/FreeCAD-blog\/posts\/how-to-represent-extensionxsd-const/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
-ns2b2f38973701	podestplatz.github.io/sitemap.xml	/^  <lastmod>2019-05-27T17:10:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
+ns2b2f38973701	podestplatz.github.io/sitemap.xml	/^  <lastmod>2019-06-06T16:24:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns2b2f38973801	podestplatz.github.io/sitemap.xml	/^ <url>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns2b2f38973901	podestplatz.github.io/sitemap.xml	/^  <loc>https:\/\/podestplatz.github.io\/FreeCAD-blog\/posts\/learning-xsd-syntax\/<\/loc>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
-ns2b2f38973a01	podestplatz.github.io/sitemap.xml	/^  <lastmod>2019-05-27T17:17:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
+ns2b2f38973a01	podestplatz.github.io/sitemap.xml	/^  <lastmod>2019-06-06T16:24:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns2b2f38973b01	podestplatz.github.io/sitemap.xml	/^ <url>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns2b2f38973c01	podestplatz.github.io/sitemap.xml	/^  <loc>https:\/\/podestplatz.github.io\/FreeCAD-blog\/posts\/references-to-read\/<\/loc>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
-ns2b2f38973d01	podestplatz.github.io/sitemap.xml	/^  <lastmod>2019-05-27T17:10:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
+ns2b2f38973d01	podestplatz.github.io/sitemap.xml	/^  <lastmod>2019-06-06T16:24:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns2b2f38973e01	podestplatz.github.io/sitemap.xml	/^ <url>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns2b2f38973f01	podestplatz.github.io/sitemap.xml	/^  <loc>https:\/\/podestplatz.github.io\/FreeCAD-blog\/posts\/representing-markupbcf-in-uml\/<\/l/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
-ns2b2f38974001	podestplatz.github.io/sitemap.xml	/^  <lastmod>2019-05-27T17:17:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
+ns2b2f38974001	podestplatz.github.io/sitemap.xml	/^  <lastmod>2019-06-06T16:24:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns2b2f38974101	podestplatz.github.io/sitemap.xml	/^ <url>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns2b2f38974201	podestplatz.github.io/sitemap.xml	/^  <loc>https:\/\/podestplatz.github.io\/FreeCAD-blog\/posts\/schema-constraints-revisited\/<\/lo/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
-ns2b2f38974301	podestplatz.github.io/sitemap.xml	/^  <lastmod>2019-05-28T13:19:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
+ns2b2f38974301	podestplatz.github.io/sitemap.xml	/^  <lastmod>2019-06-06T16:24:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns5310505f0101	freecad.github.io/sitemapindex.xml	/^                        http:\/\/www.sitemaps.org\/schemas\/sitemap\/0.9\/sitemap.xsd">$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns5310505f0201	freecad.github.io/sitemapindex.xml	/^ <sitemap>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns5310505f0301	freecad.github.io/sitemapindex.xml	/^  <loc>https:\/\/freecad.github.io\/authors\/freecad-community.xml<\/loc>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
@@ -22157,40 +22203,40 @@ ns61c0c9e73701	freecad.github.io/sitemap.xml	/^  <lastmod>2019-05-11T08:18:00Z<\
 ns633f6d0f0101	podestplatz.github.io/sitemapindex.xml	/^                        http:\/\/www.sitemaps.org\/schemas\/sitemap\/0.9\/sitemap.xsd">$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns633f6d0f0201	podestplatz.github.io/sitemapindex.xml	/^ <sitemap>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns633f6d0f0301	podestplatz.github.io/sitemapindex.xml	/^  <loc>https:\/\/podestplatz.github.io\/FreeCAD-blog\/categories\/bcf.xml<\/loc>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
-ns633f6d0f0401	podestplatz.github.io/sitemapindex.xml	/^  <lastmod>2019-06-03T04:55:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
+ns633f6d0f0401	podestplatz.github.io/sitemapindex.xml	/^  <lastmod>2019-06-06T16:24:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns633f6d0f0501	podestplatz.github.io/sitemapindex.xml	/^ <sitemap>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns633f6d0f0601	podestplatz.github.io/sitemapindex.xml	/^  <loc>https:\/\/podestplatz.github.io\/FreeCAD-blog\/categories\/bim.xml<\/loc>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
-ns633f6d0f0701	podestplatz.github.io/sitemapindex.xml	/^  <lastmod>2019-06-02T17:12:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
+ns633f6d0f0701	podestplatz.github.io/sitemapindex.xml	/^  <lastmod>2019-06-06T16:24:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns633f6d0f0801	podestplatz.github.io/sitemapindex.xml	/^ <sitemap>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns633f6d0f0901	podestplatz.github.io/sitemapindex.xml	/^  <loc>https:\/\/podestplatz.github.io\/FreeCAD-blog\/categories\/cat_devlog.xml<\/loc>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
-ns633f6d0f0a01	podestplatz.github.io/sitemapindex.xml	/^  <lastmod>2019-06-02T17:10:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
+ns633f6d0f0a01	podestplatz.github.io/sitemapindex.xml	/^  <lastmod>2019-06-09T05:03:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns633f6d0f0b01	podestplatz.github.io/sitemapindex.xml	/^ <sitemap>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns633f6d0f0c01	podestplatz.github.io/sitemapindex.xml	/^  <loc>https:\/\/podestplatz.github.io\/FreeCAD-blog\/categories\/cat_gsoc-2019-bcf-integration./;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
-ns633f6d0f0d01	podestplatz.github.io/sitemapindex.xml	/^  <lastmod>2019-06-02T17:12:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
+ns633f6d0f0d01	podestplatz.github.io/sitemapindex.xml	/^  <lastmod>2019-06-06T16:24:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns633f6d0f0e01	podestplatz.github.io/sitemapindex.xml	/^ <sitemap>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns633f6d0f0f01	podestplatz.github.io/sitemapindex.xml	/^  <loc>https:\/\/podestplatz.github.io\/FreeCAD-blog\/categories\/cat_posts.xml<\/loc>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
-ns633f6d0f1001	podestplatz.github.io/sitemapindex.xml	/^  <lastmod>2019-06-03T04:55:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
+ns633f6d0f1001	podestplatz.github.io/sitemapindex.xml	/^  <lastmod>2019-06-07T16:56:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns633f6d0f1101	podestplatz.github.io/sitemapindex.xml	/^ <sitemap>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns633f6d0f1201	podestplatz.github.io/sitemapindex.xml	/^  <loc>https:\/\/podestplatz.github.io\/FreeCAD-blog\/categories\/class-diagram.xml<\/loc>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
-ns633f6d0f1301	podestplatz.github.io/sitemapindex.xml	/^  <lastmod>2019-06-02T17:12:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
+ns633f6d0f1301	podestplatz.github.io/sitemapindex.xml	/^  <lastmod>2019-06-06T16:24:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns633f6d0f1401	podestplatz.github.io/sitemapindex.xml	/^ <sitemap>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns633f6d0f1501	podestplatz.github.io/sitemapindex.xml	/^  <loc>https:\/\/podestplatz.github.io\/FreeCAD-blog\/categories\/daily.xml<\/loc>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
-ns633f6d0f1601	podestplatz.github.io/sitemapindex.xml	/^  <lastmod>2019-06-02T17:10:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
+ns633f6d0f1601	podestplatz.github.io/sitemapindex.xml	/^  <lastmod>2019-06-09T05:03:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns633f6d0f1701	podestplatz.github.io/sitemapindex.xml	/^ <sitemap>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns633f6d0f1801	podestplatz.github.io/sitemapindex.xml	/^  <loc>https:\/\/podestplatz.github.io\/FreeCAD-blog\/categories\/gsoc.xml<\/loc>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
-ns633f6d0f1901	podestplatz.github.io/sitemapindex.xml	/^  <lastmod>2019-06-02T17:12:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
+ns633f6d0f1901	podestplatz.github.io/sitemapindex.xml	/^  <lastmod>2019-06-06T16:24:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns633f6d0f1a01	podestplatz.github.io/sitemapindex.xml	/^ <sitemap>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns633f6d0f1b01	podestplatz.github.io/sitemapindex.xml	/^  <loc>https:\/\/podestplatz.github.io\/FreeCAD-blog\/categories\/schema.xml<\/loc>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
-ns633f6d0f1c01	podestplatz.github.io/sitemapindex.xml	/^  <lastmod>2019-06-03T04:55:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
+ns633f6d0f1c01	podestplatz.github.io/sitemapindex.xml	/^  <lastmod>2019-06-06T16:24:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns633f6d0f1d01	podestplatz.github.io/sitemapindex.xml	/^ <sitemap>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns633f6d0f1e01	podestplatz.github.io/sitemapindex.xml	/^  <loc>https:\/\/podestplatz.github.io\/FreeCAD-blog\/categories\/xml.xml<\/loc>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
-ns633f6d0f1f01	podestplatz.github.io/sitemapindex.xml	/^  <lastmod>2019-06-03T04:55:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
+ns633f6d0f1f01	podestplatz.github.io/sitemapindex.xml	/^  <lastmod>2019-06-06T16:24:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns633f6d0f2001	podestplatz.github.io/sitemapindex.xml	/^ <sitemap>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns633f6d0f2101	podestplatz.github.io/sitemapindex.xml	/^  <loc>https:\/\/podestplatz.github.io\/FreeCAD-blog\/rss.xml<\/loc>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
-ns633f6d0f2201	podestplatz.github.io/sitemapindex.xml	/^  <lastmod>2019-06-03T04:55:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
+ns633f6d0f2201	podestplatz.github.io/sitemapindex.xml	/^  <lastmod>2019-06-09T05:03:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns633f6d0f2301	podestplatz.github.io/sitemapindex.xml	/^ <sitemap>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 ns633f6d0f2401	podestplatz.github.io/sitemapindex.xml	/^  <loc>https:\/\/podestplatz.github.io\/FreeCAD-blog\/sitemap.xml<\/loc>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
-ns633f6d0f2501	podestplatz.github.io/sitemapindex.xml	/^  <lastmod>2019-06-03T05:15:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
+ns633f6d0f2501	podestplatz.github.io/sitemapindex.xml	/^  <lastmod>2019-06-09T05:08:00Z<\/lastmod>$/;"	n	uri:http://www.sitemaps.org/schemas/sitemap/0.9
 nt	freecad.github.io/assets/js/all-nocdn.js	/^!function(e,a){"object"==typeof exports&&"undefined"!=typeof module?module.exports=a():"function/;"	f
 nt	freecad.github.io/assets/js/all.js	/^!function(e,a){"object"==typeof exports&&"undefined"!=typeof module?module.exports=a():"function/;"	f
 nt	freecad.github.io/assets/js/moment-with-locales.min.js	/^!function(e,a){"object"==typeof exports&&"undefined"!=typeof module?module.exports=a():"function/;"	f
@@ -23018,10 +23064,16 @@ ra	podestplatz.github.io/assets/js/all.js	/^!function(e,a){"object"==typeof expo
 ra	podestplatz.github.io/assets/js/jquery.min.js	/^!function(a,b){"object"==typeof module&&"object"==typeof module.exports?module.exports=a.documen/;"	f
 ra	podestplatz.github.io/assets/js/moment-with-locales.min.js	/^!function(e,a){"object"==typeof exports&&"undefined"!=typeof module?module.exports=a():"function/;"	f
 ra	themes/bootstrap3/assets/js/jquery.min.js	/^!function(a,b){"object"==typeof module&&"object"==typeof module.exports?module.exports=a.documen/;"	f
+reader.buildComment()	podestplatz.github.io/posts/dev-logs/index.rst	/^.. _`reader.buildComment()`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/blob\/9ecb6b/;"	T
+reader.buildComment()	posts/dev-logs.rst	/^.. _`reader.buildComment()`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/blob\/9ecb6b/;"	T
 reader.buildMarkup()	podestplatz.github.io/posts/dev-logs/index.rst	/^.. _`reader.buildMarkup()`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/blob\/3f5fdaf/;"	T
 reader.buildMarkup()	posts/dev-logs.rst	/^.. _`reader.buildMarkup()`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/blob\/3f5fdaf/;"	T
 reader.buildProject()	podestplatz.github.io/posts/dev-logs/index.rst	/^.. _`reader.buildProject()`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/blob\/991d96/;"	T
 reader.buildProject()	posts/dev-logs.rst	/^.. _`reader.buildProject()`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/blob\/991d96/;"	T
+reader.buildTopic()	podestplatz.github.io/posts/dev-logs/index.rst	/^.. _`reader.buildTopic()`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/blob\/9ecb6b10/;"	T
+reader.buildTopic()	posts/dev-logs.rst	/^.. _`reader.buildTopic()`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/blob\/9ecb6b10/;"	T
+reader.buildViewpoint()	podestplatz.github.io/posts/dev-logs/index.rst	/^.. _`reader.buildViewpoint()`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/blob\/9ecb/;"	T
+reader.buildViewpoint()	posts/dev-logs.rst	/^.. _`reader.buildViewpoint()`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/blob\/9ecb/;"	T
 reader.py	podestplatz.github.io/posts/dev-logs/index.rst	/^.. _`reader.py`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/blob\/master\/src\/bcf\//;"	T
 reader.py	posts/dev-logs.rst	/^.. _`reader.py`: https:\/\/github.com\/podestplatz\/BCF-Plugin-FreeCAD\/blob\/master\/src\/bcf\//;"	T
 reading-once-and-writing-once	cache/posts/handling-non-conform-bcf-files.html	/^<div class="section" id="reading-once-and-writing-once">$/;"	I
@@ -23032,6 +23084,7 @@ readyState	freecad.github.io/assets/js/jquery.min.js	/^marginLeft:0},function(){
 readyState	podestplatz.github.io/assets/js/all-nocdn.js	/^marginLeft:0},function(){return a.getBoundingClientRect().left}):0))+"px":void 0}),n.each({margi/;"	p	class:AnonymousFunctiona3eff01618e00.w
 readyState	podestplatz.github.io/assets/js/jquery.min.js	/^marginLeft:0},function(){return a.getBoundingClientRect().left}):0))+"px":void 0}),n.each({margi/;"	p	class:AnonymousFunctiona513c61018e00.w
 readyState	themes/bootstrap3/assets/js/jquery.min.js	/^marginLeft:0},function(){return a.getBoundingClientRect().left}):0))+"px":void 0}),n.each({margi/;"	p	class:AnonymousFunctione22ac02518e00.w
+recap	cache/posts/writing-non-schema-conform-bcf-files.html	/^<div class="section" id="recap">$/;"	I
 refresh	freecad.github.io/assets/js/all-nocdn.js	/^if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires jQuery");+functio/;"	m	class:b
 refresh	freecad.github.io/assets/js/bootstrap.min.js	/^if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires jQuery");+functio/;"	m	class:b
 refresh	podestplatz.github.io/assets/js/all-nocdn.js	/^if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires jQuery");+functio/;"	m	class:b
@@ -23181,111 +23234,111 @@ resize	freecad.github.io/assets/js/bootstrap.min.js	/^if("undefined"==typeof jQu
 resize	podestplatz.github.io/assets/js/all-nocdn.js	/^if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires jQuery");+functio/;"	m	class:c
 resize	podestplatz.github.io/assets/js/bootstrap.min.js	/^if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires jQuery");+functio/;"	m	class:c
 resize	themes/bootstrap3/assets/js/bootstrap.min.js	/^if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires jQuery");+functio/;"	m	class:c
-rest_code_09f9cd8c2a80497fb235fead45ccf328-1	cache/posts/schema-constraints-revisited.html	/^<pre class="code python"><a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-1"><\/a><span class/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-1	podestplatz.github.io/index.html	/^<pre class="code python"><a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-1"><\/a><span class/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-1	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<pre class="code python"><a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-1"><\/a><span class/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-10	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-10"><\/a>  <span class="nd">@value.setter<\//;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-10	podestplatz.github.io/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-10"><\/a>  <span class="nd">@value.setter<\//;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-10	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-10"><\/a>  <span class="nd">@value.setter<\//;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-11	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-11"><\/a>  <span class="k">def<\/span> <span/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-11	podestplatz.github.io/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-11"><\/a>  <span class="k">def<\/span> <span/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-11	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-11"><\/a>  <span class="k">def<\/span> <span/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-12	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-12"><\/a>    <span class="o">...<\/span>$/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-12	podestplatz.github.io/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-12"><\/a>    <span class="o">...<\/span>$/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-12	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-12"><\/a>    <span class="o">...<\/span>$/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-13	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-13"><\/a>$/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-13	podestplatz.github.io/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-13"><\/a>$/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-13	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-13"><\/a>$/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-14	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-14"><\/a>  <span class="nd">@property<\/span/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-14	podestplatz.github.io/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-14"><\/a>  <span class="nd">@property<\/span/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-14	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-14"><\/a>  <span class="nd">@property<\/span/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-15	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-15"><\/a>  <span class="k">def<\/span> <span/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-15	podestplatz.github.io/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-15"><\/a>  <span class="k">def<\/span> <span/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-15	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-15"><\/a>  <span class="k">def<\/span> <span/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-16	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-16"><\/a>    <span class="o">...<\/span>$/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-16	podestplatz.github.io/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-16"><\/a>    <span class="o">...<\/span>$/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-16	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-16"><\/a>    <span class="o">...<\/span>$/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-17	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-17"><\/a>$/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-17	podestplatz.github.io/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-17"><\/a>$/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-17	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-17"><\/a>$/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-18	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-18"><\/a>  <span class="nd">@validValues.set/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-18	podestplatz.github.io/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-18"><\/a>  <span class="nd">@validValues.set/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-18	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-18"><\/a>  <span class="nd">@validValues.set/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-19	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-19"><\/a>  <span class="k">def<\/span> <span/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-19	podestplatz.github.io/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-19"><\/a>  <span class="k">def<\/span> <span/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-19	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-19"><\/a>  <span class="k">def<\/span> <span/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-2	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-2"><\/a>  <span class="k">def<\/span> <span /;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-2	podestplatz.github.io/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-2"><\/a>  <span class="k">def<\/span> <span /;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-2	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-2"><\/a>  <span class="k">def<\/span> <span /;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-20	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-20"><\/a>    <span class="k">pass<\/span>$/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-20	podestplatz.github.io/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-20"><\/a>    <span class="k">pass<\/span>$/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-20	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-20"><\/a>    <span class="k">pass<\/span>$/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-21	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-21"><\/a>$/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-21	podestplatz.github.io/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-21"><\/a>$/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-21	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-21"><\/a>$/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-22	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-22"><\/a>  <span class="nd">@staticmethod<\//;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-22	podestplatz.github.io/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-22"><\/a>  <span class="nd">@staticmethod<\//;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-22	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-22"><\/a>  <span class="nd">@staticmethod<\//;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-23	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-23"><\/a>  <span class="k">def<\/span> <span/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-23	podestplatz.github.io/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-23"><\/a>  <span class="k">def<\/span> <span/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-23	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-23"><\/a>  <span class="k">def<\/span> <span/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-24	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-24"><\/a>    <span class="o">...<\/span>$/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-24	podestplatz.github.io/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-24"><\/a>    <span class="o">...<\/span>$/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-24	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-24"><\/a>    <span class="o">...<\/span>$/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-25	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-25"><\/a>$/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-25	podestplatz.github.io/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-25"><\/a>$/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-25	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-25"><\/a>$/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-26	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-26"><\/a><span class="k">class<\/span> <span/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-26	podestplatz.github.io/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-26"><\/a><span class="k">class<\/span> <span/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-26	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-26"><\/a><span class="k">class<\/span> <span/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-27	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-27"><\/a>  <span class="k">def<\/span> <span/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-27	podestplatz.github.io/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-27"><\/a>  <span class="k">def<\/span> <span/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-27	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-27"><\/a>  <span class="k">def<\/span> <span/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-28	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-28"><\/a>    <span class="n">validValues<\/s/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-28	podestplatz.github.io/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-28"><\/a>    <span class="n">validValues<\/s/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-28	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-28"><\/a>    <span class="n">validValues<\/s/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-29	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-29"><\/a>    <span class="nb">super<\/span></;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-29	podestplatz.github.io/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-29"><\/a>    <span class="nb">super<\/span></;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-29	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-29"><\/a>    <span class="nb">super<\/span></;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-3	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-3"><\/a>    <span class="bp">self<\/span><sp/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-3	podestplatz.github.io/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-3"><\/a>    <span class="bp">self<\/span><sp/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-3	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-3"><\/a>    <span class="bp">self<\/span><sp/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-4	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-4"><\/a>    <span class="bp">self<\/span><sp/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-4	podestplatz.github.io/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-4"><\/a>    <span class="bp">self<\/span><sp/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-4	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-4"><\/a>    <span class="bp">self<\/span><sp/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-5	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-5"><\/a>$/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-5	podestplatz.github.io/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-5"><\/a>$/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-5	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-5"><\/a>$/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-6	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-6"><\/a>  <span class="nd">@property<\/span>$/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-6	podestplatz.github.io/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-6"><\/a>  <span class="nd">@property<\/span>$/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-6	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-6"><\/a>  <span class="nd">@property<\/span>$/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-7	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-7"><\/a>  <span class="k">def<\/span> <span /;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-7	podestplatz.github.io/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-7"><\/a>  <span class="k">def<\/span> <span /;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-7	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-7"><\/a>  <span class="k">def<\/span> <span /;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-8	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-8"><\/a>    <span class="o">...<\/span>$/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-8	podestplatz.github.io/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-8"><\/a>    <span class="o">...<\/span>$/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-8	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-8"><\/a>    <span class="o">...<\/span>$/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-9	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-9"><\/a>$/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-9	podestplatz.github.io/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-9"><\/a>$/;"	a
-rest_code_09f9cd8c2a80497fb235fead45ccf328-9	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-9"><\/a>$/;"	a
-rest_code_28961d1f373348e78c69c7d9b79bcb1e-1	cache/posts/schema-constraints-revisited.html	/^<pre class="code python"><a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-1"><\/a><span class/;"	a
-rest_code_28961d1f373348e78c69c7d9b79bcb1e-1	podestplatz.github.io/index.html	/^<pre class="code python"><a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-1"><\/a><span class/;"	a
-rest_code_28961d1f373348e78c69c7d9b79bcb1e-1	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<pre class="code python"><a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-1"><\/a><span class/;"	a
-rest_code_28961d1f373348e78c69c7d9b79bcb1e-2	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-2"><\/a>$/;"	a
-rest_code_28961d1f373348e78c69c7d9b79bcb1e-2	podestplatz.github.io/index.html	/^<a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-2"><\/a>$/;"	a
-rest_code_28961d1f373348e78c69c7d9b79bcb1e-2	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-2"><\/a>$/;"	a
-rest_code_28961d1f373348e78c69c7d9b79bcb1e-3	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-3"><\/a><span class="k">class<\/span> <span /;"	a
-rest_code_28961d1f373348e78c69c7d9b79bcb1e-3	podestplatz.github.io/index.html	/^<a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-3"><\/a><span class="k">class<\/span> <span /;"	a
-rest_code_28961d1f373348e78c69c7d9b79bcb1e-3	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-3"><\/a><span class="k">class<\/span> <span /;"	a
-rest_code_28961d1f373348e78c69c7d9b79bcb1e-4	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-4"><\/a>  <span class="n">VAL1<\/span> <span/;"	a
-rest_code_28961d1f373348e78c69c7d9b79bcb1e-4	podestplatz.github.io/index.html	/^<a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-4"><\/a>  <span class="n">VAL1<\/span> <span/;"	a
-rest_code_28961d1f373348e78c69c7d9b79bcb1e-4	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-4"><\/a>  <span class="n">VAL1<\/span> <span/;"	a
-rest_code_28961d1f373348e78c69c7d9b79bcb1e-5	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-5"><\/a>  <span class="n">VAL2<\/span> <span/;"	a
-rest_code_28961d1f373348e78c69c7d9b79bcb1e-5	podestplatz.github.io/index.html	/^<a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-5"><\/a>  <span class="n">VAL2<\/span> <span/;"	a
-rest_code_28961d1f373348e78c69c7d9b79bcb1e-5	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-5"><\/a>  <span class="n">VAL2<\/span> <span/;"	a
-rest_code_28961d1f373348e78c69c7d9b79bcb1e-6	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-6"><\/a>  <span class="o">...<\/span>$/;"	a
-rest_code_28961d1f373348e78c69c7d9b79bcb1e-6	podestplatz.github.io/index.html	/^<a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-6"><\/a>  <span class="o">...<\/span>$/;"	a
-rest_code_28961d1f373348e78c69c7d9b79bcb1e-6	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-6"><\/a>  <span class="o">...<\/span>$/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-1	cache/posts/schema-constraints-revisited.html	/^<pre class="code python"><a name="rest_code_1614531e7e214d6796433300fe60dbf5-1"><\/a><span class/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-1	podestplatz.github.io/index.html	/^<pre class="code python"><a name="rest_code_1614531e7e214d6796433300fe60dbf5-1"><\/a><span class/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-1	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<pre class="code python"><a name="rest_code_1614531e7e214d6796433300fe60dbf5-1"><\/a><span class/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-10	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-10"><\/a>  <span class="nd">@value.setter<\//;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-10	podestplatz.github.io/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-10"><\/a>  <span class="nd">@value.setter<\//;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-10	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-10"><\/a>  <span class="nd">@value.setter<\//;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-11	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-11"><\/a>  <span class="k">def<\/span> <span/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-11	podestplatz.github.io/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-11"><\/a>  <span class="k">def<\/span> <span/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-11	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-11"><\/a>  <span class="k">def<\/span> <span/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-12	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-12"><\/a>    <span class="o">...<\/span>$/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-12	podestplatz.github.io/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-12"><\/a>    <span class="o">...<\/span>$/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-12	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-12"><\/a>    <span class="o">...<\/span>$/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-13	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-13"><\/a>$/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-13	podestplatz.github.io/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-13"><\/a>$/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-13	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-13"><\/a>$/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-14	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-14"><\/a>  <span class="nd">@property<\/span/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-14	podestplatz.github.io/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-14"><\/a>  <span class="nd">@property<\/span/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-14	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-14"><\/a>  <span class="nd">@property<\/span/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-15	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-15"><\/a>  <span class="k">def<\/span> <span/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-15	podestplatz.github.io/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-15"><\/a>  <span class="k">def<\/span> <span/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-15	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-15"><\/a>  <span class="k">def<\/span> <span/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-16	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-16"><\/a>    <span class="o">...<\/span>$/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-16	podestplatz.github.io/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-16"><\/a>    <span class="o">...<\/span>$/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-16	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-16"><\/a>    <span class="o">...<\/span>$/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-17	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-17"><\/a>$/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-17	podestplatz.github.io/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-17"><\/a>$/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-17	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-17"><\/a>$/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-18	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-18"><\/a>  <span class="nd">@validValues.set/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-18	podestplatz.github.io/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-18"><\/a>  <span class="nd">@validValues.set/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-18	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-18"><\/a>  <span class="nd">@validValues.set/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-19	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-19"><\/a>  <span class="k">def<\/span> <span/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-19	podestplatz.github.io/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-19"><\/a>  <span class="k">def<\/span> <span/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-19	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-19"><\/a>  <span class="k">def<\/span> <span/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-2	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-2"><\/a>  <span class="k">def<\/span> <span /;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-2	podestplatz.github.io/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-2"><\/a>  <span class="k">def<\/span> <span /;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-2	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-2"><\/a>  <span class="k">def<\/span> <span /;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-20	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-20"><\/a>    <span class="k">pass<\/span>$/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-20	podestplatz.github.io/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-20"><\/a>    <span class="k">pass<\/span>$/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-20	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-20"><\/a>    <span class="k">pass<\/span>$/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-21	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-21"><\/a>$/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-21	podestplatz.github.io/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-21"><\/a>$/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-21	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-21"><\/a>$/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-22	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-22"><\/a>  <span class="nd">@staticmethod<\//;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-22	podestplatz.github.io/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-22"><\/a>  <span class="nd">@staticmethod<\//;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-22	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-22"><\/a>  <span class="nd">@staticmethod<\//;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-23	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-23"><\/a>  <span class="k">def<\/span> <span/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-23	podestplatz.github.io/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-23"><\/a>  <span class="k">def<\/span> <span/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-23	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-23"><\/a>  <span class="k">def<\/span> <span/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-24	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-24"><\/a>    <span class="o">...<\/span>$/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-24	podestplatz.github.io/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-24"><\/a>    <span class="o">...<\/span>$/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-24	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-24"><\/a>    <span class="o">...<\/span>$/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-25	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-25"><\/a>$/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-25	podestplatz.github.io/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-25"><\/a>$/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-25	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-25"><\/a>$/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-26	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-26"><\/a><span class="k">class<\/span> <span/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-26	podestplatz.github.io/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-26"><\/a><span class="k">class<\/span> <span/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-26	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-26"><\/a><span class="k">class<\/span> <span/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-27	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-27"><\/a>  <span class="k">def<\/span> <span/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-27	podestplatz.github.io/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-27"><\/a>  <span class="k">def<\/span> <span/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-27	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-27"><\/a>  <span class="k">def<\/span> <span/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-28	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-28"><\/a>    <span class="n">validValues<\/s/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-28	podestplatz.github.io/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-28"><\/a>    <span class="n">validValues<\/s/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-28	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-28"><\/a>    <span class="n">validValues<\/s/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-29	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-29"><\/a>    <span class="nb">super<\/span></;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-29	podestplatz.github.io/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-29"><\/a>    <span class="nb">super<\/span></;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-29	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-29"><\/a>    <span class="nb">super<\/span></;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-3	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-3"><\/a>    <span class="bp">self<\/span><sp/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-3	podestplatz.github.io/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-3"><\/a>    <span class="bp">self<\/span><sp/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-3	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-3"><\/a>    <span class="bp">self<\/span><sp/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-4	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-4"><\/a>    <span class="bp">self<\/span><sp/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-4	podestplatz.github.io/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-4"><\/a>    <span class="bp">self<\/span><sp/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-4	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-4"><\/a>    <span class="bp">self<\/span><sp/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-5	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-5"><\/a>$/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-5	podestplatz.github.io/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-5"><\/a>$/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-5	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-5"><\/a>$/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-6	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-6"><\/a>  <span class="nd">@property<\/span>$/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-6	podestplatz.github.io/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-6"><\/a>  <span class="nd">@property<\/span>$/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-6	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-6"><\/a>  <span class="nd">@property<\/span>$/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-7	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-7"><\/a>  <span class="k">def<\/span> <span /;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-7	podestplatz.github.io/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-7"><\/a>  <span class="k">def<\/span> <span /;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-7	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-7"><\/a>  <span class="k">def<\/span> <span /;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-8	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-8"><\/a>    <span class="o">...<\/span>$/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-8	podestplatz.github.io/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-8"><\/a>    <span class="o">...<\/span>$/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-8	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-8"><\/a>    <span class="o">...<\/span>$/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-9	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-9"><\/a>$/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-9	podestplatz.github.io/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-9"><\/a>$/;"	a
+rest_code_1614531e7e214d6796433300fe60dbf5-9	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_1614531e7e214d6796433300fe60dbf5-9"><\/a>$/;"	a
+rest_code_f72907922cb44f4795b7f719e12aba7d-1	cache/posts/schema-constraints-revisited.html	/^<pre class="code python"><a name="rest_code_f72907922cb44f4795b7f719e12aba7d-1"><\/a><span class/;"	a
+rest_code_f72907922cb44f4795b7f719e12aba7d-1	podestplatz.github.io/index.html	/^<pre class="code python"><a name="rest_code_f72907922cb44f4795b7f719e12aba7d-1"><\/a><span class/;"	a
+rest_code_f72907922cb44f4795b7f719e12aba7d-1	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<pre class="code python"><a name="rest_code_f72907922cb44f4795b7f719e12aba7d-1"><\/a><span class/;"	a
+rest_code_f72907922cb44f4795b7f719e12aba7d-2	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_f72907922cb44f4795b7f719e12aba7d-2"><\/a>$/;"	a
+rest_code_f72907922cb44f4795b7f719e12aba7d-2	podestplatz.github.io/index.html	/^<a name="rest_code_f72907922cb44f4795b7f719e12aba7d-2"><\/a>$/;"	a
+rest_code_f72907922cb44f4795b7f719e12aba7d-2	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_f72907922cb44f4795b7f719e12aba7d-2"><\/a>$/;"	a
+rest_code_f72907922cb44f4795b7f719e12aba7d-3	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_f72907922cb44f4795b7f719e12aba7d-3"><\/a><span class="k">class<\/span> <span /;"	a
+rest_code_f72907922cb44f4795b7f719e12aba7d-3	podestplatz.github.io/index.html	/^<a name="rest_code_f72907922cb44f4795b7f719e12aba7d-3"><\/a><span class="k">class<\/span> <span /;"	a
+rest_code_f72907922cb44f4795b7f719e12aba7d-3	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_f72907922cb44f4795b7f719e12aba7d-3"><\/a><span class="k">class<\/span> <span /;"	a
+rest_code_f72907922cb44f4795b7f719e12aba7d-4	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_f72907922cb44f4795b7f719e12aba7d-4"><\/a>  <span class="n">VAL1<\/span> <span/;"	a
+rest_code_f72907922cb44f4795b7f719e12aba7d-4	podestplatz.github.io/index.html	/^<a name="rest_code_f72907922cb44f4795b7f719e12aba7d-4"><\/a>  <span class="n">VAL1<\/span> <span/;"	a
+rest_code_f72907922cb44f4795b7f719e12aba7d-4	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_f72907922cb44f4795b7f719e12aba7d-4"><\/a>  <span class="n">VAL1<\/span> <span/;"	a
+rest_code_f72907922cb44f4795b7f719e12aba7d-5	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_f72907922cb44f4795b7f719e12aba7d-5"><\/a>  <span class="n">VAL2<\/span> <span/;"	a
+rest_code_f72907922cb44f4795b7f719e12aba7d-5	podestplatz.github.io/index.html	/^<a name="rest_code_f72907922cb44f4795b7f719e12aba7d-5"><\/a>  <span class="n">VAL2<\/span> <span/;"	a
+rest_code_f72907922cb44f4795b7f719e12aba7d-5	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_f72907922cb44f4795b7f719e12aba7d-5"><\/a>  <span class="n">VAL2<\/span> <span/;"	a
+rest_code_f72907922cb44f4795b7f719e12aba7d-6	cache/posts/schema-constraints-revisited.html	/^<a name="rest_code_f72907922cb44f4795b7f719e12aba7d-6"><\/a>  <span class="o">...<\/span>$/;"	a
+rest_code_f72907922cb44f4795b7f719e12aba7d-6	podestplatz.github.io/index.html	/^<a name="rest_code_f72907922cb44f4795b7f719e12aba7d-6"><\/a>  <span class="o">...<\/span>$/;"	a
+rest_code_f72907922cb44f4795b7f719e12aba7d-6	podestplatz.github.io/posts/schema-constraints-revisited/index.html	/^<a name="rest_code_f72907922cb44f4795b7f719e12aba7d-6"><\/a>  <span class="o">...<\/span>$/;"	a
 role	freecad.github.io/assets/css/all-nocdn.css	/^ *\/\/*! normalize.css v3.0.3 | MIT License | github.com\/necolas\/normalize.css *\/html{font-fa/;"	s
 role	freecad.github.io/assets/css/bootstrap.min.css	/^ *\/\/*! normalize.css v3.0.3 | MIT License | github.com\/necolas\/normalize.css *\/html{font-fa/;"	s
 role	podestplatz.github.io/assets/css/all-nocdn.css	/^ *\/\/*! normalize.css v3.0.3 | MIT License | github.com\/necolas\/normalize.css *\/html{font-fa/;"	s
@@ -24248,6 +24301,9 @@ wrap	freecad.github.io/assets/js/bootstrap.min.js	/^if("undefined"==typeof jQuer
 wrap	podestplatz.github.io/assets/js/all-nocdn.js	/^if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires jQuery");+functio/;"	p	class:c.DEFAULTS
 wrap	podestplatz.github.io/assets/js/bootstrap.min.js	/^if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires jQuery");+functio/;"	p	class:c.DEFAULTS
 wrap	themes/bootstrap3/assets/js/bootstrap.min.js	/^if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires jQuery");+functio/;"	p	class:c.DEFAULTS
+writer.getUniqueIdOfListElementInHierarchy()	podestplatz.github.io/posts/dev-logs/index.rst	/^.. _`writer.getUniqueIdOfListElementInHierarchy()`: https:\/\/github.com\/podestplatz\/BCF-Plugi/;"	T
+writer.getUniqueIdOfListElementInHierarchy()	posts/dev-logs.rst	/^.. _`writer.getUniqueIdOfListElementInHierarchy()`: https:\/\/github.com\/podestplatz\/BCF-Plugi/;"	T
+writing-actual-stuff	cache/posts/writing-non-schema-conform-bcf-files.html	/^<div class="section" id="writing-actual-stuff">$/;"	I
 x	freecad.github.io/assets/js/all-nocdn.js	/^!function(e,t){"use strict";"function"==typeof define&&define.amd?define(t):"object"==typeof exp/;"	f	function:AnonymousFunction21d20f6620300
 x	freecad.github.io/assets/js/baguetteBox.min.js	/^!function(e,t){"use strict";"function"==typeof define&&define.amd?define(t):"object"==typeof exp/;"	f	function:AnonymousFunctionab55a33a0100
 x	freecad.github.io/assets/js/html5.js	/^!function(a,b){function c(a,b){var c=a.createElement("p"),d=a.getElementsByTagName("head")[0]||a/;"	v
@@ -24270,6 +24326,8 @@ xhtml	freecad.github.io/sitemap.xml	/^                        http:\/\/www.sitem
 xhtml	freecad.github.io/sitemapindex.xml	/^                        http:\/\/www.sitemaps.org\/schemas\/sitemap\/0.9\/sitemap.xsd">$/;"	n	uri:http://www.w3.org/1999/xhtml
 xhtml	podestplatz.github.io/sitemap.xml	/^                        http:\/\/www.sitemaps.org\/schemas\/sitemap\/0.9\/sitemap.xsd">$/;"	n	uri:http://www.w3.org/1999/xhtml
 xhtml	podestplatz.github.io/sitemapindex.xml	/^                        http:\/\/www.sitemaps.org\/schemas\/sitemap\/0.9\/sitemap.xsd">$/;"	n	uri:http://www.w3.org/1999/xhtml
+xml.etree.ElementTree	podestplatz.github.io/posts/dev-logs/index.rst	/^.. _`xml.etree.ElementTree`: https:\/\/docs.python.org\/3.3\/library\/xml.etree.elementtree.html$/;"	T
+xml.etree.ElementTree	posts/dev-logs.rst	/^.. _`xml.etree.ElementTree`: https:\/\/docs.python.org\/3.3\/library\/xml.etree.elementtree.html$/;"	T
 xmlschema	podestplatz.github.io/posts/handling-non-conform-bcf-files/index.rst	/^.. _`xmlschema`: https:\/\/pypi.org\/project\/xmlschema\/$/;"	T
 xmlschema	posts/handling-non-conform-bcf-files.rst	/^.. _`xmlschema`: https:\/\/pypi.org\/project\/xmlschema\/$/;"	T
 xsi	freecad.github.io/sitemap.xml	/^                        http:\/\/www.sitemaps.org\/schemas\/sitemap\/0.9\/sitemap.xsd">$/;"	n	uri:http://www.w3.org/2001/XMLSchema-instance

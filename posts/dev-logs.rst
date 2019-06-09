@@ -58,9 +58,15 @@
 .. _`Comment`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/9ecb6b1009521a147cc87bf3a37bceb905ca7f22/src/bcf/markup.py#L106
 .. _`ViewpointReference`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/9ecb6b1009521a147cc87bf3a37bceb905ca7f22/src/bcf/markup.py#L43
 .. _`Matteo Cominetti`: https://github.com/teocomi
+.. _`xml.etree.ElementTree`: https://docs.python.org/3.3/library/xml.etree.elementtree.html
 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**June 8th:** I have worked on the `writer.addElement()` method. All work is
+still local and not finished. The overall strategy for the writer module is to
+read in the corresponding XML file using `xml.etree.ElementTree`_, add the new
+elements in this structure and write it to the file again.
 
 **June 7th:** Other than beginning a new blog post about the writer module and
 how I envision it, I didn't come to much today. 
