@@ -81,6 +81,19 @@
     </header><div class="e-content entry-content" itemprop="articleBody text">
     <div>
 <p>This is a daily updated log of the work I do on the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/">BCF-plugin</a> for FreeCAD</p>
+<p><strong>June 9th:</strong> In <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/2afab2ddd410761e864f73888085836b717c1820">commit 2afab2d</a> I implemented half of <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/interfaces/xmlname.py">XMLName</a> interface
+for all classes. This interface defines a property <cite>xmlName</cite> that each class
+inherits. By default this property is set to the name of the class, but the
+constructor of <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/interfaces/xmlname.py">XMLName</a> also offers the possibility to define a custom name
+(this is needed for the writer module). Second to the <cite>xmlName</cite> property it
+defines a member function <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/3eeb7f8356ad664ad9ac40a31a7a1c58dfb74a16/src/interfaces/xmlname.py#L16">XMLName.getEtElement(element)</a> that shall receive an
+<cite>xml.etree.ElementTree.Element</cite> object and shall extend it with its properties,
+and return it again. It is expected that the returned element is schema conform
+and can be inserted as it is.</p>
+<p><a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/e0130434581c59e5ce490a078e1b262ddfd3c449">commit e013043</a> finally removed <cite>SchemaConstraint</cite> and its decendants, since
+it was actually unnecessary.</p>
+<p><a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/3eeb7f8356ad664ad9ac40a31a7a1c58dfb74a16">commit 3eeb7f8</a> added to the writer the functionality of adding objects of
+type comment into the corresponding <cite>markup.bcf</cite> file.</p>
 <p><strong>June 8th:</strong> I have worked on the <cite>writer.addElement()</cite> method. All work is
 still local and not finished. The overall strategy for the writer module is to
 read in the corresponding XML file using <a class="reference external" href="https://docs.python.org/3.3/library/xml.etree.elementtree.html">xml.etree.ElementTree</a>, add the new
