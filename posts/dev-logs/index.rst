@@ -37,6 +37,9 @@
 .. _`commit 0733b59`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/0733b591b3a0871c68bd4e13c72bf80d4ccc986e
 .. _`commit d6c6cc5`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/d6c6cc5f69a1b179eebae8701e86e178146a02bb
 .. _`commit de38b48`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/de38b48c9fcc200316741e85624b82275a99485b
+.. _`commit 2afab2d`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/2afab2ddd410761e864f73888085836b717c1820
+.. _`commit e013043`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/e0130434581c59e5ce490a078e1b262ddfd3c449
+.. _`commit 3eeb7f8`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/3eeb7f8356ad664ad9ac40a31a7a1c58dfb74a16
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
@@ -46,6 +49,7 @@
 .. _`reader.buildTopic()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/9ecb6b1009521a147cc87bf3a37bceb905ca7f22/src/bcf/reader.py#L265
 .. _`reader.buildComment()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/9ecb6b1009521a147cc87bf3a37bceb905ca7f22/src/bcf/reader.py#L214
 .. _`reader.buildViewpoint()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/9ecb6b1009521a147cc87bf3a37bceb905ca7f22/src/bcf/reader.py#L528
+.. _`XMLName.getEtElement(element)`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/3eeb7f8356ad664ad9ac40a31a7a1c58dfb74a16/src/interfaces/xmlname.py#L16
 .. _`reader.py`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/bcf/reader.py
 .. _`writer.getUniqueIdOfListElementInHierarchy()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/de38b48c9fcc200316741e85624b82275a99485b/src/bcf/writer.py#L61
 .. _`bimcollab website`: https://www.bimcollab.com/en/Support/Support/Downloads/Examples-templates
@@ -59,9 +63,26 @@
 .. _`ViewpointReference`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/9ecb6b1009521a147cc87bf3a37bceb905ca7f22/src/bcf/markup.py#L43
 .. _`Matteo Cominetti`: https://github.com/teocomi
 .. _`xml.etree.ElementTree`: https://docs.python.org/3.3/library/xml.etree.elementtree.html
+.. _`XMLName`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/interfaces/xmlname.py
 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**June 9th:** In `commit 2afab2d`_ I implemented half of `XMLName`_ interface
+for all classes. This interface defines a property `xmlName` that each class
+inherits. By default this property is set to the name of the class, but the
+constructor of `XMLName`_ also offers the possibility to define a custom name
+(this is needed for the writer module). Second to the `xmlName` property it
+defines a member function `XMLName.getEtElement(element)`_ that shall receive an
+`xml.etree.ElementTree.Element` object and shall extend it with its properties,
+and return it again. It is expected that the returned element is schema conform
+and can be inserted as it is. 
+
+`commit e013043`_ finally removed `SchemaConstraint` and its decendants, since
+it was actually unnecessary.
+
+`commit 3eeb7f8`_ added to the writer the functionality of adding objects of
+type comment into the corresponding `markup.bcf` file.
 
 **June 8th:** I have worked on the `writer.addElement()` method. All work is
 still local and not finished. The overall strategy for the writer module is to
