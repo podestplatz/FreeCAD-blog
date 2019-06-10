@@ -1,6 +1,6 @@
 .. title: Dev Logs
 .. slug: dev-logs
-.. date: 2019-06-07 08:00:00 UTC
+.. date: 2019-06-10 08:00:00 UTC
 .. tags: daily
 .. category: DevLog
 .. link: 
@@ -40,6 +40,8 @@
 .. _`commit 2afab2d`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/2afab2ddd410761e864f73888085836b717c1820
 .. _`commit e013043`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/e0130434581c59e5ce490a078e1b262ddfd3c449
 .. _`commit 3eeb7f8`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/3eeb7f8356ad664ad9ac40a31a7a1c58dfb74a16
+.. _`commit 78ac6ce`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/78ac6ce0eac8f3e9dedf6d2ab89f5f0d40430842
+.. _`commit da46aa4`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/da46aa438402fd7fe8be17d4ead232bc54ab6afe
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
@@ -67,6 +69,16 @@
 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**June 10th:** `writer.addElement()` function is again further finished. It now
+has the capability of adding attributes to `File` elements in the header. For
+more information see `commit da46aa4`_, also `markup.HeaderFile` was added, for
+more information please refere to the commit message. `commit 78ac6ce`_
+introduces `project.SimpleElement`, `project.SimpleList` and
+`project.Attribute`. They are used to represent the values of simple
+elements, lists of simple elements or attribues respectively. But they also
+inherit `XMLName`, `Hierarchy` and `State` so they can be treated like any other
+representation of an element. 
 
 **June 9th:** In `commit 2afab2d`_ I implemented half of `XMLName`_ interface
 for all classes. This interface defines a property `xmlName` that each class
