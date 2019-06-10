@@ -19,7 +19,7 @@
 <meta property="og:url" content="https://podestplatz.github.io/FreeCAD-blog/posts/dev-logs/">
 <meta property="og:description" content="This is a daily updated log of the work I do on the BCF-plugin for FreeCAD">
 <meta property="og:type" content="article">
-<meta property="article:published_time" content="2019-06-07T08:00:00Z">
+<meta property="article:published_time" content="2019-06-10T08:00:00Z">
 <meta property="article:tag" content="daily">
 </head>
 <body>
@@ -70,7 +70,7 @@
 
         <div class="metadata blog-post-meta">
             <p class="byline author vcard"><span class="byline-name fn">Patrick Podest</span></p>
-            <p class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2019-06-07T08:00:00+00:00" itemprop="datePublished" title="2019-06-07 08:00">2019-06-07 08:00</time></a></p>
+            <p class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2019-06-10T08:00:00+00:00" itemprop="datePublished" title="2019-06-10 08:00">2019-06-10 08:00</time></a></p>
             
         <p class="sourceline"><a href="index.rst" id="sourcelink">Source</a></p>
 
@@ -81,6 +81,15 @@
     </header><div class="e-content entry-content" itemprop="articleBody text">
     <div>
 <p>This is a daily updated log of the work I do on the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/">BCF-plugin</a> for FreeCAD</p>
+<p><strong>June 10th:</strong> <cite>writer.addElement()</cite> function is again further finished. It now
+has the capability of adding attributes to <cite>File</cite> elements in the header. For
+more information see <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/da46aa438402fd7fe8be17d4ead232bc54ab6afe">commit da46aa4</a>, also <cite>markup.HeaderFile</cite> was added, for
+more information please refere to the commit message. <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/78ac6ce0eac8f3e9dedf6d2ab89f5f0d40430842">commit 78ac6ce</a>
+introduces <cite>project.SimpleElement</cite>, <cite>project.SimpleList</cite> and
+<cite>project.Attribute</cite>. They are used to represent the values of simple
+elements, lists of simple elements or attribues respectively. But they also
+inherit <cite>XMLName</cite>, <cite>Hierarchy</cite> and <cite>State</cite> so they can be treated like any other
+representation of an element.</p>
 <p><strong>June 9th:</strong> In <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/2afab2ddd410761e864f73888085836b717c1820">commit 2afab2d</a> I implemented half of <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/interfaces/xmlname.py">XMLName</a> interface
 for all classes. This interface defines a property <cite>xmlName</cite> that each class
 inherits. By default this property is set to the name of the class, but the
