@@ -42,6 +42,7 @@
 .. _`commit 3eeb7f8`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/3eeb7f8356ad664ad9ac40a31a7a1c58dfb74a16
 .. _`commit 78ac6ce`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/78ac6ce0eac8f3e9dedf6d2ab89f5f0d40430842
 .. _`commit da46aa4`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/da46aa438402fd7fe8be17d4ead232bc54ab6afe
+.. _`commit 645a0f0`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/645a0f073c102ca82315e026b6a4c66f8b68faea
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
@@ -69,6 +70,13 @@
 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**June 11th:** with `commit 645a0f0`_ I added support for all attributes that are
+optional, to be added (at least the ones defined in `markup.xsd`). Currently I
+am not supporting the addition of whole new projects, and viewpoints are not
+mutable, so once after they are saved they stay. Then locally I am currently
+implementing the addition of a whole viewpoint file. Probably tomorrow it will
+be merged into master and pushed upstream. 
 
 **June 10th:** `writer.addElement()` function is again further finished. It now
 has the capability of adding attributes to `File` elements in the header. For

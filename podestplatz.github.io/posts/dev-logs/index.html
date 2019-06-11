@@ -81,6 +81,12 @@
     </header><div class="e-content entry-content" itemprop="articleBody text">
     <div>
 <p>This is a daily updated log of the work I do on the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/">BCF-plugin</a> for FreeCAD</p>
+<p><strong>June 11th:</strong> with <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/645a0f073c102ca82315e026b6a4c66f8b68faea">commit 645a0f0</a> I added support for all attributes that are
+optional, to be added (at least the ones defined in <cite>markup.xsd</cite>). Currently I
+am not supporting the addition of whole new projects, and viewpoints are not
+mutable, so once after they are saved they stay. Then locally I am currently
+implementing the addition of a whole viewpoint file. Probably tomorrow it will
+be merged into master and pushed upstream.</p>
 <p><strong>June 10th:</strong> <cite>writer.addElement()</cite> function is again further finished. It now
 has the capability of adding attributes to <cite>File</cite> elements in the header. For
 more information see <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/da46aa438402fd7fe8be17d4ead232bc54ab6afe">commit da46aa4</a>, also <cite>markup.HeaderFile</cite> was added, for
