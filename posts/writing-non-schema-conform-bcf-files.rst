@@ -127,4 +127,22 @@ How shall the interface to the writer look?
 ===========================================
 The above mentioned crawler has the advantage of alos supporting writing the
 file only once. Therefore also being somewhat resource saving. 
-The writer shall have a function `writeChanges()`.
+The writer shall have a function `writeChanges()`. This function receives an
+object of type `project` which denotes the starting point of the search. Every
+object shall have a variable of enum type. This variable is allowed to take on
+one of the following four values:
+
+- ORIGINAL
+- MODIFIED
+- ADDED
+- DELETED
+
+For each of these states the writer maintains a separate list. Each state has to
+be handled differenty during writing. It shall also be possible for the user to
+just issue an update of all of these four lists and then subsequently manually
+decides the point in time when updates shall be written.
+=> `updatechangdLists()` -> `writeChanges()`. Since `writeChanges()` now has to
+fulfill two functions: once triggering `updateChangedLists()` and the other time
+just take these lists as they are, its argument shall be optional. 
+For an addition, deletion, update it is important to know in which folder the
+to-update file is stored. For this a get topic function shall be implemented.
