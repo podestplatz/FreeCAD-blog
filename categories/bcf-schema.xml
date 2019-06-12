@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>FreeCAD BCF-Plugin development blog (Posts about bcf schema)</title><link>https://podestplatz.github.io/FreeCAD-blog/</link><description></description><atom:link href="https://podestplatz.github.io/FreeCAD-blog/categories/bcf-schema.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:podestplatz@gmail.com"&gt;Patrick Podest&lt;/a&gt; </copyright><lastBuildDate>Wed, 12 Jun 2019 15:56:40 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Writing non Schema Conform BCF Files</title><link>https://podestplatz.github.io/FreeCAD-blog/posts/writing-non-schema-conform-bcf-files/</link><dc:creator>Patrick Podest</dc:creator><description>&lt;div&gt;&lt;p&gt;Wait would you write files with the intention that they don't conform to the
+provided XSD files? ... you might ask by just reading the title. No I wouldn't.
+As I introduced in my last blog post (&lt;a class="reference external" href="https://podestplatz.github.io/FreeCAD-blog/posts/handling-non-conform-bcf-files/"&gt;Handling Non-Conform BCF Files&lt;/a&gt;), that
+was not an update of the dev-logs post, I introduced the need of supporting
+files from vendors that might do some things differently. I ended this last post
+with a pros and cons list about two approaches that I thought of. In the
+meantime I decided for latter one.&lt;/p&gt;
+&lt;div class="section" id="recap"&gt;
+&lt;h2&gt;Recap&lt;/h2&gt;
+&lt;p&gt;The second approach, let's call it update approach, extracts the BCF file to a
+temporary folder, reads the contents into memory (that are conform to the
+corresponding XSD file) and every time the state in
+memory is changed the updates get written to the dicrectory structure in the
+temporary folder. At the end, when the plugin is closed and its lifetime ends,
+this directory is compressed again and stored in its original location. The
+update approach thereby does not alter any data that the plugin didn't load into
+memory, it works "around" it.&lt;/p&gt;
+&lt;p&gt;I think this is the better appraoch, since no exceptions to the rule have to be
+made for every speciality that a vendor might incorporate in its files. However,
+the writer module has to have an understanding of XML baked in, in order for it
+to be able to update these files in place.&lt;/p&gt;
+&lt;p&gt;In the next section I want to elaborate a bit more on how I envision this writer
+module.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="writing-actual-stuff"&gt;
+&lt;h2&gt;Writing actual stuff&lt;/h2&gt;
+&lt;p&gt;At the beginning of every writing operation it has to be known whether an
+existing element shall be modified, a new element shall be added or an existing
+one shall be deleted. Following you will find my thoughts, uncompiled, as I have
+written them down onto paper. First will be the handling of additions.&lt;/p&gt;
+&lt;hr class="docutils"&gt;
+&lt;div class="section" id="how-can-additions-be-handled"&gt;
+&lt;h3&gt;How can additions be handled?&lt;/h3&gt;
+&lt;p&gt;Every element class (a class that directly represents a XML-Element like
+&lt;cite&gt;Comment&lt;/cite&gt;) shall have a function that returns the XML-Text. This text is then
+going to be inserted at the right place by the writer module.
+The writer module has to crawl through the complete data model to check/compile
+a list of objects that were added, changed or deleted. Then for each added
+object it calls the XML-Text function to get the corresponding XML-text for each
+element. A second function shall give the following information about the
+position at which it should be inserted (could also be done with a dictionary,
+that way the data model stays clean):&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;the containing element: the containing element of &lt;cite&gt;Comment&lt;/cite&gt; is &lt;cite&gt;Markup&lt;/cite&gt;&lt;/li&gt;
+&lt;li&gt;the relatie order: a list of elements that preceed the current one in
+reverse order. So the immediate predecessor is first in the list. The last
+element of the list is the containing element.&lt;/li&gt;
+&lt;li&gt;if the new element shall be added inside an element that might occur more than
+once (e.g.: &lt;cite&gt;ModifiedDate&lt;/cite&gt; in &lt;cite&gt;Comment&lt;/cite&gt;) then also a unique id of that list
+element has to be retrieved.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The writer then searches for the containing element in the file and then goes
+through the contents of the containing element, searching for the one with the
+least index in the relative order list. The text is inserted right after the
+closing tag of the chosen element.&lt;/p&gt;
+&lt;p&gt;Any references should not be handled/checked in the writer module (e.g.: that
+the viewpoint guid in the to be written comment object belongs to an actual
+existing viewpoint). Such consistency checks are assumed to be handled in the
+GUI or the programmatic interface respectively.&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr class="docutils"&gt;
+&lt;div class="section" id="how-can-updates-be-handled"&gt;
+&lt;h3&gt;How can updates be handled?&lt;/h3&gt;
+&lt;p&gt;An element either has to occur only once in the corresponding file, or be
+identified uniquely by some attribute. Without one of these two constraints the
+identification of the right element in the XML-file becomes extremely hard or
+cannot be done deterministically.
+An object shall be flagged &lt;cite&gt;MODIFIED&lt;/cite&gt; iff (=if and only if) a non-list child
+element was changed. A change of a list element translates either to an addition
+or deletion, or a change of an element that can be identified
+deterministically, as described above. In which case the object, containing the
+list with one or more items changed, shall not be flagged &lt;cite&gt;MODIFIED&lt;/cite&gt;. Each
+object shall then contain a list of changed objects, oblivious of whether it
+translates to an attribute or element. for each of these objects the writer
+module has to gather following information:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;element hierarchy: &lt;cite&gt;ModifiedDate&lt;/cite&gt; in &lt;cite&gt;Comment&lt;/cite&gt; would have
+&lt;cite&gt;ModifiedDate&lt;/cite&gt; -&amp;gt; &lt;cite&gt;Comment&lt;/cite&gt; -&amp;gt; &lt;cite&gt;Markup&lt;/cite&gt; as hierarchy list.&lt;/li&gt;
+&lt;li&gt;unique id of every list element that is in the hierarchy (like with additions)&lt;/li&gt;
+&lt;li&gt;whether it translates to an attribute or an element&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The writing module shall collect a list of all elements that are flagged
+&lt;cite&gt;MODIFIED&lt;/cite&gt;. For each element the writer module shall collect the amount
+information listed above. It then follows the element hierarchy of the object in
+reverse order till it reaches the changed object itself. At this point the
+distinction between attribute and element has to be made. For both cases the
+following two steps happen:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;the respective substring of the element has to be found and&lt;/li&gt;
+&lt;li&gt;be replaced entirely by the XML-text generated from the object&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;hr class="docutils"&gt;
+&lt;div class="section" id="how-can-deletions-be-handled"&gt;
+&lt;h3&gt;How can deletions be handled?&lt;/h3&gt;
+&lt;p&gt;The writer module compiles a list of all elements to delete. For each element
+the following information shall be gathered:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;which file is the element contained in&lt;/li&gt;
+&lt;li&gt;unique id of the element (if available)&lt;/li&gt;
+&lt;li&gt;name of the element&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The writer module then searches for the unique id in the specified file that
+also matches the element name and deletes it from the start to the end tag.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr class="docutils"&gt;
+&lt;div class="section" id="how-shall-the-interface-to-the-writer-look"&gt;
+&lt;h2&gt;How shall the interface to the writer look?&lt;/h2&gt;
+&lt;p&gt;The above mentioned crawler has the advantage of alos supporting writing the
+file only once. Therefore also being somewhat resource saving.
+The writer shall have a function &lt;cite&gt;writeChanges()&lt;/cite&gt;. This function receives an
+object of type &lt;cite&gt;project&lt;/cite&gt; which denotes the starting point of the search. Every
+object shall have a variable of enum type. This variable is allowed to take on
+one of the following four values:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;ORIGINAL&lt;/li&gt;
+&lt;li&gt;MODIFIED&lt;/li&gt;
+&lt;li&gt;ADDED&lt;/li&gt;
+&lt;li&gt;DELETED&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For each of these states the writer maintains a separate list. Each state has to
+be handled differenty during writing. It shall also be possible for the user to
+just issue an update of all of these four lists and then subsequently manually
+decides the point in time when updates shall be written.
+=&amp;gt; &lt;cite&gt;updatechangdLists()&lt;/cite&gt; -&amp;gt; &lt;cite&gt;writeChanges()&lt;/cite&gt;. Since &lt;cite&gt;writeChanges()&lt;/cite&gt; now has to
+fulfill two functions: once triggering &lt;cite&gt;updateChangedLists()&lt;/cite&gt; and the other time
+just take these lists as they are, its argument shall be optional.
+For an addition, deletion, update it is important to know in which folder the
+to-update file is stored. For this a get topic function shall be implemented.&lt;/p&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>bcf schema</category><guid>https://podestplatz.github.io/FreeCAD-blog/posts/writing-non-schema-conform-bcf-files/</guid><pubDate>Fri, 07 Jun 2019 16:02:56 GMT</pubDate></item></channel></rss>

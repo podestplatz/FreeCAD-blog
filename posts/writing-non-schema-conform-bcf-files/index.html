@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Writing non Schema Conform BCF Files | FreeCAD BCF-Plugin development blog</title>
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
+<link rel="canonical" href="https://podestplatz.github.io/FreeCAD-blog/posts/writing-non-schema-conform-bcf-files/">
+<link rel="icon" href="../../favicon-16.ico" sizes="16x16">
+<link rel="icon" href="../../favicon-32.ico" sizes="32x32">
+<link rel="icon" href="../../favicon-256.ico" sizes="256x256">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Patrick Podest">
+<link rel="prev" href="../handling-non-conform-bcf-files/" title="Handling Non-Conform BCF Files" type="text/html">
+<link rel="next" href="../dev-logs/" title="Dev Logs" type="text/html">
+<meta property="og:site_name" content="FreeCAD BCF-Plugin development blog">
+<meta property="og:title" content="Writing non Schema Conform BCF Files">
+<meta property="og:url" content="https://podestplatz.github.io/FreeCAD-blog/posts/writing-non-schema-conform-bcf-files/">
+<meta property="og:description" content="Wait would you write files with the intention that they don't conform to the
+provided XSD files? ... you might ask by just reading the title. No I wouldn't.
+As I introduced in my last blog post (Handl">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2019-06-07T16:02:56Z">
+<meta property="article:tag" content="bcf schema">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<div class="blog-masthead">
+    <div class="container">
+<!-- This keeps the margins nice -->
+        <nav class="blog-nav" role="navigation"><a href="../../index.html" class="blog-nav-item">Home</a>
+            <a href="../../archive.html" class="blog-nav-item">Archive</a>
+            <a href="../../categories/index.html" class="blog-nav-item">Tags</a>
+            <a href="../../rss.xml" class="blog-nav-item">RSS feed</a>
+
+            
+
+                
+                
+                    
+    <a href="index.rst" class="blog-nav-item blog-nav-item-aside" id="sourcelink">Source</a>
+
+                
+            
+        </nav>
+</div>
+<!-- /.container -->
+</div>
+<!-- End of Menubar -->
+
+<div class="container" id="content" role="main">
+    <div class="body-content">
+        <div class="blog-header">
+            <h1 class="blog-title">
+                <a href="https://podestplatz.github.io/FreeCAD-blog/">
+
+                    <span id="blog-title">FreeCAD BCF-Plugin development blog</span>
+                </a>
+            </h1>
+            <p class="lead blog-description">Blog to the development of the BCF FreeCAD plugin.</p>
+            
+        </div>
+        <!--Body content-->
+        <div class="row">
+            <div class="col-sm-8 blog-main">
+                
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h2 class="p-name entry-title blog-post-title" itemprop="headline name"><a href="." class="u-url">Writing non Schema Conform BCF Files</a></h2>
+
+        <div class="metadata blog-post-meta">
+            <p class="byline author vcard"><span class="byline-name fn">Patrick Podest</span></p>
+            <p class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2019-06-07T16:02:56+00:00" itemprop="datePublished" title="2019-06-07 16:02">2019-06-07 16:02</time></a></p>
+            
+        <p class="sourceline"><a href="index.rst" id="sourcelink">Source</a></p>
+
+        </div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p>Wait would you write files with the intention that they don't conform to the
+provided XSD files? ... you might ask by just reading the title. No I wouldn't.
+As I introduced in my last blog post (<a class="reference external" href="../handling-non-conform-bcf-files/">Handling Non-Conform BCF Files</a>), that
+was not an update of the dev-logs post, I introduced the need of supporting
+files from vendors that might do some things differently. I ended this last post
+with a pros and cons list about two approaches that I thought of. In the
+meantime I decided for latter one.</p>
+<div class="section" id="recap">
+<h2>Recap</h2>
+<p>The second approach, let's call it update approach, extracts the BCF file to a
+temporary folder, reads the contents into memory (that are conform to the
+corresponding XSD file) and every time the state in
+memory is changed the updates get written to the dicrectory structure in the
+temporary folder. At the end, when the plugin is closed and its lifetime ends,
+this directory is compressed again and stored in its original location. The
+update approach thereby does not alter any data that the plugin didn't load into
+memory, it works "around" it.</p>
+<p>I think this is the better appraoch, since no exceptions to the rule have to be
+made for every speciality that a vendor might incorporate in its files. However,
+the writer module has to have an understanding of XML baked in, in order for it
+to be able to update these files in place.</p>
+<p>In the next section I want to elaborate a bit more on how I envision this writer
+module.</p>
+</div>
+<div class="section" id="writing-actual-stuff">
+<h2>Writing actual stuff</h2>
+<p>At the beginning of every writing operation it has to be known whether an
+existing element shall be modified, a new element shall be added or an existing
+one shall be deleted. Following you will find my thoughts, uncompiled, as I have
+written them down onto paper. First will be the handling of additions.</p>
+<hr class="docutils">
+<div class="section" id="how-can-additions-be-handled">
+<h3>How can additions be handled?</h3>
+<p>Every element class (a class that directly represents a XML-Element like
+<cite>Comment</cite>) shall have a function that returns the XML-Text. This text is then
+going to be inserted at the right place by the writer module.
+The writer module has to crawl through the complete data model to check/compile
+a list of objects that were added, changed or deleted. Then for each added
+object it calls the XML-Text function to get the corresponding XML-text for each
+element. A second function shall give the following information about the
+position at which it should be inserted (could also be done with a dictionary,
+that way the data model stays clean):</p>
+<ul class="simple">
+<li>the containing element: the containing element of <cite>Comment</cite> is <cite>Markup</cite>
+</li>
+<li>the relatie order: a list of elements that preceed the current one in
+reverse order. So the immediate predecessor is first in the list. The last
+element of the list is the containing element.</li>
+<li>if the new element shall be added inside an element that might occur more than
+once (e.g.: <cite>ModifiedDate</cite> in <cite>Comment</cite>) then also a unique id of that list
+element has to be retrieved.</li>
+</ul>
+<p>The writer then searches for the containing element in the file and then goes
+through the contents of the containing element, searching for the one with the
+least index in the relative order list. The text is inserted right after the
+closing tag of the chosen element.</p>
+<p>Any references should not be handled/checked in the writer module (e.g.: that
+the viewpoint guid in the to be written comment object belongs to an actual
+existing viewpoint). Such consistency checks are assumed to be handled in the
+GUI or the programmatic interface respectively.</p>
+</div>
+<hr class="docutils">
+<div class="section" id="how-can-updates-be-handled">
+<h3>How can updates be handled?</h3>
+<p>An element either has to occur only once in the corresponding file, or be
+identified uniquely by some attribute. Without one of these two constraints the
+identification of the right element in the XML-file becomes extremely hard or
+cannot be done deterministically.
+An object shall be flagged <cite>MODIFIED</cite> iff (=if and only if) a non-list child
+element was changed. A change of a list element translates either to an addition
+or deletion, or a change of an element that can be identified
+deterministically, as described above. In which case the object, containing the
+list with one or more items changed, shall not be flagged <cite>MODIFIED</cite>. Each
+object shall then contain a list of changed objects, oblivious of whether it
+translates to an attribute or element. for each of these objects the writer
+module has to gather following information:</p>
+<ul class="simple">
+<li>element hierarchy: <cite>ModifiedDate</cite> in <cite>Comment</cite> would have
+<cite>ModifiedDate</cite> -&gt; <cite>Comment</cite> -&gt; <cite>Markup</cite> as hierarchy list.</li>
+<li>unique id of every list element that is in the hierarchy (like with additions)</li>
+<li>whether it translates to an attribute or an element</li>
+</ul>
+<p>The writing module shall collect a list of all elements that are flagged
+<cite>MODIFIED</cite>. For each element the writer module shall collect the amount
+information listed above. It then follows the element hierarchy of the object in
+reverse order till it reaches the changed object itself. At this point the
+distinction between attribute and element has to be made. For both cases the
+following two steps happen:</p>
+<ol class="arabic simple">
+<li>the respective substring of the element has to be found and</li>
+<li>be replaced entirely by the XML-text generated from the object</li>
+</ol>
+</div>
+<hr class="docutils">
+<div class="section" id="how-can-deletions-be-handled">
+<h3>How can deletions be handled?</h3>
+<p>The writer module compiles a list of all elements to delete. For each element
+the following information shall be gathered:</p>
+<ul class="simple">
+<li>which file is the element contained in</li>
+<li>unique id of the element (if available)</li>
+<li>name of the element</li>
+</ul>
+<p>The writer module then searches for the unique id in the specified file that
+also matches the element name and deletes it from the start to the end tag.</p>
+</div>
+</div>
+<hr class="docutils">
+<div class="section" id="how-shall-the-interface-to-the-writer-look">
+<h2>How shall the interface to the writer look?</h2>
+<p>The above mentioned crawler has the advantage of alos supporting writing the
+file only once. Therefore also being somewhat resource saving.
+The writer shall have a function <cite>writeChanges()</cite>. This function receives an
+object of type <cite>project</cite> which denotes the starting point of the search. Every
+object shall have a variable of enum type. This variable is allowed to take on
+one of the following four values:</p>
+<ul class="simple">
+<li>ORIGINAL</li>
+<li>MODIFIED</li>
+<li>ADDED</li>
+<li>DELETED</li>
+</ul>
+<p>For each of these states the writer maintains a separate list. Each state has to
+be handled differenty during writing. It shall also be possible for the user to
+just issue an update of all of these four lists and then subsequently manually
+decides the point in time when updates shall be written.
+=&gt; <cite>updatechangdLists()</cite> -&gt; <cite>writeChanges()</cite>. Since <cite>writeChanges()</cite> now has to
+fulfill two functions: once triggering <cite>updateChangedLists()</cite> and the other time
+just take these lists as they are, its argument shall be optional.
+For an addition, deletion, update it is important to know in which folder the
+to-update file is stored. For this a get topic function shall be implemented.</p>
+</div>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../categories/bcf-schema/" rel="tag">bcf schema</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../handling-non-conform-bcf-files/" rel="prev" title="Handling Non-Conform BCF Files">Previous post</a>
+            </li>
+            <li class="next">
+                <a href="../dev-logs/" rel="next" title="Dev Logs">Next post</a>
+            </li>
+        </ul></nav></aside></article>
+</div>
+            <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+                <div class="sidebar-module sidebar-module-inset">
+  <h4>About</h4>
+  <p>This is the development blog for the BCF-Plugin for FreeCAD. This project
+  is mentored by @yorik and @hardeeprai and done by @podestplatz. Its purpose
+  is to integrate support for BCF into the BIM workbench of FreeCAD.</p>
+</div>
+<div class="sidebar-module">
+  <h4>Links</h4>
+  <ol class="list-unstyled">
+<li><a href="https://github.com/podestplatz/BCF-Plugin-FreeCAD">BCF-Plugin on github</a></li>
+    <li><a href="https://freecadweb.org">FreeCAD</a></li>
+    <li><a href="https://forum.freecadweb.org/viewtopic.php?f=8&amp;t=35465">Plugin Forum Thread</a></li>
+    <li><a href="https://github.com/podestplatz">@podestplatz</a></li>
+  </ol>
+</div>
+
+            </div>
+        <!--End of body content-->
+        </div>
+    </div>
+</div>
+
+<footer class="blog-footer" id="footer">
+    Contents © 2019         <a href="mailto:podestplatz@gmail.com">Patrick Podest</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+    
+</footer><script src="../../assets/js/all-nocdn.js"></script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(0, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates --><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
+</body>
+</html>
