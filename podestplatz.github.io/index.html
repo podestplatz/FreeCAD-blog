@@ -65,6 +65,16 @@
     </header><div class="e-content entry-content">
     <div>
 <p>This is a daily updated log of the work I do on the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/">BCF-plugin</a> for FreeCAD</p>
+<p><strong>June 12th:</strong> Viewpoint objects can now be added, resulting in the generation
+of a new viewpoint file in the corresponding topic directory, for more
+information please refere to <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/2593bdb5a889e8ec4c531bd0e675c9ce65648eb5">commit 2593bdb</a>. <a href="posts/dev-logs/#id1"><span class="problematic" id="id2">`commit 4de5078`_</span></a> adds the
+function <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/4de50788af938d69f00fac01848ee7771d805ae1/src/bcf/writer.py#L400">writer.compileChanges()</a>. It is not that long or complicated, but the
+most stuff goes on under the hood of the function call in line
+<a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/4de50788af938d69f00fac01848ee7771d805ae1/src/bcf/writer.py#L415">writer.compileChanges()#415</a>. It results in a depth first search objects that
+don't are in the original state. Hence every data model class had to be edited.
+Currently I am working locally on unit tests for the <cite>writer.addElement()</cite>
+method for which I have 11 testcases planned. I will probably push them tomorrow
+upstream.</p>
 <p><strong>June 11th:</strong> with <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/645a0f073c102ca82315e026b6a4c66f8b68faea">commit 645a0f0</a> I added support for all attributes that are
 optional, to be added (at least the ones defined in <cite>markup.xsd</cite>). Currently I
 am not supporting the addition of whole new projects, and viewpoints are not
@@ -244,6 +254,12 @@ more details refer to following commits:</p>
 </ul>
 <p><strong>May 26th:</strong> Update Comment in class diagram. For more info see <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/1c34ad907b7fc56cd96aa2fc5aa133e3f445a24b">commit 1c34ad9</a>, and create <a class="reference external" href="https://forum.freecadweb.org/viewtopic.php?p=310515#p310515">mockup of the plugin interface</a>.
 Write part one of the class model in python see <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/31ef931b3637c90ca0c8252f71dd635e66a843fa">commit 31ef931</a>.</p>
+<div class="system-messages section">
+<h2>Docutils System Messages</h2>
+<div class="system-message" id="id1">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">&lt;string&gt;</tt>, line 68); <em><a href="posts/dev-logs/#id2">backlink</a></em></p>
+Unknown target name: "commit 4de5078".</div>
+</div>
 </div>
     </div>
     </article><article class="blog-post h-entry post-text"><header><h2 class="p-name entry-title blog-post-title"><a href="posts/handling-non-conform-bcf-files/" class="u-url">Handling Non-Conform BCF Files</a></h2>

@@ -43,6 +43,7 @@
 .. _`commit 78ac6ce`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/78ac6ce0eac8f3e9dedf6d2ab89f5f0d40430842
 .. _`commit da46aa4`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/da46aa438402fd7fe8be17d4ead232bc54ab6afe
 .. _`commit 645a0f0`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/645a0f073c102ca82315e026b6a4c66f8b68faea
+.. _`commit 2593bdb`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/2593bdb5a889e8ec4c531bd0e675c9ce65648eb5
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
@@ -52,6 +53,8 @@
 .. _`reader.buildTopic()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/9ecb6b1009521a147cc87bf3a37bceb905ca7f22/src/bcf/reader.py#L265
 .. _`reader.buildComment()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/9ecb6b1009521a147cc87bf3a37bceb905ca7f22/src/bcf/reader.py#L214
 .. _`reader.buildViewpoint()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/9ecb6b1009521a147cc87bf3a37bceb905ca7f22/src/bcf/reader.py#L528
+.. _`writer.compileChanges()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/4de50788af938d69f00fac01848ee7771d805ae1/src/bcf/writer.py#L400
+.. _`writer.compileChanges()#415`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/4de50788af938d69f00fac01848ee7771d805ae1/src/bcf/writer.py#L415
 .. _`XMLName.getEtElement(element)`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/3eeb7f8356ad664ad9ac40a31a7a1c58dfb74a16/src/interfaces/xmlname.py#L16
 .. _`reader.py`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/bcf/reader.py
 .. _`writer.getUniqueIdOfListElementInHierarchy()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/de38b48c9fcc200316741e85624b82275a99485b/src/bcf/writer.py#L61
@@ -70,6 +73,17 @@
 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**June 12th:** Viewpoint objects can now be added, resulting in the generation
+of a new viewpoint file in the corresponding topic directory, for more
+information please refere to `commit 2593bdb`_. `commit 4de5078`_ adds the
+function `writer.compileChanges()`_. It is not that long or complicated, but the
+most stuff goes on under the hood of the function call in line
+`writer.compileChanges()#415`_. It results in a depth first search objects that
+don't are in the original state. Hence every data model class had to be edited. 
+Currently I am working locally on unit tests for the `writer.addElement()`
+method for which I have 11 testcases planned. I will probably push them tomorrow
+upstream.
 
 **June 11th:** with `commit 645a0f0`_ I added support for all attributes that are
 optional, to be added (at least the ones defined in `markup.xsd`). Currently I
