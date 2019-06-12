@@ -262,6 +262,147 @@ Unknown target name: "commit 4de5078".</div>
 </div>
 </div>
     </div>
+    </article><article class="blog-post h-entry post-text"><header><h2 class="p-name entry-title blog-post-title"><a href="posts/writing-non-schema-conform-bcf-files/" class="u-url">Writing non Schema Conform BCF Files</a></h2>
+        <div class="metadata blog-post-meta">
+            <p class="byline author vcard"><span class="byline-name fn">Patrick Podest</span></p>
+            <p class="dateline"><a href="posts/writing-non-schema-conform-bcf-files/" rel="bookmark"><time class="published dt-published" datetime="2019-06-07T16:02:56+00:00" title="2019-06-07 16:02">2019-06-07 16:02</time></a></p>
+        </div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>Wait would you write files with the intention that they don't conform to the
+provided XSD files? ... you might ask by just reading the title. No I wouldn't.
+As I introduced in my last blog post (<a class="reference external" href="posts/handling-non-conform-bcf-files/">Handling Non-Conform BCF Files</a>), that
+was not an update of the dev-logs post, I introduced the need of supporting
+files from vendors that might do some things differently. I ended this last post
+with a pros and cons list about two approaches that I thought of. In the
+meantime I decided for latter one.</p>
+<div class="section" id="recap">
+<h2>Recap</h2>
+<p>The second approach, let's call it update approach, extracts the BCF file to a
+temporary folder, reads the contents into memory (that are conform to the
+corresponding XSD file) and every time the state in
+memory is changed the updates get written to the dicrectory structure in the
+temporary folder. At the end, when the plugin is closed and its lifetime ends,
+this directory is compressed again and stored in its original location. The
+update approach thereby does not alter any data that the plugin didn't load into
+memory, it works "around" it.</p>
+<p>I think this is the better appraoch, since no exceptions to the rule have to be
+made for every speciality that a vendor might incorporate in its files. However,
+the writer module has to have an understanding of XML baked in, in order for it
+to be able to update these files in place.</p>
+<p>In the next section I want to elaborate a bit more on how I envision this writer
+module.</p>
+</div>
+<div class="section" id="writing-actual-stuff">
+<h2>Writing actual stuff</h2>
+<p>At the beginning of every writing operation it has to be known whether an
+existing element shall be modified, a new element shall be added or an existing
+one shall be deleted. Following you will find my thoughts, uncompiled, as I have
+written them down onto paper. First will be the handling of additions.</p>
+<hr class="docutils">
+<div class="section" id="how-can-additions-be-handled">
+<h3>How can additions be handled?</h3>
+<p>Every element class (a class that directly represents a XML-Element like
+<cite>Comment</cite>) shall have a function that returns the XML-Text. This text is then
+going to be inserted at the right place by the writer module.
+The writer module has to crawl through the complete data model to check/compile
+a list of objects that were added, changed or deleted. Then for each added
+object it calls the XML-Text function to get the corresponding XML-text for each
+element. A second function shall give the following information about the
+position at which it should be inserted (could also be done with a dictionary,
+that way the data model stays clean):</p>
+<ul class="simple">
+<li>the containing element: the containing element of <cite>Comment</cite> is <cite>Markup</cite>
+</li>
+<li>the relatie order: a list of elements that preceed the current one in
+reverse order. So the immediate predecessor is first in the list. The last
+element of the list is the containing element.</li>
+<li>if the new element shall be added inside an element that might occur more than
+once (e.g.: <cite>ModifiedDate</cite> in <cite>Comment</cite>) then also a unique id of that list
+element has to be retrieved.</li>
+</ul>
+<p>The writer then searches for the containing element in the file and then goes
+through the contents of the containing element, searching for the one with the
+least index in the relative order list. The text is inserted right after the
+closing tag of the chosen element.</p>
+<p>Any references should not be handled/checked in the writer module (e.g.: that
+the viewpoint guid in the to be written comment object belongs to an actual
+existing viewpoint). Such consistency checks are assumed to be handled in the
+GUI or the programmatic interface respectively.</p>
+</div>
+<hr class="docutils">
+<div class="section" id="how-can-updates-be-handled">
+<h3>How can updates be handled?</h3>
+<p>An element either has to occur only once in the corresponding file, or be
+identified uniquely by some attribute. Without one of these two constraints the
+identification of the right element in the XML-file becomes extremely hard or
+cannot be done deterministically.
+An object shall be flagged <cite>MODIFIED</cite> iff (=if and only if) a non-list child
+element was changed. A change of a list element translates either to an addition
+or deletion, or a change of an element that can be identified
+deterministically, as described above. In which case the object, containing the
+list with one or more items changed, shall not be flagged <cite>MODIFIED</cite>. Each
+object shall then contain a list of changed objects, oblivious of whether it
+translates to an attribute or element. for each of these objects the writer
+module has to gather following information:</p>
+<ul class="simple">
+<li>element hierarchy: <cite>ModifiedDate</cite> in <cite>Comment</cite> would have
+<cite>ModifiedDate</cite> -&gt; <cite>Comment</cite> -&gt; <cite>Markup</cite> as hierarchy list.</li>
+<li>unique id of every list element that is in the hierarchy (like with additions)</li>
+<li>whether it translates to an attribute or an element</li>
+</ul>
+<p>The writing module shall collect a list of all elements that are flagged
+<cite>MODIFIED</cite>. For each element the writer module shall collect the amount
+information listed above. It then follows the element hierarchy of the object in
+reverse order till it reaches the changed object itself. At this point the
+distinction between attribute and element has to be made. For both cases the
+following two steps happen:</p>
+<ol class="arabic simple">
+<li>the respective substring of the element has to be found and</li>
+<li>be replaced entirely by the XML-text generated from the object</li>
+</ol>
+</div>
+<hr class="docutils">
+<div class="section" id="how-can-deletions-be-handled">
+<h3>How can deletions be handled?</h3>
+<p>The writer module compiles a list of all elements to delete. For each element
+the following information shall be gathered:</p>
+<ul class="simple">
+<li>which file is the element contained in</li>
+<li>unique id of the element (if available)</li>
+<li>name of the element</li>
+</ul>
+<p>The writer module then searches for the unique id in the specified file that
+also matches the element name and deletes it from the start to the end tag.</p>
+</div>
+</div>
+<hr class="docutils">
+<div class="section" id="how-shall-the-interface-to-the-writer-look">
+<h2>How shall the interface to the writer look?</h2>
+<p>The above mentioned crawler has the advantage of alos supporting writing the
+file only once. Therefore also being somewhat resource saving.
+The writer shall have a function <cite>writeChanges()</cite>. This function receives an
+object of type <cite>project</cite> which denotes the starting point of the search. Every
+object shall have a variable of enum type. This variable is allowed to take on
+one of the following four values:</p>
+<ul class="simple">
+<li>ORIGINAL</li>
+<li>MODIFIED</li>
+<li>ADDED</li>
+<li>DELETED</li>
+</ul>
+<p>For each of these states the writer maintains a separate list. Each state has to
+be handled differenty during writing. It shall also be possible for the user to
+just issue an update of all of these four lists and then subsequently manually
+decides the point in time when updates shall be written.
+=&gt; <cite>updatechangdLists()</cite> -&gt; <cite>writeChanges()</cite>. Since <cite>writeChanges()</cite> now has to
+fulfill two functions: once triggering <cite>updateChangedLists()</cite> and the other time
+just take these lists as they are, its argument shall be optional.
+For an addition, deletion, update it is important to know in which folder the
+to-update file is stored. For this a get topic function shall be implemented.</p>
+</div>
+</div>
+    </div>
     </article><article class="blog-post h-entry post-text"><header><h2 class="p-name entry-title blog-post-title"><a href="posts/handling-non-conform-bcf-files/" class="u-url">Handling Non-Conform BCF Files</a></h2>
         <div class="metadata blog-post-meta">
             <p class="byline author vcard"><span class="byline-name fn">Patrick Podest</span></p>
@@ -422,12 +563,12 @@ itself). I knew it was possible to change a class object (not the object <em>of<
 class) during runtime and add or remove members from it.  I thought maybe this
 is also possible with classes that derive from <cite>Enum</cite>. In python to create an
 enumeration you just have to define a class like this:</p>
-<pre class="code python"><a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-1"></a><span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
-<a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-2"></a>
-<a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-3"></a><span class="k">class</span> <span class="nc">Example</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
-<a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-4"></a>  <span class="n">VAL1</span> <span class="o">=</span> <span class="mi">1</span>
-<a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-5"></a>  <span class="n">VAL2</span> <span class="o">=</span> <span class="mi">2</span>
-<a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-6"></a>  <span class="o">...</span>
+<pre class="code python"><a name="rest_code_f72907922cb44f4795b7f719e12aba7d-1"></a><span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+<a name="rest_code_f72907922cb44f4795b7f719e12aba7d-2"></a>
+<a name="rest_code_f72907922cb44f4795b7f719e12aba7d-3"></a><span class="k">class</span> <span class="nc">Example</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<a name="rest_code_f72907922cb44f4795b7f719e12aba7d-4"></a>  <span class="n">VAL1</span> <span class="o">=</span> <span class="mi">1</span>
+<a name="rest_code_f72907922cb44f4795b7f719e12aba7d-5"></a>  <span class="n">VAL2</span> <span class="o">=</span> <span class="mi">2</span>
+<a name="rest_code_f72907922cb44f4795b7f719e12aba7d-6"></a>  <span class="o">...</span>
 </pre>
 <p>The first obstacle was that classes can only derive from a class (that itself
 derives from <cite>Enum</cite>) iff they don't introduce new members. Otherwise this would
@@ -456,35 +597,35 @@ returns them as list.  <cite>parseConstraints()</cite> is intended to be called 
 <cite>TopicType.__init__()</cite>). To make things clearer I put a small code example below
 showing the classes <cite>SchemaConstraints</cite> and <cite>TopicType</cite> as well as all the
 members of both classes.</p>
-<pre class="code python"><a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-1"></a><span class="k">class</span> <span class="nc">SchemaConstraint</span><span class="p">:</span>
-<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-2"></a>  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">validValues</span><span class="p">):</span>
-<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-3"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
-<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-4"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">validValues</span> <span class="o">=</span> <span class="n">validValues</span>
-<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-5"></a>
-<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-6"></a>  <span class="nd">@property</span>
-<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-7"></a>  <span class="k">def</span> <span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-8"></a>    <span class="o">...</span>
-<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-9"></a>
-<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-10"></a>  <span class="nd">@value.setter</span>
-<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-11"></a>  <span class="k">def</span> <span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">newValue</span><span class="p">):</span>
-<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-12"></a>    <span class="o">...</span>
-<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-13"></a>
-<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-14"></a>  <span class="nd">@property</span>
-<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-15"></a>  <span class="k">def</span> <span class="nf">validValues</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-16"></a>    <span class="o">...</span>
-<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-17"></a>
-<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-18"></a>  <span class="nd">@validValues.setter</span>
-<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-19"></a>  <span class="k">def</span> <span class="nf">validValues</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">newValue</span><span class="p">):</span>
-<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-20"></a>    <span class="k">pass</span>
-<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-21"></a>
-<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-22"></a>  <span class="nd">@staticmethod</span>
-<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-23"></a>  <span class="k">def</span> <span class="nf">parseConstraints</span><span class="p">(</span><span class="n">elementName</span><span class="p">):</span>
-<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-24"></a>    <span class="o">...</span>
-<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-25"></a>
-<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-26"></a><span class="k">class</span> <span class="nc">TopicType</span><span class="p">(</span><span class="n">SchemaConstraint</span><span class="p">):</span>
-<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-27"></a>  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-28"></a>    <span class="n">validValues</span> <span class="o">=</span> <span class="n">SchemaConstraint</span><span class="o">.</span><span class="n">parseConstraints</span><span class="p">(</span><span class="s2">"TopicType"</span><span class="p">)</span>
-<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-29"></a>    <span class="nb">super</span><span class="p">(</span><span class="n">TopicType</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">validValues</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">validValues</span><span class="p">)</span>
+<pre class="code python"><a name="rest_code_1614531e7e214d6796433300fe60dbf5-1"></a><span class="k">class</span> <span class="nc">SchemaConstraint</span><span class="p">:</span>
+<a name="rest_code_1614531e7e214d6796433300fe60dbf5-2"></a>  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">validValues</span><span class="p">):</span>
+<a name="rest_code_1614531e7e214d6796433300fe60dbf5-3"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
+<a name="rest_code_1614531e7e214d6796433300fe60dbf5-4"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">validValues</span> <span class="o">=</span> <span class="n">validValues</span>
+<a name="rest_code_1614531e7e214d6796433300fe60dbf5-5"></a>
+<a name="rest_code_1614531e7e214d6796433300fe60dbf5-6"></a>  <span class="nd">@property</span>
+<a name="rest_code_1614531e7e214d6796433300fe60dbf5-7"></a>  <span class="k">def</span> <span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a name="rest_code_1614531e7e214d6796433300fe60dbf5-8"></a>    <span class="o">...</span>
+<a name="rest_code_1614531e7e214d6796433300fe60dbf5-9"></a>
+<a name="rest_code_1614531e7e214d6796433300fe60dbf5-10"></a>  <span class="nd">@value.setter</span>
+<a name="rest_code_1614531e7e214d6796433300fe60dbf5-11"></a>  <span class="k">def</span> <span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">newValue</span><span class="p">):</span>
+<a name="rest_code_1614531e7e214d6796433300fe60dbf5-12"></a>    <span class="o">...</span>
+<a name="rest_code_1614531e7e214d6796433300fe60dbf5-13"></a>
+<a name="rest_code_1614531e7e214d6796433300fe60dbf5-14"></a>  <span class="nd">@property</span>
+<a name="rest_code_1614531e7e214d6796433300fe60dbf5-15"></a>  <span class="k">def</span> <span class="nf">validValues</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a name="rest_code_1614531e7e214d6796433300fe60dbf5-16"></a>    <span class="o">...</span>
+<a name="rest_code_1614531e7e214d6796433300fe60dbf5-17"></a>
+<a name="rest_code_1614531e7e214d6796433300fe60dbf5-18"></a>  <span class="nd">@validValues.setter</span>
+<a name="rest_code_1614531e7e214d6796433300fe60dbf5-19"></a>  <span class="k">def</span> <span class="nf">validValues</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">newValue</span><span class="p">):</span>
+<a name="rest_code_1614531e7e214d6796433300fe60dbf5-20"></a>    <span class="k">pass</span>
+<a name="rest_code_1614531e7e214d6796433300fe60dbf5-21"></a>
+<a name="rest_code_1614531e7e214d6796433300fe60dbf5-22"></a>  <span class="nd">@staticmethod</span>
+<a name="rest_code_1614531e7e214d6796433300fe60dbf5-23"></a>  <span class="k">def</span> <span class="nf">parseConstraints</span><span class="p">(</span><span class="n">elementName</span><span class="p">):</span>
+<a name="rest_code_1614531e7e214d6796433300fe60dbf5-24"></a>    <span class="o">...</span>
+<a name="rest_code_1614531e7e214d6796433300fe60dbf5-25"></a>
+<a name="rest_code_1614531e7e214d6796433300fe60dbf5-26"></a><span class="k">class</span> <span class="nc">TopicType</span><span class="p">(</span><span class="n">SchemaConstraint</span><span class="p">):</span>
+<a name="rest_code_1614531e7e214d6796433300fe60dbf5-27"></a>  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a name="rest_code_1614531e7e214d6796433300fe60dbf5-28"></a>    <span class="n">validValues</span> <span class="o">=</span> <span class="n">SchemaConstraint</span><span class="o">.</span><span class="n">parseConstraints</span><span class="p">(</span><span class="s2">"TopicType"</span><span class="p">)</span>
+<a name="rest_code_1614531e7e214d6796433300fe60dbf5-29"></a>    <span class="nb">super</span><span class="p">(</span><span class="n">TopicType</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">validValues</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">validValues</span><span class="p">)</span>
 </pre>
 <p>One important thing to note here is that the setter method of <cite>validValues</cite> has
 just one line which contains <cite>pass</cite>. This is done in order to ensure that the
