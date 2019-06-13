@@ -44,6 +44,9 @@
 .. _`commit da46aa4`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/da46aa438402fd7fe8be17d4ead232bc54ab6afe
 .. _`commit 645a0f0`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/645a0f073c102ca82315e026b6a4c66f8b68faea
 .. _`commit 2593bdb`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/2593bdb5a889e8ec4c531bd0e675c9ce65648eb5
+.. _`commit 2593bdb`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/2593bdb5a889e8ec4c531bd0e675c9ce65648eb5
+.. _`commit 4de5078`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/4de50788af938d69f00fac01848ee7771d805ae1
+.. _`commit 72a63ff`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/72a63ff187a551f8fb75cc0d879112222b193a10
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
@@ -55,6 +58,7 @@
 .. _`reader.buildViewpoint()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/9ecb6b1009521a147cc87bf3a37bceb905ca7f22/src/bcf/reader.py#L528
 .. _`writer.compileChanges()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/4de50788af938d69f00fac01848ee7771d805ae1/src/bcf/writer.py#L400
 .. _`writer.compileChanges()#415`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/4de50788af938d69f00fac01848ee7771d805ae1/src/bcf/writer.py#L415
+.. _`writer.getInsertionIndex()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/24558c2a56c078d18b8f63b256ca5cc8ada7456e/src/bcf/writer.py#L230
 .. _`XMLName.getEtElement(element)`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/3eeb7f8356ad664ad9ac40a31a7a1c58dfb74a16/src/interfaces/xmlname.py#L16
 .. _`reader.py`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/bcf/reader.py
 .. _`writer.getUniqueIdOfListElementInHierarchy()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/de38b48c9fcc200316741e85624b82275a99485b/src/bcf/writer.py#L61
@@ -73,6 +77,17 @@
 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**June 13th:** All work today was done on `branch unit_tests`_. Today one
+commit, `commit 24558c2`_, was added. In short: this commit adds two new test
+cases and rewrites `writer.getInsertionIndex()`_. The result of this function is
+now the greatest index possible at which an element could be inserted. Now you
+will also find yesterdays work in the commits:
+
+- `commit 2593bdb`_: `writer.py: viewpoints can now be added`
+- `commit 4de5078`_: `writer.py: compileChanges() function added`
+- `commit 72a63ff`_: `ADD writer_tests.py: unit tests for writer.py`
+
 
 **June 12th:** Viewpoint objects can now be added, resulting in the generation
 of a new viewpoint file in the corresponding topic directory, for more
