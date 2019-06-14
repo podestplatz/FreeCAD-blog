@@ -65,9 +65,23 @@
     </header><div class="e-content entry-content">
     <div>
 <p>This is a daily updated log of the work I do on the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/">BCF-plugin</a> for FreeCAD</p>
+<p><strong>June 14th:</strong> Today I finally finished the unit tests for
+<a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/647b6845ae819e1175de2539e27ec42a08c45f1a/src/bcf/writer.py#L380">writer.addElement()</a>, for information on what it does please refer to the
+function documentation as it is quite extensive and the function can handle
+pretty much. The unit tests are to be found in <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/tests/writer_tests.py">writer_tests.py</a>, and they were
+finished in <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/c0e43177fccd637b046f8e0645f3d856fce6b053">commit c0e4317</a>. Additionally to the unit tests this commit also
+comprises refactorization of <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/647b6845ae819e1175de2539e27ec42a08c45f1a/src/bcf/writer.py#L279">writer.getContainingETElementForAttribute()</a>,
+a bugfix in <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/647b6845ae819e1175de2539e27ec42a08c45f1a/src/bcf/writer.py#L230">writer.getInsertionIndex()</a>, a change in <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/647b6845ae819e1175de2539e27ec42a08c45f1a/src/bcf/project.py#L68">project.SimpleList</a> and
+the addition of <cite>getEtElement()</cite> in <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/647b6845ae819e1175de2539e27ec42a08c45f1a/src/bcf/project.py#L29">project.SimpleElement</a>. But for more
+information please refer to the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/c0e43177fccd637b046f8e0645f3d856fce6b053">commit c0e4317</a>.</p>
+<p>Then the second big commit is <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/647b6845ae819e1175de2539e27ec42a08c45f1a">commit 647b684</a>. In it I refactored the
+assignment of the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/647b6845ae819e1175de2539e27ec42a08c45f1a/src/interfaces/hierarchy.py#L9">Hierarchy.containingObject</a> member variable of classes
+implementing <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/interfaces/hierarchy.py">Hierarchy</a>. I moved it from the reader module to the individual
+constructors which makes more sense, I think.</p>
+<p>Currently I am starting my work on <cite>writer.deleteElement()</cite>.</p>
 <p><strong>June 13th:</strong> All work today was done on <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commits/unit_tests">branch unit_tests</a>. Today one
-commit, <a href="posts/dev-logs/#id2"><span class="problematic" id="id3">`commit 24558c2`_</span></a>, was added. In short: this commit adds two new test
-cases and rewrites <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/24558c2a56c078d18b8f63b256ca5cc8ada7456e/src/bcf/writer.py#L230">writer.getInsertionIndex()</a>. The result of this function is
+commit, <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/24558c2a56c078d18b8f63b256ca5cc8ada7456e">commit 24558c2</a>, was added. In short: this commit adds two new test
+cases and rewrites <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/647b6845ae819e1175de2539e27ec42a08c45f1a/src/bcf/writer.py#L230">writer.getInsertionIndex()</a>. The result of this function is
 now the greatest index possible at which an element could be inserted. Now you
 will also find yesterdays work in the commits:</p>
 <ul class="simple">
@@ -119,7 +133,7 @@ and can be inserted as it is.</p>
 it was actually unnecessary.</p>
 <p><a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/3eeb7f8356ad664ad9ac40a31a7a1c58dfb74a16">commit 3eeb7f8</a> added to the writer the functionality of adding objects of
 type comment into the corresponding <cite>markup.bcf</cite> file.</p>
-<p><strong>June 8th:</strong> I have worked on the <cite>writer.addElement()</cite> method. All work is
+<p><strong>June 8th:</strong> I have worked on the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/647b6845ae819e1175de2539e27ec42a08c45f1a/src/bcf/writer.py#L380">writer.addElement()</a> method. All work is
 still local and not finished. The overall strategy for the writer module is to
 read in the corresponding XML file using <a class="reference external" href="https://docs.python.org/3.3/library/xml.etree.elementtree.html">xml.etree.ElementTree</a>, add the new
 elements in this structure and write it to the file again.</p>
@@ -270,12 +284,6 @@ more details refer to following commits:</p>
 </ul>
 <p><strong>May 26th:</strong> Update Comment in class diagram. For more info see <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/1c34ad907b7fc56cd96aa2fc5aa133e3f445a24b">commit 1c34ad9</a>, and create <a class="reference external" href="https://forum.freecadweb.org/viewtopic.php?p=310515#p310515">mockup of the plugin interface</a>.
 Write part one of the class model in python see <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/31ef931b3637c90ca0c8252f71dd635e66a843fa">commit 31ef931</a>.</p>
-<div class="system-messages section">
-<h2>Docutils System Messages</h2>
-<div class="system-message" id="id2">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">&lt;string&gt;</tt>, line 72); <em><a href="posts/dev-logs/#id3">backlink</a></em></p>
-Unknown target name: "commit 24558c2".</div>
-</div>
 </div>
     </div>
     </article><article class="blog-post h-entry post-text"><header><h2 class="p-name entry-title blog-post-title"><a href="posts/writing-non-schema-conform-bcf-files/" class="u-url">Writing non Schema Conform BCF Files</a></h2>
