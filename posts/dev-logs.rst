@@ -49,6 +49,7 @@
 .. _`commit c0e4317`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/c0e43177fccd637b046f8e0645f3d856fce6b053
 .. _`commit 647b684`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/647b6845ae819e1175de2539e27ec42a08c45f1a
 .. _`commit 24558c2`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/24558c2a56c078d18b8f63b256ca5cc8ada7456e
+.. _`commit 9f04faf`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/9f04faf2515be3b3b0f4d0c511864a7dd74a8bc7
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
@@ -76,6 +77,7 @@
 .. _`./src/bcf/writer.py`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/bcf/writer.py
 .. _`./src/interfaces`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/master/src/interfaces
 .. _`src/bcf`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/master/src/bcf
+.. _`interfaces.Identifiable`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/interfaces/identifiable.py
 .. _`feature_read_viewpoint`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commits/feature_read_viewpoint
 .. _`non schema conform BCF files`: link://slug/handling-non-conform-bcf-files
 .. _`Comment`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/9ecb6b1009521a147cc87bf3a37bceb905ca7f22/src/bcf/markup.py#L106
@@ -86,6 +88,31 @@
 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**June 15th:** `writer.deleteElement()` is not finished yet, work is still done
+locally. On master `commit 9f04faf`_ comprises some notable changes to
+`./src/bcf/writer.py`_. Most notably is the renaming and enhancing of
+`writer.getContainingETElementForAttribute()`_ as well as the addition of new
+testcases for this renamed function. But for more information please see the
+commit message as it is quite elaborate.
+
+The current state of `writer.deleteElement()` is that elements, whose types
+inherit from `interfaces.Identifiable`_, can be deleted.
+
+Additionally to the first two points I thought about how to handle modifications
+of the data model. Should there be a separate function `writer.modifyElement()`
+or could it also be constructed out of `writer.deleteElement()` and
+`writer.addElement()`? Answer is: it could be constructed. But with the
+implications that either: 
+
+- every change is written instantaneously to disk and the data model stays
+  coherent with the bcf file. The disadvantag is that batchable updates are not
+  possible and it may use quite a lot of CPU time. 
+- Or for every modification a snapshot of the data model is stored, with the
+  modified object in a list. This list is then processed chronological. This
+  preserves the possibility of issuing batched updates, but might use a
+  significant amount of memory.
+
 
 **June 14th:** Today I finally finished the unit tests for
 `writer.addElement()`_, for information on what it does please refer to the

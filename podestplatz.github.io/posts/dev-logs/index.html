@@ -81,6 +81,28 @@
     </header><div class="e-content entry-content" itemprop="articleBody text">
     <div>
 <p>This is a daily updated log of the work I do on the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/">BCF-plugin</a> for FreeCAD</p>
+<p><strong>June 15th:</strong> <cite>writer.deleteElement()</cite> is not finished yet, work is still done
+locally. On master <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/9f04faf2515be3b3b0f4d0c511864a7dd74a8bc7">commit 9f04faf</a> comprises some notable changes to
+<a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/bcf/writer.py">./src/bcf/writer.py</a>. Most notably is the renaming and enhancing of
+<a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/647b6845ae819e1175de2539e27ec42a08c45f1a/src/bcf/writer.py#L279">writer.getContainingETElementForAttribute()</a> as well as the addition of new
+testcases for this renamed function. But for more information please see the
+commit message as it is quite elaborate.</p>
+<p>The current state of <cite>writer.deleteElement()</cite> is that elements, whose types
+inherit from <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/interfaces/identifiable.py">interfaces.Identifiable</a>, can be deleted.</p>
+<p>Additionally to the first two points I thought about how to handle modifications
+of the data model. Should there be a separate function <cite>writer.modifyElement()</cite>
+or could it also be constructed out of <cite>writer.deleteElement()</cite> and
+<cite>writer.addElement()</cite>? Answer is: it could be constructed. But with the
+implications that either:</p>
+<ul class="simple">
+<li>every change is written instantaneously to disk and the data model stays
+coherent with the bcf file. The disadvantag is that batchable updates are not
+possible and it may use quite a lot of CPU time.</li>
+<li>Or for every modification a snapshot of the data model is stored, with the
+modified object in a list. This list is then processed chronological. This
+preserves the possibility of issuing batched updates, but might use a
+significant amount of memory.</li>
+</ul>
 <p><strong>June 14th:</strong> Today I finally finished the unit tests for
 <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/647b6845ae819e1175de2539e27ec42a08c45f1a/src/bcf/writer.py#L380">writer.addElement()</a>, for information on what it does please refer to the
 function documentation as it is quite extensive and the function can handle
