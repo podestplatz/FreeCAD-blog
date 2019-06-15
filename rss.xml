@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>FreeCAD BCF-Plugin development blog</title><link>https://podestplatz.github.io/FreeCAD-blog/</link><description>Blog to the development of the BCF FreeCAD plugin.</description><atom:link href="https://podestplatz.github.io/FreeCAD-blog/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:podestplatz@gmail.com"&gt;Patrick Podest&lt;/a&gt; </copyright><lastBuildDate>Fri, 14 Jun 2019 16:34:01 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Dev Logs</title><link>https://podestplatz.github.io/FreeCAD-blog/posts/dev-logs/</link><dc:creator>Patrick Podest</dc:creator><description>&lt;div&gt;&lt;p&gt;This is a daily updated log of the work I do on the &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/"&gt;BCF-plugin&lt;/a&gt; for FreeCAD&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>FreeCAD BCF-Plugin development blog</title><link>https://podestplatz.github.io/FreeCAD-blog/</link><description>Blog to the development of the BCF FreeCAD plugin.</description><atom:link href="https://podestplatz.github.io/FreeCAD-blog/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:podestplatz@gmail.com"&gt;Patrick Podest&lt;/a&gt; </copyright><lastBuildDate>Sat, 15 Jun 2019 14:04:11 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Dev Logs</title><link>https://podestplatz.github.io/FreeCAD-blog/posts/dev-logs/</link><dc:creator>Patrick Podest</dc:creator><description>&lt;div&gt;&lt;p&gt;This is a daily updated log of the work I do on the &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/"&gt;BCF-plugin&lt;/a&gt; for FreeCAD&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;June 15th:&lt;/strong&gt; &lt;cite&gt;writer.deleteElement()&lt;/cite&gt; is not finished yet, work is still done
+locally. On master &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/9f04faf2515be3b3b0f4d0c511864a7dd74a8bc7"&gt;commit 9f04faf&lt;/a&gt; comprises some notable changes to
+&lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/bcf/writer.py"&gt;./src/bcf/writer.py&lt;/a&gt;. Most notably is the renaming and enhancing of
+&lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/647b6845ae819e1175de2539e27ec42a08c45f1a/src/bcf/writer.py#L279"&gt;writer.getContainingETElementForAttribute()&lt;/a&gt; as well as the addition of new
+testcases for this renamed function. But for more information please see the
+commit message as it is quite elaborate.&lt;/p&gt;
+&lt;p&gt;The current state of &lt;cite&gt;writer.deleteElement()&lt;/cite&gt; is that elements, whose types
+inherit from &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/interfaces/identifiable.py"&gt;interfaces.Identifiable&lt;/a&gt;, can be deleted.&lt;/p&gt;
+&lt;p&gt;Additionally to the first two points I thought about how to handle modifications
+of the data model. Should there be a separate function &lt;cite&gt;writer.modifyElement()&lt;/cite&gt;
+or could it also be constructed out of &lt;cite&gt;writer.deleteElement()&lt;/cite&gt; and
+&lt;cite&gt;writer.addElement()&lt;/cite&gt;? Answer is: it could be constructed. But with the
+implications that either:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;every change is written instantaneously to disk and the data model stays
+coherent with the bcf file. The disadvantag is that batchable updates are not
+possible and it may use quite a lot of CPU time.&lt;/li&gt;
+&lt;li&gt;Or for every modification a snapshot of the data model is stored, with the
+modified object in a list. This list is then processed chronological. This
+preserves the possibility of issuing batched updates, but might use a
+significant amount of memory.&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;June 14th:&lt;/strong&gt; Today I finally finished the unit tests for
 &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/647b6845ae819e1175de2539e27ec42a08c45f1a/src/bcf/writer.py#L380"&gt;writer.addElement()&lt;/a&gt;, for information on what it does please refer to the
 function documentation as it is quite extensive and the function can handle
