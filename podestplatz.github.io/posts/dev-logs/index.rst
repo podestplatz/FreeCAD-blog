@@ -89,6 +89,11 @@
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
 
+**June 16th:** Today I paused. Tomorrow I will have to invest time into the
+project at university, so I don't know whether I come to do much work on FreeCAD
+tomorrow either. June 18th I will be back working on `writer.deleteElement()`
+again!
+
 **June 15th:** `writer.deleteElement()` is not finished yet, work is still done
 locally. On master `commit 9f04faf`_ comprises some notable changes to
 `./src/bcf/writer.py`_. Most notably is the renaming and enhancing of
