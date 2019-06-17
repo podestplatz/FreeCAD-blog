@@ -89,6 +89,9 @@
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
 
+**June 17th:** As expected I had to put everything today into the project on
+university :/
+
 **June 16th:** Today I paused. Tomorrow I will have to invest time into the
 project at university, so I don't know whether I come to do much work on FreeCAD
 tomorrow either. June 18th I will be back working on `writer.deleteElement()`
