@@ -81,6 +81,33 @@
     </header><div class="e-content entry-content" itemprop="articleBody text">
     <div>
 <p>This is a daily updated log of the work I do on the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/">BCF-plugin</a> for FreeCAD</p>
+<p><strong>June 18th:</strong> <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/3765658dfd50f77a85252bb3904c554eb61b5086/src/bcf/writer.py#L587">writer.deleteElement()</a> is finished! (except for proper
+documentation) Finishing commit is <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/3765658dfd50f77a85252bb3904c554eb61b5086">commit 3765658</a>. <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/3765658dfd50f77a85252bb3904c554eb61b5086/src/bcf/writer.py#L587">writer.deleteElement()</a>
+now distinguishes between an identifiable element (one whose object is an
+instance of <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/interfaces/identifiable.py">interfaces.Identifiable</a>), a non identifiable element and an
+attribute. All have to be handled in a different manner to one another or can be
+handled in an easier way than another element type.
+Other changes that were implemented while writing on <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/3765658dfd50f77a85252bb3904c554eb61b5086/src/bcf/writer.py#L587">writer.deleteElement()</a>:</p>
+<ul class="simple">
+<li>the interface <cite>interfaces.Identifiable</cite> now only holds IDs of type UUID, for
+more info please see <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/a18599a99a55745edaaa6551d5e7088c996b5a77">commit a18599a</a>.</li>
+<li>project now implements a debug function <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/addc02e58351adb55e584912d5060f3ae2a299dc/src/bcf/project.py#L13">project.debug()</a> as it was morphed to
+the main place to handle debug prints. It also uses the <a class="reference external" href="https://docs.python.org/3/library/inspect.html">inspect</a> module to
+get the name of the calling function. For more information please refer to
+<a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/addc02e58351adb55e584912d5060f3ae2a299dc">commit addc02e</a>.</li>
+<li>6 test cases were added for <cite>writer.deleteElement()</cite>. You can find them in
+<a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/tests/writer_tests.py">writer_tests.py</a>
+</li>
+<li>
+<a href="#id1"><span class="problematic" id="id2">`modification.Modification`_</span></a> which formerly housed a member <cite>author</cite> and
+<cite>date</cite> is now split up into <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/59adbab0bee1b72544c8c219106f4eff4d3e206e/src/bcf/modification.py#L13">modification.ModificationAuthor</a> and
+<cite>modification.ModificationDate</cite>. This makes it easier to handle in the
+<cite>writer</cite>-module. For more information see <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/59adbab0bee1b72544c8c219106f4eff4d3e206e">commit 59adbab</a>.</li>
+<li>
+<a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/bcf/util.py">util.py</a> got two new functions: <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/3765658dfd50f77a85252bb3904c554eb61b5086/src/bcf/util.py#L152">util.updateSchemas()</a> and
+<a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/3765658dfd50f77a85252bb3904c554eb61b5086/src/bcf/util.py#L173">util.copySchemas()</a>. These were added in <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/3765658dfd50f77a85252bb3904c554eb61b5086">commit 3765658</a> and are used to
+manage local copies of the schema files.</li>
+</ul>
 <p><strong>June 17th:</strong> As expected I had to put everything today into the project on
 university :/</p>
 <p><strong>June 16th:</strong> Today I paused. Tomorrow I will have to invest time into the
@@ -328,6 +355,12 @@ more details refer to following commits:</p>
 </ul>
 <p><strong>May 26th:</strong> Update Comment in class diagram. For more info see <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/1c34ad907b7fc56cd96aa2fc5aa133e3f445a24b">commit 1c34ad9</a>, and create <a class="reference external" href="https://forum.freecadweb.org/viewtopic.php?p=310515#p310515">mockup of the plugin interface</a>.
 Write part one of the class model in python see <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/31ef931b3637c90ca0c8252f71dd635e66a843fa">commit 31ef931</a>.</p>
+<div class="system-messages section">
+<h2>Docutils System Messages</h2>
+<div class="system-message" id="id1">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">&lt;string&gt;</tt>, line 111); <em><a href="#id2">backlink</a></em></p>
+Unknown target name: "modification.modification".</div>
+</div>
 </div>
     </div>
     <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">

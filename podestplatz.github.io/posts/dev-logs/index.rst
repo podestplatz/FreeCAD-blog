@@ -50,23 +50,34 @@
 .. _`commit 647b684`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/647b6845ae819e1175de2539e27ec42a08c45f1a
 .. _`commit 24558c2`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/24558c2a56c078d18b8f63b256ca5cc8ada7456e
 .. _`commit 9f04faf`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/9f04faf2515be3b3b0f4d0c511864a7dd74a8bc7
+.. _`commit 3765658`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/3765658dfd50f77a85252bb3904c554eb61b5086
+.. _`commit 59adbab`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/59adbab0bee1b72544c8c219106f4eff4d3e206e
+.. _`commit a18599a`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/a18599a99a55745edaaa6551d5e7088c996b5a77
+.. _`commit addc02e`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/addc02e58351adb55e584912d5060f3ae2a299dc
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
 .. _`branch unit_tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commits/unit_tests
+.. _`modification.ModificationAuthor`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/59adbab0bee1b72544c8c219106f4eff4d3e206e/src/bcf/modification.py#L13
+.. _`modification.ModificationDate`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/59adbab0bee1b72544c8c219106f4eff4d3e206e/src/bcf/modification.py#L43
 .. _`project.SimpleList`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/647b6845ae819e1175de2539e27ec42a08c45f1a/src/bcf/project.py#L68
 .. _`project.SimpleElement`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/647b6845ae819e1175de2539e27ec42a08c45f1a/src/bcf/project.py#L29
+.. _`project.debug()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/addc02e58351adb55e584912d5060f3ae2a299dc/src/bcf/project.py#L13
 .. _`reader.buildProject()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/991d967ab5fc00f8960bbc938c727d11e42c950c/src/bcf/reader.py#L145
 .. _`reader.buildMarkup()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/3f5fdafb09422e0be0fb10f59f1df76619b2a3ea/src/bcf/reader.py#L350
 .. _`reader.buildTopic()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/9ecb6b1009521a147cc87bf3a37bceb905ca7f22/src/bcf/reader.py#L265
 .. _`reader.buildComment()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/9ecb6b1009521a147cc87bf3a37bceb905ca7f22/src/bcf/reader.py#L214
 .. _`reader.buildViewpoint()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/9ecb6b1009521a147cc87bf3a37bceb905ca7f22/src/bcf/reader.py#L528
+.. _`util.py`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/bcf/util.py
+.. _`util.updateSchemas()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/3765658dfd50f77a85252bb3904c554eb61b5086/src/bcf/util.py#L152
+.. _`util.copySchemas()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/3765658dfd50f77a85252bb3904c554eb61b5086/src/bcf/util.py#L173
 .. _`writer.compileChanges()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/4de50788af938d69f00fac01848ee7771d805ae1/src/bcf/writer.py#L400
 .. _`writer.compileChanges()#415`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/4de50788af938d69f00fac01848ee7771d805ae1/src/bcf/writer.py#L415
 .. _`writer.getInsertionIndex()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/647b6845ae819e1175de2539e27ec42a08c45f1a/src/bcf/writer.py#L230
 .. _`writer.getUniqueIdOfListElementInHierarchy()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/de38b48c9fcc200316741e85624b82275a99485b/src/bcf/writer.py#L61
 .. _`writer.addElement()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/647b6845ae819e1175de2539e27ec42a08c45f1a/src/bcf/writer.py#L380
 .. _`writer.getContainingETElementForAttribute()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/647b6845ae819e1175de2539e27ec42a08c45f1a/src/bcf/writer.py#L279
+.. _`writer.deleteElement()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/3765658dfd50f77a85252bb3904c554eb61b5086/src/bcf/writer.py#L587
 .. _`writer_tests.py`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/tests/writer_tests.py
 .. _`Hierarchy.containingObject`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/647b6845ae819e1175de2539e27ec42a08c45f1a/src/interfaces/hierarchy.py#L9
 .. _`Hierarchy`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/interfaces/hierarchy.py
@@ -85,9 +96,34 @@
 .. _`Matteo Cominetti`: https://github.com/teocomi
 .. _`xml.etree.ElementTree`: https://docs.python.org/3.3/library/xml.etree.elementtree.html
 .. _`XMLName`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/interfaces/xmlname.py
+.. _`inspect`: https://docs.python.org/3/library/inspect.html
 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**June 18th:** `writer.deleteElement()`_ is finished! (except for proper
+documentation) Finishing commit is `commit 3765658`_. `writer.deleteElement()`_
+now distinguishes between an identifiable element (one whose object is an
+instance of `interfaces.Identifiable`_), a non identifiable element and an
+attribute. All have to be handled in a different manner to one another or can be
+handled in an easier way than another element type.
+Other changes that were implemented while writing on `writer.deleteElement()`_:
+  
+- the interface `interfaces.Identifiable` now only holds IDs of type UUID, for
+  more info please see `commit a18599a`_.
+- project now implements a debug function `project.debug()`_ as it was morphed to
+  the main place to handle debug prints. It also uses the `inspect`_ module to
+  get the name of the calling function. For more information please refer to
+  `commit addc02e`_.
+- 6 test cases were added for `writer.deleteElement()`. You can find them in
+  `writer_tests.py`_
+- `modification.Modification`_ which formerly housed a member `author` and
+  `date` is now split up into `modification.ModificationAuthor`_ and
+  `modification.ModificationDate`. This makes it easier to handle in the
+  `writer`-module. For more information see `commit 59adbab`_.
+- `util.py`_ got two new functions: `util.updateSchemas()`_ and
+  `util.copySchemas()`_. These were added in `commit 3765658`_ and are used to
+  manage local copies of the schema files.
 
 **June 17th:** As expected I had to put everything today into the project on
 university :/

@@ -65,6 +65,33 @@
     </header><div class="e-content entry-content">
     <div>
 <p>This is a daily updated log of the work I do on the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/">BCF-plugin</a> for FreeCAD</p>
+<p><strong>June 18th:</strong> <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/3765658dfd50f77a85252bb3904c554eb61b5086/src/bcf/writer.py#L587">writer.deleteElement()</a> is finished! (except for proper
+documentation) Finishing commit is <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/3765658dfd50f77a85252bb3904c554eb61b5086">commit 3765658</a>. <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/3765658dfd50f77a85252bb3904c554eb61b5086/src/bcf/writer.py#L587">writer.deleteElement()</a>
+now distinguishes between an identifiable element (one whose object is an
+instance of <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/interfaces/identifiable.py">interfaces.Identifiable</a>), a non identifiable element and an
+attribute. All have to be handled in a different manner to one another or can be
+handled in an easier way than another element type.
+Other changes that were implemented while writing on <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/3765658dfd50f77a85252bb3904c554eb61b5086/src/bcf/writer.py#L587">writer.deleteElement()</a>:</p>
+<ul class="simple">
+<li>the interface <cite>interfaces.Identifiable</cite> now only holds IDs of type UUID, for
+more info please see <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/a18599a99a55745edaaa6551d5e7088c996b5a77">commit a18599a</a>.</li>
+<li>project now implements a debug function <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/addc02e58351adb55e584912d5060f3ae2a299dc/src/bcf/project.py#L13">project.debug()</a> as it was morphed to
+the main place to handle debug prints. It also uses the <a class="reference external" href="https://docs.python.org/3/library/inspect.html">inspect</a> module to
+get the name of the calling function. For more information please refer to
+<a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/addc02e58351adb55e584912d5060f3ae2a299dc">commit addc02e</a>.</li>
+<li>6 test cases were added for <cite>writer.deleteElement()</cite>. You can find them in
+<a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/tests/writer_tests.py">writer_tests.py</a>
+</li>
+<li>
+<a href="posts/dev-logs/#id1"><span class="problematic" id="id2">`modification.Modification`_</span></a> which formerly housed a member <cite>author</cite> and
+<cite>date</cite> is now split up into <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/59adbab0bee1b72544c8c219106f4eff4d3e206e/src/bcf/modification.py#L13">modification.ModificationAuthor</a> and
+<cite>modification.ModificationDate</cite>. This makes it easier to handle in the
+<cite>writer</cite>-module. For more information see <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/59adbab0bee1b72544c8c219106f4eff4d3e206e">commit 59adbab</a>.</li>
+<li>
+<a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/bcf/util.py">util.py</a> got two new functions: <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/3765658dfd50f77a85252bb3904c554eb61b5086/src/bcf/util.py#L152">util.updateSchemas()</a> and
+<a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/3765658dfd50f77a85252bb3904c554eb61b5086/src/bcf/util.py#L173">util.copySchemas()</a>. These were added in <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/3765658dfd50f77a85252bb3904c554eb61b5086">commit 3765658</a> and are used to
+manage local copies of the schema files.</li>
+</ul>
 <p><strong>June 17th:</strong> As expected I had to put everything today into the project on
 university :/</p>
 <p><strong>June 16th:</strong> Today I paused. Tomorrow I will have to invest time into the
@@ -312,6 +339,12 @@ more details refer to following commits:</p>
 </ul>
 <p><strong>May 26th:</strong> Update Comment in class diagram. For more info see <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/1c34ad907b7fc56cd96aa2fc5aa133e3f445a24b">commit 1c34ad9</a>, and create <a class="reference external" href="https://forum.freecadweb.org/viewtopic.php?p=310515#p310515">mockup of the plugin interface</a>.
 Write part one of the class model in python see <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/31ef931b3637c90ca0c8252f71dd635e66a843fa">commit 31ef931</a>.</p>
+<div class="system-messages section">
+<h2>Docutils System Messages</h2>
+<div class="system-message" id="id1">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">&lt;string&gt;</tt>, line 111); <em><a href="posts/dev-logs/#id2">backlink</a></em></p>
+Unknown target name: "modification.modification".</div>
+</div>
 </div>
     </div>
     </article><article class="blog-post h-entry post-text"><header><h2 class="p-name entry-title blog-post-title"><a href="posts/writing-non-schema-conform-bcf-files/" class="u-url">Writing non Schema Conform BCF Files</a></h2>
@@ -615,12 +648,12 @@ itself). I knew it was possible to change a class object (not the object <em>of<
 class) during runtime and add or remove members from it.  I thought maybe this
 is also possible with classes that derive from <cite>Enum</cite>. In python to create an
 enumeration you just have to define a class like this:</p>
-<pre class="code python"><a name="rest_code_f72907922cb44f4795b7f719e12aba7d-1"></a><span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
-<a name="rest_code_f72907922cb44f4795b7f719e12aba7d-2"></a>
-<a name="rest_code_f72907922cb44f4795b7f719e12aba7d-3"></a><span class="k">class</span> <span class="nc">Example</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
-<a name="rest_code_f72907922cb44f4795b7f719e12aba7d-4"></a>  <span class="n">VAL1</span> <span class="o">=</span> <span class="mi">1</span>
-<a name="rest_code_f72907922cb44f4795b7f719e12aba7d-5"></a>  <span class="n">VAL2</span> <span class="o">=</span> <span class="mi">2</span>
-<a name="rest_code_f72907922cb44f4795b7f719e12aba7d-6"></a>  <span class="o">...</span>
+<pre class="code python"><a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-1"></a><span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+<a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-2"></a>
+<a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-3"></a><span class="k">class</span> <span class="nc">Example</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-4"></a>  <span class="n">VAL1</span> <span class="o">=</span> <span class="mi">1</span>
+<a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-5"></a>  <span class="n">VAL2</span> <span class="o">=</span> <span class="mi">2</span>
+<a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-6"></a>  <span class="o">...</span>
 </pre>
 <p>The first obstacle was that classes can only derive from a class (that itself
 derives from <cite>Enum</cite>) iff they don't introduce new members. Otherwise this would
@@ -649,35 +682,35 @@ returns them as list.  <cite>parseConstraints()</cite> is intended to be called 
 <cite>TopicType.__init__()</cite>). To make things clearer I put a small code example below
 showing the classes <cite>SchemaConstraints</cite> and <cite>TopicType</cite> as well as all the
 members of both classes.</p>
-<pre class="code python"><a name="rest_code_1614531e7e214d6796433300fe60dbf5-1"></a><span class="k">class</span> <span class="nc">SchemaConstraint</span><span class="p">:</span>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-2"></a>  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">validValues</span><span class="p">):</span>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-3"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-4"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">validValues</span> <span class="o">=</span> <span class="n">validValues</span>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-5"></a>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-6"></a>  <span class="nd">@property</span>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-7"></a>  <span class="k">def</span> <span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-8"></a>    <span class="o">...</span>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-9"></a>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-10"></a>  <span class="nd">@value.setter</span>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-11"></a>  <span class="k">def</span> <span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">newValue</span><span class="p">):</span>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-12"></a>    <span class="o">...</span>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-13"></a>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-14"></a>  <span class="nd">@property</span>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-15"></a>  <span class="k">def</span> <span class="nf">validValues</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-16"></a>    <span class="o">...</span>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-17"></a>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-18"></a>  <span class="nd">@validValues.setter</span>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-19"></a>  <span class="k">def</span> <span class="nf">validValues</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">newValue</span><span class="p">):</span>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-20"></a>    <span class="k">pass</span>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-21"></a>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-22"></a>  <span class="nd">@staticmethod</span>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-23"></a>  <span class="k">def</span> <span class="nf">parseConstraints</span><span class="p">(</span><span class="n">elementName</span><span class="p">):</span>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-24"></a>    <span class="o">...</span>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-25"></a>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-26"></a><span class="k">class</span> <span class="nc">TopicType</span><span class="p">(</span><span class="n">SchemaConstraint</span><span class="p">):</span>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-27"></a>  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-28"></a>    <span class="n">validValues</span> <span class="o">=</span> <span class="n">SchemaConstraint</span><span class="o">.</span><span class="n">parseConstraints</span><span class="p">(</span><span class="s2">"TopicType"</span><span class="p">)</span>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-29"></a>    <span class="nb">super</span><span class="p">(</span><span class="n">TopicType</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">validValues</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">validValues</span><span class="p">)</span>
+<pre class="code python"><a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-1"></a><span class="k">class</span> <span class="nc">SchemaConstraint</span><span class="p">:</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-2"></a>  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">validValues</span><span class="p">):</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-3"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-4"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">validValues</span> <span class="o">=</span> <span class="n">validValues</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-5"></a>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-6"></a>  <span class="nd">@property</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-7"></a>  <span class="k">def</span> <span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-8"></a>    <span class="o">...</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-9"></a>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-10"></a>  <span class="nd">@value.setter</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-11"></a>  <span class="k">def</span> <span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">newValue</span><span class="p">):</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-12"></a>    <span class="o">...</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-13"></a>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-14"></a>  <span class="nd">@property</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-15"></a>  <span class="k">def</span> <span class="nf">validValues</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-16"></a>    <span class="o">...</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-17"></a>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-18"></a>  <span class="nd">@validValues.setter</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-19"></a>  <span class="k">def</span> <span class="nf">validValues</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">newValue</span><span class="p">):</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-20"></a>    <span class="k">pass</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-21"></a>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-22"></a>  <span class="nd">@staticmethod</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-23"></a>  <span class="k">def</span> <span class="nf">parseConstraints</span><span class="p">(</span><span class="n">elementName</span><span class="p">):</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-24"></a>    <span class="o">...</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-25"></a>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-26"></a><span class="k">class</span> <span class="nc">TopicType</span><span class="p">(</span><span class="n">SchemaConstraint</span><span class="p">):</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-27"></a>  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-28"></a>    <span class="n">validValues</span> <span class="o">=</span> <span class="n">SchemaConstraint</span><span class="o">.</span><span class="n">parseConstraints</span><span class="p">(</span><span class="s2">"TopicType"</span><span class="p">)</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-29"></a>    <span class="nb">super</span><span class="p">(</span><span class="n">TopicType</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">validValues</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">validValues</span><span class="p">)</span>
 </pre>
 <p>One important thing to note here is that the setter method of <cite>validValues</cite> has
 just one line which contains <cite>pass</cite>. This is done in order to ensure that the
