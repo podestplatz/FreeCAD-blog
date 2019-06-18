@@ -1,5 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>FreeCAD BCF-Plugin development blog</title><link>https://podestplatz.github.io/FreeCAD-blog/</link><description>Blog to the development of the BCF FreeCAD plugin.</description><atom:link href="https://podestplatz.github.io/FreeCAD-blog/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:podestplatz@gmail.com"&gt;Patrick Podest&lt;/a&gt; </copyright><lastBuildDate>Mon, 17 Jun 2019 17:40:34 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Dev Logs</title><link>https://podestplatz.github.io/FreeCAD-blog/posts/dev-logs/</link><dc:creator>Patrick Podest</dc:creator><description>&lt;div&gt;&lt;p&gt;This is a daily updated log of the work I do on the &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/"&gt;BCF-plugin&lt;/a&gt; for FreeCAD&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>FreeCAD BCF-Plugin development blog</title><link>https://podestplatz.github.io/FreeCAD-blog/</link><description>Blog to the development of the BCF FreeCAD plugin.</description><atom:link href="https://podestplatz.github.io/FreeCAD-blog/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:podestplatz@gmail.com"&gt;Patrick Podest&lt;/a&gt; </copyright><lastBuildDate>Tue, 18 Jun 2019 14:03:09 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Dev Logs</title><link>https://podestplatz.github.io/FreeCAD-blog/posts/dev-logs/</link><dc:creator>Patrick Podest</dc:creator><description>&lt;div&gt;&lt;p&gt;This is a daily updated log of the work I do on the &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/"&gt;BCF-plugin&lt;/a&gt; for FreeCAD&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;June 18th:&lt;/strong&gt; &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/3765658dfd50f77a85252bb3904c554eb61b5086/src/bcf/writer.py#L587"&gt;writer.deleteElement()&lt;/a&gt; is finished! (except for proper
+documentation) Finishing commit is &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/3765658dfd50f77a85252bb3904c554eb61b5086"&gt;commit 3765658&lt;/a&gt;. &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/3765658dfd50f77a85252bb3904c554eb61b5086/src/bcf/writer.py#L587"&gt;writer.deleteElement()&lt;/a&gt;
+now distinguishes between an identifiable element (one whose object is an
+instance of &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/interfaces/identifiable.py"&gt;interfaces.Identifiable&lt;/a&gt;), a non identifiable element and an
+attribute. All have to be handled in a different manner to one another or can be
+handled in an easier way than another element type.
+Other changes that were implemented while writing on &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/3765658dfd50f77a85252bb3904c554eb61b5086/src/bcf/writer.py#L587"&gt;writer.deleteElement()&lt;/a&gt;:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;the interface &lt;cite&gt;interfaces.Identifiable&lt;/cite&gt; now only holds IDs of type UUID, for
+more info please see &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/a18599a99a55745edaaa6551d5e7088c996b5a77"&gt;commit a18599a&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;project now implements a debug function &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/addc02e58351adb55e584912d5060f3ae2a299dc/src/bcf/project.py#L13"&gt;project.debug()&lt;/a&gt; as it was morphed to
+the main place to handle debug prints. It also uses the &lt;a class="reference external" href="https://docs.python.org/3/library/inspect.html"&gt;inspect&lt;/a&gt; module to
+get the name of the calling function. For more information please refer to
+&lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/addc02e58351adb55e584912d5060f3ae2a299dc"&gt;commit addc02e&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;6 test cases were added for &lt;cite&gt;writer.deleteElement()&lt;/cite&gt;. You can find them in
+&lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/tests/writer_tests.py"&gt;writer_tests.py&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://podestplatz.github.io/FreeCAD-blog/posts/dev-logs/#id1"&gt;&lt;span class="problematic" id="id2"&gt;`modification.Modification`_&lt;/span&gt;&lt;/a&gt; which formerly housed a member &lt;cite&gt;author&lt;/cite&gt; and
+&lt;cite&gt;date&lt;/cite&gt; is now split up into &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/59adbab0bee1b72544c8c219106f4eff4d3e206e/src/bcf/modification.py#L13"&gt;modification.ModificationAuthor&lt;/a&gt; and
+&lt;cite&gt;modification.ModificationDate&lt;/cite&gt;. This makes it easier to handle in the
+&lt;cite&gt;writer&lt;/cite&gt;-module. For more information see &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/59adbab0bee1b72544c8c219106f4eff4d3e206e"&gt;commit 59adbab&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/bcf/util.py"&gt;util.py&lt;/a&gt; got two new functions: &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/3765658dfd50f77a85252bb3904c554eb61b5086/src/bcf/util.py#L152"&gt;util.updateSchemas()&lt;/a&gt; and
+&lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/3765658dfd50f77a85252bb3904c554eb61b5086/src/bcf/util.py#L173"&gt;util.copySchemas()&lt;/a&gt;. These were added in &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/3765658dfd50f77a85252bb3904c554eb61b5086"&gt;commit 3765658&lt;/a&gt; and are used to
+manage local copies of the schema files.&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;June 17th:&lt;/strong&gt; As expected I had to put everything today into the project on
 university :/&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;June 16th:&lt;/strong&gt; Today I paused. Tomorrow I will have to invest time into the
@@ -237,7 +261,13 @@ more details refer to following commits:&lt;/p&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/f62ed23a73e209fc69995fccedf4e20beddf7632"&gt;commit f62ed23&lt;/a&gt;: reader.py: add buildProject&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;May 26th:&lt;/strong&gt; Update Comment in class diagram. For more info see &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/1c34ad907b7fc56cd96aa2fc5aa133e3f445a24b"&gt;commit 1c34ad9&lt;/a&gt;, and create &lt;a class="reference external" href="https://forum.freecadweb.org/viewtopic.php?p=310515#p310515"&gt;mockup of the plugin interface&lt;/a&gt;.
-Write part one of the class model in python see &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/31ef931b3637c90ca0c8252f71dd635e66a843fa"&gt;commit 31ef931&lt;/a&gt;.&lt;/p&gt;&lt;/div&gt;</description><category>daily</category><guid>https://podestplatz.github.io/FreeCAD-blog/posts/dev-logs/</guid><pubDate>Mon, 10 Jun 2019 08:00:00 GMT</pubDate></item><item><title>Writing non Schema Conform BCF Files</title><link>https://podestplatz.github.io/FreeCAD-blog/posts/writing-non-schema-conform-bcf-files/</link><dc:creator>Patrick Podest</dc:creator><description>&lt;div&gt;&lt;p&gt;Wait would you write files with the intention that they don't conform to the
+Write part one of the class model in python see &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/31ef931b3637c90ca0c8252f71dd635e66a843fa"&gt;commit 31ef931&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="system-messages section"&gt;
+&lt;h2&gt;Docutils System Messages&lt;/h2&gt;
+&lt;div class="system-message" id="id1"&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;&amp;lt;string&amp;gt;&lt;/tt&gt;, line 111); &lt;em&gt;&lt;a href="https://podestplatz.github.io/FreeCAD-blog/posts/dev-logs/#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+Unknown target name: "modification.modification".&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>daily</category><guid>https://podestplatz.github.io/FreeCAD-blog/posts/dev-logs/</guid><pubDate>Mon, 10 Jun 2019 08:00:00 GMT</pubDate></item><item><title>Writing non Schema Conform BCF Files</title><link>https://podestplatz.github.io/FreeCAD-blog/posts/writing-non-schema-conform-bcf-files/</link><dc:creator>Patrick Podest</dc:creator><description>&lt;div&gt;&lt;p&gt;Wait would you write files with the intention that they don't conform to the
 provided XSD files? ... you might ask by just reading the title. No I wouldn't.
 As I introduced in my last blog post (&lt;a class="reference external" href="https://podestplatz.github.io/FreeCAD-blog/posts/handling-non-conform-bcf-files/"&gt;Handling Non-Conform BCF Files&lt;/a&gt;), that
 was not an update of the dev-logs post, I introduced the need of supporting
@@ -510,12 +540,12 @@ itself). I knew it was possible to change a class object (not the object &lt;em&
 class) during runtime and add or remove members from it.  I thought maybe this
 is also possible with classes that derive from &lt;cite&gt;Enum&lt;/cite&gt;. In python to create an
 enumeration you just have to define a class like this:&lt;/p&gt;
-&lt;pre class="code python"&gt;&lt;a name="rest_code_f72907922cb44f4795b7f719e12aba7d-1"&gt;&lt;/a&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;enum&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Enum&lt;/span&gt;
-&lt;a name="rest_code_f72907922cb44f4795b7f719e12aba7d-2"&gt;&lt;/a&gt;
-&lt;a name="rest_code_f72907922cb44f4795b7f719e12aba7d-3"&gt;&lt;/a&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Example&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Enum&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;a name="rest_code_f72907922cb44f4795b7f719e12aba7d-4"&gt;&lt;/a&gt;  &lt;span class="n"&gt;VAL1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
-&lt;a name="rest_code_f72907922cb44f4795b7f719e12aba7d-5"&gt;&lt;/a&gt;  &lt;span class="n"&gt;VAL2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
-&lt;a name="rest_code_f72907922cb44f4795b7f719e12aba7d-6"&gt;&lt;/a&gt;  &lt;span class="o"&gt;...&lt;/span&gt;
+&lt;pre class="code python"&gt;&lt;a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-1"&gt;&lt;/a&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;enum&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Enum&lt;/span&gt;
+&lt;a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-2"&gt;&lt;/a&gt;
+&lt;a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-3"&gt;&lt;/a&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Example&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Enum&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-4"&gt;&lt;/a&gt;  &lt;span class="n"&gt;VAL1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-5"&gt;&lt;/a&gt;  &lt;span class="n"&gt;VAL2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-6"&gt;&lt;/a&gt;  &lt;span class="o"&gt;...&lt;/span&gt;
 &lt;/pre&gt;&lt;p&gt;The first obstacle was that classes can only derive from a class (that itself
 derives from &lt;cite&gt;Enum&lt;/cite&gt;) iff they don't introduce new members. Otherwise this would
 break some invariants the python interpreter has over enumerations.
@@ -543,35 +573,35 @@ returns them as list.  &lt;cite&gt;parseConstraints()&lt;/cite&gt; is intended t
 &lt;cite&gt;TopicType.__init__()&lt;/cite&gt;). To make things clearer I put a small code example below
 showing the classes &lt;cite&gt;SchemaConstraints&lt;/cite&gt; and &lt;cite&gt;TopicType&lt;/cite&gt; as well as all the
 members of both classes.&lt;/p&gt;
-&lt;pre class="code python"&gt;&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-1"&gt;&lt;/a&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;SchemaConstraint&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-2"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;validValues&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-3"&gt;&lt;/a&gt;    &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;
-&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-4"&gt;&lt;/a&gt;    &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;validValues&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;validValues&lt;/span&gt;
-&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-5"&gt;&lt;/a&gt;
-&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-6"&gt;&lt;/a&gt;  &lt;span class="nd"&gt;@property&lt;/span&gt;
-&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-7"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;value&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-8"&gt;&lt;/a&gt;    &lt;span class="o"&gt;...&lt;/span&gt;
-&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-9"&gt;&lt;/a&gt;
-&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-10"&gt;&lt;/a&gt;  &lt;span class="nd"&gt;@value.setter&lt;/span&gt;
-&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-11"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;value&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;newValue&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-12"&gt;&lt;/a&gt;    &lt;span class="o"&gt;...&lt;/span&gt;
-&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-13"&gt;&lt;/a&gt;
-&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-14"&gt;&lt;/a&gt;  &lt;span class="nd"&gt;@property&lt;/span&gt;
-&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-15"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;validValues&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-16"&gt;&lt;/a&gt;    &lt;span class="o"&gt;...&lt;/span&gt;
-&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-17"&gt;&lt;/a&gt;
-&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-18"&gt;&lt;/a&gt;  &lt;span class="nd"&gt;@validValues.setter&lt;/span&gt;
-&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-19"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;validValues&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;newValue&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-20"&gt;&lt;/a&gt;    &lt;span class="k"&gt;pass&lt;/span&gt;
-&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-21"&gt;&lt;/a&gt;
-&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-22"&gt;&lt;/a&gt;  &lt;span class="nd"&gt;@staticmethod&lt;/span&gt;
-&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-23"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;parseConstraints&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;elementName&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-24"&gt;&lt;/a&gt;    &lt;span class="o"&gt;...&lt;/span&gt;
-&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-25"&gt;&lt;/a&gt;
-&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-26"&gt;&lt;/a&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;TopicType&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;SchemaConstraint&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-27"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-28"&gt;&lt;/a&gt;    &lt;span class="n"&gt;validValues&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;SchemaConstraint&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;parseConstraints&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"TopicType"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-29"&gt;&lt;/a&gt;    &lt;span class="nb"&gt;super&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TopicType&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;validValues&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;validValues&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;pre class="code python"&gt;&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-1"&gt;&lt;/a&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;SchemaConstraint&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-2"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;validValues&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-3"&gt;&lt;/a&gt;    &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-4"&gt;&lt;/a&gt;    &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;validValues&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;validValues&lt;/span&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-5"&gt;&lt;/a&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-6"&gt;&lt;/a&gt;  &lt;span class="nd"&gt;@property&lt;/span&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-7"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;value&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-8"&gt;&lt;/a&gt;    &lt;span class="o"&gt;...&lt;/span&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-9"&gt;&lt;/a&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-10"&gt;&lt;/a&gt;  &lt;span class="nd"&gt;@value.setter&lt;/span&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-11"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;value&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;newValue&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-12"&gt;&lt;/a&gt;    &lt;span class="o"&gt;...&lt;/span&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-13"&gt;&lt;/a&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-14"&gt;&lt;/a&gt;  &lt;span class="nd"&gt;@property&lt;/span&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-15"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;validValues&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-16"&gt;&lt;/a&gt;    &lt;span class="o"&gt;...&lt;/span&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-17"&gt;&lt;/a&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-18"&gt;&lt;/a&gt;  &lt;span class="nd"&gt;@validValues.setter&lt;/span&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-19"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;validValues&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;newValue&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-20"&gt;&lt;/a&gt;    &lt;span class="k"&gt;pass&lt;/span&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-21"&gt;&lt;/a&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-22"&gt;&lt;/a&gt;  &lt;span class="nd"&gt;@staticmethod&lt;/span&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-23"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;parseConstraints&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;elementName&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-24"&gt;&lt;/a&gt;    &lt;span class="o"&gt;...&lt;/span&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-25"&gt;&lt;/a&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-26"&gt;&lt;/a&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;TopicType&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;SchemaConstraint&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-27"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-28"&gt;&lt;/a&gt;    &lt;span class="n"&gt;validValues&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;SchemaConstraint&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;parseConstraints&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"TopicType"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-29"&gt;&lt;/a&gt;    &lt;span class="nb"&gt;super&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TopicType&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;validValues&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;validValues&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;p&gt;One important thing to note here is that the setter method of &lt;cite&gt;validValues&lt;/cite&gt; has
 just one line which contains &lt;cite&gt;pass&lt;/cite&gt;. This is done in order to ensure that the
 set of valid values does not get overwritten, at least not that easily.&lt;/p&gt;
