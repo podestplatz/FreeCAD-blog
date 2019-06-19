@@ -54,6 +54,7 @@
 .. _`commit 59adbab`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/59adbab0bee1b72544c8c219106f4eff4d3e206e
 .. _`commit a18599a`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/a18599a99a55745edaaa6551d5e7088c996b5a77
 .. _`commit addc02e`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/addc02e58351adb55e584912d5060f3ae2a299dc
+.. _`commit 8ceb3e8`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/8ceb3e8b18c39a2c25b5d638e5337260105be45d
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
@@ -78,6 +79,11 @@
 .. _`writer.addElement()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/647b6845ae819e1175de2539e27ec42a08c45f1a/src/bcf/writer.py#L380
 .. _`writer.getContainingETElementForAttribute()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/647b6845ae819e1175de2539e27ec42a08c45f1a/src/bcf/writer.py#L279
 .. _`writer.deleteElement()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/3765658dfd50f77a85252bb3904c554eb61b5086/src/bcf/writer.py#L587
+.. _`writer.processProjectUpdates()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/8ceb3e8b18c39a2c25b5d638e5337260105be45d/src/bcf/writer.py#L842
+.. _`writer.modifyElement()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/8ceb3e8b18c39a2c25b5d638e5337260105be45d/src/bcf/writer.py#L686
+.. _`writer.handleAddElement()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/8ceb3e8b18c39a2c25b5d638e5337260105be45d/src/bcf/writer.py#L748
+.. _`writer.handleDeleteElement()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/8ceb3e8b18c39a2c25b5d638e5337260105be45d/src/bcf/writer.py#L776
+.. _`writer.handleModifyElement()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/8ceb3e8b18c39a2c25b5d638e5337260105be45d/src/bcf/writer.py#L801
 .. _`writer_tests.py`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/tests/writer_tests.py
 .. _`Hierarchy.containingObject`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/647b6845ae819e1175de2539e27ec42a08c45f1a/src/interfaces/hierarchy.py#L9
 .. _`Hierarchy`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/interfaces/hierarchy.py
@@ -100,6 +106,26 @@
 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**June 19th:** Today most work got into thinking about how to do the interface
+between the data model and the GUI or the python interface for nonGUI mode
+respectively. 
+Apart from thinking however I also pushed a major `commit 8ceb3e8`_. It adds
+`writer.modifyElement()`_, `writer.processProjectUpdates()`_ as well as helper
+functions. `writer.modifyElement()`_, apart from `writer.addElement()`_ and
+`writer.deleteElement()`, also takes the old value of the modified element as
+parameter. This is necessary to find the correct element (attribute or simple
+element) in the xml file. 
+`writer.processProjectUpdates()`_ has the purpose of iterating over a list of
+updates to the `project` object and calling the respective handler function
+(`writer.handleAddElement()`_, `writer.handleDeleteElement()`_ and
+`writer.handleModifyElement()`_). If some error occured during the update the
+errorenous update is returned, in case of success it returns `None`. 
+Also in this commit I added a list `writer.projectSnapshots` which holds an
+arbitrary number of the latest n updates. This is supposed to fuel the undo
+operation, and will be used in the future.
+As always for a bit more of information please see the respective `commit
+8ceb3e8`_
 
 **June 18th:** `writer.deleteElement()`_ is finished! (except for proper
 documentation) Finishing commit is `commit 3765658`_. `writer.deleteElement()`_

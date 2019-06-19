@@ -81,6 +81,25 @@
     </header><div class="e-content entry-content" itemprop="articleBody text">
     <div>
 <p>This is a daily updated log of the work I do on the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/">BCF-plugin</a> for FreeCAD</p>
+<p><strong>June 19th:</strong> Today most work got into thinking about how to do the interface
+between the data model and the GUI or the python interface for nonGUI mode
+respectively.
+Apart from thinking however I also pushed a major <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/8ceb3e8b18c39a2c25b5d638e5337260105be45d">commit 8ceb3e8</a>. It adds
+<a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/8ceb3e8b18c39a2c25b5d638e5337260105be45d/src/bcf/writer.py#L686">writer.modifyElement()</a>, <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/8ceb3e8b18c39a2c25b5d638e5337260105be45d/src/bcf/writer.py#L842">writer.processProjectUpdates()</a> as well as helper
+functions. <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/8ceb3e8b18c39a2c25b5d638e5337260105be45d/src/bcf/writer.py#L686">writer.modifyElement()</a>, apart from <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/647b6845ae819e1175de2539e27ec42a08c45f1a/src/bcf/writer.py#L380">writer.addElement()</a> and
+<cite>writer.deleteElement()</cite>, also takes the old value of the modified element as
+parameter. This is necessary to find the correct element (attribute or simple
+element) in the xml file.
+<a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/8ceb3e8b18c39a2c25b5d638e5337260105be45d/src/bcf/writer.py#L842">writer.processProjectUpdates()</a> has the purpose of iterating over a list of
+updates to the <cite>project</cite> object and calling the respective handler function
+(<a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/8ceb3e8b18c39a2c25b5d638e5337260105be45d/src/bcf/writer.py#L748">writer.handleAddElement()</a>, <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/8ceb3e8b18c39a2c25b5d638e5337260105be45d/src/bcf/writer.py#L776">writer.handleDeleteElement()</a> and
+<a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/8ceb3e8b18c39a2c25b5d638e5337260105be45d/src/bcf/writer.py#L801">writer.handleModifyElement()</a>). If some error occured during the update the
+errorenous update is returned, in case of success it returns <cite>None</cite>.
+Also in this commit I added a list <cite>writer.projectSnapshots</cite> which holds an
+arbitrary number of the latest n updates. This is supposed to fuel the undo
+operation, and will be used in the future.
+As always for a bit more of information please see the respective <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/8ceb3e8b18c39a2c25b5d638e5337260105be45d">commit
+8ceb3e8</a></p>
 <p><strong>June 18th:</strong> <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/3765658dfd50f77a85252bb3904c554eb61b5086/src/bcf/writer.py#L587">writer.deleteElement()</a> is finished! (except for proper
 documentation) Finishing commit is <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/3765658dfd50f77a85252bb3904c554eb61b5086">commit 3765658</a>. <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/3765658dfd50f77a85252bb3904c554eb61b5086/src/bcf/writer.py#L587">writer.deleteElement()</a>
 now distinguishes between an identifiable element (one whose object is an
@@ -358,7 +377,7 @@ Write part one of the class model in python see <a class="reference external" hr
 <div class="system-messages section">
 <h2>Docutils System Messages</h2>
 <div class="system-message" id="id1">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">&lt;string&gt;</tt>, line 111); <em><a href="#id2">backlink</a></em></p>
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">&lt;string&gt;</tt>, line 137); <em><a href="#id2">backlink</a></em></p>
 Unknown target name: "modification.modification".</div>
 </div>
 </div>
