@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>FreeCAD BCF-Plugin development blog</title><link>https://podestplatz.github.io/FreeCAD-blog/</link><description>Blog to the development of the BCF FreeCAD plugin.</description><atom:link href="https://podestplatz.github.io/FreeCAD-blog/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:podestplatz@gmail.com"&gt;Patrick Podest&lt;/a&gt; </copyright><lastBuildDate>Tue, 18 Jun 2019 14:03:09 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Dev Logs</title><link>https://podestplatz.github.io/FreeCAD-blog/posts/dev-logs/</link><dc:creator>Patrick Podest</dc:creator><description>&lt;div&gt;&lt;p&gt;This is a daily updated log of the work I do on the &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/"&gt;BCF-plugin&lt;/a&gt; for FreeCAD&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>FreeCAD BCF-Plugin development blog</title><link>https://podestplatz.github.io/FreeCAD-blog/</link><description>Blog to the development of the BCF FreeCAD plugin.</description><atom:link href="https://podestplatz.github.io/FreeCAD-blog/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:podestplatz@gmail.com"&gt;Patrick Podest&lt;/a&gt; </copyright><lastBuildDate>Wed, 19 Jun 2019 15:29:16 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Dev Logs</title><link>https://podestplatz.github.io/FreeCAD-blog/posts/dev-logs/</link><dc:creator>Patrick Podest</dc:creator><description>&lt;div&gt;&lt;p&gt;This is a daily updated log of the work I do on the &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/"&gt;BCF-plugin&lt;/a&gt; for FreeCAD&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;June 19th:&lt;/strong&gt; Today most work got into thinking about how to do the interface
+between the data model and the GUI or the python interface for nonGUI mode
+respectively.
+Apart from thinking however I also pushed a major &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/8ceb3e8b18c39a2c25b5d638e5337260105be45d"&gt;commit 8ceb3e8&lt;/a&gt;. It adds
+&lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/8ceb3e8b18c39a2c25b5d638e5337260105be45d/src/bcf/writer.py#L686"&gt;writer.modifyElement()&lt;/a&gt;, &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/8ceb3e8b18c39a2c25b5d638e5337260105be45d/src/bcf/writer.py#L842"&gt;writer.processProjectUpdates()&lt;/a&gt; as well as helper
+functions. &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/8ceb3e8b18c39a2c25b5d638e5337260105be45d/src/bcf/writer.py#L686"&gt;writer.modifyElement()&lt;/a&gt;, apart from &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/647b6845ae819e1175de2539e27ec42a08c45f1a/src/bcf/writer.py#L380"&gt;writer.addElement()&lt;/a&gt; and
+&lt;cite&gt;writer.deleteElement()&lt;/cite&gt;, also takes the old value of the modified element as
+parameter. This is necessary to find the correct element (attribute or simple
+element) in the xml file.
+&lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/8ceb3e8b18c39a2c25b5d638e5337260105be45d/src/bcf/writer.py#L842"&gt;writer.processProjectUpdates()&lt;/a&gt; has the purpose of iterating over a list of
+updates to the &lt;cite&gt;project&lt;/cite&gt; object and calling the respective handler function
+(&lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/8ceb3e8b18c39a2c25b5d638e5337260105be45d/src/bcf/writer.py#L748"&gt;writer.handleAddElement()&lt;/a&gt;, &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/8ceb3e8b18c39a2c25b5d638e5337260105be45d/src/bcf/writer.py#L776"&gt;writer.handleDeleteElement()&lt;/a&gt; and
+&lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/8ceb3e8b18c39a2c25b5d638e5337260105be45d/src/bcf/writer.py#L801"&gt;writer.handleModifyElement()&lt;/a&gt;). If some error occured during the update the
+errorenous update is returned, in case of success it returns &lt;cite&gt;None&lt;/cite&gt;.
+Also in this commit I added a list &lt;cite&gt;writer.projectSnapshots&lt;/cite&gt; which holds an
+arbitrary number of the latest n updates. This is supposed to fuel the undo
+operation, and will be used in the future.
+As always for a bit more of information please see the respective &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/8ceb3e8b18c39a2c25b5d638e5337260105be45d"&gt;commit
+8ceb3e8&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;June 18th:&lt;/strong&gt; &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/3765658dfd50f77a85252bb3904c554eb61b5086/src/bcf/writer.py#L587"&gt;writer.deleteElement()&lt;/a&gt; is finished! (except for proper
 documentation) Finishing commit is &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/3765658dfd50f77a85252bb3904c554eb61b5086"&gt;commit 3765658&lt;/a&gt;. &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/3765658dfd50f77a85252bb3904c554eb61b5086/src/bcf/writer.py#L587"&gt;writer.deleteElement()&lt;/a&gt;
 now distinguishes between an identifiable element (one whose object is an
@@ -265,7 +284,7 @@ Write part one of the class model in python see &lt;a class="reference external"
 &lt;div class="system-messages section"&gt;
 &lt;h2&gt;Docutils System Messages&lt;/h2&gt;
 &lt;div class="system-message" id="id1"&gt;
-&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;&amp;lt;string&amp;gt;&lt;/tt&gt;, line 111); &lt;em&gt;&lt;a href="https://podestplatz.github.io/FreeCAD-blog/posts/dev-logs/#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;&amp;lt;string&amp;gt;&lt;/tt&gt;, line 137); &lt;em&gt;&lt;a href="https://podestplatz.github.io/FreeCAD-blog/posts/dev-logs/#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 Unknown target name: "modification.modification".&lt;/div&gt;
 &lt;/div&gt;&lt;/div&gt;</description><category>daily</category><guid>https://podestplatz.github.io/FreeCAD-blog/posts/dev-logs/</guid><pubDate>Mon, 10 Jun 2019 08:00:00 GMT</pubDate></item><item><title>Writing non Schema Conform BCF Files</title><link>https://podestplatz.github.io/FreeCAD-blog/posts/writing-non-schema-conform-bcf-files/</link><dc:creator>Patrick Podest</dc:creator><description>&lt;div&gt;&lt;p&gt;Wait would you write files with the intention that they don't conform to the
 provided XSD files? ... you might ask by just reading the title. No I wouldn't.
@@ -540,12 +559,12 @@ itself). I knew it was possible to change a class object (not the object &lt;em&
 class) during runtime and add or remove members from it.  I thought maybe this
 is also possible with classes that derive from &lt;cite&gt;Enum&lt;/cite&gt;. In python to create an
 enumeration you just have to define a class like this:&lt;/p&gt;
-&lt;pre class="code python"&gt;&lt;a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-1"&gt;&lt;/a&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;enum&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Enum&lt;/span&gt;
-&lt;a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-2"&gt;&lt;/a&gt;
-&lt;a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-3"&gt;&lt;/a&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Example&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Enum&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-4"&gt;&lt;/a&gt;  &lt;span class="n"&gt;VAL1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
-&lt;a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-5"&gt;&lt;/a&gt;  &lt;span class="n"&gt;VAL2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
-&lt;a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-6"&gt;&lt;/a&gt;  &lt;span class="o"&gt;...&lt;/span&gt;
+&lt;pre class="code python"&gt;&lt;a name="rest_code_f72907922cb44f4795b7f719e12aba7d-1"&gt;&lt;/a&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;enum&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Enum&lt;/span&gt;
+&lt;a name="rest_code_f72907922cb44f4795b7f719e12aba7d-2"&gt;&lt;/a&gt;
+&lt;a name="rest_code_f72907922cb44f4795b7f719e12aba7d-3"&gt;&lt;/a&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Example&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Enum&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_f72907922cb44f4795b7f719e12aba7d-4"&gt;&lt;/a&gt;  &lt;span class="n"&gt;VAL1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;a name="rest_code_f72907922cb44f4795b7f719e12aba7d-5"&gt;&lt;/a&gt;  &lt;span class="n"&gt;VAL2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;a name="rest_code_f72907922cb44f4795b7f719e12aba7d-6"&gt;&lt;/a&gt;  &lt;span class="o"&gt;...&lt;/span&gt;
 &lt;/pre&gt;&lt;p&gt;The first obstacle was that classes can only derive from a class (that itself
 derives from &lt;cite&gt;Enum&lt;/cite&gt;) iff they don't introduce new members. Otherwise this would
 break some invariants the python interpreter has over enumerations.
@@ -573,35 +592,35 @@ returns them as list.  &lt;cite&gt;parseConstraints()&lt;/cite&gt; is intended t
 &lt;cite&gt;TopicType.__init__()&lt;/cite&gt;). To make things clearer I put a small code example below
 showing the classes &lt;cite&gt;SchemaConstraints&lt;/cite&gt; and &lt;cite&gt;TopicType&lt;/cite&gt; as well as all the
 members of both classes.&lt;/p&gt;
-&lt;pre class="code python"&gt;&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-1"&gt;&lt;/a&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;SchemaConstraint&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-2"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;validValues&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-3"&gt;&lt;/a&gt;    &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-4"&gt;&lt;/a&gt;    &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;validValues&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;validValues&lt;/span&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-5"&gt;&lt;/a&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-6"&gt;&lt;/a&gt;  &lt;span class="nd"&gt;@property&lt;/span&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-7"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;value&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-8"&gt;&lt;/a&gt;    &lt;span class="o"&gt;...&lt;/span&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-9"&gt;&lt;/a&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-10"&gt;&lt;/a&gt;  &lt;span class="nd"&gt;@value.setter&lt;/span&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-11"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;value&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;newValue&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-12"&gt;&lt;/a&gt;    &lt;span class="o"&gt;...&lt;/span&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-13"&gt;&lt;/a&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-14"&gt;&lt;/a&gt;  &lt;span class="nd"&gt;@property&lt;/span&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-15"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;validValues&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-16"&gt;&lt;/a&gt;    &lt;span class="o"&gt;...&lt;/span&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-17"&gt;&lt;/a&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-18"&gt;&lt;/a&gt;  &lt;span class="nd"&gt;@validValues.setter&lt;/span&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-19"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;validValues&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;newValue&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-20"&gt;&lt;/a&gt;    &lt;span class="k"&gt;pass&lt;/span&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-21"&gt;&lt;/a&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-22"&gt;&lt;/a&gt;  &lt;span class="nd"&gt;@staticmethod&lt;/span&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-23"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;parseConstraints&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;elementName&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-24"&gt;&lt;/a&gt;    &lt;span class="o"&gt;...&lt;/span&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-25"&gt;&lt;/a&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-26"&gt;&lt;/a&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;TopicType&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;SchemaConstraint&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-27"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-28"&gt;&lt;/a&gt;    &lt;span class="n"&gt;validValues&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;SchemaConstraint&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;parseConstraints&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"TopicType"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-29"&gt;&lt;/a&gt;    &lt;span class="nb"&gt;super&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TopicType&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;validValues&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;validValues&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;pre class="code python"&gt;&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-1"&gt;&lt;/a&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;SchemaConstraint&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-2"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;validValues&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-3"&gt;&lt;/a&gt;    &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-4"&gt;&lt;/a&gt;    &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;validValues&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;validValues&lt;/span&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-5"&gt;&lt;/a&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-6"&gt;&lt;/a&gt;  &lt;span class="nd"&gt;@property&lt;/span&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-7"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;value&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-8"&gt;&lt;/a&gt;    &lt;span class="o"&gt;...&lt;/span&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-9"&gt;&lt;/a&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-10"&gt;&lt;/a&gt;  &lt;span class="nd"&gt;@value.setter&lt;/span&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-11"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;value&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;newValue&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-12"&gt;&lt;/a&gt;    &lt;span class="o"&gt;...&lt;/span&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-13"&gt;&lt;/a&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-14"&gt;&lt;/a&gt;  &lt;span class="nd"&gt;@property&lt;/span&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-15"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;validValues&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-16"&gt;&lt;/a&gt;    &lt;span class="o"&gt;...&lt;/span&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-17"&gt;&lt;/a&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-18"&gt;&lt;/a&gt;  &lt;span class="nd"&gt;@validValues.setter&lt;/span&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-19"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;validValues&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;newValue&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-20"&gt;&lt;/a&gt;    &lt;span class="k"&gt;pass&lt;/span&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-21"&gt;&lt;/a&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-22"&gt;&lt;/a&gt;  &lt;span class="nd"&gt;@staticmethod&lt;/span&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-23"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;parseConstraints&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;elementName&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-24"&gt;&lt;/a&gt;    &lt;span class="o"&gt;...&lt;/span&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-25"&gt;&lt;/a&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-26"&gt;&lt;/a&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;TopicType&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;SchemaConstraint&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-27"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-28"&gt;&lt;/a&gt;    &lt;span class="n"&gt;validValues&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;SchemaConstraint&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;parseConstraints&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"TopicType"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-29"&gt;&lt;/a&gt;    &lt;span class="nb"&gt;super&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TopicType&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;validValues&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;validValues&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;p&gt;One important thing to note here is that the setter method of &lt;cite&gt;validValues&lt;/cite&gt; has
 just one line which contains &lt;cite&gt;pass&lt;/cite&gt;. This is done in order to ensure that the
 set of valid values does not get overwritten, at least not that easily.&lt;/p&gt;
