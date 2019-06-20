@@ -55,6 +55,8 @@
 .. _`commit a18599a`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/a18599a99a55745edaaa6551d5e7088c996b5a77
 .. _`commit addc02e`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/addc02e58351adb55e584912d5060f3ae2a299dc
 .. _`commit 8ceb3e8`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/8ceb3e8b18c39a2c25b5d638e5337260105be45d
+.. _`commit fed05f2`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/fed05f2871d43230b9b882041f7011a6a93dc788
+.. _`commit a0c4f8d`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/a0c4f8dad5c7e2d56244c870809ee33b31981387
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
@@ -106,6 +108,25 @@
 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**June 20th:** `commit fed05f2`_ renames the Identifiable interface to
+XMLIdentifiable and adds a new Identifiable interface. The new interface is
+implemented by nearly all classes in the data model and assigns them, upon
+creation, a unique id. This enables an efficient search algorithm that uses an
+object's id to get the corresponding reference in the data structure. The
+Interface `XMLIdentifiable` is now only used to hold ids that are read in from
+the BCF file.
+
+`commit a0c4f8d`_ implements the `searchObject()` function, in nearly all
+classes. This function empowers a depth first approach for finding an element.
+In addition to this function test cases were added to test it for proper
+function.
+
+Locally I am currently working on the first part of the `data model <->
+frontent` interface. I am implementing a `deleteObject()` function that deletes
+the object from the BCF file and from the data structure. But since it is
+currently under development I didn't already push it. 
+
 
 **June 19th:** Today most work got into thinking about how to do the interface
 between the data model and the GUI or the python interface for nonGUI mode
