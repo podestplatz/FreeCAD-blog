@@ -65,6 +65,21 @@
     </header><div class="e-content entry-content">
     <div>
 <p>This is a daily updated log of the work I do on the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/">BCF-plugin</a> for FreeCAD</p>
+<p><strong>June 20th:</strong> <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/fed05f2871d43230b9b882041f7011a6a93dc788">commit fed05f2</a> renames the Identifiable interface to
+XMLIdentifiable and adds a new Identifiable interface. The new interface is
+implemented by nearly all classes in the data model and assigns them, upon
+creation, a unique id. This enables an efficient search algorithm that uses an
+object's id to get the corresponding reference in the data structure. The
+Interface <cite>XMLIdentifiable</cite> is now only used to hold ids that are read in from
+the BCF file.</p>
+<p><a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/a0c4f8dad5c7e2d56244c870809ee33b31981387">commit a0c4f8d</a> implements the <cite>searchObject()</cite> function, in nearly all
+classes. This function empowers a depth first approach for finding an element.
+In addition to this function test cases were added to test it for proper
+function.</p>
+<p>Locally I am currently working on the first part of the <cite>data model &lt;-&gt;
+frontent</cite> interface. I am implementing a <cite>deleteObject()</cite> function that deletes
+the object from the BCF file and from the data structure. But since it is
+currently under development I didn't already push it.</p>
 <p><strong>June 19th:</strong> Today most work got into thinking about how to do the interface
 between the data model and the GUI or the python interface for nonGUI mode
 respectively.
@@ -361,7 +376,7 @@ Write part one of the class model in python see <a class="reference external" hr
 <div class="system-messages section">
 <h2>Docutils System Messages</h2>
 <div class="system-message" id="id1">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">&lt;string&gt;</tt>, line 137); <em><a href="posts/dev-logs/#id2">backlink</a></em></p>
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">&lt;string&gt;</tt>, line 158); <em><a href="posts/dev-logs/#id2">backlink</a></em></p>
 Unknown target name: "modification.modification".</div>
 </div>
 </div>
