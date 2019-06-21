@@ -57,10 +57,19 @@
 .. _`commit 8ceb3e8`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/8ceb3e8b18c39a2c25b5d638e5337260105be45d
 .. _`commit fed05f2`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/fed05f2871d43230b9b882041f7011a6a93dc788
 .. _`commit a0c4f8d`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/a0c4f8dad5c7e2d56244c870809ee33b31981387
+.. _`commit 3dcb227`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/3dcb2275a74684bf6da9473856c5493ef31dce1e
+.. _`commit 8ec8c6f`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/8ec8c6ff492ac15ea394ba7a76972c6fb10a789a
+.. _`commit c5cce73`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/c5cce73d2c9bf99f5fe85d0c0ac751b58f0bfcc0
+.. _`commit f91b863`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/f91b8633b5fb5870f404e713f4cc7bd8de347bb9
+.. _`commit f7a4958`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/f7a495888d783ac4ec10b93ffc8aaa1752a792ea
+.. _`commit e561233`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/e56123307c964cf693083e8adc5b959940c006b2
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
 .. _`branch unit_tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commits/unit_tests
+.. _`branch feature_interface_deleteObject`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commits/feature_interface_deleteObject
+.. _`frontentInterface.py`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature_interface_deleteObject/src/bcf/frontendInterface.py
+.. _`frontentInterface.deleteObject()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/e56123307c964cf693083e8adc5b959940c006b2/src/bcf/frontendInterface.py#L11
 .. _`modification.ModificationAuthor`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/59adbab0bee1b72544c8c219106f4eff4d3e206e/src/bcf/modification.py#L13
 .. _`modification.ModificationDate`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/59adbab0bee1b72544c8c219106f4eff4d3e206e/src/bcf/modification.py#L43
 .. _`project.SimpleList`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/647b6845ae819e1175de2539e27ec42a08c45f1a/src/bcf/project.py#L68
@@ -108,6 +117,37 @@
 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**June 21th:** Today I added a few minor commits. The first beeing `commit
+3dcb227`_ in which I finally deleted the class `Modification`, which got split
+up into `modification.ModificationAuthor`_ and `modification.ModificationDate`.
+For more info please see the log entry of June 19th. 
+
+`commit 8ec8c6f`_ replaced the debug `print` instructions with the a call of the
+`project.debug()` function, in `writer_tests.py`_. 
+
+After some debugging I added a `tearDown()` function to the test cases in
+`writer_tests.py`_, done in `commit c5cce73`_. Reason beeing that I noticed
+strange behavior after I added a test case for adding a whole new topic to a BCF
+file. Specifically most test cases failed if run together, but succeeded when
+run separately. Reason being that the extracted BCF file wasn't completely
+replaced for each new test case, instead it was merely updated. This meant that
+the added topic would be read in too by the following test case and thus
+invalidate some invariants. 
+
+`commit f91b863`_ added a diagram of the basic structure of the plugin, for the
+purpose of the wiki page which I am currently writing. 
+
+In `commit f7a4958`_ I added a whole new file `frontentInterface.py`_ with a new
+function `frontentInterface.deleteObject()`_. Both currently reside on the
+`branch feature_interface_deleteObject`_ branch. This new function shall handle the
+complete deletion of an object, by that I mean the deletion from the file,
+through the `writer` module, and the deletion from the data model, through an
+also added function `deleteObject()` inside of `Project`. 
+
+Finally `commit e561233`_ added a new test suite, intended for testing the
+functions of `frontentInterface.py`_. It currently already sports 7 test cases. 
+
 
 **June 20th:** `commit fed05f2`_ renames the Identifiable interface to
 XMLIdentifiable and adds a new Identifiable interface. The new interface is
@@ -164,7 +204,7 @@ Other changes that were implemented while writing on `writer.deleteElement()`_:
   `commit addc02e`_.
 - 6 test cases were added for `writer.deleteElement()`. You can find them in
   `writer_tests.py`_
-- `modification.Modification`_ which formerly housed a member `author` and
+- `modification.Modification` which formerly housed a member `author` and
   `date` is now split up into `modification.ModificationAuthor`_ and
   `modification.ModificationDate`. This makes it easier to handle in the
   `writer`-module. For more information see `commit 59adbab`_.

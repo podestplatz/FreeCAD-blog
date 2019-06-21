@@ -1,5 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>FreeCAD BCF-Plugin development blog (Posts about daily)</title><link>https://podestplatz.github.io/FreeCAD-blog/</link><description></description><atom:link href="https://podestplatz.github.io/FreeCAD-blog/categories/daily.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:podestplatz@gmail.com"&gt;Patrick Podest&lt;/a&gt; </copyright><lastBuildDate>Thu, 20 Jun 2019 15:03:29 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Dev Logs</title><link>https://podestplatz.github.io/FreeCAD-blog/posts/dev-logs/</link><dc:creator>Patrick Podest</dc:creator><description>&lt;div&gt;&lt;p&gt;This is a daily updated log of the work I do on the &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/"&gt;BCF-plugin&lt;/a&gt; for FreeCAD&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>FreeCAD BCF-Plugin development blog (Posts about daily)</title><link>https://podestplatz.github.io/FreeCAD-blog/</link><description></description><atom:link href="https://podestplatz.github.io/FreeCAD-blog/categories/daily.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:podestplatz@gmail.com"&gt;Patrick Podest&lt;/a&gt; </copyright><lastBuildDate>Fri, 21 Jun 2019 15:19:00 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Dev Logs</title><link>https://podestplatz.github.io/FreeCAD-blog/posts/dev-logs/</link><dc:creator>Patrick Podest</dc:creator><description>&lt;div&gt;&lt;p&gt;This is a daily updated log of the work I do on the &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/"&gt;BCF-plugin&lt;/a&gt; for FreeCAD&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;June 21th:&lt;/strong&gt; Today I added a few minor commits. The first beeing &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/3dcb2275a74684bf6da9473856c5493ef31dce1e"&gt;commit
+3dcb227&lt;/a&gt; in which I finally deleted the class &lt;cite&gt;Modification&lt;/cite&gt;, which got split
+up into &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/59adbab0bee1b72544c8c219106f4eff4d3e206e/src/bcf/modification.py#L13"&gt;modification.ModificationAuthor&lt;/a&gt; and &lt;cite&gt;modification.ModificationDate&lt;/cite&gt;.
+For more info please see the log entry of June 19th.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/8ec8c6ff492ac15ea394ba7a76972c6fb10a789a"&gt;commit 8ec8c6f&lt;/a&gt; replaced the debug &lt;cite&gt;print&lt;/cite&gt; instructions with the a call of the
+&lt;cite&gt;project.debug()&lt;/cite&gt; function, in &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/tests/writer_tests.py"&gt;writer_tests.py&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;After some debugging I added a &lt;cite&gt;tearDown()&lt;/cite&gt; function to the test cases in
+&lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/tests/writer_tests.py"&gt;writer_tests.py&lt;/a&gt;, done in &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/c5cce73d2c9bf99f5fe85d0c0ac751b58f0bfcc0"&gt;commit c5cce73&lt;/a&gt;. Reason beeing that I noticed
+strange behavior after I added a test case for adding a whole new topic to a BCF
+file. Specifically most test cases failed if run together, but succeeded when
+run separately. Reason being that the extracted BCF file wasn't completely
+replaced for each new test case, instead it was merely updated. This meant that
+the added topic would be read in too by the following test case and thus
+invalidate some invariants.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/f91b8633b5fb5870f404e713f4cc7bd8de347bb9"&gt;commit f91b863&lt;/a&gt; added a diagram of the basic structure of the plugin, for the
+purpose of the wiki page which I am currently writing.&lt;/p&gt;
+&lt;p&gt;In &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/f7a495888d783ac4ec10b93ffc8aaa1752a792ea"&gt;commit f7a4958&lt;/a&gt; I added a whole new file &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature_interface_deleteObject/src/bcf/frontendInterface.py"&gt;frontentInterface.py&lt;/a&gt; with a new
+function &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/e56123307c964cf693083e8adc5b959940c006b2/src/bcf/frontendInterface.py#L11"&gt;frontentInterface.deleteObject()&lt;/a&gt;. Both currently reside on the
+&lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commits/feature_interface_deleteObject"&gt;branch feature_interface_deleteObject&lt;/a&gt; branch. This new function shall handle the
+complete deletion of an object, by that I mean the deletion from the file,
+through the &lt;cite&gt;writer&lt;/cite&gt; module, and the deletion from the data model, through an
+also added function &lt;cite&gt;deleteObject()&lt;/cite&gt; inside of &lt;cite&gt;Project&lt;/cite&gt;.&lt;/p&gt;
+&lt;p&gt;Finally &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/e56123307c964cf693083e8adc5b959940c006b2"&gt;commit e561233&lt;/a&gt; added a new test suite, intended for testing the
+functions of &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature_interface_deleteObject/src/bcf/frontendInterface.py"&gt;frontentInterface.py&lt;/a&gt;. It currently already sports 7 test cases.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;June 20th:&lt;/strong&gt; &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/fed05f2871d43230b9b882041f7011a6a93dc788"&gt;commit fed05f2&lt;/a&gt; renames the Identifiable interface to
 XMLIdentifiable and adds a new Identifiable interface. The new interface is
 implemented by nearly all classes in the data model and assigns them, upon
@@ -50,7 +74,7 @@ get the name of the calling function. For more information please refer to
 &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/addc02e58351adb55e584912d5060f3ae2a299dc"&gt;commit addc02e&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;6 test cases were added for &lt;cite&gt;writer.deleteElement()&lt;/cite&gt;. You can find them in
 &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/tests/writer_tests.py"&gt;writer_tests.py&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://podestplatz.github.io/FreeCAD-blog/posts/dev-logs/#id1"&gt;&lt;span class="problematic" id="id2"&gt;`modification.Modification`_&lt;/span&gt;&lt;/a&gt; which formerly housed a member &lt;cite&gt;author&lt;/cite&gt; and
+&lt;li&gt;&lt;cite&gt;modification.Modification&lt;/cite&gt; which formerly housed a member &lt;cite&gt;author&lt;/cite&gt; and
 &lt;cite&gt;date&lt;/cite&gt; is now split up into &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/59adbab0bee1b72544c8c219106f4eff4d3e206e/src/bcf/modification.py#L13"&gt;modification.ModificationAuthor&lt;/a&gt; and
 &lt;cite&gt;modification.ModificationDate&lt;/cite&gt;. This makes it easier to handle in the
 &lt;cite&gt;writer&lt;/cite&gt;-module. For more information see &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/59adbab0bee1b72544c8c219106f4eff4d3e206e"&gt;commit 59adbab&lt;/a&gt;.&lt;/li&gt;
@@ -295,10 +319,4 @@ more details refer to following commits:&lt;/p&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/f62ed23a73e209fc69995fccedf4e20beddf7632"&gt;commit f62ed23&lt;/a&gt;: reader.py: add buildProject&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;May 26th:&lt;/strong&gt; Update Comment in class diagram. For more info see &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/1c34ad907b7fc56cd96aa2fc5aa133e3f445a24b"&gt;commit 1c34ad9&lt;/a&gt;, and create &lt;a class="reference external" href="https://forum.freecadweb.org/viewtopic.php?p=310515#p310515"&gt;mockup of the plugin interface&lt;/a&gt;.
-Write part one of the class model in python see &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/31ef931b3637c90ca0c8252f71dd635e66a843fa"&gt;commit 31ef931&lt;/a&gt;.&lt;/p&gt;
-&lt;div class="system-messages section"&gt;
-&lt;h2&gt;Docutils System Messages&lt;/h2&gt;
-&lt;div class="system-message" id="id1"&gt;
-&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;&amp;lt;string&amp;gt;&lt;/tt&gt;, line 158); &lt;em&gt;&lt;a href="https://podestplatz.github.io/FreeCAD-blog/posts/dev-logs/#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
-Unknown target name: "modification.modification".&lt;/div&gt;
-&lt;/div&gt;&lt;/div&gt;</description><category>daily</category><guid>https://podestplatz.github.io/FreeCAD-blog/posts/dev-logs/</guid><pubDate>Mon, 10 Jun 2019 08:00:00 GMT</pubDate></item></channel></rss>
+Write part one of the class model in python see &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/31ef931b3637c90ca0c8252f71dd635e66a843fa"&gt;commit 31ef931&lt;/a&gt;.&lt;/p&gt;&lt;/div&gt;</description><category>daily</category><guid>https://podestplatz.github.io/FreeCAD-blog/posts/dev-logs/</guid><pubDate>Mon, 10 Jun 2019 08:00:00 GMT</pubDate></item></channel></rss>

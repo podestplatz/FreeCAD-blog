@@ -81,6 +81,30 @@
     </header><div class="e-content entry-content" itemprop="articleBody text">
     <div>
 <p>This is a daily updated log of the work I do on the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/">BCF-plugin</a> for FreeCAD</p>
+<p><strong>June 21th:</strong> Today I added a few minor commits. The first beeing <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/3dcb2275a74684bf6da9473856c5493ef31dce1e">commit
+3dcb227</a> in which I finally deleted the class <cite>Modification</cite>, which got split
+up into <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/59adbab0bee1b72544c8c219106f4eff4d3e206e/src/bcf/modification.py#L13">modification.ModificationAuthor</a> and <cite>modification.ModificationDate</cite>.
+For more info please see the log entry of June 19th.</p>
+<p><a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/8ec8c6ff492ac15ea394ba7a76972c6fb10a789a">commit 8ec8c6f</a> replaced the debug <cite>print</cite> instructions with the a call of the
+<cite>project.debug()</cite> function, in <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/tests/writer_tests.py">writer_tests.py</a>.</p>
+<p>After some debugging I added a <cite>tearDown()</cite> function to the test cases in
+<a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/tests/writer_tests.py">writer_tests.py</a>, done in <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/c5cce73d2c9bf99f5fe85d0c0ac751b58f0bfcc0">commit c5cce73</a>. Reason beeing that I noticed
+strange behavior after I added a test case for adding a whole new topic to a BCF
+file. Specifically most test cases failed if run together, but succeeded when
+run separately. Reason being that the extracted BCF file wasn't completely
+replaced for each new test case, instead it was merely updated. This meant that
+the added topic would be read in too by the following test case and thus
+invalidate some invariants.</p>
+<p><a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/f91b8633b5fb5870f404e713f4cc7bd8de347bb9">commit f91b863</a> added a diagram of the basic structure of the plugin, for the
+purpose of the wiki page which I am currently writing.</p>
+<p>In <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/f7a495888d783ac4ec10b93ffc8aaa1752a792ea">commit f7a4958</a> I added a whole new file <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature_interface_deleteObject/src/bcf/frontendInterface.py">frontentInterface.py</a> with a new
+function <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/e56123307c964cf693083e8adc5b959940c006b2/src/bcf/frontendInterface.py#L11">frontentInterface.deleteObject()</a>. Both currently reside on the
+<a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commits/feature_interface_deleteObject">branch feature_interface_deleteObject</a> branch. This new function shall handle the
+complete deletion of an object, by that I mean the deletion from the file,
+through the <cite>writer</cite> module, and the deletion from the data model, through an
+also added function <cite>deleteObject()</cite> inside of <cite>Project</cite>.</p>
+<p>Finally <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/e56123307c964cf693083e8adc5b959940c006b2">commit e561233</a> added a new test suite, intended for testing the
+functions of <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature_interface_deleteObject/src/bcf/frontendInterface.py">frontentInterface.py</a>. It currently already sports 7 test cases.</p>
 <p><strong>June 20th:</strong> <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/fed05f2871d43230b9b882041f7011a6a93dc788">commit fed05f2</a> renames the Identifiable interface to
 XMLIdentifiable and adds a new Identifiable interface. The new interface is
 implemented by nearly all classes in the data model and assigns them, upon
@@ -133,7 +157,7 @@ get the name of the calling function. For more information please refer to
 <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/tests/writer_tests.py">writer_tests.py</a>
 </li>
 <li>
-<a href="#id1"><span class="problematic" id="id2">`modification.Modification`_</span></a> which formerly housed a member <cite>author</cite> and
+<cite>modification.Modification</cite> which formerly housed a member <cite>author</cite> and
 <cite>date</cite> is now split up into <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/59adbab0bee1b72544c8c219106f4eff4d3e206e/src/bcf/modification.py#L13">modification.ModificationAuthor</a> and
 <cite>modification.ModificationDate</cite>. This makes it easier to handle in the
 <cite>writer</cite>-module. For more information see <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/59adbab0bee1b72544c8c219106f4eff4d3e206e">commit 59adbab</a>.</li>
@@ -389,12 +413,6 @@ more details refer to following commits:</p>
 </ul>
 <p><strong>May 26th:</strong> Update Comment in class diagram. For more info see <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/1c34ad907b7fc56cd96aa2fc5aa133e3f445a24b">commit 1c34ad9</a>, and create <a class="reference external" href="https://forum.freecadweb.org/viewtopic.php?p=310515#p310515">mockup of the plugin interface</a>.
 Write part one of the class model in python see <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/31ef931b3637c90ca0c8252f71dd635e66a843fa">commit 31ef931</a>.</p>
-<div class="system-messages section">
-<h2>Docutils System Messages</h2>
-<div class="system-message" id="id1">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">&lt;string&gt;</tt>, line 158); <em><a href="#id2">backlink</a></em></p>
-Unknown target name: "modification.modification".</div>
-</div>
 </div>
     </div>
     <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
