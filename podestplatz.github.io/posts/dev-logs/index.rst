@@ -1,6 +1,6 @@
 .. title: Dev Logs
 .. slug: dev-logs
-.. date: 2019-06-10 08:00:00 UTC
+.. date: 2019-06-22 08:00:00 UTC
 .. tags: daily
 .. category: DevLog
 .. link: 
@@ -114,11 +114,24 @@
 .. _`xml.etree.ElementTree`: https://docs.python.org/3.3/library/xml.etree.elementtree.html
 .. _`XMLName`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/interfaces/xmlname.py
 .. _`inspect`: https://docs.python.org/3/library/inspect.html
+.. _Wikipage: https://github.com/podestplatz/BCF-Plugin-FreeCAD/wiki
 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
 
-**June 21th:** Today I added a few minor commits. The first beeing `commit
+**June 22nd:** I have written exclusively on the wiki page today as well as
+created a (hopefully) informative Readme that gives a crash course on how to use
+the plugin in its current state. 
+Here__ you will find the wiki page now accompanying the plugin. 
+
+__ Wikipage_
+
+If you jump straigth to the repo__ you will find the new front page with the
+extended README.
+
+__ `BCF-plugin`_
+
+**June 21st:** Today I added a few minor commits. The first beeing `commit
 3dcb227`_ in which I finally deleted the class `Modification`, which got split
 up into `modification.ModificationAuthor`_ and `modification.ModificationDate`.
 For more info please see the log entry of June 19th. 
