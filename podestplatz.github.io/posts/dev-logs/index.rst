@@ -63,6 +63,7 @@
 .. _`commit f91b863`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/f91b8633b5fb5870f404e713f4cc7bd8de347bb9
 .. _`commit f7a4958`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/f7a495888d783ac4ec10b93ffc8aaa1752a792ea
 .. _`commit e561233`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/e56123307c964cf693083e8adc5b959940c006b2
+.. _`commit ab09e0a`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/ab09e0a594d1d7a7401ee5e6ea7e81e01a5d40dc
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
@@ -115,9 +116,18 @@
 .. _`XMLName`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/interfaces/xmlname.py
 .. _`inspect`: https://docs.python.org/3/library/inspect.html
 .. _Wikipage: https://github.com/podestplatz/BCF-Plugin-FreeCAD/wiki
+.. _`pydoc`: https://docs.python.org/3/library/pydoc.html
 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**June 24th:** I finally found the bug in the test suite for `frontentInterface.deleteObject()`!
+`commit ab09e0a`_ is the one in question for this change. In addition to that I
+started a little refactoring session and I am moving now to the official
+docstrings of python in order to generate nice documentation through `pydoc`_.
+For the UI part I started to look into the model view paradigm, and how this is
+done in Qt. 
+
 
 **June 22nd:** I have written exclusively on the wiki page today as well as
 created a (hopefully) informative Readme that gives a crash course on how to use
