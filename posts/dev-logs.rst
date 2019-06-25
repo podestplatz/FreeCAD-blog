@@ -64,6 +64,9 @@
 .. _`commit f7a4958`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/f7a495888d783ac4ec10b93ffc8aaa1752a792ea
 .. _`commit e561233`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/e56123307c964cf693083e8adc5b959940c006b2
 .. _`commit ab09e0a`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/ab09e0a594d1d7a7401ee5e6ea7e81e01a5d40dc
+.. _`commit cf73654`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/cf73654d45223c68c0070b0ce08b56135a35df0c
+.. _`commit 4d170a7`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/4d170a72d69e279461c21fc59b8a8f5f4c374d39
+.. _`commit 6f4b105`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/6f4b105f523d3a9ad3aa541e3c7ccce5a749a403
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
@@ -97,6 +100,7 @@
 .. _`writer.handleDeleteElement()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/8ceb3e8b18c39a2c25b5d638e5337260105be45d/src/bcf/writer.py#L776
 .. _`writer.handleModifyElement()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/8ceb3e8b18c39a2c25b5d638e5337260105be45d/src/bcf/writer.py#L801
 .. _`writer_tests.py`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/tests/writer_tests.py
+.. _`writer.createBcfFile()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/6a63191c0fb5f6d4e56eaccc6697e73b0140d190/src/bcf/writer.py#L993
 .. _`Hierarchy.containingObject`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/647b6845ae819e1175de2539e27ec42a08c45f1a/src/interfaces/hierarchy.py#L9
 .. _`Hierarchy`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/interfaces/hierarchy.py
 .. _`XMLName.getEtElement(element)`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/3eeb7f8356ad664ad9ac40a31a7a1c58dfb74a16/src/interfaces/xmlname.py#L16
@@ -117,9 +121,30 @@
 .. _`inspect`: https://docs.python.org/3/library/inspect.html
 .. _Wikipage: https://github.com/podestplatz/BCF-Plugin-FreeCAD/wiki
 .. _`pydoc`: https://docs.python.org/3/library/pydoc.html
+.. _`summerofcode.withgoogle.com`: https://summerofcode.withgoogle.com/
+.. _BCFZIPEncodingGuide: https://github.com/BuildingSMART/BCF-XML/tree/master/Documentation#bcfzip-encoding-guide
 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**June 25th:** Again some things happened outside of the git repo, like filling
+out the first evaluation form from `summerofcode.withgoogle.com`_ or reading
+more about the model view paradigm in Qt. 
+Apart from this still a little dev work has taken place today: `commit cf73654`_
+renames `Topic.refs` -> `Topic.docRefs` and `frontendInterface.deleteObject()`
+now uses `writer.addProjectUpdate()` instead of `writer.addUpdate()`. Both
+accomplish the same, but former is safer to use. 
+
+`commit 4d170a7`_ introduces many new comments of functions and already converts
+some comments to the official docstring format, as mentioned in yesterdays log
+entry. 
+
+`commit 6f4b105`_ adds function `writer.createBcfFile()`_. This function
+compresses the contents of the directory passed as parameter to a zip archive
+that complies with the `requirements for BCF archives`__. 
+
+__ BCFZIPEncodingGuide_
+
 
 **June 24th:** I finally found the bug in the test suite for `frontentInterface.deleteObject()`!
 `commit ab09e0a`_ is the one in question for this change. In addition to that I

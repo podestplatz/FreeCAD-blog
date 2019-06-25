@@ -81,6 +81,19 @@
     </header><div class="e-content entry-content" itemprop="articleBody text">
     <div>
 <p>This is a daily updated log of the work I do on the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/">BCF-plugin</a> for FreeCAD</p>
+<p><strong>June 25th:</strong> Again some things happened outside of the git repo, like filling
+out the first evaluation form from <a class="reference external" href="https://summerofcode.withgoogle.com/">summerofcode.withgoogle.com</a> or reading
+more about the model view paradigm in Qt.
+Apart from this still a little dev work has taken place today: <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/cf73654d45223c68c0070b0ce08b56135a35df0c">commit cf73654</a>
+renames <cite>Topic.refs</cite> -&gt; <cite>Topic.docRefs</cite> and <cite>frontendInterface.deleteObject()</cite>
+now uses <cite>writer.addProjectUpdate()</cite> instead of <cite>writer.addUpdate()</cite>. Both
+accomplish the same, but former is safer to use.</p>
+<p><a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/4d170a72d69e279461c21fc59b8a8f5f4c374d39">commit 4d170a7</a> introduces many new comments of functions and already converts
+some comments to the official docstring format, as mentioned in yesterdays log
+entry.</p>
+<p><a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/6f4b105f523d3a9ad3aa541e3c7ccce5a749a403">commit 6f4b105</a> adds function <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/6a63191c0fb5f6d4e56eaccc6697e73b0140d190/src/bcf/writer.py#L993">writer.createBcfFile()</a>. This function
+compresses the contents of the directory passed as parameter to a zip archive
+that complies with the <a class="reference external" href="https://github.com/BuildingSMART/BCF-XML/tree/master/Documentation#bcfzip-encoding-guide">requirements for BCF archives</a>.</p>
 <p><strong>June 24th:</strong> I finally found the bug in the test suite for <cite>frontentInterface.deleteObject()</cite>!
 <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/ab09e0a594d1d7a7401ee5e6ea7e81e01a5d40dc">commit ab09e0a</a> is the one in question for this change. In addition to that I
 started a little refactoring session and I am moving now to the official
