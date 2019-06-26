@@ -67,6 +67,10 @@
 .. _`commit cf73654`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/cf73654d45223c68c0070b0ce08b56135a35df0c
 .. _`commit 4d170a7`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/4d170a72d69e279461c21fc59b8a8f5f4c374d39
 .. _`commit 6f4b105`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/6f4b105f523d3a9ad3aa541e3c7ccce5a749a403
+.. _`commit 1038b31`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/1038be1025ec47c5e40d6544dc73c930bb67d5f0
+.. _`commit 59d1ca8`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/59d1ca8d53c388ca88c749fde4563484cd1397ab
+.. _`commit 2c88875`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/2c888758dca22a0246456eed056d5a84c715e076
+.. _`commit e31d3b3`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/e31d3b3d22fe81deb000505f6c7cd1fd83cb8d8e
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
@@ -76,6 +80,9 @@
 .. _`frontentInterface.deleteObject()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/e56123307c964cf693083e8adc5b959940c006b2/src/bcf/frontendInterface.py#L11
 .. _`modification.ModificationAuthor`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/59adbab0bee1b72544c8c219106f4eff4d3e206e/src/bcf/modification.py#L13
 .. _`modification.ModificationDate`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/59adbab0bee1b72544c8c219106f4eff4d3e206e/src/bcf/modification.py#L43
+.. _`programmaticInterface.openProject()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/e31d3b3d22fe81deb000505f6c7cd1fd83cb8d8e/src/frontend/programmaticInterface.py#L84
+.. _`programmaticInterface.getTopics()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/e31d3b3d22fe81deb000505f6c7cd1fd83cb8d8e/src/frontend/programmaticInterface.py#L107
+.. _`programmaticInterface.getComments()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/e31d3b3d22fe81deb000505f6c7cd1fd83cb8d8e/src/frontend/programmaticInterface.py#L142
 .. _`project.SimpleList`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/647b6845ae819e1175de2539e27ec42a08c45f1a/src/bcf/project.py#L68
 .. _`project.SimpleElement`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/647b6845ae819e1175de2539e27ec42a08c45f1a/src/bcf/project.py#L29
 .. _`project.debug()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/addc02e58351adb55e584912d5060f3ae2a299dc/src/bcf/project.py#L13
@@ -109,9 +116,11 @@
 .. _`src/bcf/test_data`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/master/src/bcf/test_data
 .. _`./src/bcf/writer.py`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/bcf/writer.py
 .. _`./src/interfaces`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/master/src/interfaces
+.. _`./src/frontend/programmaticInterface.py`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature/PI_retrieval/src/frontend/programmaticInterface.py
 .. _`src/bcf`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/master/src/bcf
 .. _`interfaces.Identifiable`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/interfaces/identifiable.py
 .. _`feature_read_viewpoint`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commits/feature_read_viewpoint
+.. _`feature/PI_retrieval`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commits/feature/PI_retrieval
 .. _`non schema conform BCF files`: link://slug/handling-non-conform-bcf-files
 .. _`Comment`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/9ecb6b1009521a147cc87bf3a37bceb905ca7f22/src/bcf/markup.py#L106
 .. _`ViewpointReference`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/9ecb6b1009521a147cc87bf3a37bceb905ca7f22/src/bcf/markup.py#L43
@@ -123,9 +132,44 @@
 .. _`pydoc`: https://docs.python.org/3/library/pydoc.html
 .. _`summerofcode.withgoogle.com`: https://summerofcode.withgoogle.com/
 .. _BCFZIPEncodingGuide: https://github.com/BuildingSMART/BCF-XML/tree/master/Documentation#bcfzip-encoding-guide
+.. _`xmlschema`: https://xmlschema.readthedocs.io/en/latest/
 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**June 26th:** Today a considerable amount of work was done in 
+`./src/frontend/programmaticInterface.py`_. This file is beeing developed on the
+new branch `feature/PI_retrieval`_. The first `commit 1038b31`_ integrated the
+`defaultValue` member of `SimpleElement` and `Attribute` in every
+`getEtElement()` method. For more information please see the `commit 1038b31`_
+and its commit message.
+
+`commit 59d1ca8`_ changed the validation mode of `xmlschema`_ from 'strict' to
+'lax', which means that a list of error messages, if there are some, is
+generated and returned with the decoded XML file, instead of throwing
+exceptions. 
+
+`commit 2c88875`_ added to `programmaticInterface.py`__ (`pI.py`__ for short)
+the functions `openProject()`__ and `getTopics()`__. Please see the `commit
+2c88875`_ and its message for more information
+
+__ `./src/frontend/programmaticInterface.py`_
+
+__ `./src/frontend/programmaticInterface.py`_
+
+__ `programmaticInterface.openProject()`_
+
+__ `programmaticInterface.getTopics()`_
+
+`commit e31d3b3`_ adds `getComments()`__ to `pI.py`__ and prints out all validation
+errors if there were some. Also if some required node/attribute in a `viewpoint.bcf`
+file is missing then this file is skipped. 
+
+__ `programmaticInterface.getComments()`_
+
+__ `./src/frontend/programmaticInterface.py`_
+
+
 
 **June 25th:** Again some things happened outside of the git repo, like filling
 out the first evaluation form from `summerofcode.withgoogle.com`_ or reading
