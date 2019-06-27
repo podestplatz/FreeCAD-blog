@@ -71,6 +71,10 @@
 .. _`commit 59d1ca8`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/59d1ca8d53c388ca88c749fde4563484cd1397ab
 .. _`commit 2c88875`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/2c888758dca22a0246456eed056d5a84c715e076
 .. _`commit e31d3b3`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/e31d3b3d22fe81deb000505f6c7cd1fd83cb8d8e
+.. _`commit 25a0ee8`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/25a0ee8093ce35fad2808d51ec2f58d016bcf2cd
+.. _`commit fa5af15`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/fa5af15c56af2af0fa1fcf82f560e3fb0b1b7a76
+.. _`commit e56747f`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/e56747fa315171fdfa1be3c5c3ca53caa15e627b
+.. _`commit 7192ca8`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/7192ca8abb22d333d430b6549e9703a989c9161f
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
@@ -83,6 +87,9 @@
 .. _`programmaticInterface.openProject()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/e31d3b3d22fe81deb000505f6c7cd1fd83cb8d8e/src/frontend/programmaticInterface.py#L84
 .. _`programmaticInterface.getTopics()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/e31d3b3d22fe81deb000505f6c7cd1fd83cb8d8e/src/frontend/programmaticInterface.py#L107
 .. _`programmaticInterface.getComments()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/e31d3b3d22fe81deb000505f6c7cd1fd83cb8d8e/src/frontend/programmaticInterface.py#L142
+.. _`programmaticInterface.getViewpoints()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/7192ca8abb22d333d430b6549e9703a989c9161f/src/frontend/programmaticInterface.py#L199
+.. _`programmaticInterface.getRelevantIfcFiles()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/7192ca8abb22d333d430b6549e9703a989c9161f/src/frontend/programmaticInterface.py#L228
+.. _`BCFPlugin.FCMacro`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature/PI_retrieval/src/BCFPlugin.FCMacro
 .. _`project.SimpleList`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/647b6845ae819e1175de2539e27ec42a08c45f1a/src/bcf/project.py#L68
 .. _`project.SimpleElement`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/647b6845ae819e1175de2539e27ec42a08c45f1a/src/bcf/project.py#L29
 .. _`project.debug()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/addc02e58351adb55e584912d5060f3ae2a299dc/src/bcf/project.py#L13
@@ -133,9 +140,46 @@
 .. _`summerofcode.withgoogle.com`: https://summerofcode.withgoogle.com/
 .. _BCFZIPEncodingGuide: https://github.com/BuildingSMART/BCF-XML/tree/master/Documentation#bcfzip-encoding-guide
 .. _`xmlschema`: https://xmlschema.readthedocs.io/en/latest/
+.. _`IfcOpenShell`: https://github.com/IfcOpenShell/IfcOpenShell
 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**June 27th:** Some development work happened today and some work with FreeCAD
+and IFC files. 
+
+Since today I pushed rather many commits with some sporting only minor changes,
+I will only mention the bigger ones below. 
+
+`commit 25a0ee8`_ introduces the `pI.getViewpoints()`__ function. It takes a
+topic object and returns all viewpoints mentioned in the corresponding
+`markup.bcf` file. 
+
+__ `programmaticInterface.getViewpoints()`_
+
+`commit fa5af15`_ modifies `pI.getComments()`__ in a way that it now also
+accepts an optional viewpoint object, in addition to the topic object, and
+returns a sorted list of comments mentioning that specific viewpoint.
+
+__ `programmaticInterface.getComments()`_
+
+`commit e56747f`_ adds the function `pI.getRelevantIfcFiles()`__. It returns the
+list of files listed in the header node of `markup.bcf`.
+
+__ `programmaticInterface.getRelevantIfcFiles()`_
+
+Although `commit 7192ca8`_ does not add that many new lines, it is quite
+significant. It adds the file `BCFPlugin.FCMacro`_. The plugin is now already
+usable, to an extent, inside FreeCAD, without the gui, however. The wiki page
+will be updated tomorrow, still on branch `feature/PI_retrieval`_. 
+
+To explain a bit more about the work I put into FreeCAD and IFC files: first I
+wanted to know how IFC files can be opened using FreeCAD, after that was
+accomplished, using `IfcOpenShell`_, I searched for the IFC attributes (like the
+id of an ifc object) and where it is stored in the document. Result was: inside
+the class `BuildingPart` the member `IfcAttributes` exists which is filled with
+the attributes I want, at least I think so.  
+
 
 **June 26th:** Today a considerable amount of work was done in 
 `./src/frontend/programmaticInterface.py`_. This file is beeing developed on the
