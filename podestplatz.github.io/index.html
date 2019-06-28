@@ -65,6 +65,26 @@
     </header><div class="e-content entry-content">
     <div>
 <p>This is a daily updated log of the work I do on the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/">BCF-plugin</a> for FreeCAD</p>
+<p><strong>June 28th:</strong> I gained a hell of a lot of understanding about the inner
+workings of FreeCAD. Even if I want to put my main effort right now on the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature/PI_retrieval/src/frontend/programmaticInterface.py">pI</a>
+(programmatic interface) the main goal for today was to find out how to set the
+camera of the active view to a specified position and orientation. Well I
+succeeded with these two main sources: <a class="reference external" href="https://forum.freecadweb.org/viewtopic.php?t=6745">forum-post by teobo</a> and <a class="reference external" href="https://www.freecadweb.org/wiki/index.php?title=Macro_FCCamera">makro
+FCCamera by Mario52</a>.</p>
+<p>Apart from that I have rewritten the debug, more generally the output system of
+my plugin in <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/57c0b286eccdb97da4ea66027776867063a49ce8">commit 57c0b28</a>. It now uses FreeCAD's <cite>Console</cite> to print
+outputs, if running inside FreeCAD. Otherwise the outputs will be printed to
+<cite>stdout/stderr</cite>. <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/b4019892c2ad3ef77bca4c6119e2fe2281c40579">commit b401989</a> further moved the complete debug
+functionality into <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature/PI_retrieval/src/bcf/util.py">util.py</a>, which makes kind of more sense than leaving it in
+<a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature/PI_retrieval/src/bcf/project.py">project.py</a>.</p>
+<p>My new and gained knowledge of today, about setting the camera's position and
+orientation, got baked into a new function of the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature/PI_retrieval/src/frontend/programmaticInterface.py">pI</a>: <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/2fdc65c449d0838551b623c448491387644c49e2/src/frontend/programmaticInterface.py#L327">pI.activateViewpoint()</a></p>
+<p>The best comes at the end: I updated the wiki page on <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commits/feature/PI_retrieval">feature/PI_retrieval</a>.
+It now explains how to use the plugin inside FreeCAD's python console. The
+associated commit is <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/2fdc65c449d0838551b623c448491387644c49e2">commit 2fdc65c</a>.</p>
+<p>At this point I want to give a great thanks to the efforts of <a class="reference external" href="https://github.com/qingfengxia">qingfengxia</a> and
+<a class="reference external" href="https://github.com/luzpaz">luzpaz</a>. Their <a class="reference external" href="https://github.com/qingfengxia/FreeCAD_Mod_Dev_Guide">eBook on FreeCAD</a> helped me a lot today in finding out how to
+modify the camera settings.</p>
 <p><strong>June 27th:</strong> Some development work happened today and some work with FreeCAD
 and IFC files.</p>
 <p>Since today I pushed rather many commits with some sporting only minor changes,

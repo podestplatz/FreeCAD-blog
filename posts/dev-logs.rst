@@ -75,6 +75,10 @@
 .. _`commit fa5af15`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/fa5af15c56af2af0fa1fcf82f560e3fb0b1b7a76
 .. _`commit e56747f`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/e56747fa315171fdfa1be3c5c3ca53caa15e627b
 .. _`commit 7192ca8`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/7192ca8abb22d333d430b6549e9703a989c9161f
+.. _`commit 57c0b28`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/57c0b286eccdb97da4ea66027776867063a49ce8
+.. _`commit b401989`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/b4019892c2ad3ef77bca4c6119e2fe2281c40579
+.. _`commit 8e18bef`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/8e18bef807a763ee291c98a5c3495e25d1e501fc
+.. _`commit 2fdc65c`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/2fdc65c449d0838551b623c448491387644c49e2
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
@@ -89,7 +93,9 @@
 .. _`programmaticInterface.getComments()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/e31d3b3d22fe81deb000505f6c7cd1fd83cb8d8e/src/frontend/programmaticInterface.py#L142
 .. _`programmaticInterface.getViewpoints()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/7192ca8abb22d333d430b6549e9703a989c9161f/src/frontend/programmaticInterface.py#L199
 .. _`programmaticInterface.getRelevantIfcFiles()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/7192ca8abb22d333d430b6549e9703a989c9161f/src/frontend/programmaticInterface.py#L228
+.. _`programmaticInterface.activateViewpoint()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/2fdc65c449d0838551b623c448491387644c49e2/src/frontend/programmaticInterface.py#L327
 .. _`BCFPlugin.FCMacro`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature/PI_retrieval/src/BCFPlugin.FCMacro
+.. _`feature/PI_retrieval.project.py`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature/PI_retrieval/src/bcf/project.py
 .. _`project.SimpleList`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/647b6845ae819e1175de2539e27ec42a08c45f1a/src/bcf/project.py#L68
 .. _`project.SimpleElement`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/647b6845ae819e1175de2539e27ec42a08c45f1a/src/bcf/project.py#L29
 .. _`project.debug()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/addc02e58351adb55e584912d5060f3ae2a299dc/src/bcf/project.py#L13
@@ -99,6 +105,7 @@
 .. _`reader.buildComment()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/9ecb6b1009521a147cc87bf3a37bceb905ca7f22/src/bcf/reader.py#L214
 .. _`reader.buildViewpoint()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/9ecb6b1009521a147cc87bf3a37bceb905ca7f22/src/bcf/reader.py#L528
 .. _`util.py`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/bcf/util.py
+.. _`feature/PI_retrieval.util.py`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature/PI_retrieval/src/bcf/util.py
 .. _`util.updateSchemas()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/3765658dfd50f77a85252bb3904c554eb61b5086/src/bcf/util.py#L152
 .. _`util.copySchemas()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/3765658dfd50f77a85252bb3904c554eb61b5086/src/bcf/util.py#L173
 .. _`writer.compileChanges()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/4de50788af938d69f00fac01848ee7771d805ae1/src/bcf/writer.py#L400
@@ -141,9 +148,53 @@
 .. _BCFZIPEncodingGuide: https://github.com/BuildingSMART/BCF-XML/tree/master/Documentation#bcfzip-encoding-guide
 .. _`xmlschema`: https://xmlschema.readthedocs.io/en/latest/
 .. _`IfcOpenShell`: https://github.com/IfcOpenShell/IfcOpenShell
-
+.. _`set/get cam's position/orientation`: https://forum.freecadweb.org/viewtopic.php?t=6745
+.. _`Macro FCCamera`: https://www.freecadweb.org/wiki/index.php?title=Macro_FCCamera
+.. _`luzpaz`: https://github.com/luzpaz
+.. _`qingfengxia`: https://github.com/qingfengxia
+.. _`ebook on FreeCAD`: https://github.com/qingfengxia/FreeCAD_Mod_Dev_Guide
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**June 28th:** I gained a hell of a lot of understanding about the inner
+workings of FreeCAD. Even if I want to put my main effort right now on the `pI`__
+(programmatic interface) the main goal for today was to find out how to set the
+camera of the active view to a specified position and orientation. Well I
+succeeded with these two main sources: `forum-post by teobo`__ and `makro
+FCCamera by Mario52`__.
+
+__ `./src/frontend/programmaticInterface.py`_
+
+__ `set/get cam's position/orientation`_
+
+__ `Macro FCCamera`_
+
+Apart from that I have rewritten the debug, more generally the output system of
+my plugin in `commit 57c0b28`_. It now uses FreeCAD's `Console` to print
+outputs, if running inside FreeCAD. Otherwise the outputs will be printed to
+`stdout/stderr`. `commit b401989`_ further moved the complete debug
+functionality into `util.py`__, which makes kind of more sense than leaving it in
+`project.py`__.
+
+__ `feature/PI_retrieval.util.py`_
+
+__ `feature/PI_retrieval.project.py`_ 
+
+My new and gained knowledge of today, about setting the camera's position and
+orientation, got baked into a new function of the `pI`__: `pI.activateViewpoint()`__
+
+__ `./src/frontend/programmaticInterface.py`_
+
+__ `programmaticInterface.activateViewpoint()`_
+
+The best comes at the end: I updated the wiki page on `feature/PI_retrieval`_.
+It now explains how to use the plugin inside FreeCAD's python console. The
+associated commit is `commit 2fdc65c`_.
+
+At this point I want to give a great thanks to the efforts of `qingfengxia`_ and
+`luzpaz`_. Their `eBook on FreeCAD`_ helped me a lot today in finding out how to
+modify the camera settings.
+
 
 **June 27th:** Some development work happened today and some work with FreeCAD
 and IFC files. 
