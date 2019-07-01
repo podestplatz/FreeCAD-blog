@@ -81,8 +81,15 @@
     </header><div class="e-content entry-content" itemprop="articleBody text">
     <div>
 <p>This is a daily updated log of the work I do on the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/">BCF-plugin</a> for FreeCAD</p>
+<p><strong>July 1st:</strong> As I already mentioned in the updated README.md on branch
+<a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commits/feature/PI_retrieval">feature/PI_retrieval</a> the source code structure had to change. This is what I
+have done in <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/4bcb1528cd0a8deadfe020599245d8f11bc7de10">commit 4bcb152</a>. Also in this commit I added the function
+<a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/bf8df202f5f74a995ce93a3b42c52f977301a1bf/bcfplugin/programmaticInterface.py#L370">pI.addComment()</a>, which adds a new comment to a topic.</p>
+<p><a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/bf8df202f5f74a995ce93a3b42c52f977301a1bf">commit bf8df20</a> added a new function to <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature/PI_retrieval/bcfplugin/programmaticInterface.py">pI.py</a>. <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/bf8df202f5f74a995ce93a3b42c52f977301a1bf/bcfplugin/programmaticInterface.py#L425">pI.addFile()</a> adds a new
+file reference to the header node.</p>
+<p>In addition to that I watched yorik's introduction <a class="reference external" href="https://youtu.be/rkWOFQ2fGZQ">video</a> to BIM modeling.</p>
 <p><strong>June 28th:</strong> I gained a hell of a lot of understanding about the inner
-workings of FreeCAD. Even if I want to put my main effort right now on the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature/PI_retrieval/src/frontend/programmaticInterface.py">pI</a>
+workings of FreeCAD. Even if I want to put my main effort right now on the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature/PI_retrieval/bcfplugin/programmaticInterface.py">pI</a>
 (programmatic interface) the main goal for today was to find out how to set the
 camera of the active view to a specified position and orientation. Well I
 succeeded with these two main sources: <a class="reference external" href="https://forum.freecadweb.org/viewtopic.php?t=6745">forum-post by teobo</a> and <a class="reference external" href="https://www.freecadweb.org/wiki/index.php?title=Macro_FCCamera">makro
@@ -94,7 +101,7 @@ outputs, if running inside FreeCAD. Otherwise the outputs will be printed to
 functionality into <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature/PI_retrieval/src/bcf/util.py">util.py</a>, which makes kind of more sense than leaving it in
 <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature/PI_retrieval/src/bcf/project.py">project.py</a>.</p>
 <p>My new and gained knowledge of today, about setting the camera's position and
-orientation, got baked into a new function of the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature/PI_retrieval/src/frontend/programmaticInterface.py">pI</a>: <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/2fdc65c449d0838551b623c448491387644c49e2/src/frontend/programmaticInterface.py#L327">pI.activateViewpoint()</a></p>
+orientation, got baked into a new function of the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature/PI_retrieval/bcfplugin/programmaticInterface.py">pI</a>: <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/2fdc65c449d0838551b623c448491387644c49e2/src/frontend/programmaticInterface.py#L327">pI.activateViewpoint()</a></p>
 <p>The best comes at the end: I updated the wiki page on <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commits/feature/PI_retrieval">feature/PI_retrieval</a>.
 It now explains how to use the plugin inside FreeCAD's python console. The
 associated commit is <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/2fdc65c449d0838551b623c448491387644c49e2">commit 2fdc65c</a>.</p>
@@ -124,7 +131,7 @@ id of an ifc object) and where it is stored in the document. Result was: inside
 the class <cite>BuildingPart</cite> the member <cite>IfcAttributes</cite> exists which is filled with
 the attributes I want, at least I think so.</p>
 <p><strong>June 26th:</strong> Today a considerable amount of work was done in
-<a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature/PI_retrieval/src/frontend/programmaticInterface.py">./src/frontend/programmaticInterface.py</a>. This file is beeing developed on the
+<a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature/PI_retrieval/bcfplugin/programmaticInterface.py">./src/frontend/programmaticInterface.py</a>. This file is beeing developed on the
 new branch <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commits/feature/PI_retrieval">feature/PI_retrieval</a>. The first <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/1038be1025ec47c5e40d6544dc73c930bb67d5f0">commit 1038b31</a> integrated the
 <cite>defaultValue</cite> member of <cite>SimpleElement</cite> and <cite>Attribute</cite> in every
 <cite>getEtElement()</cite> method. For more information please see the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/1038be1025ec47c5e40d6544dc73c930bb67d5f0">commit 1038b31</a>
@@ -133,10 +140,10 @@ and its commit message.</p>
 'lax', which means that a list of error messages, if there are some, is
 generated and returned with the decoded XML file, instead of throwing
 exceptions.</p>
-<p><a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/2c888758dca22a0246456eed056d5a84c715e076">commit 2c88875</a> added to <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature/PI_retrieval/src/frontend/programmaticInterface.py">programmaticInterface.py</a> (<a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature/PI_retrieval/src/frontend/programmaticInterface.py">pI.py</a> for short)
+<p><a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/2c888758dca22a0246456eed056d5a84c715e076">commit 2c88875</a> added to <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature/PI_retrieval/bcfplugin/programmaticInterface.py">programmaticInterface.py</a> (<a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature/PI_retrieval/bcfplugin/programmaticInterface.py">pI.py</a> for short)
 the functions <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/e31d3b3d22fe81deb000505f6c7cd1fd83cb8d8e/src/frontend/programmaticInterface.py#L84">openProject()</a> and <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/e31d3b3d22fe81deb000505f6c7cd1fd83cb8d8e/src/frontend/programmaticInterface.py#L107">getTopics()</a>. Please see the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/2c888758dca22a0246456eed056d5a84c715e076">commit
 2c88875</a> and its message for more information</p>
-<p><a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/e31d3b3d22fe81deb000505f6c7cd1fd83cb8d8e">commit e31d3b3</a> adds <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/e31d3b3d22fe81deb000505f6c7cd1fd83cb8d8e/src/frontend/programmaticInterface.py#L142">getComments()</a> to <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature/PI_retrieval/src/frontend/programmaticInterface.py">pI.py</a> and prints out all validation
+<p><a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/e31d3b3d22fe81deb000505f6c7cd1fd83cb8d8e">commit e31d3b3</a> adds <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/e31d3b3d22fe81deb000505f6c7cd1fd83cb8d8e/src/frontend/programmaticInterface.py#L142">getComments()</a> to <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature/PI_retrieval/bcfplugin/programmaticInterface.py">pI.py</a> and prints out all validation
 errors if there were some. Also if some required node/attribute in a <cite>viewpoint.bcf</cite>
 file is missing then this file is skipped.</p>
 <p><strong>June 25th:</strong> Again some things happened outside of the git repo, like filling

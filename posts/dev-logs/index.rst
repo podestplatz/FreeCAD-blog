@@ -79,6 +79,8 @@
 .. _`commit b401989`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/b4019892c2ad3ef77bca4c6119e2fe2281c40579
 .. _`commit 8e18bef`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/8e18bef807a763ee291c98a5c3495e25d1e501fc
 .. _`commit 2fdc65c`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/2fdc65c449d0838551b623c448491387644c49e2
+.. _`commit bf8df20`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/bf8df202f5f74a995ce93a3b42c52f977301a1bf
+.. _`commit 4bcb152`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/4bcb1528cd0a8deadfe020599245d8f11bc7de10
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
@@ -94,6 +96,8 @@
 .. _`programmaticInterface.getViewpoints()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/7192ca8abb22d333d430b6549e9703a989c9161f/src/frontend/programmaticInterface.py#L199
 .. _`programmaticInterface.getRelevantIfcFiles()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/7192ca8abb22d333d430b6549e9703a989c9161f/src/frontend/programmaticInterface.py#L228
 .. _`programmaticInterface.activateViewpoint()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/2fdc65c449d0838551b623c448491387644c49e2/src/frontend/programmaticInterface.py#L327
+.. _`programmaticInterface.addComment()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/bf8df202f5f74a995ce93a3b42c52f977301a1bf/bcfplugin/programmaticInterface.py#L370
+.. _`programmaticInterface.addFile()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/bf8df202f5f74a995ce93a3b42c52f977301a1bf/bcfplugin/programmaticInterface.py#L425
 .. _`BCFPlugin.FCMacro`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature/PI_retrieval/src/BCFPlugin.FCMacro
 .. _`feature/PI_retrieval.project.py`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature/PI_retrieval/src/bcf/project.py
 .. _`project.SimpleList`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/647b6845ae819e1175de2539e27ec42a08c45f1a/src/bcf/project.py#L68
@@ -130,7 +134,7 @@
 .. _`src/bcf/test_data`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/master/src/bcf/test_data
 .. _`./src/bcf/writer.py`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/bcf/writer.py
 .. _`./src/interfaces`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/master/src/interfaces
-.. _`./src/frontend/programmaticInterface.py`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature/PI_retrieval/src/frontend/programmaticInterface.py
+.. _`./src/frontend/programmaticInterface.py`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature/PI_retrieval/bcfplugin/programmaticInterface.py
 .. _`src/bcf`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/master/src/bcf
 .. _`interfaces.Identifiable`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/interfaces/identifiable.py
 .. _`feature_read_viewpoint`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commits/feature_read_viewpoint
@@ -153,8 +157,28 @@
 .. _`luzpaz`: https://github.com/luzpaz
 .. _`qingfengxia`: https://github.com/qingfengxia
 .. _`ebook on FreeCAD`: https://github.com/qingfengxia/FreeCAD_Mod_Dev_Guide
+.. _`yoriksBIMIntroduction`: https://youtu.be/rkWOFQ2fGZQ
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**July 1st:** As I already mentioned in the updated README.md on branch
+`feature/PI_retrieval`_ the source code structure had to change. This is what I
+have done in `commit 4bcb152`_. Also in this commit I added the function
+`pI.addComment()`__, which adds a new comment to a topic.
+
+__ `programmaticInterface.addComment()`_ 
+
+`commit bf8df20`_ added a new function to `pI.py`__. `pI.addFile()`__ adds a new
+file reference to the header node. 
+
+__ `./src/frontend/programmaticInterface.py`_
+
+__ `programmaticInterface.addFile()`_ 
+
+In addition to that I watched yorik's introduction `video`__ to BIM modeling. 
+
+__ `yoriksBIMIntroduction`_
+
 
 **June 28th:** I gained a hell of a lot of understanding about the inner
 workings of FreeCAD. Even if I want to put my main effort right now on the `pI`__
