@@ -81,6 +81,13 @@
 .. _`commit 2fdc65c`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/2fdc65c449d0838551b623c448491387644c49e2
 .. _`commit bf8df20`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/bf8df202f5f74a995ce93a3b42c52f977301a1bf
 .. _`commit 4bcb152`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/4bcb1528cd0a8deadfe020599245d8f11bc7de10
+.. _`commit 32213e3`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/32213e322bd7a82677a3d43039c32eb466897406
+.. _`commit 00d4758`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/00d4758cb0c52b87de00d037ff9045bc66cc35b7
+.. _`commit 55f6b2b`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/55f6b2ba17f42f495975574094079a6e82ee4e45
+.. _`commit e65fa52`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/e65fa52f4244bf67db78438a3b53b220474c9b36
+.. _`commit 0af3e03`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/0af3e03a5279f447e2dfb73790e1c67ae8594ef4
+.. _`commit b54acff`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/b54acff39b318b7fe8d799f7d2cabe075c6337b8
+.. _`commit 9baa5fe`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/9baa5fe22414a57658198246f9f0b8c3ee6a49a2
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
@@ -98,6 +105,9 @@
 .. _`programmaticInterface.activateViewpoint()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/2fdc65c449d0838551b623c448491387644c49e2/src/frontend/programmaticInterface.py#L327
 .. _`programmaticInterface.addComment()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/bf8df202f5f74a995ce93a3b42c52f977301a1bf/bcfplugin/programmaticInterface.py#L370
 .. _`programmaticInterface.addFile()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/bf8df202f5f74a995ce93a3b42c52f977301a1bf/bcfplugin/programmaticInterface.py#L425
+.. _`pI.copyFileToProject()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/9baa5fe22414a57658198246f9f0b8c3ee6a49a2/bcfplugin/programmaticInterface.py#L602
+.. _`pI.addLabel()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/9baa5fe22414a57658198246f9f0b8c3ee6a49a2/bcfplugin/programmaticInterface.py#L574
+.. _`pI.addDocumentReference()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/9baa5fe22414a57658198246f9f0b8c3ee6a49a2/bcfplugin/programmaticInterface.py#L507
 .. _`BCFPlugin.FCMacro`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature/PI_retrieval/src/BCFPlugin.FCMacro
 .. _`feature/PI_retrieval.project.py`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature/PI_retrieval/src/bcf/project.py
 .. _`project.SimpleList`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/647b6845ae819e1175de2539e27ec42a08c45f1a/src/bcf/project.py#L68
@@ -160,6 +170,30 @@
 .. _`yoriksBIMIntroduction`: https://youtu.be/rkWOFQ2fGZQ
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**July 2nd:** Today quite a lot was done. 
+`commit 32213e3`_ updates README.md in `feature/PI_retrieval`_ to reflect the
+new plugin structure. 
+`commit 00d4758`_ adds `pI.addDocumentReference()`_, which adds a new document
+reference to a given topic. 
+
+`commit 55f6b2b`_ adds `pI.addLabel()`_, which adds a new label to a given
+topic.
+
+`commit e65fa52`_ is a rather interesting one: it introduces verbosity levels. 
+
+`commit 0af3e03`_ adds the function `pI.copyFileToProject()`_. Its purpose is to
+copy a file into the bcf file, so that it can be distributed alongside the bcf
+file itself. 
+
+`commit b54acff`_ adds full support for the camera settings in viewpoints.
+Now a camera setting of a orthographic camera as well as a perspective camera
+can be applied to `FreeCADGui.ActiveDocument.ActiveView`.  
+
+`commit 9baa5fe`_ made me aware of a bug in writer, which leads to improper
+modification of the xml nodes `ModifiedDate` and `ModifiedAuthor`. It also
+already sports the beginnings of the fix. 
+
 
 **July 1st:** As I already mentioned in the updated README.md on branch
 `feature/PI_retrieval`_ the source code structure had to change. This is what I

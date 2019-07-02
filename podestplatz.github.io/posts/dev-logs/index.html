@@ -81,6 +81,23 @@
     </header><div class="e-content entry-content" itemprop="articleBody text">
     <div>
 <p>This is a daily updated log of the work I do on the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/">BCF-plugin</a> for FreeCAD</p>
+<p><strong>July 2nd:</strong> Today quite a lot was done.
+<a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/32213e322bd7a82677a3d43039c32eb466897406">commit 32213e3</a> updates README.md in <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commits/feature/PI_retrieval">feature/PI_retrieval</a> to reflect the
+new plugin structure.
+<a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/00d4758cb0c52b87de00d037ff9045bc66cc35b7">commit 00d4758</a> adds <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/9baa5fe22414a57658198246f9f0b8c3ee6a49a2/bcfplugin/programmaticInterface.py#L507">pI.addDocumentReference()</a>, which adds a new document
+reference to a given topic.</p>
+<p><a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/55f6b2ba17f42f495975574094079a6e82ee4e45">commit 55f6b2b</a> adds <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/9baa5fe22414a57658198246f9f0b8c3ee6a49a2/bcfplugin/programmaticInterface.py#L574">pI.addLabel()</a>, which adds a new label to a given
+topic.</p>
+<p><a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/e65fa52f4244bf67db78438a3b53b220474c9b36">commit e65fa52</a> is a rather interesting one: it introduces verbosity levels.</p>
+<p><a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/0af3e03a5279f447e2dfb73790e1c67ae8594ef4">commit 0af3e03</a> adds the function <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/9baa5fe22414a57658198246f9f0b8c3ee6a49a2/bcfplugin/programmaticInterface.py#L602">pI.copyFileToProject()</a>. Its purpose is to
+copy a file into the bcf file, so that it can be distributed alongside the bcf
+file itself.</p>
+<p><a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/b54acff39b318b7fe8d799f7d2cabe075c6337b8">commit b54acff</a> adds full support for the camera settings in viewpoints.
+Now a camera setting of a orthographic camera as well as a perspective camera
+can be applied to <cite>FreeCADGui.ActiveDocument.ActiveView</cite>.</p>
+<p><a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/9baa5fe22414a57658198246f9f0b8c3ee6a49a2">commit 9baa5fe</a> made me aware of a bug in writer, which leads to improper
+modification of the xml nodes <cite>ModifiedDate</cite> and <cite>ModifiedAuthor</cite>. It also
+already sports the beginnings of the fix.</p>
 <p><strong>July 1st:</strong> As I already mentioned in the updated README.md on branch
 <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commits/feature/PI_retrieval">feature/PI_retrieval</a> the source code structure had to change. This is what I
 have done in <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/4bcb1528cd0a8deadfe020599245d8f11bc7de10">commit 4bcb152</a>. Also in this commit I added the function
