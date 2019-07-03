@@ -1,5 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>FreeCAD BCF-Plugin development blog</title><link>https://podestplatz.github.io/FreeCAD-blog/</link><description>Blog to the development of the BCF FreeCAD plugin.</description><atom:link href="https://podestplatz.github.io/FreeCAD-blog/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:podestplatz@gmail.com"&gt;Patrick Podest&lt;/a&gt; </copyright><lastBuildDate>Tue, 02 Jul 2019 17:03:59 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Dev Logs</title><link>https://podestplatz.github.io/FreeCAD-blog/posts/dev-logs/</link><dc:creator>Patrick Podest</dc:creator><description>&lt;div&gt;&lt;p&gt;This is a daily updated log of the work I do on the &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/"&gt;BCF-plugin&lt;/a&gt; for FreeCAD&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>FreeCAD BCF-Plugin development blog</title><link>https://podestplatz.github.io/FreeCAD-blog/</link><description>Blog to the development of the BCF FreeCAD plugin.</description><atom:link href="https://podestplatz.github.io/FreeCAD-blog/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:podestplatz@gmail.com"&gt;Patrick Podest&lt;/a&gt; </copyright><lastBuildDate>Wed, 03 Jul 2019 14:46:46 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Dev Logs</title><link>https://podestplatz.github.io/FreeCAD-blog/posts/dev-logs/</link><dc:creator>Patrick Podest</dc:creator><description>&lt;div&gt;&lt;p&gt;This is a daily updated log of the work I do on the &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/"&gt;BCF-plugin&lt;/a&gt; for FreeCAD&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;July 3rd:&lt;/strong&gt; Today I fully fixed the issue I found in
+&lt;cite&gt;writer.getEtElementFromFile()&lt;/cite&gt; yesterday. The issue was rooted in the fact that
+there may be xml elements that occur in different parts of the hierarchy with
+the same name. For example &lt;cite&gt;&amp;lt;ModifiedAuthor&amp;gt;&lt;/cite&gt; occurs once as child of &lt;cite&gt;&amp;lt;Topic&amp;gt;&lt;/cite&gt;
+and once as child of &lt;cite&gt;&amp;lt;Comment&amp;gt;&lt;/cite&gt;. In the algorithm for modifying elements first
+compiles a list of candidates, out of which the "to-update" element is picked by
+matching on either the children of the element, the text of the element or its
+attributes. Now the particular issue was that when someone already modified
+&lt;cite&gt;&amp;lt;Topic&amp;gt;&lt;/cite&gt; and a &lt;cite&gt;&amp;lt;Comment&amp;gt;&lt;/cite&gt; then &lt;cite&gt;&amp;lt;ModifiedAuthor&amp;gt;&lt;/cite&gt; would have the exact same
+text. Due to insufficient selection of the candidates, both &lt;cite&gt;&amp;lt;ModifiedAuthor&amp;gt;&lt;/cite&gt;
+elements (from Topic and Comment) made it into the list. That lead to
+indeterministic selection of the element to update.&lt;/p&gt;
+&lt;p&gt;This was fixed in &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/17c818e1f61d986bc7c1268b9f2448117e4d47b0"&gt;commit 17c818e&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Then &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/ebca39f58f3e9d8788ae513ab005a04b0e80de1d"&gt;commit ebca39f&lt;/a&gt; added &lt;cite&gt;pI.modifyDocumentReference()&lt;/cite&gt;, which, however, is
+made obsolete in part by &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/01fac660932fea2d580cff44421b0a352f893806"&gt;commit 01fac66&lt;/a&gt;. In latter one I introduce a more
+general modification function &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/01fac660932fea2d580cff44421b0a352f893806/bcfplugin/programmaticInterface.py#L750"&gt;pI.modifyElement()&lt;/a&gt;. It takes on an object of
+the data model, which is assumed to be modified. Next, the old element,
+referenced by original element, is deleted from file, the object in the data
+model is updated with the member variables and added again to the file.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/91ccac8e9ca32af357967aec16749e9b6a1f5497"&gt;commit 91ccac8&lt;/a&gt; adds a backup and rollback system to all functions that alter
+the state of the open project.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;July 2nd:&lt;/strong&gt; Today quite a lot was done.
 &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/32213e322bd7a82677a3d43039c32eb466897406"&gt;commit 32213e3&lt;/a&gt; updates README.md in &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commits/feature/PI_retrieval"&gt;feature/PI_retrieval&lt;/a&gt; to reflect the
 new plugin structure.
