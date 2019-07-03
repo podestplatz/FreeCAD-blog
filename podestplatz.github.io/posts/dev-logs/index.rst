@@ -88,6 +88,10 @@
 .. _`commit 0af3e03`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/0af3e03a5279f447e2dfb73790e1c67ae8594ef4
 .. _`commit b54acff`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/b54acff39b318b7fe8d799f7d2cabe075c6337b8
 .. _`commit 9baa5fe`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/9baa5fe22414a57658198246f9f0b8c3ee6a49a2
+.. _`commit 17c818e`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/17c818e1f61d986bc7c1268b9f2448117e4d47b0
+.. _`commit ebca39f`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/ebca39f58f3e9d8788ae513ab005a04b0e80de1d
+.. _`commit 91ccac8`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/91ccac8e9ca32af357967aec16749e9b6a1f5497
+.. _`commit 01fac66`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/01fac660932fea2d580cff44421b0a352f893806
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
@@ -108,6 +112,7 @@
 .. _`pI.copyFileToProject()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/9baa5fe22414a57658198246f9f0b8c3ee6a49a2/bcfplugin/programmaticInterface.py#L602
 .. _`pI.addLabel()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/9baa5fe22414a57658198246f9f0b8c3ee6a49a2/bcfplugin/programmaticInterface.py#L574
 .. _`pI.addDocumentReference()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/9baa5fe22414a57658198246f9f0b8c3ee6a49a2/bcfplugin/programmaticInterface.py#L507
+.. _`pI.modifyElement()`:  https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/01fac660932fea2d580cff44421b0a352f893806/bcfplugin/programmaticInterface.py#L750
 .. _`BCFPlugin.FCMacro`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature/PI_retrieval/src/BCFPlugin.FCMacro
 .. _`feature/PI_retrieval.project.py`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature/PI_retrieval/src/bcf/project.py
 .. _`project.SimpleList`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/647b6845ae819e1175de2539e27ec42a08c45f1a/src/bcf/project.py#L68
@@ -169,7 +174,37 @@
 .. _`ebook on FreeCAD`: https://github.com/qingfengxia/FreeCAD_Mod_Dev_Guide
 .. _`yoriksBIMIntroduction`: https://youtu.be/rkWOFQ2fGZQ
 
+.. role:: raw-html(raw)
+  :format: html 
+
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**July 3rd:** Today I fully fixed the issue I found in
+`writer.getEtElementFromFile()` yesterday. The issue was rooted in the fact that
+there may be xml elements that occur in different parts of the hierarchy with
+the same name. For example `<ModifiedAuthor>` occurs once as child of `<Topic>`
+and once as child of `<Comment>`. In the algorithm for modifying elements first
+compiles a list of candidates, out of which the "to-update" element is picked by
+matching on either the children of the element, the text of the element or its
+attributes. Now the particular issue was that when someone already modified
+`<Topic>` and a `<Comment>` then `<ModifiedAuthor>` would have the exact same
+text. Due to insufficient selection of the candidates, both `<ModifiedAuthor>`
+elements (from Topic and Comment) made it into the list. That lead to
+indeterministic selection of the element to update.
+
+This was fixed in `commit 17c818e`_.
+
+
+Then `commit ebca39f`_ added `pI.modifyDocumentReference()`, which, however, is
+made obsolete in part by `commit 01fac66`_. In latter one I introduce a more
+general modification function `pI.modifyElement()`_. It takes on an object of
+the data model, which is assumed to be modified. Next, the old element,
+referenced by original element, is deleted from file, the object in the data
+model is updated with the member variables and added again to the file. 
+
+`commit 91ccac8`_ adds a backup and rollback system to all functions that alter
+the state of the open project. 
+
 
 **July 2nd:** Today quite a lot was done. 
 `commit 32213e3`_ updates README.md in `feature/PI_retrieval`_ to reflect the

@@ -65,6 +65,27 @@
     </header><div class="e-content entry-content">
     <div>
 <p>This is a daily updated log of the work I do on the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/">BCF-plugin</a> for FreeCAD</p>
+<p><strong>July 3rd:</strong> Today I fully fixed the issue I found in
+<cite>writer.getEtElementFromFile()</cite> yesterday. The issue was rooted in the fact that
+there may be xml elements that occur in different parts of the hierarchy with
+the same name. For example <cite>&lt;ModifiedAuthor&gt;</cite> occurs once as child of <cite>&lt;Topic&gt;</cite>
+and once as child of <cite>&lt;Comment&gt;</cite>. In the algorithm for modifying elements first
+compiles a list of candidates, out of which the "to-update" element is picked by
+matching on either the children of the element, the text of the element or its
+attributes. Now the particular issue was that when someone already modified
+<cite>&lt;Topic&gt;</cite> and a <cite>&lt;Comment&gt;</cite> then <cite>&lt;ModifiedAuthor&gt;</cite> would have the exact same
+text. Due to insufficient selection of the candidates, both <cite>&lt;ModifiedAuthor&gt;</cite>
+elements (from Topic and Comment) made it into the list. That lead to
+indeterministic selection of the element to update.</p>
+<p>This was fixed in <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/17c818e1f61d986bc7c1268b9f2448117e4d47b0">commit 17c818e</a>.</p>
+<p>Then <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/ebca39f58f3e9d8788ae513ab005a04b0e80de1d">commit ebca39f</a> added <cite>pI.modifyDocumentReference()</cite>, which, however, is
+made obsolete in part by <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/01fac660932fea2d580cff44421b0a352f893806">commit 01fac66</a>. In latter one I introduce a more
+general modification function <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/01fac660932fea2d580cff44421b0a352f893806/bcfplugin/programmaticInterface.py#L750">pI.modifyElement()</a>. It takes on an object of
+the data model, which is assumed to be modified. Next, the old element,
+referenced by original element, is deleted from file, the object in the data
+model is updated with the member variables and added again to the file.</p>
+<p><a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/91ccac8e9ca32af357967aec16749e9b6a1f5497">commit 91ccac8</a> adds a backup and rollback system to all functions that alter
+the state of the open project.</p>
 <p><strong>July 2nd:</strong> Today quite a lot was done.
 <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/32213e322bd7a82677a3d43039c32eb466897406">commit 32213e3</a> updates README.md in <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commits/feature/PI_retrieval">feature/PI_retrieval</a> to reflect the
 new plugin structure.
