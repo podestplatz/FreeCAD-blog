@@ -92,6 +92,11 @@
 .. _`commit ebca39f`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/ebca39f58f3e9d8788ae513ab005a04b0e80de1d
 .. _`commit 91ccac8`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/91ccac8e9ca32af357967aec16749e9b6a1f5497
 .. _`commit 01fac66`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/01fac660932fea2d580cff44421b0a352f893806
+.. _`commit 0d3d924`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/0d3d924022e042a17692850e03f23e5d1b2f8386
+.. _`commit 66a73a8`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/66a73a850a9370b3f5e6757dd77f86c2a62abc19
+.. _`commit 36be8ce`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/36be8ce884799a1803d5d83adfe6676616013c68
+.. _`commit 539371f`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/539371fd65ac5ef7d9850ff9116a0a5c7ac043bd
+.. _`commit 75946db`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/75946dbfd3b302a29b4e5d1ef21211310cdcebbb
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
@@ -112,6 +117,7 @@
 .. _`pI.copyFileToProject()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/9baa5fe22414a57658198246f9f0b8c3ee6a49a2/bcfplugin/programmaticInterface.py#L602
 .. _`pI.addLabel()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/9baa5fe22414a57658198246f9f0b8c3ee6a49a2/bcfplugin/programmaticInterface.py#L574
 .. _`pI.addDocumentReference()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/9baa5fe22414a57658198246f9f0b8c3ee6a49a2/bcfplugin/programmaticInterface.py#L507
+.. _`pI.addCurrentViewpoint()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/75946dbfd3b302a29b4e5d1ef21211310cdcebbb/bcfplugin/programmaticInterface.py#L375
 .. _`pI.modifyElement()`:  https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/01fac660932fea2d580cff44421b0a352f893806/bcfplugin/programmaticInterface.py#L750
 .. _`BCFPlugin.FCMacro`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature/PI_retrieval/src/BCFPlugin.FCMacro
 .. _`feature/PI_retrieval.project.py`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature/PI_retrieval/src/bcf/project.py
@@ -173,11 +179,38 @@
 .. _`qingfengxia`: https://github.com/qingfengxia
 .. _`ebook on FreeCAD`: https://github.com/qingfengxia/FreeCAD_Mod_Dev_Guide
 .. _`yoriksBIMIntroduction`: https://youtu.be/rkWOFQ2fGZQ
+.. _`pytz`: https://pypi.org/project/pytz/
 
 .. role:: raw-html(raw)
   :format: html 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**July 4th:** PI (Programmatic Interface) is nearing its finish, at least in the
+basic functionality. But onto the commits, and thus the work, I have done today: 
+
+`commit 0d3d924`_ is rather small as it just adds a dependency check to
+`./bcfplugin/__init__.py`. `pytz`_ is now also checked as dependency. 
+
+`commit 66a73a8`_ introduces the function `pI.addCurrentViewpoint()`_ whose
+purpose it is to create a viewpoint object of the current view in FreeCAD.
+Currently only the camera position and orientation is read and stored in either
+a `PerspectiveCamera` or `OrthogonalCamera` object, depending on the type of the
+camera in the FreeCAD view. In the next steps also the highlighted components
+shall be detected and read in. But this depends on the ability of discovering
+the Ifc guid of a component in FreeCAD.
+
+`commit 36be8ce`_ adds the option to add a complete new topic to the project.
+Alongside with a topic object, a new folder gets created inside the BCF file and
+a new `markup.bcf` file is created. 
+
+`commit 539371f`_ incorporates the modification of Topics and Comments in 
+`pI.modifyElement()`_. These two types have the speciality of containing both
+`<ModifiedAuthor>` and `<ModifiedDate>`. If a Topic or Comment object is
+updated then these two fields are automatically set/updated with it. 
+
+`commit 75946db`_ brings some testcases for `pI.modifyElement()`_. 
+
 
 **July 3rd:** Today I fully fixed the issue I found in
 `writer.getEtElementFromFile()` yesterday. The issue was rooted in the fact that
