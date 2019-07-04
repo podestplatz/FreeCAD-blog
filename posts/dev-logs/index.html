@@ -81,6 +81,25 @@
     </header><div class="e-content entry-content" itemprop="articleBody text">
     <div>
 <p>This is a daily updated log of the work I do on the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/">BCF-plugin</a> for FreeCAD</p>
+<p><strong>July 4th:</strong> PI (Programmatic Interface) is nearing its finish, at least in the
+basic functionality. But onto the commits, and thus the work, I have done today:</p>
+<p><a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/0d3d924022e042a17692850e03f23e5d1b2f8386">commit 0d3d924</a> is rather small as it just adds a dependency check to
+<cite>./bcfplugin/__init__.py</cite>. <a class="reference external" href="https://pypi.org/project/pytz/">pytz</a> is now also checked as dependency.</p>
+<p><a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/66a73a850a9370b3f5e6757dd77f86c2a62abc19">commit 66a73a8</a> introduces the function <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/75946dbfd3b302a29b4e5d1ef21211310cdcebbb/bcfplugin/programmaticInterface.py#L375">pI.addCurrentViewpoint()</a> whose
+purpose it is to create a viewpoint object of the current view in FreeCAD.
+Currently only the camera position and orientation is read and stored in either
+a <cite>PerspectiveCamera</cite> or <cite>OrthogonalCamera</cite> object, depending on the type of the
+camera in the FreeCAD view. In the next steps also the highlighted components
+shall be detected and read in. But this depends on the ability of discovering
+the Ifc guid of a component in FreeCAD.</p>
+<p><a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/36be8ce884799a1803d5d83adfe6676616013c68">commit 36be8ce</a> adds the option to add a complete new topic to the project.
+Alongside with a topic object, a new folder gets created inside the BCF file and
+a new <cite>markup.bcf</cite> file is created.</p>
+<p><a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/539371fd65ac5ef7d9850ff9116a0a5c7ac043bd">commit 539371f</a> incorporates the modification of Topics and Comments in
+<a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/01fac660932fea2d580cff44421b0a352f893806/bcfplugin/programmaticInterface.py#L750">pI.modifyElement()</a>. These two types have the speciality of containing both
+<cite>&lt;ModifiedAuthor&gt;</cite> and <cite>&lt;ModifiedDate&gt;</cite>. If a Topic or Comment object is
+updated then these two fields are automatically set/updated with it.</p>
+<p><a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/75946dbfd3b302a29b4e5d1ef21211310cdcebbb">commit 75946db</a> brings some testcases for <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/01fac660932fea2d580cff44421b0a352f893806/bcfplugin/programmaticInterface.py#L750">pI.modifyElement()</a>.</p>
 <p><strong>July 3rd:</strong> Today I fully fixed the issue I found in
 <cite>writer.getEtElementFromFile()</cite> yesterday. The issue was rooted in the fact that
 there may be xml elements that occur in different parts of the hierarchy with
