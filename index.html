@@ -65,6 +65,26 @@
     </header><div class="e-content entry-content">
     <div>
 <p>This is a daily updated log of the work I do on the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/">BCF-plugin</a> for FreeCAD</p>
+<p><strong>July 5th:</strong> The first steps to the gui part of the plugin are made!
+But first things first. As the programmatic interface is nearly finished in its
+basic functionality, I merged the feature branch <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commits/feature/PI_retrieval">feature/PI_retrieval</a> into
+<a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commits/develop">develop</a>. This is done in <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/230c1d53f71f8b6c8d12c5066586199c589e16ca">commit 230c1d5</a>.</p>
+<p><a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/0a27fd2307ba64e4fbbd9b58f2a3fc4a3d1ce505">commit 0a27fd2</a> adds the functionality to <cite>writer.py</cite> to add a project file
+and create a new bcf file. A new BCF file will at first only exist in the
+temporary directory until the function <cite>writer.zipToBcfFile()</cite> is called.</p>
+<p>Now onto the gui stuff: I added a new branch <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commits/feature/gui">feature/gui</a> on which I will
+develop the gui part of the plugin at first. On this branch already some commits
+exist but the most notable ones are: <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/53d9dcfd29768eefc02f091480a0c3fa41449af4">commit 53d9dcf</a> which adds an example
+model view application that just contains a combobox that lets the user choose
+between the available topics in a hardcoded bcf file. This application just
+serves as a proof of concept and guiding line over the next days.</p>
+<p><a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/900578927ca57db2f527284d4c13bb8a2b4c48ab">commit 9005790</a> adds two functions that somewhat control the 3D view of
+FreeCAD. The first is <cite>vC.getIfcObjects()</cite> (<cite>vC</cite> stands for <cite>viewController</cite>)
+which compiles a dictionary of all objects in a document that have a IfcUID.
+Here a big thanks to Yorik who provided example code in his <a class="reference external" href="https://forum.freecadweb.org/viewtopic.php?p=318880#p318880">post</a>. The second
+function is <cite>vC.selectComponents()</cite> which takes on a list of
+<cite>viewpoint.Component</cite> objects and adds every object with a matching IfcUID into
+the active selection.</p>
 <p><strong>July 4th:</strong> PI (Programmatic Interface) is nearing its finish, at least in the
 basic functionality. But onto the commits, and thus the work, I have done today:</p>
 <p><a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/0d3d924022e042a17692850e03f23e5d1b2f8386">commit 0d3d924</a> is rather small as it just adds a dependency check to
