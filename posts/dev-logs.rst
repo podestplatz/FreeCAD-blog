@@ -97,6 +97,10 @@
 .. _`commit 36be8ce`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/36be8ce884799a1803d5d83adfe6676616013c68
 .. _`commit 539371f`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/539371fd65ac5ef7d9850ff9116a0a5c7ac043bd
 .. _`commit 75946db`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/75946dbfd3b302a29b4e5d1ef21211310cdcebbb
+.. _`commit 230c1d5`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/230c1d53f71f8b6c8d12c5066586199c589e16ca
+.. _`commit 0a27fd2`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/0a27fd2307ba64e4fbbd9b58f2a3fc4a3d1ce505
+.. _`commit 53d9dcf`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/53d9dcfd29768eefc02f091480a0c3fa41449af4
+.. _`commit 9005790`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/900578927ca57db2f527284d4c13bb8a2b4c48ab
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
@@ -160,6 +164,8 @@
 .. _`interfaces.Identifiable`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/master/src/interfaces/identifiable.py
 .. _`feature_read_viewpoint`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commits/feature_read_viewpoint
 .. _`feature/PI_retrieval`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commits/feature/PI_retrieval
+.. _`develop`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commits/develop
+.. _`feature/gui`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commits/feature/gui
 .. _`non schema conform BCF files`: link://slug/handling-non-conform-bcf-files
 .. _`Comment`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/9ecb6b1009521a147cc87bf3a37bceb905ca7f22/src/bcf/markup.py#L106
 .. _`ViewpointReference`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/9ecb6b1009521a147cc87bf3a37bceb905ca7f22/src/bcf/markup.py#L43
@@ -180,11 +186,38 @@
 .. _`ebook on FreeCAD`: https://github.com/qingfengxia/FreeCAD_Mod_Dev_Guide
 .. _`yoriksBIMIntroduction`: https://youtu.be/rkWOFQ2fGZQ
 .. _`pytz`: https://pypi.org/project/pytz/
+.. _`yoriksIfcPost`: https://forum.freecadweb.org/viewtopic.php?p=318880#p318880
 
 .. role:: raw-html(raw)
   :format: html 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**July 5th:** The first steps to the gui part of the plugin are made!
+But first things first. As the programmatic interface is nearly finished in its
+basic functionality, I merged the feature branch `feature/PI_retrieval`_ into
+`develop`_. This is done in `commit 230c1d5`_.
+
+`commit 0a27fd2`_ adds the functionality to `writer.py` to add a project file
+and create a new bcf file. A new BCF file will at first only exist in the
+temporary directory until the function `writer.zipToBcfFile()` is called. 
+
+Now onto the gui stuff: I added a new branch `feature/gui`_ on which I will
+develop the gui part of the plugin at first. On this branch already some commits
+exist but the most notable ones are: `commit 53d9dcf`_ which adds an example
+model view application that just contains a combobox that lets the user choose
+between the available topics in a hardcoded bcf file. This application just
+serves as a proof of concept and guiding line over the next days. 
+
+`commit 9005790`_ adds two functions that somewhat control the 3D view of
+FreeCAD. The first is `vC.getIfcObjects()` (`vC` stands for `viewController`)
+which compiles a dictionary of all objects in a document that have a IfcUID.
+Here a big thanks to Yorik who provided example code in his post__. The second
+function is `vC.selectComponents()` which takes on a list of
+`viewpoint.Component` objects and adds every object with a matching IfcUID into
+the active selection.
+
+__ `yoriksIfcPost`_
 
 **July 4th:** PI (Programmatic Interface) is nearing its finish, at least in the
 basic functionality. But onto the commits, and thus the work, I have done today: 
