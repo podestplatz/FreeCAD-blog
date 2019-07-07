@@ -193,6 +193,8 @@
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
 
+**July 6th:** I didn't do any work today. 
+
 **July 5th:** The first steps to the gui part of the plugin are made!
 But first things first. As the programmatic interface is nearly finished in its
 basic functionality, I merged the feature branch `feature/PI_retrieval`_ into
