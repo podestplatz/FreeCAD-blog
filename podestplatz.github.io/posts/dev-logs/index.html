@@ -81,6 +81,22 @@
     </header><div class="e-content entry-content" itemprop="articleBody text">
     <div>
 <p>This is a daily updated log of the work I do on the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/">BCF-plugin</a> for FreeCAD</p>
+<p><strong>July 8th:</strong> Today I started with the first version of the gui. It is
+completely contained in <cite>./bcfplugin/gui/plugin_view.py</cite>, but uses
+<cite>./bcfplugin/gui/plugin_model.py</cite> to get the data to display. Currently when
+<cite>plugin_view.py</cite> is run the user is given the option to open a BCF file, through
+an <cite>QFileDialog</cite>. If one was selected the gui removes the "open-file-section"
+and replaces it with:</p>
+<ol class="arabic simple">
+<li>a label displaying the project name</li>
+<li>a label just displaying "Topic" and a combobox filled with a list of the
+available topics.</li>
+</ol>
+<p>The commit adding the two files is <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/6887d529f1e3993667338f68402782597d54f63c">commit 6887d52</a>.
+<a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/85d1e8b683612a6b28763ffccfc9689269ba77f4">commit 85d1e8b</a> finishes function <cite>viewController.colourComponents()</cite> that
+applies the colour specified in <cite>viewpoint.bcf</cite> to the (also in <cite>viewpoint.bcf</cite>)
+specified components.</p>
+<p><strong>July 7th:</strong> The weekend I did no work for the plugin</p>
 <p><strong>July 6th:</strong> I didn't do any work today.</p>
 <p><strong>July 5th:</strong> The first steps to the gui part of the plugin are made!
 But first things first. As the programmatic interface is nearly finished in its

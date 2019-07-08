@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>FreeCAD BCF-Plugin development blog (Posts about DevLog)</title><link>https://podestplatz.github.io/FreeCAD-blog/</link><description></description><atom:link href="https://podestplatz.github.io/FreeCAD-blog/categories/cat_devlog.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:podestplatz@gmail.com"&gt;Patrick Podest&lt;/a&gt; </copyright><lastBuildDate>Sun, 07 Jul 2019 10:24:20 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Dev Logs</title><link>https://podestplatz.github.io/FreeCAD-blog/posts/dev-logs/</link><dc:creator>Patrick Podest</dc:creator><description>&lt;div&gt;&lt;p&gt;This is a daily updated log of the work I do on the &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/"&gt;BCF-plugin&lt;/a&gt; for FreeCAD&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>FreeCAD BCF-Plugin development blog (Posts about DevLog)</title><link>https://podestplatz.github.io/FreeCAD-blog/</link><description></description><atom:link href="https://podestplatz.github.io/FreeCAD-blog/categories/cat_devlog.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:podestplatz@gmail.com"&gt;Patrick Podest&lt;/a&gt; </copyright><lastBuildDate>Mon, 08 Jul 2019 16:32:44 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Dev Logs</title><link>https://podestplatz.github.io/FreeCAD-blog/posts/dev-logs/</link><dc:creator>Patrick Podest</dc:creator><description>&lt;div&gt;&lt;p&gt;This is a daily updated log of the work I do on the &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/"&gt;BCF-plugin&lt;/a&gt; for FreeCAD&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;July 8th:&lt;/strong&gt; Today I started with the first version of the gui. It is
+completely contained in &lt;cite&gt;./bcfplugin/gui/plugin_view.py&lt;/cite&gt;, but uses
+&lt;cite&gt;./bcfplugin/gui/plugin_model.py&lt;/cite&gt; to get the data to display. Currently when
+&lt;cite&gt;plugin_view.py&lt;/cite&gt; is run the user is given the option to open a BCF file, through
+an &lt;cite&gt;QFileDialog&lt;/cite&gt;. If one was selected the gui removes the "open-file-section"
+and replaces it with:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;a label displaying the project name&lt;/li&gt;
+&lt;li&gt;a label just displaying "Topic" and a combobox filled with a list of the
+available topics.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The commit adding the two files is &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/6887d529f1e3993667338f68402782597d54f63c"&gt;commit 6887d52&lt;/a&gt;.
+&lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/85d1e8b683612a6b28763ffccfc9689269ba77f4"&gt;commit 85d1e8b&lt;/a&gt; finishes function &lt;cite&gt;viewController.colourComponents()&lt;/cite&gt; that
+applies the colour specified in &lt;cite&gt;viewpoint.bcf&lt;/cite&gt; to the (also in &lt;cite&gt;viewpoint.bcf&lt;/cite&gt;)
+specified components.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;July 7th:&lt;/strong&gt; The weekend I did no work for the plugin&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;July 6th:&lt;/strong&gt; I didn't do any work today.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;July 5th:&lt;/strong&gt; The first steps to the gui part of the plugin are made!
 But first things first. As the programmatic interface is nearly finished in its

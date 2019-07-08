@@ -101,6 +101,8 @@
 .. _`commit 0a27fd2`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/0a27fd2307ba64e4fbbd9b58f2a3fc4a3d1ce505
 .. _`commit 53d9dcf`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/53d9dcfd29768eefc02f091480a0c3fa41449af4
 .. _`commit 9005790`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/900578927ca57db2f527284d4c13bb8a2b4c48ab
+.. _`commit 6887d52`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/6887d529f1e3993667338f68402782597d54f63c
+.. _`commit 85d1e8b`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/85d1e8b683612a6b28763ffccfc9689269ba77f4
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
@@ -192,6 +194,25 @@
   :format: html 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**July 8th:** Today I started with the first version of the gui. It is
+completely contained in `./bcfplugin/gui/plugin_view.py`, but uses
+`./bcfplugin/gui/plugin_model.py` to get the data to display. Currently when
+`plugin_view.py` is run the user is given the option to open a BCF file, through
+an `QFileDialog`. If one was selected the gui removes the "open-file-section"
+and replaces it with: 
+
+1. a label displaying the project name
+2. a label just displaying "Topic" and a combobox filled with a list of the
+   available topics. 
+
+The commit adding the two files is `commit 6887d52`_.
+`commit 85d1e8b`_ finishes function `viewController.colourComponents()` that
+applies the colour specified in `viewpoint.bcf` to the (also in `viewpoint.bcf`)
+specified components.
+
+
+**July 7th:** The weekend I did no work for the plugin
 
 **July 6th:** I didn't do any work today. 
 
