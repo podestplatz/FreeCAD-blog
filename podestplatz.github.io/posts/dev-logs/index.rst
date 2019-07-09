@@ -103,6 +103,7 @@
 .. _`commit 9005790`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/900578927ca57db2f527284d4c13bb8a2b4c48ab
 .. _`commit 6887d52`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/6887d529f1e3993667338f68402782597d54f63c
 .. _`commit 85d1e8b`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/85d1e8b683612a6b28763ffccfc9689269ba77f4
+.. _`commit 5f242fd`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/5f242fde1987d106c7c52a90a1aeb9543b48be42
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
@@ -168,6 +169,7 @@
 .. _`feature/PI_retrieval`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commits/feature/PI_retrieval
 .. _`develop`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commits/develop
 .. _`feature/gui`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commits/feature/gui
+.. _`feature/gui_comment_list`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commits/feature/gui_comment_list
 .. _`non schema conform BCF files`: link://slug/handling-non-conform-bcf-files
 .. _`Comment`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/9ecb6b1009521a147cc87bf3a37bceb905ca7f22/src/bcf/markup.py#L106
 .. _`ViewpointReference`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/9ecb6b1009521a147cc87bf3a37bceb905ca7f22/src/bcf/markup.py#L43
@@ -189,11 +191,30 @@
 .. _`yoriksBIMIntroduction`: https://youtu.be/rkWOFQ2fGZQ
 .. _`pytz`: https://pypi.org/project/pytz/
 .. _`yoriksIfcPost`: https://forum.freecadweb.org/viewtopic.php?p=318880#p318880
+.. _`model/view`: https://doc.qt.io/qt-5/model-view-programming.html
+.. _`./bcfplugin/gui/comment-list/`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/feature/gui_comment_list/bcfplugin/gui/comment-list
 
 .. role:: raw-html(raw)
   :format: html 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**July 9th:** Well I have learned a lot about Qt and how I can customize
+existing views with delegates and models. That said the main advancement of
+today was the creation of the comments list, how I would like it.
+
+For this development of the comment list I have opened a new feature branch
+ontop of `feature/gui`_ called `feature/gui_comment_list`_. `commit 5f242fd`_
+adds the first (usable) version of the list. It is based on the `model/view`_
+approach of qt and uses a custom delegate to display the list items. The
+development files are located inside of `./bcfplugin/gui/comment-list/`_.
+To try it just run
+
+```
+python mainwindow.py
+```
+
+from inside the before mentioned directory.
 
 **July 8th:** Today I started with the first version of the gui. It is
 completely contained in `./bcfplugin/gui/plugin_view.py`, but uses

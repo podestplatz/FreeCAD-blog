@@ -65,6 +65,19 @@
     </header><div class="e-content entry-content">
     <div>
 <p>This is a daily updated log of the work I do on the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/">BCF-plugin</a> for FreeCAD</p>
+<p><strong>July 9th:</strong> Well I have learned a lot about Qt and how I can customize
+existing views with delegates and models. That said the main advancement of
+today was the creation of the comments list, how I would like it.</p>
+<p>For this development of the comment list I have opened a new feature branch
+ontop of <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commits/feature/gui">feature/gui</a> called <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commits/feature/gui_comment_list">feature/gui_comment_list</a>. <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/5f242fde1987d106c7c52a90a1aeb9543b48be42">commit 5f242fd</a>
+adds the first (usable) version of the list. It is based on the <a class="reference external" href="https://doc.qt.io/qt-5/model-view-programming.html">model/view</a>
+approach of qt and uses a custom delegate to display the list items. The
+development files are located inside of <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/feature/gui_comment_list/bcfplugin/gui/comment-list">./bcfplugin/gui/comment-list/</a>.
+To try it just run</p>
+<p><tt class="docutils literal">`
+python mainwindow.py
+`</tt></p>
+<p>from inside the before mentioned directory.</p>
 <p><strong>July 8th:</strong> Today I started with the first version of the gui. It is
 completely contained in <cite>./bcfplugin/gui/plugin_view.py</cite>, but uses
 <cite>./bcfplugin/gui/plugin_model.py</cite> to get the data to display. Currently when
