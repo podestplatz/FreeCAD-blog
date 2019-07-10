@@ -65,6 +65,45 @@
     </header><div class="e-content entry-content">
     <div>
 <p>This is a daily updated log of the work I do on the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/">BCF-plugin</a> for FreeCAD</p>
+<p><strong>July 10th:</strong> My work today boils down to this:</p>
+<ul class="simple">
+<li>The comment list is finished, apart from a small bug when scrolling
+horizontally</li>
+<li>The programmaticInterface got a new function to apply visibility settings of a
+viewpoint to the objects in the view.</li>
+</ul>
+<p>So now the more detailed version:</p>
+<p><a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/fc93660a8108ba98bac265e3689532c3975609fc">commit fc93660</a> fixed two bugs when painting the comment list. Both were
+caused by a wrong use of Qt. Previously the position, at which the next comment
+should be drawn, was calculated by hand. Now this position is taken from the
+argument <cite>options</cite> and its member <cite>rect</cite>.</p>
+<pre class="code python"><a name="rest_code_bfc346b0578a486daec68b43141e036e-1"></a><span class="k">def</span> <span class="nf">paint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">painter</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+<a name="rest_code_bfc346b0578a486daec68b43141e036e-2"></a>  <span class="n">topY</span> <span class="o">=</span> <span class="n">option</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">y</span><span class="p">()</span>
+</pre>
+<p><a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/c93b00461a557db637f52b105b7a3c5c58f952a1">commit c93b004</a> extended <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/bc9664236bf09c60cfd73cde8ea6160f342bf8a1/bcfplugin/programmaticInterface.py#L876">pI.getTopic()</a> with some context awareness. The
+general approach is to not expose the data model to the UI layer. Thus for every
+retrieve action, requested from <cite>pI</cite>, a deep copy of the actual object is
+returned instead of just the reference. <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/bc9664236bf09c60cfd73cde8ea6160f342bf8a1/bcfplugin/programmaticInterface.py#L876">pI.getTopic()</a> however is used inside
+and outside <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature/PI_retrieval/bcfplugin/programmaticInterface.py">pI</a>. If it is called from inside of the same module the correct
+reference to the actual element shall be returned, if however called from the
+outside a copy has to be created and returned to the calling function.
+<a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/bc9664236bf09c60cfd73cde8ea6160f342bf8a1/bcfplugin/programmaticInterface.py#L876">pI.getTopic()</a> is now able to do this, using the <a class="reference external" href="https://docs.python.org/3/library/inspect.html">inspect</a> module.</p>
+<p><a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/a702021d1ae226a256ec9c3341ef028855eb6170">commit a702021</a> integrated the <cite>pI</cite> into the model of the comment list, this
+commit therefore made it possible to view actual comments of a bcf file that
+gets opened during runtime.</p>
+<p><a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/894de41ef6489fd54efca1000f65dc07e47525b0">commit 894de41</a> introduces the logical next step to the previous commit. It
+integrated the comment list into the existing plugin, which previously could
+open a project and let the user choose between topics. Now, after the user has
+chosen a topic, all comments will be visible and available for modification. The
+modification however is constrained with a <a class="reference external" href="https://doc.qt.io/qt-5/qvalidator.html">QValidator</a>.</p>
+<p><a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/9814bb439c2283a5749444b5672ba244b9c78b83">commit 9814bb4</a> adds the functionality of displaying a small pop up window
+showing an error to the user.</p>
+<p><a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/bc9664236bf09c60cfd73cde8ea6160f342bf8a1">commit bc96642</a> contains the functionality of applying visibility settings to
+the objects in the currently open view.</p>
+<p>To checkout the current state of the plugin run the following command from the
+directory <cite>./bcfplugin/gui</cite>:</p>
+<pre class="code bash"><a name="rest_code_c3f92be3a29a415cb8026eaf7c7ba969-1"></a>python plugin_view.py
+</pre>
 <p><strong>July 9th:</strong> Well I have learned a lot about Qt and how I can customize
 existing views with delegates and models. That said the main advancement of
 today was the creation of the comments list, how I would like it.</p>
@@ -74,9 +113,8 @@ adds the first (usable) version of the list. It is based on the <a class="refere
 approach of qt and uses a custom delegate to display the list items. The
 development files are located inside of <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/feature/gui_comment_list/bcfplugin/gui/comment-list">./bcfplugin/gui/comment-list/</a>.
 To try it just run</p>
-<p><tt class="docutils literal">`
-python mainwindow.py
-`</tt></p>
+<pre class="code bash"><a name="rest_code_f5c98bd2eefb460781ef14a570943575-1"></a>python mainwindow.py
+</pre>
 <p>from inside the before mentioned directory.</p>
 <p><strong>July 8th:</strong> Today I started with the first version of the gui. It is
 completely contained in <cite>./bcfplugin/gui/plugin_view.py</cite>, but uses
@@ -897,12 +935,12 @@ itself). I knew it was possible to change a class object (not the object <em>of<
 class) during runtime and add or remove members from it.  I thought maybe this
 is also possible with classes that derive from <cite>Enum</cite>. In python to create an
 enumeration you just have to define a class like this:</p>
-<pre class="code python"><a name="rest_code_f72907922cb44f4795b7f719e12aba7d-1"></a><span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
-<a name="rest_code_f72907922cb44f4795b7f719e12aba7d-2"></a>
-<a name="rest_code_f72907922cb44f4795b7f719e12aba7d-3"></a><span class="k">class</span> <span class="nc">Example</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
-<a name="rest_code_f72907922cb44f4795b7f719e12aba7d-4"></a>  <span class="n">VAL1</span> <span class="o">=</span> <span class="mi">1</span>
-<a name="rest_code_f72907922cb44f4795b7f719e12aba7d-5"></a>  <span class="n">VAL2</span> <span class="o">=</span> <span class="mi">2</span>
-<a name="rest_code_f72907922cb44f4795b7f719e12aba7d-6"></a>  <span class="o">...</span>
+<pre class="code python"><a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-1"></a><span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+<a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-2"></a>
+<a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-3"></a><span class="k">class</span> <span class="nc">Example</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-4"></a>  <span class="n">VAL1</span> <span class="o">=</span> <span class="mi">1</span>
+<a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-5"></a>  <span class="n">VAL2</span> <span class="o">=</span> <span class="mi">2</span>
+<a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-6"></a>  <span class="o">...</span>
 </pre>
 <p>The first obstacle was that classes can only derive from a class (that itself
 derives from <cite>Enum</cite>) iff they don't introduce new members. Otherwise this would
@@ -931,35 +969,35 @@ returns them as list.  <cite>parseConstraints()</cite> is intended to be called 
 <cite>TopicType.__init__()</cite>). To make things clearer I put a small code example below
 showing the classes <cite>SchemaConstraints</cite> and <cite>TopicType</cite> as well as all the
 members of both classes.</p>
-<pre class="code python"><a name="rest_code_1614531e7e214d6796433300fe60dbf5-1"></a><span class="k">class</span> <span class="nc">SchemaConstraint</span><span class="p">:</span>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-2"></a>  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">validValues</span><span class="p">):</span>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-3"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-4"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">validValues</span> <span class="o">=</span> <span class="n">validValues</span>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-5"></a>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-6"></a>  <span class="nd">@property</span>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-7"></a>  <span class="k">def</span> <span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-8"></a>    <span class="o">...</span>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-9"></a>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-10"></a>  <span class="nd">@value.setter</span>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-11"></a>  <span class="k">def</span> <span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">newValue</span><span class="p">):</span>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-12"></a>    <span class="o">...</span>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-13"></a>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-14"></a>  <span class="nd">@property</span>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-15"></a>  <span class="k">def</span> <span class="nf">validValues</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-16"></a>    <span class="o">...</span>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-17"></a>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-18"></a>  <span class="nd">@validValues.setter</span>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-19"></a>  <span class="k">def</span> <span class="nf">validValues</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">newValue</span><span class="p">):</span>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-20"></a>    <span class="k">pass</span>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-21"></a>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-22"></a>  <span class="nd">@staticmethod</span>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-23"></a>  <span class="k">def</span> <span class="nf">parseConstraints</span><span class="p">(</span><span class="n">elementName</span><span class="p">):</span>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-24"></a>    <span class="o">...</span>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-25"></a>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-26"></a><span class="k">class</span> <span class="nc">TopicType</span><span class="p">(</span><span class="n">SchemaConstraint</span><span class="p">):</span>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-27"></a>  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-28"></a>    <span class="n">validValues</span> <span class="o">=</span> <span class="n">SchemaConstraint</span><span class="o">.</span><span class="n">parseConstraints</span><span class="p">(</span><span class="s2">"TopicType"</span><span class="p">)</span>
-<a name="rest_code_1614531e7e214d6796433300fe60dbf5-29"></a>    <span class="nb">super</span><span class="p">(</span><span class="n">TopicType</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">validValues</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">validValues</span><span class="p">)</span>
+<pre class="code python"><a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-1"></a><span class="k">class</span> <span class="nc">SchemaConstraint</span><span class="p">:</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-2"></a>  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">validValues</span><span class="p">):</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-3"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-4"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">validValues</span> <span class="o">=</span> <span class="n">validValues</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-5"></a>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-6"></a>  <span class="nd">@property</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-7"></a>  <span class="k">def</span> <span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-8"></a>    <span class="o">...</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-9"></a>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-10"></a>  <span class="nd">@value.setter</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-11"></a>  <span class="k">def</span> <span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">newValue</span><span class="p">):</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-12"></a>    <span class="o">...</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-13"></a>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-14"></a>  <span class="nd">@property</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-15"></a>  <span class="k">def</span> <span class="nf">validValues</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-16"></a>    <span class="o">...</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-17"></a>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-18"></a>  <span class="nd">@validValues.setter</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-19"></a>  <span class="k">def</span> <span class="nf">validValues</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">newValue</span><span class="p">):</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-20"></a>    <span class="k">pass</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-21"></a>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-22"></a>  <span class="nd">@staticmethod</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-23"></a>  <span class="k">def</span> <span class="nf">parseConstraints</span><span class="p">(</span><span class="n">elementName</span><span class="p">):</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-24"></a>    <span class="o">...</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-25"></a>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-26"></a><span class="k">class</span> <span class="nc">TopicType</span><span class="p">(</span><span class="n">SchemaConstraint</span><span class="p">):</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-27"></a>  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-28"></a>    <span class="n">validValues</span> <span class="o">=</span> <span class="n">SchemaConstraint</span><span class="o">.</span><span class="n">parseConstraints</span><span class="p">(</span><span class="s2">"TopicType"</span><span class="p">)</span>
+<a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-29"></a>    <span class="nb">super</span><span class="p">(</span><span class="n">TopicType</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">validValues</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">validValues</span><span class="p">)</span>
 </pre>
 <p>One important thing to note here is that the setter method of <cite>validValues</cite> has
 just one line which contains <cite>pass</cite>. This is done in order to ensure that the
