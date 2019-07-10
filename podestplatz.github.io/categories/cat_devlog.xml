@@ -1,6 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>FreeCAD BCF-Plugin development blog (Posts about DevLog)</title><link>https://podestplatz.github.io/FreeCAD-blog/</link><description></description><atom:link href="https://podestplatz.github.io/FreeCAD-blog/categories/cat_devlog.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:podestplatz@gmail.com"&gt;Patrick Podest&lt;/a&gt; </copyright><lastBuildDate>Tue, 09 Jul 2019 15:33:07 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Dev Logs</title><link>https://podestplatz.github.io/FreeCAD-blog/posts/dev-logs/</link><dc:creator>Patrick Podest</dc:creator><description>&lt;div&gt;&lt;p&gt;This is a daily updated log of the work I do on the &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/"&gt;BCF-plugin&lt;/a&gt; for FreeCAD&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;July 9th:&lt;/strong&gt; Well I have learned a lot about Qt and how I can customize
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>FreeCAD BCF-Plugin development blog (Posts about DevLog)</title><link>https://podestplatz.github.io/FreeCAD-blog/</link><description></description><atom:link href="https://podestplatz.github.io/FreeCAD-blog/categories/cat_devlog.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:podestplatz@gmail.com"&gt;Patrick Podest&lt;/a&gt; </copyright><lastBuildDate>Wed, 10 Jul 2019 11:22:44 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Dev Logs</title><link>https://podestplatz.github.io/FreeCAD-blog/posts/dev-logs/</link><dc:creator>Patrick Podest</dc:creator><description>&lt;div&gt;&lt;p&gt;This is a daily updated log of the work I do on the &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/"&gt;BCF-plugin&lt;/a&gt; for FreeCAD&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;July 10th:&lt;/strong&gt; My work today boils down to this:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;The comment list is finished, apart from a small bug when scrolling
+horizontally&lt;/li&gt;
+&lt;li&gt;The programmaticInterface got a new function to apply visibility settings of a
+viewpoint to the objects in the view.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So now the more detailed version:&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/fc93660a8108ba98bac265e3689532c3975609fc"&gt;commit fc93660&lt;/a&gt; fixed two bugs when painting the comment list. Both were
+caused by a wrong use of Qt. Previously the position, at which the next comment
+should be drawn, was calculated by hand. Now this position is taken from the
+argument &lt;cite&gt;options&lt;/cite&gt; and its member &lt;cite&gt;rect&lt;/cite&gt;.&lt;/p&gt;
+&lt;pre class="code python"&gt;&lt;a name="rest_code_bfc346b0578a486daec68b43141e036e-1"&gt;&lt;/a&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;paint&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;painter&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;option&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_bfc346b0578a486daec68b43141e036e-2"&gt;&lt;/a&gt;  &lt;span class="n"&gt;topY&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;option&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rect&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/c93b00461a557db637f52b105b7a3c5c58f952a1"&gt;commit c93b004&lt;/a&gt; extended &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/bc9664236bf09c60cfd73cde8ea6160f342bf8a1/bcfplugin/programmaticInterface.py#L876"&gt;pI.getTopic()&lt;/a&gt; with some context awareness. The
+general approach is to not expose the data model to the UI layer. Thus for every
+retrieve action, requested from &lt;cite&gt;pI&lt;/cite&gt;, a deep copy of the actual object is
+returned instead of just the reference. &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/bc9664236bf09c60cfd73cde8ea6160f342bf8a1/bcfplugin/programmaticInterface.py#L876"&gt;pI.getTopic()&lt;/a&gt; however is used inside
+and outside &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature/PI_retrieval/bcfplugin/programmaticInterface.py"&gt;pI&lt;/a&gt;. If it is called from inside of the same module the correct
+reference to the actual element shall be returned, if however called from the
+outside a copy has to be created and returned to the calling function.
+&lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/bc9664236bf09c60cfd73cde8ea6160f342bf8a1/bcfplugin/programmaticInterface.py#L876"&gt;pI.getTopic()&lt;/a&gt; is now able to do this, using the &lt;a class="reference external" href="https://docs.python.org/3/library/inspect.html"&gt;inspect&lt;/a&gt; module.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/a702021d1ae226a256ec9c3341ef028855eb6170"&gt;commit a702021&lt;/a&gt; integrated the &lt;cite&gt;pI&lt;/cite&gt; into the model of the comment list, this
+commit therefore made it possible to view actual comments of a bcf file that
+gets opened during runtime.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/894de41ef6489fd54efca1000f65dc07e47525b0"&gt;commit 894de41&lt;/a&gt; introduces the logical next step to the previous commit. It
+integrated the comment list into the existing plugin, which previously could
+open a project and let the user choose between topics. Now, after the user has
+chosen a topic, all comments will be visible and available for modification. The
+modification however is constrained with a &lt;a class="reference external" href="https://doc.qt.io/qt-5/qvalidator.html"&gt;QValidator&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/9814bb439c2283a5749444b5672ba244b9c78b83"&gt;commit 9814bb4&lt;/a&gt; adds the functionality of displaying a small pop up window
+showing an error to the user.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/bc9664236bf09c60cfd73cde8ea6160f342bf8a1"&gt;commit bc96642&lt;/a&gt; contains the functionality of applying visibility settings to
+the objects in the currently open view.&lt;/p&gt;
+&lt;p&gt;To checkout the current state of the plugin run the following command from the
+directory &lt;cite&gt;./bcfplugin/gui&lt;/cite&gt;:&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_c3f92be3a29a415cb8026eaf7c7ba969-1"&gt;&lt;/a&gt;python plugin_view.py
+&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;July 9th:&lt;/strong&gt; Well I have learned a lot about Qt and how I can customize
 existing views with delegates and models. That said the main advancement of
 today was the creation of the comments list, how I would like it.&lt;/p&gt;
 &lt;p&gt;For this development of the comment list I have opened a new feature branch
@@ -9,10 +46,8 @@ adds the first (usable) version of the list. It is based on the &lt;a class="ref
 approach of qt and uses a custom delegate to display the list items. The
 development files are located inside of &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/feature/gui_comment_list/bcfplugin/gui/comment-list"&gt;./bcfplugin/gui/comment-list/&lt;/a&gt;.
 To try it just run&lt;/p&gt;
-&lt;p&gt;&lt;tt class="docutils literal"&gt;`
-python mainwindow.py
-`&lt;/tt&gt;&lt;/p&gt;
-&lt;p&gt;from inside the before mentioned directory.&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_f5c98bd2eefb460781ef14a570943575-1"&gt;&lt;/a&gt;python mainwindow.py
+&lt;/pre&gt;&lt;p&gt;from inside the before mentioned directory.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;July 8th:&lt;/strong&gt; Today I started with the first version of the gui. It is
 completely contained in &lt;cite&gt;./bcfplugin/gui/plugin_view.py&lt;/cite&gt;, but uses
 &lt;cite&gt;./bcfplugin/gui/plugin_model.py&lt;/cite&gt; to get the data to display. Currently when

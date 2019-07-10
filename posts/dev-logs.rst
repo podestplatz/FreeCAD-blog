@@ -104,6 +104,12 @@
 .. _`commit 6887d52`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/6887d529f1e3993667338f68402782597d54f63c
 .. _`commit 85d1e8b`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/85d1e8b683612a6b28763ffccfc9689269ba77f4
 .. _`commit 5f242fd`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/5f242fde1987d106c7c52a90a1aeb9543b48be42
+.. _`commit fc93660`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/fc93660a8108ba98bac265e3689532c3975609fc
+.. _`commit c93b004`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/c93b00461a557db637f52b105b7a3c5c58f952a1
+.. _`commit a702021`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/a702021d1ae226a256ec9c3341ef028855eb6170
+.. _`commit 894de41`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/894de41ef6489fd54efca1000f65dc07e47525b0
+.. _`commit 9814bb4`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/9814bb439c2283a5749444b5672ba244b9c78b83
+.. _`commit bc96642`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/bc9664236bf09c60cfd73cde8ea6160f342bf8a1
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
@@ -126,6 +132,7 @@
 .. _`pI.addDocumentReference()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/9baa5fe22414a57658198246f9f0b8c3ee6a49a2/bcfplugin/programmaticInterface.py#L507
 .. _`pI.addCurrentViewpoint()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/75946dbfd3b302a29b4e5d1ef21211310cdcebbb/bcfplugin/programmaticInterface.py#L375
 .. _`pI.modifyElement()`:  https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/01fac660932fea2d580cff44421b0a352f893806/bcfplugin/programmaticInterface.py#L750
+.. _`pI.getTopic()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/bc9664236bf09c60cfd73cde8ea6160f342bf8a1/bcfplugin/programmaticInterface.py#L876
 .. _`BCFPlugin.FCMacro`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature/PI_retrieval/src/BCFPlugin.FCMacro
 .. _`feature/PI_retrieval.project.py`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature/PI_retrieval/src/bcf/project.py
 .. _`project.SimpleList`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/647b6845ae819e1175de2539e27ec42a08c45f1a/src/bcf/project.py#L68
@@ -193,11 +200,66 @@
 .. _`yoriksIfcPost`: https://forum.freecadweb.org/viewtopic.php?p=318880#p318880
 .. _`model/view`: https://doc.qt.io/qt-5/model-view-programming.html
 .. _`./bcfplugin/gui/comment-list/`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/feature/gui_comment_list/bcfplugin/gui/comment-list
+.. _`QValidator`: https://doc.qt.io/qt-5/qvalidator.html
 
 .. role:: raw-html(raw)
   :format: html 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**July 10th:** My work today boils down to this: 
+
+- The comment list is finished, apart from a small bug when scrolling
+  horizontally
+- The programmaticInterface got a new function to apply visibility settings of a
+  viewpoint to the objects in the view. 
+
+So now the more detailed version: 
+
+`commit fc93660`_ fixed two bugs when painting the comment list. Both were
+caused by a wrong use of Qt. Previously the position, at which the next comment
+should be drawn, was calculated by hand. Now this position is taken from the
+argument `options` and its member `rect`. 
+
+.. code:: python
+
+  def paint(self, painter, option, index):
+    topY = option.rect.y()
+
+`commit c93b004`_ extended `pI.getTopic()`_ with some context awareness. The
+general approach is to not expose the data model to the UI layer. Thus for every
+retrieve action, requested from `pI`, a deep copy of the actual object is
+returned instead of just the reference. `pI.getTopic()`_ however is used inside
+and outside `pI`__. If it is called from inside of the same module the correct
+reference to the actual element shall be returned, if however called from the
+outside a copy has to be created and returned to the calling function.
+`pI.getTopic()`_ is now able to do this, using the `inspect`_ module.
+
+__ `./src/frontend/programmaticInterface.py`_
+
+`commit a702021`_ integrated the `pI` into the model of the comment list, this
+commit therefore made it possible to view actual comments of a bcf file that
+gets opened during runtime. 
+
+`commit 894de41`_ introduces the logical next step to the previous commit. It
+integrated the comment list into the existing plugin, which previously could
+open a project and let the user choose between topics. Now, after the user has
+chosen a topic, all comments will be visible and available for modification. The
+modification however is constrained with a `QValidator`_.
+
+`commit 9814bb4`_ adds the functionality of displaying a small pop up window
+showing an error to the user. 
+
+`commit bc96642`_ contains the functionality of applying visibility settings to
+the objects in the currently open view. 
+
+
+To checkout the current state of the plugin run the following command from the
+directory `./bcfplugin/gui`:
+
+.. code:: bash
+
+  python plugin_view.py
 
 **July 9th:** Well I have learned a lot about Qt and how I can customize
 existing views with delegates and models. That said the main advancement of
@@ -210,9 +272,9 @@ approach of qt and uses a custom delegate to display the list items. The
 development files are located inside of `./bcfplugin/gui/comment-list/`_.
 To try it just run
 
-```
-python mainwindow.py
-```
+.. code:: bash
+
+  python mainwindow.py
 
 from inside the before mentioned directory.
 
