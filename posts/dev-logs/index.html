@@ -81,6 +81,41 @@
     </header><div class="e-content entry-content" itemprop="articleBody text">
     <div>
 <p>This is a daily updated log of the work I do on the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/">BCF-plugin</a> for FreeCAD</p>
+<p><strong>July 11th:</strong> Qt is easy to start with, but hard to get right.</p>
+<p>I today was mostly on bug hunts, why some stuff was not showing or behaving as I
+wanted it to. Like for example the horizontal scrolling in the comment view. It
+somehow did not draw the correct contents when scrolled horizontally.
+Furthermore was the horizontal scrollbar kind of inconsistent. It did not always
+show up. Both these issues are fixed in <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/f82e40a9f2f5e8fbcf6cf7cbf3c9bb2e96232654">commit f82e40a</a>. The first bug was
+resolved by correctly setting the drawing position according to
+<a class="reference external" href="https://doc.qt.io/qt-5/qstyleoptionviewitem.html">QStyleOptionViewItem options</a>. The second bug was caused by an incorrect
+calculation of the length of an item in the list in
+<cite>plugin_delegate.sizeHint()</cite>.</p>
+<p>What is particular noteworthy is that the plugin now can also be opened in the
+taskpanel of FreeCAD. This functionality was added in <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/b2ebca5d15d628da4c150dc5a9db723688f49dc3">commit b2ebca5</a> and can
+be used (will be streamlined in the future) by executing the following two
+commands inside of the FreeCAD python console.</p>
+<pre class="code python"><a name="rest_code_e22d31af5e974219998af9dc41d819d9-1"></a><span class="kn">import</span> <span class="nn">bcfplugin.gui.plugin_panel</span> <span class="kn">as</span> <span class="nn">panel</span>
+<a name="rest_code_e22d31af5e974219998af9dc41d819d9-2"></a><span class="n">panel</span><span class="o">.</span><span class="n">launch_ui</span><span class="p">()</span>
+</pre>
+<p>I also had an issue with FreeCAD itself and its behavior of swallowing
+exceptions that are thrown inside of my plugin. It is really nice that an
+exception inside an outside plugin does not crash FreeCAD, and that is how it is
+supposed to be. But an error message, that an exception was thrown inside the
+plugin, would sometimes greatly improve debugging. The bug that made me aware of
+this fact was that in the comment view comments were shown in FreeCAD on my PC
+running ArchLinux but were not shown on the virtual machine running Ubuntu
+18.04. This behavior was rooted in a missing import of <cite>QtCore.Qt</cite> in
+<cite>plugin_delegate.py</cite> and <cite>plugin_mode.py</cite>. Strangely, though, it worked on my PC
+when it actually shouldn't. Anyways, the fix is contained in <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/9cfb5fa4bae30a43c77bea363c0caf54d9f78f8b">commit 9cfb5fa</a>.</p>
+<p>Finally, not only bugs were fixed today, also something new was added to the UI.
+Below the comment list a <cite>QLineEdit</cite> is now accessible for adding new comments.
+A new comment can be submitted by hitting enter after finished. Not only the
+comment has to be entered into this field, however, the author's E-Mail has to
+be appended to the comment, separating the two with ' -- '. If an invalid
+comment is about to be inserted a tooltip will be shown with a guide to how the
+text shall be structured in order for it to be added. This functionality was
+added in <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/47eaded6a02b76ebc162d7380cd4ae908139facd">commit 47eaded</a>.</p>
 <p><strong>July 10th:</strong> My work today boils down to this:</p>
 <ul class="simple">
 <li>The comment list is finished, apart from a small bug when scrolling
@@ -93,8 +128,8 @@ viewpoint to the objects in the view.</li>
 caused by a wrong use of Qt. Previously the position, at which the next comment
 should be drawn, was calculated by hand. Now this position is taken from the
 argument <cite>options</cite> and its member <cite>rect</cite>.</p>
-<pre class="code python"><a name="rest_code_bfc346b0578a486daec68b43141e036e-1"></a><span class="k">def</span> <span class="nf">paint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">painter</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
-<a name="rest_code_bfc346b0578a486daec68b43141e036e-2"></a>  <span class="n">topY</span> <span class="o">=</span> <span class="n">option</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">y</span><span class="p">()</span>
+<pre class="code python"><a name="rest_code_94550f6c6f9046878e585c7291d78d83-1"></a><span class="k">def</span> <span class="nf">paint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">painter</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+<a name="rest_code_94550f6c6f9046878e585c7291d78d83-2"></a>  <span class="n">topY</span> <span class="o">=</span> <span class="n">option</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">y</span><span class="p">()</span>
 </pre>
 <p><a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/c93b00461a557db637f52b105b7a3c5c58f952a1">commit c93b004</a> extended <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/bc9664236bf09c60cfd73cde8ea6160f342bf8a1/bcfplugin/programmaticInterface.py#L876">pI.getTopic()</a> with some context awareness. The
 general approach is to not expose the data model to the UI layer. Thus for every
@@ -118,7 +153,7 @@ showing an error to the user.</p>
 the objects in the currently open view.</p>
 <p>To checkout the current state of the plugin run the following command from the
 directory <cite>./bcfplugin/gui</cite>:</p>
-<pre class="code bash"><a name="rest_code_c3f92be3a29a415cb8026eaf7c7ba969-1"></a>python plugin_view.py
+<pre class="code bash"><a name="rest_code_a17abf1f549c42eca69ba0f8990394e4-1"></a>python plugin_view.py
 </pre>
 <p><strong>July 9th:</strong> Well I have learned a lot about Qt and how I can customize
 existing views with delegates and models. That said the main advancement of
@@ -129,7 +164,7 @@ adds the first (usable) version of the list. It is based on the <a class="refere
 approach of qt and uses a custom delegate to display the list items. The
 development files are located inside of <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/feature/gui_comment_list/bcfplugin/gui/comment-list">./bcfplugin/gui/comment-list/</a>.
 To try it just run</p>
-<pre class="code bash"><a name="rest_code_f5c98bd2eefb460781ef14a570943575-1"></a>python mainwindow.py
+<pre class="code bash"><a name="rest_code_cd94711301d6483eb37e0e0beaae0e1b-1"></a>python mainwindow.py
 </pre>
 <p>from inside the before mentioned directory.</p>
 <p><strong>July 8th:</strong> Today I started with the first version of the gui. It is
