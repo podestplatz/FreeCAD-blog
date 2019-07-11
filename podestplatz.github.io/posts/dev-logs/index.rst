@@ -110,6 +110,10 @@
 .. _`commit 894de41`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/894de41ef6489fd54efca1000f65dc07e47525b0
 .. _`commit 9814bb4`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/9814bb439c2283a5749444b5672ba244b9c78b83
 .. _`commit bc96642`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/bc9664236bf09c60cfd73cde8ea6160f342bf8a1
+.. _`commit f82e40a`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/f82e40a9f2f5e8fbcf6cf7cbf3c9bb2e96232654
+.. _`commit b2ebca5`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/b2ebca5d15d628da4c150dc5a9db723688f49dc3
+.. _`commit 9cfb5fa`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/9cfb5fa4bae30a43c77bea363c0caf54d9f78f8b
+.. _`commit 47eaded`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/47eaded6a02b76ebc162d7380cd4ae908139facd
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
@@ -201,11 +205,55 @@
 .. _`model/view`: https://doc.qt.io/qt-5/model-view-programming.html
 .. _`./bcfplugin/gui/comment-list/`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/feature/gui_comment_list/bcfplugin/gui/comment-list
 .. _`QValidator`: https://doc.qt.io/qt-5/qvalidator.html
+.. _`QStyleOptionViewItem options`: https://doc.qt.io/qt-5/qstyleoptionviewitem.html
 
 .. role:: raw-html(raw)
   :format: html 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**July 11th:** Qt is easy to start with, but hard to get right. 
+
+I today was mostly on bug hunts, why some stuff was not showing or behaving as I
+wanted it to. Like for example the horizontal scrolling in the comment view. It
+somehow did not draw the correct contents when scrolled horizontally.
+Furthermore was the horizontal scrollbar kind of inconsistent. It did not always
+show up. Both these issues are fixed in `commit f82e40a`_. The first bug was
+resolved by correctly setting the drawing position according to
+`QStyleOptionViewItem options`_. The second bug was caused by an incorrect
+calculation of the length of an item in the list in
+`plugin_delegate.sizeHint()`.
+
+What is particular noteworthy is that the plugin now can also be opened in the
+taskpanel of FreeCAD. This functionality was added in `commit b2ebca5`_ and can
+be used (will be streamlined in the future) by executing the following two
+commands inside of the FreeCAD python console.
+
+.. code:: python
+  
+  import bcfplugin.gui.plugin_panel as panel
+  panel.launch_ui()
+
+I also had an issue with FreeCAD itself and its behavior of swallowing
+exceptions that are thrown inside of my plugin. It is really nice that an
+exception inside an outside plugin does not crash FreeCAD, and that is how it is
+supposed to be. But an error message, that an exception was thrown inside the
+plugin, would sometimes greatly improve debugging. The bug that made me aware of
+this fact was that in the comment view comments were shown in FreeCAD on my PC
+running ArchLinux but were not shown on the virtual machine running Ubuntu
+18.04. This behavior was rooted in a missing import of `QtCore.Qt` in
+`plugin_delegate.py` and `plugin_mode.py`. Strangely, though, it worked on my PC
+when it actually shouldn't. Anyways, the fix is contained in `commit 9cfb5fa`_.
+
+Finally, not only bugs were fixed today, also something new was added to the UI.
+Below the comment list a `QLineEdit` is now accessible for adding new comments.
+A new comment can be submitted by hitting enter after finished. Not only the
+comment has to be entered into this field, however, the author's E-Mail has to
+be appended to the comment, separating the two with ' -- '. If an invalid
+comment is about to be inserted a tooltip will be shown with a guide to how the
+text shall be structured in order for it to be added. This functionality was
+added in `commit 47eaded`_.
+
 
 **July 10th:** My work today boils down to this: 
 
