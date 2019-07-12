@@ -101,6 +101,8 @@
 .. _`commit 0a27fd2`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/0a27fd2307ba64e4fbbd9b58f2a3fc4a3d1ce505
 .. _`commit 53d9dcf`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/53d9dcfd29768eefc02f091480a0c3fa41449af4
 .. _`commit 9005790`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/900578927ca57db2f527284d4c13bb8a2b4c48ab
+.. _`commit b156671`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/b15667183dacf3b6715759e353c55375d9b2f71d
+.. _`commit 253e3a9`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/253e3a956e62926d208b863b88f282a2a7c4772d
 .. _`commit 6887d52`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/6887d529f1e3993667338f68402782597d54f63c
 .. _`commit 85d1e8b`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/85d1e8b683612a6b28763ffccfc9689269ba77f4
 .. _`commit 5f242fd`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/5f242fde1987d106c7c52a90a1aeb9543b48be42
@@ -114,6 +116,7 @@
 .. _`commit b2ebca5`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/b2ebca5d15d628da4c150dc5a9db723688f49dc3
 .. _`commit 9cfb5fa`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/9cfb5fa4bae30a43c77bea363c0caf54d9f78f8b
 .. _`commit 47eaded`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/47eaded6a02b76ebc162d7380cd4ae908139facd
+.. _`commit 051622c`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/051622cea6fe0f1091a8093f283e3a120506d031
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
@@ -206,11 +209,52 @@
 .. _`./bcfplugin/gui/comment-list/`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/feature/gui_comment_list/bcfplugin/gui/comment-list
 .. _`QValidator`: https://doc.qt.io/qt-5/qvalidator.html
 .. _`QStyleOptionViewItem options`: https://doc.qt.io/qt-5/qstyleoptionviewitem.html
+.. _`higgs-bugson`: https://en.wikipedia.org/wiki/Heisenbug#Related_terms
 
 .. role:: raw-html(raw)
   :format: html 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+
+**July 12th:** The usability of the plugin was greatly improved today!
+
+Most of the time today I was working on the feature to delete comments from the
+UI. The way I want to do it is with a button that appears on the right side of
+the comment when the mouse hovers the comment. It still is not perfect, but
+already usable. The accompanying commit is `commit 051622c`_.
+
+`commit 051622c`_ contains one particular line that I changed. It was a
+`higgs-bugson`_, at least that is the most fitting classification. The behaviour
+expressed was that comments were deleted by pressing the button... in the file
+but not in the model. Strangely my testbench for deleting objects, especially
+comments, worked. After long debugging I noticed that my policy of not exposing
+the real working data to the UI came back to haunt me. My `pI.deleteObject`
+function looked like this:
+
+.. code:: python
+
+  def deleteObject(object):
+    global curProject
+    realObject = searchObject(object)
+    realObject.state = State.State.DELETED
+    writer.addProjectUpdate(curProject, realObject, None)
+    writer.processProjectUpdates()
+    curProject.deleteObject(object)
+
+The last line here was the culprit. It is responsible for deleting the object
+from the data model after it was deleted from the file. Here I used the wrong
+reference, namely the one of the copy of the real object. 
+
+Then `commit b156671`_ adds a save button, that opes a "save-file-dialog" and
+lets the user save the current state of the working directory. 
+
+`commit 253e3a9`_ fixes the bug where the comment list was not reset when the
+topics were switched. 
+
+There are still some commits I pushed today, but these were the most notable
+ones. 
+
 
 **July 11th:** Qt is easy to start with, but hard to get right. 
 

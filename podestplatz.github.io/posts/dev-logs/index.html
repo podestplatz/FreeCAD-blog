@@ -81,6 +81,35 @@
     </header><div class="e-content entry-content" itemprop="articleBody text">
     <div>
 <p>This is a daily updated log of the work I do on the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/">BCF-plugin</a> for FreeCAD</p>
+<p><strong>July 12th:</strong> The usability of the plugin was greatly improved today!</p>
+<p>Most of the time today I was working on the feature to delete comments from the
+UI. The way I want to do it is with a button that appears on the right side of
+the comment when the mouse hovers the comment. It still is not perfect, but
+already usable. The accompanying commit is <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/051622cea6fe0f1091a8093f283e3a120506d031">commit 051622c</a>.</p>
+<p><a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/051622cea6fe0f1091a8093f283e3a120506d031">commit 051622c</a> contains one particular line that I changed. It was a
+<a class="reference external" href="https://en.wikipedia.org/wiki/Heisenbug#Related_terms">higgs-bugson</a>, at least that is the most fitting classification. The behaviour
+expressed was that comments were deleted by pressing the button... in the file
+but not in the model. Strangely my testbench for deleting objects, especially
+comments, worked. After long debugging I noticed that my policy of not exposing
+the real working data to the UI came back to haunt me. My <cite>pI.deleteObject</cite>
+function looked like this:</p>
+<pre class="code python"><a name="rest_code_8dd212d2dae641f7a9a02405986a0e92-1"></a><span class="k">def</span> <span class="nf">deleteObject</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<a name="rest_code_8dd212d2dae641f7a9a02405986a0e92-2"></a>  <span class="k">global</span> <span class="n">curProject</span>
+<a name="rest_code_8dd212d2dae641f7a9a02405986a0e92-3"></a>  <span class="n">realObject</span> <span class="o">=</span> <span class="n">searchObject</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span>
+<a name="rest_code_8dd212d2dae641f7a9a02405986a0e92-4"></a>  <span class="n">realObject</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">State</span><span class="o">.</span><span class="n">State</span><span class="o">.</span><span class="n">DELETED</span>
+<a name="rest_code_8dd212d2dae641f7a9a02405986a0e92-5"></a>  <span class="n">writer</span><span class="o">.</span><span class="n">addProjectUpdate</span><span class="p">(</span><span class="n">curProject</span><span class="p">,</span> <span class="n">realObject</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+<a name="rest_code_8dd212d2dae641f7a9a02405986a0e92-6"></a>  <span class="n">writer</span><span class="o">.</span><span class="n">processProjectUpdates</span><span class="p">()</span>
+<a name="rest_code_8dd212d2dae641f7a9a02405986a0e92-7"></a>  <span class="n">curProject</span><span class="o">.</span><span class="n">deleteObject</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span>
+</pre>
+<p>The last line here was the culprit. It is responsible for deleting the object
+from the data model after it was deleted from the file. Here I used the wrong
+reference, namely the one of the copy of the real object.</p>
+<p>Then <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/b15667183dacf3b6715759e353c55375d9b2f71d">commit b156671</a> adds a save button, that opes a "save-file-dialog" and
+lets the user save the current state of the working directory.</p>
+<p><a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/253e3a956e62926d208b863b88f282a2a7c4772d">commit 253e3a9</a> fixes the bug where the comment list was not reset when the
+topics were switched.</p>
+<p>There are still some commits I pushed today, but these were the most notable
+ones.</p>
 <p><strong>July 11th:</strong> Qt is easy to start with, but hard to get right.</p>
 <p>I today was mostly on bug hunts, why some stuff was not showing or behaving as I
 wanted it to. Like for example the horizontal scrolling in the comment view. It
@@ -95,8 +124,8 @@ calculation of the length of an item in the list in
 taskpanel of FreeCAD. This functionality was added in <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/b2ebca5d15d628da4c150dc5a9db723688f49dc3">commit b2ebca5</a> and can
 be used (will be streamlined in the future) by executing the following two
 commands inside of the FreeCAD python console.</p>
-<pre class="code python"><a name="rest_code_e22d31af5e974219998af9dc41d819d9-1"></a><span class="kn">import</span> <span class="nn">bcfplugin.gui.plugin_panel</span> <span class="kn">as</span> <span class="nn">panel</span>
-<a name="rest_code_e22d31af5e974219998af9dc41d819d9-2"></a><span class="n">panel</span><span class="o">.</span><span class="n">launch_ui</span><span class="p">()</span>
+<pre class="code python"><a name="rest_code_4ef5290eab364278a2244e9fa8bf73e9-1"></a><span class="kn">import</span> <span class="nn">bcfplugin.gui.plugin_panel</span> <span class="kn">as</span> <span class="nn">panel</span>
+<a name="rest_code_4ef5290eab364278a2244e9fa8bf73e9-2"></a><span class="n">panel</span><span class="o">.</span><span class="n">launch_ui</span><span class="p">()</span>
 </pre>
 <p>I also had an issue with FreeCAD itself and its behavior of swallowing
 exceptions that are thrown inside of my plugin. It is really nice that an
@@ -128,8 +157,8 @@ viewpoint to the objects in the view.</li>
 caused by a wrong use of Qt. Previously the position, at which the next comment
 should be drawn, was calculated by hand. Now this position is taken from the
 argument <cite>options</cite> and its member <cite>rect</cite>.</p>
-<pre class="code python"><a name="rest_code_94550f6c6f9046878e585c7291d78d83-1"></a><span class="k">def</span> <span class="nf">paint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">painter</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
-<a name="rest_code_94550f6c6f9046878e585c7291d78d83-2"></a>  <span class="n">topY</span> <span class="o">=</span> <span class="n">option</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">y</span><span class="p">()</span>
+<pre class="code python"><a name="rest_code_71e3b4cd04bd40589d05fea2f1bfbd7f-1"></a><span class="k">def</span> <span class="nf">paint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">painter</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+<a name="rest_code_71e3b4cd04bd40589d05fea2f1bfbd7f-2"></a>  <span class="n">topY</span> <span class="o">=</span> <span class="n">option</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">y</span><span class="p">()</span>
 </pre>
 <p><a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/c93b00461a557db637f52b105b7a3c5c58f952a1">commit c93b004</a> extended <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/bc9664236bf09c60cfd73cde8ea6160f342bf8a1/bcfplugin/programmaticInterface.py#L876">pI.getTopic()</a> with some context awareness. The
 general approach is to not expose the data model to the UI layer. Thus for every
@@ -153,7 +182,7 @@ showing an error to the user.</p>
 the objects in the currently open view.</p>
 <p>To checkout the current state of the plugin run the following command from the
 directory <cite>./bcfplugin/gui</cite>:</p>
-<pre class="code bash"><a name="rest_code_a17abf1f549c42eca69ba0f8990394e4-1"></a>python plugin_view.py
+<pre class="code bash"><a name="rest_code_81ddcc45687a411ca5b51193ef97422d-1"></a>python plugin_view.py
 </pre>
 <p><strong>July 9th:</strong> Well I have learned a lot about Qt and how I can customize
 existing views with delegates and models. That said the main advancement of
@@ -164,7 +193,7 @@ adds the first (usable) version of the list. It is based on the <a class="refere
 approach of qt and uses a custom delegate to display the list items. The
 development files are located inside of <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/feature/gui_comment_list/bcfplugin/gui/comment-list">./bcfplugin/gui/comment-list/</a>.
 To try it just run</p>
-<pre class="code bash"><a name="rest_code_cd94711301d6483eb37e0e0beaae0e1b-1"></a>python mainwindow.py
+<pre class="code bash"><a name="rest_code_efcf1586a45448779a4e225206010453-1"></a>python mainwindow.py
 </pre>
 <p>from inside the before mentioned directory.</p>
 <p><strong>July 8th:</strong> Today I started with the first version of the gui. It is
