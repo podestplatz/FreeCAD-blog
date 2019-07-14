@@ -216,6 +216,9 @@
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
 
+**July 14th:** Today also I did not work on the plugin. 
+
+**July 13th:** I did not work on the plugin today. 
 
 **July 12th:** The usability of the plugin was greatly improved today!
 
