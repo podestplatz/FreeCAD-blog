@@ -109,6 +109,7 @@
 .. _`commit fc93660`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/fc93660a8108ba98bac265e3689532c3975609fc
 .. _`commit c93b004`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/c93b00461a557db637f52b105b7a3c5c58f952a1
 .. _`commit a702021`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/a702021d1ae226a256ec9c3341ef028855eb6170
+.. _`commit 3642e47`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/3642e4794e052ab43a1fa44460a69ee7301d14ad
 .. _`commit 894de41`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/894de41ef6489fd54efca1000f65dc07e47525b0
 .. _`commit 9814bb4`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/9814bb439c2283a5749444b5672ba244b9c78b83
 .. _`commit bc96642`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/bc9664236bf09c60cfd73cde8ea6160f342bf8a1
@@ -215,6 +216,21 @@
   :format: html 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**July 15th:** Today I mostly worked offline, and only published one commit. 
+The `commit 3642e47`_ adds the feature that the color of a comment is blue if it
+references a viewpoint. Otherwise it will be drawn in black.
+
+Most of the work today, I did on the "SnapshotBar", as I call it. This shall be
+a collection of classes (comprised of model classes and view classes) that
+display small versions of the snapshots contained in the project. It shall
+present three snapshots in a row, and if more snapshots are present in the topic
+then a vertical scrollbar is available. 
+
+However, I am currently still struggling with getting the images to show using a
+`QListView`. I tried returning a `QLabel` from `SnapshotModel.data()` into which
+already the desired picture is loaded, but it did not work that way. Hopefully I
+get it done by tomorrow.
 
 **July 14th:** Today also I did not work on the plugin. 
 
