@@ -118,6 +118,8 @@
 .. _`commit 9cfb5fa`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/9cfb5fa4bae30a43c77bea363c0caf54d9f78f8b
 .. _`commit 47eaded`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/47eaded6a02b76ebc162d7380cd4ae908139facd
 .. _`commit 051622c`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/051622cea6fe0f1091a8093f283e3a120506d031
+.. _`commit 0938ac0`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/0938ac01ac953146aa12d56c2b5578c7660101e7
+.. _`commit d20a3a9`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/d20a3a9bdcdfb08a3ee352c2e5cd946b6de6307e
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
@@ -216,6 +218,24 @@
   :format: html 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**July 16th:** I finished the SnapshotBar I was talking about yesterday. Till
+now it just shows a maximum of three snapshots. The way I implemented it is a
+bit hacky because I didn't find a suitable way to just display labels, that
+contain a pixmap, inside of a list view. So I am just using the
+`Qt.DecorationRole` to display the icons of the list elements, and nothing else.
+To check it out see `commit 0938ac0`_.
+
+In the second "major" commit today I implemented word-wrapping for the comment
+text. For this I integrated the `width` of the widget into the associated
+delegate class (`CommentDelegate`), I couldn't find any other way to access,
+reliably, the current width of the widget, which serves as base for the wrapping
+calculation. This is still in development and is buggy. For example: the list
+items do not properly resize when the width of the window decreases and the
+comments are wrapped. But on the upside: the bug with the wrongly placed
+`Delete` button was fixed during developing the comment wrapping. All of this is
+contained in `commit d20a3a9`_.
+
 
 **July 15th:** Today I mostly worked offline, and only published one commit. 
 The `commit 3642e47`_ adds the feature that the color of a comment is blue if it
