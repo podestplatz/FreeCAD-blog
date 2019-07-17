@@ -120,6 +120,10 @@
 .. _`commit 051622c`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/051622cea6fe0f1091a8093f283e3a120506d031
 .. _`commit 0938ac0`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/0938ac01ac953146aa12d56c2b5578c7660101e7
 .. _`commit d20a3a9`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/d20a3a9bdcdfb08a3ee352c2e5cd946b6de6307e
+.. _`commit 18c5b9e`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/18c5b9e0253930d0bd254a78f685da9bd2ade7cd
+.. _`commit 24bd929`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/24bd9295a93c57c90f8bf26cf10f739b1721422a
+.. _`commit 74daa24`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/74daa24416562759a32818c8d8ed8adad1158355
+.. _`commit fe7d195`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/fe7d19597cebf8218ef48cbbd75e47a815c0c38b
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
@@ -213,11 +217,50 @@
 .. _`QValidator`: https://doc.qt.io/qt-5/qvalidator.html
 .. _`QStyleOptionViewItem options`: https://doc.qt.io/qt-5/qstyleoptionviewitem.html
 .. _`higgs-bugson`: https://en.wikipedia.org/wiki/Heisenbug#Related_terms
+.. _`QScreen`: https://doc.qt.io/qt-5/qscreen.html
+.. _QuarternionTutorial: https://eater.net/quaternions
 
 .. role:: raw-html(raw)
   :format: html 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**July 17th:** Now two options are available for exploring the available
+viewpoints. The one was already added and is the SnapshotBar. It is still
+lacking the functionality to activate a viewpoint when a certain click event
+happens. The second option is a viewpoints list. It lists all the viewpoints
+available in a selected topic. If this viewpoint also references a snapshot file
+then an icon of this snapshot file is shown beside the viewpoint filename. The
+icon can be changed in size by calling `ViewpointsListModel.setIconSize()`, per
+default it is set to be 10 millimeters in width and height. Sizes are expected
+to be given in millimeters. The commit adding the Viewpoints list is `commit
+18c5b9e`_.
+
+The next commit, `commit 24bd929`_, somehow is separate from the above one, but
+is also required by it. It adds the function `util.getCurrentQScreen()` to
+`util.py`. This function returns the `QScreen`_ associated with the screen the
+current Qt application is shown on. This serves the purpose of retrieving the
+correct DPI setting to be able to convert the millimeter sizes to pixels.
+
+Then the bug fix, which cost me some time (3.5 hours to be exact), of `commit
+fe7d195`_ fixes the issue where the size of a comment list element is not
+properly resized, as its painted area increases or decreases in height. 
+
+The remaining time today, 3 hours, I spent with applying the viewpoint settings
+to the active view in FreeCAD. As many of you will know, Quarternions are a
+great tool for representing rotations in the three dimensional space. When
+applying the camera settings, inevitably a rotation has to take place, which are
+done in FreeCAD using ... exactly! Quarternions. Initially
+I thought that I didn't have to be concerned with Quarternions as some library
+functions exist that handle it for me. But during the application of the
+viewpoint settings, I noticed that my approach to rotating the camera does
+probably not work. So I walked through `this explorative video series`__, which
+is great, to get a better understanding of them and how to operate with them.
+I want to better understand the 3D rotations and how FreeCAD does them, to be
+able to correctly rotate the camera. 
+
+__ QuarternionTutorial_
+
 
 **July 16th:** I finished the SnapshotBar I was talking about yesterday. Till
 now it just shows a maximum of three snapshots. The way I implemented it is a
