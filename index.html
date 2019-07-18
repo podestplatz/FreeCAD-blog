@@ -65,6 +65,27 @@
     </header><div class="e-content entry-content">
     <div>
 <p>This is a daily updated log of the work I do on the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/">BCF-plugin</a> for FreeCAD</p>
+<p><strong>July 18th:</strong> Not much dev work done today, although I have written quite a
+number of lines. Aside from switching to relative distances in the UI, I also
+make an effort to increase performance of the plugin a bit.
+Currently it is the case that for every inquiry of the programmatic interface,
+if information shall be retrieved (like a list of all comments), then in the
+process of making a deep copy of every comment, inevitably a deep copy of the
+whole project is made. Why? Because of the <cite>Hierarchy</cite> interface, which provides
+each implementing class with a reference to the class that holds the reference
+to it. That means, during a deep copy operation, python will stumble on the
+reference to the containing object and make a copy of it too. But the containing
+object again has a reference to its containing object and so on. So in effect,
+if a copy shall be created for the modification date, the complete project with
+all its topics is copied too, which is a huge overhead!
+To solve this performance problem I implemented the special function
+<cite>__deepcopy__()</cite> into every class that inherits from <cite>Hierarchy</cite>. But the test
+cases don't work anylonger with these changes. That is were I left off today.</p>
+<p>Before implementing <cite>__deepcopy__()</cite> I made an effort to understand rotations
+in the three dimensional space, using <a class="reference external" href="https://en.wikipedia.org/wiki/Euler_angles">Euler-Angles (yaw-pitch-roll)</a>, a
+<a class="reference external" href="https://en.wikipedia.org/wiki/Rotation_matrix#In_three_dimensions">rotation matrix</a> and quarternions (which are really cool btw.). Also I looked
+into how one can be transformed into the other. And I got stuck at trying to
+recreate the example given on the <a class="reference external" href="https://www.freecadweb.org/wiki/File:PlacePyConv10.png">wiki</a> page, unfortunately to no avail.</p>
 <p><strong>July 17th:</strong> Now two options are available for exploring the available
 viewpoints. The one was already added and is the SnapshotBar. It is still
 lacking the functionality to activate a viewpoint when a certain click event
@@ -136,13 +157,13 @@ but not in the model. Strangely my testbench for deleting objects, especially
 comments, worked. After long debugging I noticed that my policy of not exposing
 the real working data to the UI came back to haunt me. My <cite>pI.deleteObject</cite>
 function looked like this:</p>
-<pre class="code python"><a name="rest_code_35425bcc7eca45f7955acc577f99fa21-1"></a><span class="k">def</span> <span class="nf">deleteObject</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-<a name="rest_code_35425bcc7eca45f7955acc577f99fa21-2"></a>  <span class="k">global</span> <span class="n">curProject</span>
-<a name="rest_code_35425bcc7eca45f7955acc577f99fa21-3"></a>  <span class="n">realObject</span> <span class="o">=</span> <span class="n">searchObject</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span>
-<a name="rest_code_35425bcc7eca45f7955acc577f99fa21-4"></a>  <span class="n">realObject</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">State</span><span class="o">.</span><span class="n">State</span><span class="o">.</span><span class="n">DELETED</span>
-<a name="rest_code_35425bcc7eca45f7955acc577f99fa21-5"></a>  <span class="n">writer</span><span class="o">.</span><span class="n">addProjectUpdate</span><span class="p">(</span><span class="n">curProject</span><span class="p">,</span> <span class="n">realObject</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
-<a name="rest_code_35425bcc7eca45f7955acc577f99fa21-6"></a>  <span class="n">writer</span><span class="o">.</span><span class="n">processProjectUpdates</span><span class="p">()</span>
-<a name="rest_code_35425bcc7eca45f7955acc577f99fa21-7"></a>  <span class="n">curProject</span><span class="o">.</span><span class="n">deleteObject</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span>
+<pre class="code python"><a name="rest_code_a8670283221e474092c02a5e447eac2e-1"></a><span class="k">def</span> <span class="nf">deleteObject</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<a name="rest_code_a8670283221e474092c02a5e447eac2e-2"></a>  <span class="k">global</span> <span class="n">curProject</span>
+<a name="rest_code_a8670283221e474092c02a5e447eac2e-3"></a>  <span class="n">realObject</span> <span class="o">=</span> <span class="n">searchObject</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span>
+<a name="rest_code_a8670283221e474092c02a5e447eac2e-4"></a>  <span class="n">realObject</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">State</span><span class="o">.</span><span class="n">State</span><span class="o">.</span><span class="n">DELETED</span>
+<a name="rest_code_a8670283221e474092c02a5e447eac2e-5"></a>  <span class="n">writer</span><span class="o">.</span><span class="n">addProjectUpdate</span><span class="p">(</span><span class="n">curProject</span><span class="p">,</span> <span class="n">realObject</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+<a name="rest_code_a8670283221e474092c02a5e447eac2e-6"></a>  <span class="n">writer</span><span class="o">.</span><span class="n">processProjectUpdates</span><span class="p">()</span>
+<a name="rest_code_a8670283221e474092c02a5e447eac2e-7"></a>  <span class="n">curProject</span><span class="o">.</span><span class="n">deleteObject</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span>
 </pre>
 <p>The last line here was the culprit. It is responsible for deleting the object
 from the data model after it was deleted from the file. Here I used the wrong
@@ -167,8 +188,8 @@ calculation of the length of an item in the list in
 taskpanel of FreeCAD. This functionality was added in <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/b2ebca5d15d628da4c150dc5a9db723688f49dc3">commit b2ebca5</a> and can
 be used (will be streamlined in the future) by executing the following two
 commands inside of the FreeCAD python console.</p>
-<pre class="code python"><a name="rest_code_a948bcd28a794a62a0f7685e86d226b9-1"></a><span class="kn">import</span> <span class="nn">bcfplugin.gui.plugin_panel</span> <span class="kn">as</span> <span class="nn">panel</span>
-<a name="rest_code_a948bcd28a794a62a0f7685e86d226b9-2"></a><span class="n">panel</span><span class="o">.</span><span class="n">launch_ui</span><span class="p">()</span>
+<pre class="code python"><a name="rest_code_0a2046cdd787404db7963cdea89a02dc-1"></a><span class="kn">import</span> <span class="nn">bcfplugin.gui.plugin_panel</span> <span class="kn">as</span> <span class="nn">panel</span>
+<a name="rest_code_0a2046cdd787404db7963cdea89a02dc-2"></a><span class="n">panel</span><span class="o">.</span><span class="n">launch_ui</span><span class="p">()</span>
 </pre>
 <p>I also had an issue with FreeCAD itself and its behavior of swallowing
 exceptions that are thrown inside of my plugin. It is really nice that an
@@ -200,8 +221,8 @@ viewpoint to the objects in the view.</li>
 caused by a wrong use of Qt. Previously the position, at which the next comment
 should be drawn, was calculated by hand. Now this position is taken from the
 argument <cite>options</cite> and its member <cite>rect</cite>.</p>
-<pre class="code python"><a name="rest_code_a5f6330277f24e0c95ed648de307a2ea-1"></a><span class="k">def</span> <span class="nf">paint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">painter</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
-<a name="rest_code_a5f6330277f24e0c95ed648de307a2ea-2"></a>  <span class="n">topY</span> <span class="o">=</span> <span class="n">option</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">y</span><span class="p">()</span>
+<pre class="code python"><a name="rest_code_654532c197f14948b41b66cb82c6392e-1"></a><span class="k">def</span> <span class="nf">paint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">painter</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+<a name="rest_code_654532c197f14948b41b66cb82c6392e-2"></a>  <span class="n">topY</span> <span class="o">=</span> <span class="n">option</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">y</span><span class="p">()</span>
 </pre>
 <p><a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/c93b00461a557db637f52b105b7a3c5c58f952a1">commit c93b004</a> extended <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/bc9664236bf09c60cfd73cde8ea6160f342bf8a1/bcfplugin/programmaticInterface.py#L876">pI.getTopic()</a> with some context awareness. The
 general approach is to not expose the data model to the UI layer. Thus for every
@@ -225,7 +246,7 @@ showing an error to the user.</p>
 the objects in the currently open view.</p>
 <p>To checkout the current state of the plugin run the following command from the
 directory <cite>./bcfplugin/gui</cite>:</p>
-<pre class="code bash"><a name="rest_code_09b2d86c44684300bf17ef2c99db3d7f-1"></a>python plugin_view.py
+<pre class="code bash"><a name="rest_code_17a946d35ebe46f69954025d2d322e11-1"></a>python plugin_view.py
 </pre>
 <p><strong>July 9th:</strong> Well I have learned a lot about Qt and how I can customize
 existing views with delegates and models. That said the main advancement of
@@ -236,7 +257,7 @@ adds the first (usable) version of the list. It is based on the <a class="refere
 approach of qt and uses a custom delegate to display the list items. The
 development files are located inside of <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/feature/gui_comment_list/bcfplugin/gui/comment-list">./bcfplugin/gui/comment-list/</a>.
 To try it just run</p>
-<pre class="code bash"><a name="rest_code_ec77cdb9a22f4784ab41314643432590-1"></a>python mainwindow.py
+<pre class="code bash"><a name="rest_code_d9f2c998cbb6441a8bdb3041c64332ae-1"></a>python mainwindow.py
 </pre>
 <p>from inside the before mentioned directory.</p>
 <p><strong>July 8th:</strong> Today I started with the first version of the gui. It is
