@@ -219,11 +219,40 @@
 .. _`higgs-bugson`: https://en.wikipedia.org/wiki/Heisenbug#Related_terms
 .. _`QScreen`: https://doc.qt.io/qt-5/qscreen.html
 .. _QuarternionTutorial: https://eater.net/quaternions
+.. _`Euler-Angles (yaw-pitch-roll)`: https://en.wikipedia.org/wiki/Euler_angles
+.. _`rotation matrix`: https://en.wikipedia.org/wiki/Rotation_matrix#In_three_dimensions
+.. _FreeCADPlacement: https://www.freecadweb.org/wiki/File:PlacePyConv10.png
 
 .. role:: raw-html(raw)
   :format: html 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**July 18th:** Not much dev work done today, although I have written quite a
+number of lines. Aside from switching to relative distances in the UI, I also
+make an effort to increase performance of the plugin a bit. 
+Currently it is the case that for every inquiry of the programmatic interface,
+if information shall be retrieved (like a list of all comments), then in the
+process of making a deep copy of every comment, inevitably a deep copy of the
+whole project is made. Why? Because of the `Hierarchy` interface, which provides
+each implementing class with a reference to the class that holds the reference
+to it. That means, during a deep copy operation, python will stumble on the
+reference to the containing object and make a copy of it too. But the containing
+object again has a reference to its containing object and so on. So in effect,
+if a copy shall be created for the modification date, the complete project with
+all its topics is copied too, which is a huge overhead! 
+To solve this performance problem I implemented the special function
+`__deepcopy__()` into every class that inherits from `Hierarchy`. But the test
+cases don't work anylonger with these changes. That is were I left off today. 
+
+Before implementing `__deepcopy__()` I made an effort to understand rotations
+in the three dimensional space, using `Euler-Angles (yaw-pitch-roll)`_, a
+`rotation matrix`_ and quarternions (which are really cool btw.). Also I looked
+into how one can be transformed into the other. And I got stuck at trying to
+recreate the example given on the wiki__ page, unfortunately to no avail.
+
+__ FreeCADPlacement_
+
 
 **July 17th:** Now two options are available for exploring the available
 viewpoints. The one was already added and is the SnapshotBar. It is still
