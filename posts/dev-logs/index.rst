@@ -228,6 +228,65 @@
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
 
+**July 19th:** Today I spent my time just on the deepcopy topic. As it turnes
+out it is not as easy as I thought to create correct deep copies of objects in
+my data model. 
+
+Things to consider for creating a deep copy:
+
+- The unique `id`, created in the constructor of every class in the data model
+  has to be copied to stay exactly the same. Otherwise the search algorithm
+  implemented in `project.py` does not work anymore. The plugin has to be able
+  to search for an object in the original data model and in the copied one by
+  the same unique `id`. 
+- The state of an object has to be copied also, otherwise the `writer` module
+  won't make an update or in the worst case, delete an object which rather
+  should be modified. 
+
+But a few words on how I am implementing the custom deep copy: 
+
+Since it is not best to copy the whole project, when just copying a single
+comment, somehow the hierarchy of an object (`Hierarchy.containingObject`) has
+to be ignored. But if the member `Hierarchy.containingObject` does not get set
+in any copy function, then the writer module does not work anymore.
+Reason being that for every new update a deepcopy of the project and the
+modified element is made. During an update however the hierarchy of the modified
+element is required, which cannot be created anymore, since
+`Hierarchy.containingObject` did not get set in the copy process. 
+To solve this issue, I decided to copy everything downwards the Hierarchy. If
+for example a copy of a `Markup` object shall be created then everything
+referenced by that markup object is also copied, *but* the `containingObject` of
+this `Markup` object is not copied. The actual way that this can be accomplished
+is really simple: each `__deepcopy__()` function has to set the
+`containingObject` member of its copied members after the copy was being
+created. To illustrate it consider the following code: 
+
+.. code:: python
+
+  from copy import deepcopy
+
+  class Markup(Hierarchy):
+
+    def __deepcopy__(self, memo):
+      ...
+      cpyid = deepcopy(self.id, memo)
+      cpyComment = deepcopy(self.comment, memo)
+      cpy = Markup(...)
+      cpy.comment = cpyComment
+      cpy.comment.containingObject = cpy
+      cpy.id = cpyid
+      ...
+
+Here you see for one that `containingObject` is set, and also that the `id`
+member is copied and overwritten in the new object of `Markup`. 
+This way it is guaranteed that a copy from `Markup` is only copying everything
+below it (i.e.: every member of markup), but the `containingObject` of `Markup`
+itself is left untouched.
+
+Since this deepcopy topic is still really buggy, I don't have any commits to
+show, all work is still done locally.
+
+
 **July 18th:** Not much dev work done today, although I have written quite a
 number of lines. Aside from switching to relative distances in the UI, I also
 make an effort to increase performance of the plugin a bit. 
