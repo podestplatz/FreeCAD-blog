@@ -124,6 +124,9 @@
 .. _`commit 24bd929`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/24bd9295a93c57c90f8bf26cf10f739b1721422a
 .. _`commit 74daa24`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/74daa24416562759a32818c8d8ed8adad1158355
 .. _`commit fe7d195`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/fe7d19597cebf8218ef48cbbd75e47a815c0c38b
+.. _`commit f73b8b1`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/f73b8b19c579b202a69cdedc18ae8735140f00c2
+.. _`commit 975ba91`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/975ba91ef515ddea828d285150264bf0c16e600e
+.. _`commit 042859c`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/042859c8d533df9d7d4ef1f640d6ed3c1bbd1200
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
@@ -149,6 +152,7 @@
 .. _`pI.getTopic()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/bc9664236bf09c60cfd73cde8ea6160f342bf8a1/bcfplugin/programmaticInterface.py#L876
 .. _`BCFPlugin.FCMacro`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature/PI_retrieval/src/BCFPlugin.FCMacro
 .. _`feature/PI_retrieval.project.py`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature/PI_retrieval/src/bcf/project.py
+.. _`feature/gui_switch_to_relative_sizes`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commits/feature/gui_switch_to_relative_sizes
 .. _`project.SimpleList`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/647b6845ae819e1175de2539e27ec42a08c45f1a/src/bcf/project.py#L68
 .. _`project.SimpleElement`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/647b6845ae819e1175de2539e27ec42a08c45f1a/src/bcf/project.py#L29
 .. _`project.debug()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/addc02e58351adb55e584912d5060f3ae2a299dc/src/bcf/project.py#L13
@@ -227,6 +231,23 @@
   :format: html 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**July 22nd:** I fixed some issues I had with the deepcopy
+implementation. Thereby I focused on the modification of a comment. Here it was
+the case that for one the states of objects were not copied, which prevented the
+writer module from updating anything. This part got fixed in `commit f73b8b1`_.
+Then `commit 975ba91`_ fixes the issue of not properly updating the
+`ModificationAuthor` and `ModificationDate` fields inside a comment. 
+
+`commit 042859c`_ merges my feature development branch
+`feature/gui_switch_to_relative_sizes`_ into the main gui feature branch. The
+relative sizes are now calculated using the `QScreen`_ object of the screen the
+Qt application is running on and with it calculating the pixels per millimeter.
+That value is used to convert the distances (given in millimeters) into pixels. 
+
+**July 21st:** Also no work done today.
+
+**July 20th:** Did not work today. 
 
 **July 19th:** Today I spent my time just on the deepcopy topic. As it turnes
 out it is not as easy as I thought to create correct deep copies of objects in
