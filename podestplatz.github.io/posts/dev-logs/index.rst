@@ -226,11 +226,18 @@
 .. _`Euler-Angles (yaw-pitch-roll)`: https://en.wikipedia.org/wiki/Euler_angles
 .. _`rotation matrix`: https://en.wikipedia.org/wiki/Rotation_matrix#In_three_dimensions
 .. _FreeCADPlacement: https://www.freecadweb.org/wiki/File:PlacePyConv10.png
+.. _Wikipage: https://github.com/podestplatz/BCF-Plugin-FreeCAD/wiki
 
 .. role:: raw-html(raw)
   :format: html 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**July 23rd:** Today I have updated the wiki__ page of the project, as well as
+written a small wrap up of the stuff that was added to the plugin since the last
+evaluation period.
+
+__ Wikipage_
 
 **July 22nd:** I fixed some issues I had with the deepcopy
 implementation. Thereby I focused on the modification of a comment. Here it was
