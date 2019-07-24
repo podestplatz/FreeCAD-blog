@@ -9,6 +9,10 @@
 
 .. _`class diagram`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/master/doc
 .. _`BCF-plugin`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/
+.. _`commit ab78a0f`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/ab78a0f596792eebe45d0eabebfbc492fecad1b8
+.. _`commit c8705dd`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/c8705dd540238d978f844b43c1688795199a5a16
+.. _`commit 47c1151`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/47c115190107f95d4b7724b8309ad75db6ef5c64
+.. _`commit 64d381c`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/64d381c22179c956baa465fa6e4b06eb526a5474
 .. _`commit 1c34ad9`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/1c34ad907b7fc56cd96aa2fc5aa133e3f445a24b
 .. _`commit 31ef931`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/31ef931b3637c90ca0c8252f71dd635e66a843fa 
 .. _`commit 0a1081b`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/0a1081bb1fe26dc729d3a2b708fde491b3a31505
@@ -165,6 +169,9 @@
 .. _`feature/PI_retrieval.util.py`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature/PI_retrieval/src/bcf/util.py
 .. _`util.updateSchemas()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/3765658dfd50f77a85252bb3904c554eb61b5086/src/bcf/util.py#L152
 .. _`util.copySchemas()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/3765658dfd50f77a85252bb3904c554eb61b5086/src/bcf/util.py#L173
+.. _`frontend.viewController.py`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature/gui/bcfplugin/frontend/viewController.py
+.. _`viewController.drawLine()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/64d381c22179c956baa465fa6e4b06eb526a5474/bcfplugin/frontend/viewController.py#L208
+.. _`viewController.createLines()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/64d381c22179c956baa465fa6e4b06eb526a5474/bcfplugin/frontend/viewController.py#L240
 .. _`writer.compileChanges()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/4de50788af938d69f00fac01848ee7771d805ae1/src/bcf/writer.py#L400
 .. _`writer.compileChanges()#415`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/4de50788af938d69f00fac01848ee7771d805ae1/src/bcf/writer.py#L415
 .. _`writer.getInsertionIndex()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/647b6845ae819e1175de2539e27ec42a08c45f1a/src/bcf/writer.py#L230
@@ -227,11 +234,54 @@
 .. _`rotation matrix`: https://en.wikipedia.org/wiki/Rotation_matrix#In_three_dimensions
 .. _FreeCADPlacement: https://www.freecadweb.org/wiki/File:PlacePyConv10.png
 .. _Wikipage: https://github.com/podestplatz/BCF-Plugin-FreeCAD/wiki
+.. _guitutorial: https://github.com/podestplatz/BCF-Plugin-FreeCAD/wiki/GUI-Tutorial
 
 .. role:: raw-html(raw)
   :format: html 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**July 24th:** Right now, during closing FreeCAD for the day, I thought "Man I
+like FreeCAD more and more!" 
+
+Now, after this insight on to the dev-log for this day. I finished my update of
+the wiki pages, and the README.md file. It all is still located on the
+`feature/gui`_ branch. These two aspects of the wiki update are done in two
+separate commits. `commit ab78a0f`_ adds a new section to the README.md file,
+dedicated to the Qt user interface. `commit c8705dd`_ then adds a `new page`__ to
+the wiki. It gives an introduction to the graphical user interface of the
+plugin, and explains all aspects of it (that were implemented till today).
+
+__ guitutorial_
+
+After this I made another attempt to applying viewpoints, because I didn't
+believe that my implementation was correct. Two major insights were the result
+of this effort: 
+
+1. The underlying unit of FreeCAD (on my system at least) is millimeter, not
+   meter.
+2. The field of view is to be set in radians and not in full degrees. 
+
+These two insights were then molded into code in `commit 47c1151`_. 
+
+Since a BCF file can also specify lines to be drawn, as well as whole planes.
+The first step would be to just draw lines and so I did. This resulted in
+additional code (two new functions and some new state variables) in
+`viewController.py`__. The corresponding commit is `commit 64d381c`_. 
+The new functions are
+
+- `drawLine()`__: draws one single line using the draft workbench and returns
+  it.
+- `createLines()`__: takes on the `lines` object from the viewpoint inside the
+  data model and tries to draw all lines. If one cannot be drawn it is simply
+  skipped.
+
+__ `frontend.viewController.py`_
+
+__ `viewController.drawLine()`_
+
+__ `viewController.createLines()`_
+
 
 **July 23rd:** Today I have updated the wiki__ page of the project, as well as
 written a small wrap up of the stuff that was added to the plugin since the last
