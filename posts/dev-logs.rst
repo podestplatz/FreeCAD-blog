@@ -131,6 +131,7 @@
 .. _`commit f73b8b1`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/f73b8b19c579b202a69cdedc18ae8735140f00c2
 .. _`commit 975ba91`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/975ba91ef515ddea828d285150264bf0c16e600e
 .. _`commit 042859c`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/042859c8d533df9d7d4ef1f640d6ed3c1bbd1200
+.. _`commit 1910afd`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/1910afdc0511b8540eb6a0e84afcb0d93bdd3cde
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
@@ -240,6 +241,27 @@
   :format: html 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**July 25th:** Today I checked that my algorithm for drawing lines worked, and
+thus have written a simple test case (`viewController-test.py`) that draws the
+lines, specified in a prepared BCF file. These three lines are 5000mm long and
+lie directly on each coordinate axis. This was done in `commit 1910afd`_. 
+
+Then I have written a nicer introduction to the wiki__ pages, including a short
+BCF primer, to get anyone started on this topic. 
+
+__ Wikipage_
+
+The remaining time of the day I investigated how clipping planes can be drawn in
+FreeCAD. Therefore I first looked into the source code which led me to the
+documentation of the coin library. In addition to the knowledge of how to use it
+I also wanted to know more about the mathematics behind it. 
+At the end of the workday I felt confident to start working on the function
+`createClippingPlane()` in `viewController.py`__, which is for one not finished
+and for the other not pushed to github. That I will do tomorrow.
+
+__ `frontend.viewController.py`_
+
 
 **July 24th:** Right now, during closing FreeCAD for the day, I thought "Man I
 like FreeCAD more and more!" 
