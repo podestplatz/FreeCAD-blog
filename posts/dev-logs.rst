@@ -132,6 +132,9 @@
 .. _`commit 975ba91`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/975ba91ef515ddea828d285150264bf0c16e600e
 .. _`commit 042859c`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/042859c8d533df9d7d4ef1f640d6ed3c1bbd1200
 .. _`commit 1910afd`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/1910afdc0511b8540eb6a0e84afcb0d93bdd3cde
+.. _`commit 0d20165`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/0d20165e2f806a637ecc6cafd216c574cf493c20
+.. _`commit 6d4727d`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/6d4727d1e444f2532c9376a830577fbfad214997
+.. _`commit d28b044`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/0d20165e2f806a637ecc6cafd216c574cf493c20
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
@@ -155,6 +158,7 @@
 .. _`pI.addCurrentViewpoint()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/75946dbfd3b302a29b4e5d1ef21211310cdcebbb/bcfplugin/programmaticInterface.py#L375
 .. _`pI.modifyElement()`:  https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/01fac660932fea2d580cff44421b0a352f893806/bcfplugin/programmaticInterface.py#L750
 .. _`pI.getTopic()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/bc9664236bf09c60cfd73cde8ea6160f342bf8a1/bcfplugin/programmaticInterface.py#L876
+.. _`pI.activateViewpoint()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/d28b044173c13fa82e8d35b0ce59e45de9456de6/bcfplugin/programmaticInterface.py#L439
 .. _`BCFPlugin.FCMacro`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature/PI_retrieval/src/BCFPlugin.FCMacro
 .. _`feature/PI_retrieval.project.py`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature/PI_retrieval/src/bcf/project.py
 .. _`feature/gui_switch_to_relative_sizes`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commits/feature/gui_switch_to_relative_sizes
@@ -241,6 +245,32 @@
   :format: html 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**July 26th:** More development work today than the last couple of days. 
+First of all I finished the clipping plane stuff. Clipping planes can now be
+created, `commit 0d20165`_ is the one to go if you are interested in how it is
+realized. 
+
+`commit 6d4727d`_ adds stuff, but that was not done today. I noticed that I
+still had a git-stash lying around with useful changes. For one the colour
+regular expression gets fixed in this commit, some informative prints are added
+concerning the colouring of components and viewpoints will be coloured in
+`pI.activateViewpoint()`_.
+
+`commit d28b044`_ adds a nifty little feature linking viewpoints and comments.
+As you may know, a comment can reference a viewpoint, as you also may know the
+plugin sports a list showing all available viewpoints. Now, when the user
+selects a comment that references a viewpoint, the viewpoints list will be
+automatically shown and the referenced viewpoint is selected. 
+
+The main part of my work today, however, is still offline and concerns a
+separate dialog window that shows the data available on a topic, and also makes
+it availabe (the parts that I consider mutable) for changes by the user. But it
+still is not finished as I have to add a Delegate. The Delegate is needed
+because the user might change the `dueDate` which has some restrictions on the
+set of possible values that might be entered. This will be done with a delegate
+in the end. 
+
 
 **July 25th:** Today I checked that my algorithm for drawing lines worked, and
 thus have written a simple test case (`viewController-test.py`) that draws the
