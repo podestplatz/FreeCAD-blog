@@ -246,6 +246,20 @@
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
 
+**July 27th:** The plugin is now usable!
+Today I added the functionality, to the UI, that before the user can do any
+change to the state of the project, he/she is asked for his/her email address.
+This is just done once per session. The accompanying commit is `commit
+4f06257`_. 
+
+`commit 46f0502`_ adds a date validator to the `DueDate` row in the topic
+metrics window. 
+
+In addition to that, I pushed this state onto master as my first release with
+version 0.1. Though note that this version is still not tested inside FreeCAD
+itself. But yeah. I am quite confident now in the plugin. Over the next period I
+will fix some minor issues and do some packaging for the plugin. 
+
 **July 26th:** More development work today than the last couple of days. 
 First of all I finished the clipping plane stuff. Clipping planes can now be
 created, `commit 0d20165`_ is the one to go if you are interested in how it is
