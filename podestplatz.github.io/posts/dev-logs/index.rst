@@ -135,6 +135,9 @@
 .. _`commit 0d20165`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/0d20165e2f806a637ecc6cafd216c574cf493c20
 .. _`commit 6d4727d`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/6d4727d1e444f2532c9376a830577fbfad214997
 .. _`commit d28b044`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/0d20165e2f806a637ecc6cafd216c574cf493c20
+.. _`commit 9e4382b`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/9e4382b0fc349b77b08147e30cd854297ad9cd7c
+.. _`commit 073d078`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/073d078baa2c1e9ae88aad15e9b8834a6bb0641a
+.. _`commit 3f0ce7f`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/3f0ce7fffddb35f09bb2feabefffab7c18498d3f
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
@@ -245,6 +248,37 @@
   :format: html 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**July 29th:** The packaging work has begun! 
+On this day I fixed some bugs on the master branch. The bugs were: 
+
+- "list index out of range" exception during window resizing
+- "None typ ehas no attribute referencedViewpoint" when selecting special
+  comments
+- not really a bug, but a Deprecation Warning from Qt. 
+
+These fixes can be found in commit `commit 9e4382b`_.
+
+A big thing that happened today was the merging of the `feature/custom_deepcopy`
+branch. No the plugin should be a bit more responsive. It is currently on the
+develop branch. The corresponding commit is `commit 073d078`_.
+
+`commit 3f0ce7f`_ on the other hand does not add new functionality, it just
+fixes an error that occured during merging everything into master yesterday. In
+particular the function `writer.createBcfFile` was renamed
+`writer.zipToBcfFile`. These changes have been applied to the pI also in this
+commit. 
+
+Locally I am currently working on the optional email thing. The approach I am
+taking is that either the user enters a valid email address or leaves the line
+edit field blank. What is still missing? I am planning to also delete the
+modified author in the case where the user modifies something but didn't enter
+an email address. This shall prevent masquerading of changes. 
+
+The second thing I am working on locally is a nice integration into FreeCAD.
+Currently the state is that it can be opened in the task panel and is fully
+functional, at least at for now. It still has to be tested. 
+
 
 **July 28th:** Today I did no work. 
 
