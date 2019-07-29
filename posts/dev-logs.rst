@@ -246,6 +246,8 @@
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
 
+**July 28th:** Today I did no work. 
+
 **July 27th:** The plugin is now usable!
 Today I added the functionality, to the UI, that before the user can do any
 change to the state of the project, he/she is asked for his/her email address.
