@@ -250,6 +250,7 @@
 .. _Wikipage: https://github.com/podestplatz/BCF-Plugin-FreeCAD/wiki
 .. _guitutorial: https://github.com/podestplatz/BCF-Plugin-FreeCAD/wiki/GUI-Tutorial
 .. _modAuthorTopic: https://forum.freecadweb.org/viewtopic.php?p=323915#p323915
+.. _privacyWiki: https://github.com/podestplatz/BCF-Plugin-FreeCAD/wiki/Privacy
 
 .. role:: raw-html(raw)
   :format: html 
@@ -286,6 +287,12 @@ through the plugin by just double clicking the desired viewpoint element in the
 viewpoints list. 
 
 __ modAuthorTopic_
+
+Last but not least I added a new page__ to the wiki, detailing about what
+personal data can be stored in a BCF file, and what is/is not collected by the
+plugin. 
+
+__ privacyWiki_
 
 **July 29th:** The packaging work has begun! 
 On this day I fixed some bugs on the master branch. The bugs were: 
