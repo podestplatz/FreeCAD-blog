@@ -138,6 +138,12 @@
 .. _`commit 9e4382b`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/9e4382b0fc349b77b08147e30cd854297ad9cd7c
 .. _`commit 073d078`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/073d078baa2c1e9ae88aad15e9b8834a6bb0641a
 .. _`commit 3f0ce7f`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/3f0ce7fffddb35f09bb2feabefffab7c18498d3f
+.. _`commit 2b7f68c`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/2b7f68c7b09ba24889e681ee33fae52257dd4f1d
+.. _`commit 0601f82`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/0601f826483e20f4a2761ea9efffd5fd8c9ead58
+.. _`commit e50f7ed`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/e50f7ed907668e9130e6c7486b92371cd9005098
+.. _`commit a5696bd`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/a5696bdc3327b974b88940d830363bd110384720
+.. _`commit d494214`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/d4942149ecbf69db036eab5f1375b2c895a6ac15
+.. _`commit eb8f4ca`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/eb8f4cabaf35d9d5e9e7733d71acadf397a52795
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
@@ -243,11 +249,43 @@
 .. _FreeCADPlacement: https://www.freecadweb.org/wiki/File:PlacePyConv10.png
 .. _Wikipage: https://github.com/podestplatz/BCF-Plugin-FreeCAD/wiki
 .. _guitutorial: https://github.com/podestplatz/BCF-Plugin-FreeCAD/wiki/GUI-Tutorial
+.. _modAuthorTopic: https://forum.freecadweb.org/viewtopic.php?p=323915#p323915
 
 .. role:: raw-html(raw)
   :format: html 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**July 30th:** More and more is possible!
+Today I implemented the desired behavior for the modification of modified
+comments and topics in the case the user wants to stay private and does not
+enter his or her email addres. For more info please see the accompanying forum
+posts__. The corresponding commit, however is `commit 2b7f68c`_.
+
+`commit 0601f82`_ is a small one, it just fixes the datetime format with which
+the creation/modification date of a comment/topic is displayed to the user.
+
+`commit e50f7ed`_ moves the `tempDir` variable from `util.py` into
+`bcfplugin/__init__.py` in an attempt to a bug where two temporary directories
+are created in subsequent calls of `util.getSystemTmp()`. The first one is
+created as working directory, where the bcf file gets extracted to and so on.
+The second one is, wrongly, created just for the file containing the author
+email address. Somehow between these calls the state of util gets lost. Maybe
+it has to do something with Qt. We will see.
+
+`commit a5696bd`_ adds the capability to `viewController` to reset the view of
+FreeCAD to the previous state, it had before a viewpiont from the BCF file
+was activated.
+
+`commit d494214`_ adds a button to the plugin that triggers the reset of the
+FreeCAD's view. This button is only shown if a viewpoint has been applied and
+gets hidden again after the view was reset. 
+
+By checking out `commit eb8f4ca` you will be able to activate a viewpoint
+through the plugin by just double clicking the desired viewpoint element in the
+viewpoints list. 
+
+__ modAuthorTopic_
 
 **July 29th:** The packaging work has begun! 
 On this day I fixed some bugs on the master branch. The bugs were: 
