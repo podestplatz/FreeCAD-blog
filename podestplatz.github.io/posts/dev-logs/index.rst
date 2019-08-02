@@ -144,6 +144,14 @@
 .. _`commit a5696bd`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/a5696bdc3327b974b88940d830363bd110384720
 .. _`commit d494214`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/d4942149ecbf69db036eab5f1375b2c895a6ac15
 .. _`commit eb8f4ca`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/eb8f4cabaf35d9d5e9e7733d71acadf397a52795
+.. _`commit 9519986`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/9519986c47f5999f3a8cd0145a100b828705b0d5
+.. _`commit 14e6282`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/14e6282656cdeedbeb8bf5af00dca23b2d68c086
+.. _`commit 9b443c7`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/9b443c7550c7f9622de65bf179427da1795e4efb
+.. _`commit 9828fa1`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/9828fa1a9f2579d40a3f8417cb173e93a246b0e0
+.. _`commit efca76c`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/efca76cffddad507d530bf28c31a5a634c53f23b
+.. _`commit b8baebe`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/b8baebee579ac382a3b2e40dec3805a0e892e907
+.. _`commit 568ce86`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/568ce86c4c335b2035f9ec4f54d6863408d57bef
+.. _`commit 429bb70`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/429bb70fd7d68805f847b4219bfbd504dc3d9904
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
@@ -256,6 +264,37 @@
   :format: html 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**August 2nd:** `commit 9519986`_ fixes the 'Reset" button that resets FreeCAD's view
+to the previous setting. Before it also was shown even when the view settings of
+the viewpoint could not be applied. A following press of the button resulted in
+an exception. 
+
+`commit 14e6282`_ fixes the stack switcher and the stack widget in the snapshot
+group. Before both were not reset to the first item/widget on a switch of the
+topic. Now they are. 
+
+`commit 9b443c7`_ corrects the deepcopy algorithm for an object of `project.SimpleList`. Previously every copy encapsulated the elements (which are of type `SimpleElement`)
+anew in a `SimpleElement`, thus creating something like: `SimpleList -> SimpleElement ->
+SimpleElement -> Value`. 
+
+`commit 9828fa1`_ adds a list view to the topic metrics window displaying all
+related topics specified for a topic. 
+
+`commit efca76c`_ adds support for comments without text. Previously they could
+be read in, but when the topic should be displayed, containing such comment, an
+exception was raised resulting in no comment shown at all. 
+
+`commit b8baebe`_ fixes a bug where elements could not be modified because the
+containingObject member has been overwritten with the contents of the supplied
+copy, which was `None`. 
+
+`commit 429bb70`_ restructures code inside the `plugin_*.py` files and in the
+`programmaticInterface.py` file. For information on how the code is structured
+now, please refer to the commit message. 
+
+
+**July 31st & August 1st:** no work done. 
 
 **July 30th:** More and more is possible!
 Today I implemented the desired behavior for the modification of modified
