@@ -1,6 +1,6 @@
 .. title: Dev Logs
 .. slug: dev-logs
-.. date: 2019-06-22 08:00:00 UTC
+.. date: 2019-08-04 11:00:00 UTC
 .. tags: daily
 .. category: DevLog
 .. link: 
@@ -155,6 +155,8 @@
 .. _`commit 5565b03`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/5565b038c1a30c0a9dcb5967c62733d23b3eb5cb
 .. _`commit 185fe50`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/185fe5012bbff8000f1b9ef4994adbc573ba7882
 .. _`commit d25fdd1`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/d25fdd10f7df64cadffe272b678046e784eb30f6
+.. _`commit f8b0fc9`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/f8b0fc9d4db628f02159e31e2f3a3ec3df9b8d68
+.. _`commit ee46345`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/ee4634565a76792d4f29e93003c0d005f808383c
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
@@ -267,6 +269,17 @@
   :format: html 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**August 4th:** For most of the time mostly I was on a bug hunt which resulted
+in not storing the path to the temporary working directory in a
+`tempfile.TemporaryDirectory` object, rather I store the path to it in a file in
+the temporary directory of the system. This switch was done in `commit
+f8b0fc9`_. 
+
+Then the second commit for the day, `commit ee46345`_ implements the
+"close-without-saving" dialog's behavior how I like it. Previously the dialog
+did not close after the file was saved and thus prevented the whole plugin from
+closing. 
 
 **August 3rd:** Today not that much code was put out. 
 
