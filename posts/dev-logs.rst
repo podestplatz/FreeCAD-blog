@@ -152,6 +152,9 @@
 .. _`commit b8baebe`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/b8baebee579ac382a3b2e40dec3805a0e892e907
 .. _`commit 568ce86`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/568ce86c4c335b2035f9ec4f54d6863408d57bef
 .. _`commit 429bb70`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/429bb70fd7d68805f847b4219bfbd504dc3d9904
+.. _`commit 5565b03`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/5565b038c1a30c0a9dcb5967c62733d23b3eb5cb
+.. _`commit 185fe50`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/185fe5012bbff8000f1b9ef4994adbc573ba7882
+.. _`commit d25fdd1`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/d25fdd10f7df64cadffe272b678046e784eb30f6
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
@@ -265,6 +268,40 @@
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
 
+**August 3rd:** Today not that much code was put out. 
+
+`commit 5565b03`_ adds a little behavior change to the topic metrics window.
+Since there may well be some topics that don't have any additional documents
+listed or are linked to any other topics, the corresponding lists are left
+hidden. However, the groups containing the actual lists still persist and
+subtly indicate that this aspect of a topic does not exist in the BCF file.
+
+`commit 185fe50`_ is an attempt towards internationalization. Here all GUI
+strings, descriptive ones, not the ones displayed as content of the BCF file,
+are passed to the `translate()` function of QtWidgets. However, no other
+languages are currently supported appart from english. 
+
+`commit d25fdd1`_ moves the prompt for the user's email address away from
+`plugin_delegate.py` into `plugin_model.py`. The reason behind it was that
+apparently the code inside delegates is executed in a separate application
+context. The erroneous behavior that led me to that conclusion was that every
+time the user's email dialog box showed up, a new temporary directory was
+created for the `author.txt` file, which holds just the email address. This is
+strange because for one: at that point in time a temporary directory is already
+created and for the other the reference to the `TemporaryDirectory` object is
+stored in the plugin global variable `TMPDIR` declared inside
+`bcfplugin/__init__.py`. Thus a new temporary directory will only be created if
+`TMPDIR` equals `None`. Now `TMPDIR` gets set right when a new BCF file is about
+to be opened, into it the contents of the file will be extracted. 
+A simple test (just prints of the the `TMPDIR` variable from
+`plugin_delegate.py` and `plugin_model.py`) showed that in former it referenced
+`None` while the latter referenced the "correct" object.
+
+Apart from these three commits, I started writing on a blog post about my work
+done in during the last three months. It shall serve as main document for the
+project submission. As soon as it is finished I will start a discussion about it
+in the forum. 
+
 **August 2nd:** `commit 9519986`_ fixes the 'Reset" button that resets FreeCAD's view
 to the previous setting. Before it also was shown even when the view settings of
 the viewpoint could not be applied. A following press of the button resulted in
@@ -370,9 +407,9 @@ functional, at least at for now. It still has to be tested.
 Today I added the functionality, to the UI, that before the user can do any
 change to the state of the project, he/she is asked for his/her email address.
 This is just done once per session. The accompanying commit is `commit
-4f06257`_. 
+4f06257`. 
 
-`commit 46f0502`_ adds a date validator to the `DueDate` row in the topic
+`commit 46f0502` adds a date validator to the `DueDate` row in the topic
 metrics window. 
 
 In addition to that, I pushed this state onto master as my first release with

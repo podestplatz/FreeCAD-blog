@@ -1,5 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>FreeCAD BCF-Plugin development blog (Posts about daily)</title><link>https://podestplatz.github.io/FreeCAD-blog/</link><description></description><atom:link href="https://podestplatz.github.io/FreeCAD-blog/categories/daily.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:podestplatz@gmail.com"&gt;Patrick Podest&lt;/a&gt; </copyright><lastBuildDate>Fri, 02 Aug 2019 13:29:23 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Dev Logs</title><link>https://podestplatz.github.io/FreeCAD-blog/posts/dev-logs/</link><dc:creator>Patrick Podest</dc:creator><description>&lt;div&gt;&lt;p&gt;This is a daily updated log of the work I do on the &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/"&gt;BCF-plugin&lt;/a&gt; for FreeCAD&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>FreeCAD BCF-Plugin development blog (Posts about daily)</title><link>https://podestplatz.github.io/FreeCAD-blog/</link><description></description><atom:link href="https://podestplatz.github.io/FreeCAD-blog/categories/daily.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:podestplatz@gmail.com"&gt;Patrick Podest&lt;/a&gt; </copyright><lastBuildDate>Sat, 03 Aug 2019 11:55:26 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Dev Logs</title><link>https://podestplatz.github.io/FreeCAD-blog/posts/dev-logs/</link><dc:creator>Patrick Podest</dc:creator><description>&lt;div&gt;&lt;p&gt;This is a daily updated log of the work I do on the &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/"&gt;BCF-plugin&lt;/a&gt; for FreeCAD&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;August 3rd:&lt;/strong&gt; Today not that much code was put out.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/5565b038c1a30c0a9dcb5967c62733d23b3eb5cb"&gt;commit 5565b03&lt;/a&gt; adds a little behavior change to the topic metrics window.
+Since there may well be some topics that don't have any additional documents
+listed or are linked to any other topics, the corresponding lists are left
+hidden. However, the groups containing the actual lists still persist and
+subtly indicate that this aspect of a topic does not exist in the BCF file.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/185fe5012bbff8000f1b9ef4994adbc573ba7882"&gt;commit 185fe50&lt;/a&gt; is an attempt towards internationalization. Here all GUI
+strings, descriptive ones, not the ones displayed as content of the BCF file,
+are passed to the &lt;cite&gt;translate()&lt;/cite&gt; function of QtWidgets. However, no other
+languages are currently supported appart from english.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/d25fdd10f7df64cadffe272b678046e784eb30f6"&gt;commit d25fdd1&lt;/a&gt; moves the prompt for the user's email address away from
+&lt;cite&gt;plugin_delegate.py&lt;/cite&gt; into &lt;cite&gt;plugin_model.py&lt;/cite&gt;. The reason behind it was that
+apparently the code inside delegates is executed in a separate application
+context. The erroneous behavior that led me to that conclusion was that every
+time the user's email dialog box showed up, a new temporary directory was
+created for the &lt;cite&gt;author.txt&lt;/cite&gt; file, which holds just the email address. This is
+strange because for one: at that point in time a temporary directory is already
+created and for the other the reference to the &lt;cite&gt;TemporaryDirectory&lt;/cite&gt; object is
+stored in the plugin global variable &lt;cite&gt;TMPDIR&lt;/cite&gt; declared inside
+&lt;cite&gt;bcfplugin/__init__.py&lt;/cite&gt;. Thus a new temporary directory will only be created if
+&lt;cite&gt;TMPDIR&lt;/cite&gt; equals &lt;cite&gt;None&lt;/cite&gt;. Now &lt;cite&gt;TMPDIR&lt;/cite&gt; gets set right when a new BCF file is about
+to be opened, into it the contents of the file will be extracted.
+A simple test (just prints of the the &lt;cite&gt;TMPDIR&lt;/cite&gt; variable from
+&lt;cite&gt;plugin_delegate.py&lt;/cite&gt; and &lt;cite&gt;plugin_model.py&lt;/cite&gt;) showed that in former it referenced
+&lt;cite&gt;None&lt;/cite&gt; while the latter referenced the "correct" object.&lt;/p&gt;
+&lt;p&gt;Apart from these three commits, I started writing on a blog post about my work
+done in during the last three months. It shall serve as main document for the
+project submission. As soon as it is finished I will start a discussion about it
+in the forum.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;August 2nd:&lt;/strong&gt; &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/9519986c47f5999f3a8cd0145a100b828705b0d5"&gt;commit 9519986&lt;/a&gt; fixes the 'Reset" button that resets FreeCAD's view
 to the previous setting. Before it also was shown even when the view settings of
 the viewpoint could not be applied. A following press of the button resulted in
@@ -77,9 +106,9 @@ functional, at least at for now. It still has to be tested.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;July 27th:&lt;/strong&gt; The plugin is now usable!
 Today I added the functionality, to the UI, that before the user can do any
 change to the state of the project, he/she is asked for his/her email address.
-This is just done once per session. The accompanying commit is &lt;a href="https://podestplatz.github.io/FreeCAD-blog/posts/dev-logs/#id38"&gt;&lt;span class="problematic" id="id39"&gt;`commit
-4f06257`_&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://podestplatz.github.io/FreeCAD-blog/posts/dev-logs/#id40"&gt;&lt;span class="problematic" id="id41"&gt;`commit 46f0502`_&lt;/span&gt;&lt;/a&gt; adds a date validator to the &lt;cite&gt;DueDate&lt;/cite&gt; row in the topic
+This is just done once per session. The accompanying commit is &lt;cite&gt;commit
+4f06257&lt;/cite&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;cite&gt;commit 46f0502&lt;/cite&gt; adds a date validator to the &lt;cite&gt;DueDate&lt;/cite&gt; row in the topic
 metrics window.&lt;/p&gt;
 &lt;p&gt;In addition to that, I pushed this state onto master as my first release with
 version 0.1. Though note that this version is still not tested inside FreeCAD
@@ -195,19 +224,19 @@ this &lt;cite&gt;Markup&lt;/cite&gt; object is not copied. The actual way that t
 is really simple: each &lt;cite&gt;__deepcopy__()&lt;/cite&gt; function has to set the
 &lt;cite&gt;containingObject&lt;/cite&gt; member of its copied members after the copy was being
 created. To illustrate it consider the following code:&lt;/p&gt;
-&lt;pre class="code python"&gt;&lt;a name="rest_code_879a9f2662304dde86fc939c51a99e41-1"&gt;&lt;/a&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;copy&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;deepcopy&lt;/span&gt;
-&lt;a name="rest_code_879a9f2662304dde86fc939c51a99e41-2"&gt;&lt;/a&gt;
-&lt;a name="rest_code_879a9f2662304dde86fc939c51a99e41-3"&gt;&lt;/a&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Markup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Hierarchy&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;a name="rest_code_879a9f2662304dde86fc939c51a99e41-4"&gt;&lt;/a&gt;
-&lt;a name="rest_code_879a9f2662304dde86fc939c51a99e41-5"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;__deepcopy__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;memo&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;a name="rest_code_879a9f2662304dde86fc939c51a99e41-6"&gt;&lt;/a&gt;    &lt;span class="o"&gt;...&lt;/span&gt;
-&lt;a name="rest_code_879a9f2662304dde86fc939c51a99e41-7"&gt;&lt;/a&gt;    &lt;span class="n"&gt;cpyid&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;deepcopy&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;memo&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;a name="rest_code_879a9f2662304dde86fc939c51a99e41-8"&gt;&lt;/a&gt;    &lt;span class="n"&gt;cpyComment&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;deepcopy&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;comment&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;memo&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;a name="rest_code_879a9f2662304dde86fc939c51a99e41-9"&gt;&lt;/a&gt;    &lt;span class="n"&gt;cpy&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Markup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;...&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;a name="rest_code_879a9f2662304dde86fc939c51a99e41-10"&gt;&lt;/a&gt;    &lt;span class="n"&gt;cpy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;comment&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cpyComment&lt;/span&gt;
-&lt;a name="rest_code_879a9f2662304dde86fc939c51a99e41-11"&gt;&lt;/a&gt;    &lt;span class="n"&gt;cpy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;comment&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;containingObject&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cpy&lt;/span&gt;
-&lt;a name="rest_code_879a9f2662304dde86fc939c51a99e41-12"&gt;&lt;/a&gt;    &lt;span class="n"&gt;cpy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cpyid&lt;/span&gt;
-&lt;a name="rest_code_879a9f2662304dde86fc939c51a99e41-13"&gt;&lt;/a&gt;    &lt;span class="o"&gt;...&lt;/span&gt;
+&lt;pre class="code python"&gt;&lt;a name="rest_code_8c217423cde946abac43d5a7009300a1-1"&gt;&lt;/a&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;copy&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;deepcopy&lt;/span&gt;
+&lt;a name="rest_code_8c217423cde946abac43d5a7009300a1-2"&gt;&lt;/a&gt;
+&lt;a name="rest_code_8c217423cde946abac43d5a7009300a1-3"&gt;&lt;/a&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Markup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Hierarchy&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_8c217423cde946abac43d5a7009300a1-4"&gt;&lt;/a&gt;
+&lt;a name="rest_code_8c217423cde946abac43d5a7009300a1-5"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;__deepcopy__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;memo&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_8c217423cde946abac43d5a7009300a1-6"&gt;&lt;/a&gt;    &lt;span class="o"&gt;...&lt;/span&gt;
+&lt;a name="rest_code_8c217423cde946abac43d5a7009300a1-7"&gt;&lt;/a&gt;    &lt;span class="n"&gt;cpyid&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;deepcopy&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;memo&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_8c217423cde946abac43d5a7009300a1-8"&gt;&lt;/a&gt;    &lt;span class="n"&gt;cpyComment&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;deepcopy&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;comment&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;memo&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_8c217423cde946abac43d5a7009300a1-9"&gt;&lt;/a&gt;    &lt;span class="n"&gt;cpy&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Markup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;...&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_8c217423cde946abac43d5a7009300a1-10"&gt;&lt;/a&gt;    &lt;span class="n"&gt;cpy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;comment&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cpyComment&lt;/span&gt;
+&lt;a name="rest_code_8c217423cde946abac43d5a7009300a1-11"&gt;&lt;/a&gt;    &lt;span class="n"&gt;cpy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;comment&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;containingObject&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cpy&lt;/span&gt;
+&lt;a name="rest_code_8c217423cde946abac43d5a7009300a1-12"&gt;&lt;/a&gt;    &lt;span class="n"&gt;cpy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cpyid&lt;/span&gt;
+&lt;a name="rest_code_8c217423cde946abac43d5a7009300a1-13"&gt;&lt;/a&gt;    &lt;span class="o"&gt;...&lt;/span&gt;
 &lt;/pre&gt;&lt;p&gt;Here you see for one that &lt;cite&gt;containingObject&lt;/cite&gt; is set, and also that the &lt;cite&gt;id&lt;/cite&gt;
 member is copied and overwritten in the new object of &lt;cite&gt;Markup&lt;/cite&gt;.
 This way it is guaranteed that a copy from &lt;cite&gt;Markup&lt;/cite&gt; is only copying everything
@@ -307,13 +336,13 @@ but not in the model. Strangely my testbench for deleting objects, especially
 comments, worked. After long debugging I noticed that my policy of not exposing
 the real working data to the UI came back to haunt me. My &lt;cite&gt;pI.deleteObject&lt;/cite&gt;
 function looked like this:&lt;/p&gt;
-&lt;pre class="code python"&gt;&lt;a name="rest_code_9a8d1dfecfa84d08a728c2df53eadf5d-1"&gt;&lt;/a&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;deleteObject&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;object&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;a name="rest_code_9a8d1dfecfa84d08a728c2df53eadf5d-2"&gt;&lt;/a&gt;  &lt;span class="k"&gt;global&lt;/span&gt; &lt;span class="n"&gt;curProject&lt;/span&gt;
-&lt;a name="rest_code_9a8d1dfecfa84d08a728c2df53eadf5d-3"&gt;&lt;/a&gt;  &lt;span class="n"&gt;realObject&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;searchObject&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;object&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;a name="rest_code_9a8d1dfecfa84d08a728c2df53eadf5d-4"&gt;&lt;/a&gt;  &lt;span class="n"&gt;realObject&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;state&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;State&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;State&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DELETED&lt;/span&gt;
-&lt;a name="rest_code_9a8d1dfecfa84d08a728c2df53eadf5d-5"&gt;&lt;/a&gt;  &lt;span class="n"&gt;writer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;addProjectUpdate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;curProject&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;realObject&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;a name="rest_code_9a8d1dfecfa84d08a728c2df53eadf5d-6"&gt;&lt;/a&gt;  &lt;span class="n"&gt;writer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;processProjectUpdates&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;a name="rest_code_9a8d1dfecfa84d08a728c2df53eadf5d-7"&gt;&lt;/a&gt;  &lt;span class="n"&gt;curProject&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;deleteObject&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;object&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;pre class="code python"&gt;&lt;a name="rest_code_4ea6bd442b05482c8fb3101bd123097c-1"&gt;&lt;/a&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;deleteObject&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;object&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_4ea6bd442b05482c8fb3101bd123097c-2"&gt;&lt;/a&gt;  &lt;span class="k"&gt;global&lt;/span&gt; &lt;span class="n"&gt;curProject&lt;/span&gt;
+&lt;a name="rest_code_4ea6bd442b05482c8fb3101bd123097c-3"&gt;&lt;/a&gt;  &lt;span class="n"&gt;realObject&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;searchObject&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;object&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_4ea6bd442b05482c8fb3101bd123097c-4"&gt;&lt;/a&gt;  &lt;span class="n"&gt;realObject&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;state&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;State&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;State&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DELETED&lt;/span&gt;
+&lt;a name="rest_code_4ea6bd442b05482c8fb3101bd123097c-5"&gt;&lt;/a&gt;  &lt;span class="n"&gt;writer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;addProjectUpdate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;curProject&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;realObject&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_4ea6bd442b05482c8fb3101bd123097c-6"&gt;&lt;/a&gt;  &lt;span class="n"&gt;writer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;processProjectUpdates&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;a name="rest_code_4ea6bd442b05482c8fb3101bd123097c-7"&gt;&lt;/a&gt;  &lt;span class="n"&gt;curProject&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;deleteObject&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;object&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;p&gt;The last line here was the culprit. It is responsible for deleting the object
 from the data model after it was deleted from the file. Here I used the wrong
 reference, namely the one of the copy of the real object.&lt;/p&gt;
@@ -337,8 +366,8 @@ calculation of the length of an item in the list in
 taskpanel of FreeCAD. This functionality was added in &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/b2ebca5d15d628da4c150dc5a9db723688f49dc3"&gt;commit b2ebca5&lt;/a&gt; and can
 be used (will be streamlined in the future) by executing the following two
 commands inside of the FreeCAD python console.&lt;/p&gt;
-&lt;pre class="code python"&gt;&lt;a name="rest_code_9f09e59661f64bc2a50c18e88949ae87-1"&gt;&lt;/a&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;bcfplugin.gui.plugin_panel&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;panel&lt;/span&gt;
-&lt;a name="rest_code_9f09e59661f64bc2a50c18e88949ae87-2"&gt;&lt;/a&gt;&lt;span class="n"&gt;panel&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;launch_ui&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;pre class="code python"&gt;&lt;a name="rest_code_22283b89d8204e93a8e6ab3d3a882f4c-1"&gt;&lt;/a&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;bcfplugin.gui.plugin_panel&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;panel&lt;/span&gt;
+&lt;a name="rest_code_22283b89d8204e93a8e6ab3d3a882f4c-2"&gt;&lt;/a&gt;&lt;span class="n"&gt;panel&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;launch_ui&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;/pre&gt;&lt;p&gt;I also had an issue with FreeCAD itself and its behavior of swallowing
 exceptions that are thrown inside of my plugin. It is really nice that an
 exception inside an outside plugin does not crash FreeCAD, and that is how it is
@@ -369,8 +398,8 @@ viewpoint to the objects in the view.&lt;/li&gt;
 caused by a wrong use of Qt. Previously the position, at which the next comment
 should be drawn, was calculated by hand. Now this position is taken from the
 argument &lt;cite&gt;options&lt;/cite&gt; and its member &lt;cite&gt;rect&lt;/cite&gt;.&lt;/p&gt;
-&lt;pre class="code python"&gt;&lt;a name="rest_code_84372199a29047baa59400ef0379cade-1"&gt;&lt;/a&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;paint&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;painter&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;option&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;a name="rest_code_84372199a29047baa59400ef0379cade-2"&gt;&lt;/a&gt;  &lt;span class="n"&gt;topY&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;option&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rect&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;pre class="code python"&gt;&lt;a name="rest_code_8115e32b1aa844b79b4f3c8fe096a77c-1"&gt;&lt;/a&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;paint&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;painter&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;option&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_8115e32b1aa844b79b4f3c8fe096a77c-2"&gt;&lt;/a&gt;  &lt;span class="n"&gt;topY&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;option&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rect&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;/pre&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/c93b00461a557db637f52b105b7a3c5c58f952a1"&gt;commit c93b004&lt;/a&gt; extended &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/bc9664236bf09c60cfd73cde8ea6160f342bf8a1/bcfplugin/programmaticInterface.py#L876"&gt;pI.getTopic()&lt;/a&gt; with some context awareness. The
 general approach is to not expose the data model to the UI layer. Thus for every
 retrieve action, requested from &lt;cite&gt;pI&lt;/cite&gt;, a deep copy of the actual object is
@@ -393,7 +422,7 @@ showing an error to the user.&lt;/p&gt;
 the objects in the currently open view.&lt;/p&gt;
 &lt;p&gt;To checkout the current state of the plugin run the following command from the
 directory &lt;cite&gt;./bcfplugin/gui&lt;/cite&gt;:&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_59b8dba85f0f44e1b9ec9635cdcbb9e2-1"&gt;&lt;/a&gt;python plugin_view.py
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_1554443da45e4949b5dce54ef8583b87-1"&gt;&lt;/a&gt;python plugin_view.py
 &lt;/pre&gt;&lt;p&gt;&lt;strong&gt;July 9th:&lt;/strong&gt; Well I have learned a lot about Qt and how I can customize
 existing views with delegates and models. That said the main advancement of
 today was the creation of the comments list, how I would like it.&lt;/p&gt;
@@ -403,7 +432,7 @@ adds the first (usable) version of the list. It is based on the &lt;a class="ref
 approach of qt and uses a custom delegate to display the list items. The
 development files are located inside of &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/feature/gui_comment_list/bcfplugin/gui/comment-list"&gt;./bcfplugin/gui/comment-list/&lt;/a&gt;.
 To try it just run&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_48fe320eaeb448e3be6c368aa918ba9c-1"&gt;&lt;/a&gt;python mainwindow.py
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_f051dd4f9f914b1c93fd20933b3e0d6c-1"&gt;&lt;/a&gt;python mainwindow.py
 &lt;/pre&gt;&lt;p&gt;from inside the before mentioned directory.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;July 8th:&lt;/strong&gt; Today I started with the first version of the gui. It is
 completely contained in &lt;cite&gt;./bcfplugin/gui/plugin_view.py&lt;/cite&gt;, but uses
@@ -908,13 +937,4 @@ more details refer to following commits:&lt;/p&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/f62ed23a73e209fc69995fccedf4e20beddf7632"&gt;commit f62ed23&lt;/a&gt;: reader.py: add buildProject&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;May 26th:&lt;/strong&gt; Update Comment in class diagram. For more info see &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/1c34ad907b7fc56cd96aa2fc5aa133e3f445a24b"&gt;commit 1c34ad9&lt;/a&gt;, and create &lt;a class="reference external" href="https://forum.freecadweb.org/viewtopic.php?p=310515#p310515"&gt;mockup of the plugin interface&lt;/a&gt;.
-Write part one of the class model in python see &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/31ef931b3637c90ca0c8252f71dd635e66a843fa"&gt;commit 31ef931&lt;/a&gt;.&lt;/p&gt;
-&lt;div class="system-messages section"&gt;
-&lt;h2&gt;Docutils System Messages&lt;/h2&gt;
-&lt;div class="system-message" id="id38"&gt;
-&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;&amp;lt;string&amp;gt;&lt;/tt&gt;, line 360); &lt;em&gt;&lt;a href="https://podestplatz.github.io/FreeCAD-blog/posts/dev-logs/#id39"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
-Unknown target name: "commit 4f06257".&lt;/div&gt;
-&lt;div class="system-message" id="id40"&gt;
-&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;&amp;lt;string&amp;gt;&lt;/tt&gt;, line 366); &lt;em&gt;&lt;a href="https://podestplatz.github.io/FreeCAD-blog/posts/dev-logs/#id41"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
-Unknown target name: "commit 46f0502".&lt;/div&gt;
-&lt;/div&gt;&lt;/div&gt;</description><category>daily</category><guid>https://podestplatz.github.io/FreeCAD-blog/posts/dev-logs/</guid><pubDate>Sat, 22 Jun 2019 08:00:00 GMT</pubDate></item></channel></rss>
+Write part one of the class model in python see &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/31ef931b3637c90ca0c8252f71dd635e66a843fa"&gt;commit 31ef931&lt;/a&gt;.&lt;/p&gt;&lt;/div&gt;</description><category>daily</category><guid>https://podestplatz.github.io/FreeCAD-blog/posts/dev-logs/</guid><pubDate>Sat, 22 Jun 2019 08:00:00 GMT</pubDate></item></channel></rss>
