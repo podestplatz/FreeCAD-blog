@@ -1,5 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>FreeCAD BCF-Plugin development blog</title><link>https://podestplatz.github.io/FreeCAD-blog/</link><description>Blog to the development of the BCF FreeCAD plugin.</description><atom:link href="https://podestplatz.github.io/FreeCAD-blog/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:podestplatz@gmail.com"&gt;Patrick Podest&lt;/a&gt; </copyright><lastBuildDate>Sat, 03 Aug 2019 11:55:25 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Dev Logs</title><link>https://podestplatz.github.io/FreeCAD-blog/posts/dev-logs/</link><dc:creator>Patrick Podest</dc:creator><description>&lt;div&gt;&lt;p&gt;This is a daily updated log of the work I do on the &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/"&gt;BCF-plugin&lt;/a&gt; for FreeCAD&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>FreeCAD BCF-Plugin development blog</title><link>https://podestplatz.github.io/FreeCAD-blog/</link><description>Blog to the development of the BCF FreeCAD plugin.</description><atom:link href="https://podestplatz.github.io/FreeCAD-blog/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:podestplatz@gmail.com"&gt;Patrick Podest&lt;/a&gt; </copyright><lastBuildDate>Sun, 04 Aug 2019 09:04:50 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>BCF-Plugin GSoC 2019</title><link>https://podestplatz.github.io/FreeCAD-blog/posts/bcf-plugin-gsoc-2019/</link><dc:creator>Patrick Podest</dc:creator><description>&lt;div&gt;&lt;p&gt;This blog post shall give detailed information about the project
+&lt;a class="reference external" href="https://summerofcode.withgoogle.com/#Link"&gt;GSoC 2019 BCF-Plugin&lt;/a&gt;. The following sections will elaborate on a few key
+aspects of the project including:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;the initial vision and with it the reason why it was done&lt;/li&gt;
+&lt;li&gt;some information about the BCF standard&lt;/li&gt;
+&lt;li&gt;what exactly has been accomplished in this project&lt;/li&gt;
+&lt;li&gt;main hurdles that cost a considerable amout of time&lt;/li&gt;
+&lt;li&gt;ideas for improvment.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="section" id="vision"&gt;
+&lt;h2&gt;Vision&lt;/h2&gt;
+&lt;p&gt;BCF stands for BIM (Building Information Modelling) Collaboration Format. It is
+used in the industry by architects to collaborate effectively on one building
+model. Collaboration in BCF terms means that, apart from the building model a
+separate BCF file is handed over to the other architect(s). Using a tool that
+supports the standard, these parties can then add issues/topics, supply these
+with context in from of comments, snapshots, addtional documents and more.&lt;/p&gt;
+&lt;p&gt;The intent behind the &lt;a class="reference external" href="https://github.com/podestplat/BCF-Plugin-FreeCAD"&gt;FreeCAD BCF-Plugin&lt;/a&gt; was to also integrate support for
+BCF into FreeCAD, and thus adding FreeCAD to the list of &lt;a class="reference external" href="https://www.bimcollab.com/en/BCF-Manager/BCF-Manager"&gt;BCF supporting CAD
+tools&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="bcf-standard"&gt;
+&lt;h2&gt;BCF-Standard&lt;/h2&gt;
+&lt;p&gt;During the course of the project I have written quite a lot of documentation.
+This includes already a primer on the BCF standard that is more expansive than
+the one above. So for more information on BCF please refer to the project's &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/wiki/Home"&gt;wiki
+page&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="outcome"&gt;
+&lt;h2&gt;Outcome&lt;/h2&gt;
+&lt;p&gt;FreeCAD can be used in two modes:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;GUI-mode: in this mode FreeCAD can be used as Qt application.&lt;/li&gt;
+&lt;li&gt;nonGUI-mode: is composed of a python console that gives access to all aspects
+of the opened file.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Apart from these two modes, a plugin framework was implemented which is able to
+run standalone python applications within the FreeCAD context. Through the
+suggestions of my mentors (@yorik and @hardeeprai) I developed the BCF
+integration as python application that accesses FreeCAD's state via the its
+python interface.
+The plugin, like its host application, can be controlled either via a graphical
+user interface or via the python console, proviced also by FreeCAD.&lt;/p&gt;
+&lt;hr class="docutils"&gt;
+&lt;p&gt;Complete integration of the BCF standard in the timeframe of just about three
+months would have required more than one person, presumably. Thus, here the
+aspects that are accessible through the GUI are listed (practically everything
+can be done in nonGUI-mode, since complete access to the parsed BCF file is
+given to the user):&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;BCF files are read into an internal data model&lt;/li&gt;
+&lt;li&gt;a topic can be chosen from the list of specified ones.&lt;/li&gt;
+&lt;li&gt;most metrics of a topic can be edited in a separate window.&lt;/li&gt;
+&lt;li&gt;the list of additional document references of a topic can be displayed&lt;/li&gt;
+&lt;li&gt;relations between topics can be explored&lt;/li&gt;
+&lt;li&gt;comments can be edited/added/removed (this is the part which was most
+emphasized during development)&lt;/li&gt;
+&lt;li&gt;the snapshots of a topic are shown,&lt;/li&gt;
+&lt;li&gt;as well as a list of all available viewpoints.&lt;/li&gt;
+&lt;li&gt;a snapshot can be opened in full resolution&lt;/li&gt;
+&lt;li&gt;a viewpoint can be applied to the object viewer of FreeCAD.&lt;/li&gt;
+&lt;li&gt;the current state of the bcf file can also be saved to file again.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="hurdles-along-the-way"&gt;
+&lt;h2&gt;Hurdles along the way&lt;/h2&gt;
+&lt;p&gt;In this section I want to list some of the most significant hurdles I
+experienced during the last three months.&lt;/p&gt;
+&lt;p&gt;The biggest of all probably was supporting BCF files that do not comply with the
+standard. Unfortunately it is intended by the BIM collaboration that vendors of
+BCF tools can add their flavor to the BCF files created by their tools. This posed
+quite the obstacle in two ways:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;What to do with additional and malformed information, that is not defined by
+the standard?&lt;/li&gt;
+&lt;li&gt;How can BCF files be opened and written again without losing potential
+information that did not comply to the standard?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The approach taken for (1) was to just omit data that did not comply to the
+standard during reading it in. However, this had significant consequences for
+(2) as it ruled out the easiest strategy for writing a BCF file: just
+serializing the whole data model from memory to disk. Thus, (2) was solved by using an
+update write strategy. Thereby the BCF file is opened in a temporary directory,
+and every modification, done by the user will be commited to it as an update.
+This update approach was designed to also support batch processing (i.e.: write
+multiple updates at once instead of immediatly when they arise).&lt;/p&gt;
+&lt;hr class="docutils"&gt;
+&lt;p&gt;The second major hurdle was the comment list in Qt. My background in programming
+does not include user interface programming and thus I had no experience with
+Qt. Items in the comment list show the three major aspects of a comment at once:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;the comment text itself&lt;/li&gt;
+&lt;li&gt;the E-Mail address of the person that either created or, if the comment already was
+modified, modified it at last, and&lt;/li&gt;
+&lt;li&gt;the date of creation or last modification respectively.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These three aspects are split up into two rows, separated by a thin line, where
+the comment fills the first row and comment and date share the second row.
+The difficulty here was to properly implement custom list elements in the
+&lt;a class="reference external" href="https://doc.qt.io/qt-5/model-view-programming.html"&gt;Model/View Paradigm&lt;/a&gt; of Qt. The current implementation uses, apart from a
+custom model and view, a delegate. It is responsible for drawing the list
+elements as described above and for handling modifications to the list elements.&lt;/p&gt;
+&lt;hr class="docutils"&gt;
+&lt;p&gt;The last, in comparison, rather small hurdle was the correct handling of
+temporary directories. In theory it is quite easy:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;a &lt;cite&gt;TemporaryDirectory&lt;/cite&gt; object is created like in the code example below.
+This object is itself a context manager and automatically deletes the
+temporary directory again when it is garbage collected.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;pre class="code python"&gt;&lt;a name="rest_code_8336a31726324dfb8079d4c6f4199fa4-1"&gt;&lt;/a&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;tempfile&lt;/span&gt;
+&lt;a name="rest_code_8336a31726324dfb8079d4c6f4199fa4-2"&gt;&lt;/a&gt;&lt;span class="n"&gt;tmpDir&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tempfile&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TemporaryDirectory&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/blockquote&gt;
+&lt;ol class="arabic simple" start="2"&gt;
+&lt;li&gt;when you are finished run &lt;cite&gt;del tmpDir&lt;/cite&gt; and the whole directory will be
+deleted again.&lt;/li&gt;
+&lt;li&gt;during runtime of the application store the object in the application global
+space.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;That is the theory. However in combination with Qt's event handling mechanism
+the assumption that the application global variable will have the same state
+when reading it in an event handler and in normal operation does not hold
+anymore.&lt;/p&gt;
+&lt;p&gt;In my case I had a global function &lt;cite&gt;getSystemTmp()&lt;/cite&gt; that creates a temporary
+directory only on first invocation, and on each subsequent call return the
+already created directorie's path. However, it twice created a new temporary
+directory. The second one was created when asking the user for his/her E-Mail
+address before a change is commited.&lt;/p&gt;
+&lt;p&gt;In the end this context problem was solved by a separate file in the system's
+temporary directory. It holds only the path to the created temporary directory,
+which serves as working directory. Thus, now &lt;cite&gt;getSystemTmp()&lt;/cite&gt; creates the file
+on the first invocation and on each subsequent call reads the one line from the
+file and returns it.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="outlook"&gt;
+&lt;h2&gt;Outlook&lt;/h2&gt;
+&lt;p&gt;Some things are still missing at this point in time (2019-08-19)
+Following a list of things that the plugin still needs to serve the
+user best.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Apart from opening and saving an already existing BCF file, the creation of a
+completely new one is probably integral to a BCF tool.&lt;/li&gt;
+&lt;li&gt;Adding new topics to a project&lt;/li&gt;
+&lt;li&gt;Link comments to viewpoints&lt;/li&gt;
+&lt;li&gt;Add new viewpoints&lt;/li&gt;
+&lt;li&gt;Create snapshots&lt;/li&gt;
+&lt;li&gt;A list showing referenced documents with their respective paths is already
+implemented, but it would be nice if they also could be opened right from the
+plugin with a double left click or something like that.&lt;/li&gt;
+&lt;li&gt;Create relations between topics in form of &lt;cite&gt;&amp;lt;RelatedTopic&amp;gt;&lt;/cite&gt; nodes in the
+&lt;cite&gt;markup.bcf&lt;/cite&gt; file.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr class="docutils"&gt;
+&lt;p&gt;At this point I want to thank my mentors Yorik van Havre and Hardeeprai
+(unfortunatel I don't know if his real name is written this way, because I only
+knew him by his user name on the freecad forum), for giving me the possibility
+to contribute to FreeCAD in a meaningful manner!&lt;/p&gt;
+&lt;/div&gt;&lt;/div&gt;</description><guid>https://podestplatz.github.io/FreeCAD-blog/posts/bcf-plugin-gsoc-2019/</guid><pubDate>Sat, 03 Aug 2019 10:09:52 GMT</pubDate></item><item><title>Dev Logs</title><link>https://podestplatz.github.io/FreeCAD-blog/posts/dev-logs/</link><dc:creator>Patrick Podest</dc:creator><description>&lt;div&gt;&lt;p&gt;This is a daily updated log of the work I do on the &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/"&gt;BCF-plugin&lt;/a&gt; for FreeCAD&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;August 3rd:&lt;/strong&gt; Today not that much code was put out.&lt;/p&gt;
 &lt;p&gt;&lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/5565b038c1a30c0a9dcb5967c62733d23b3eb5cb"&gt;commit 5565b03&lt;/a&gt; adds a little behavior change to the topic metrics window.
 Since there may well be some topics that don't have any additional documents

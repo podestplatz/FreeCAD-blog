@@ -15,7 +15,7 @@
  </url>
  <url>
   <loc>https://podestplatz.github.io/FreeCAD-blog/archive.html</loc>
-  <lastmod>2019-08-03T11:34:00Z</lastmod>
+  <lastmod>2019-08-04T08:09:00Z</lastmod>
  </url>
  <url>
   <loc>https://podestplatz.github.io/FreeCAD-blog/categories/</loc>
@@ -64,6 +64,10 @@
  <url>
   <loc>https://podestplatz.github.io/FreeCAD-blog/categories/xml/</loc>
   <lastmod>2019-08-02T13:14:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://podestplatz.github.io/FreeCAD-blog/posts/bcf-plugin-gsoc-2019/</loc>
+  <lastmod>2019-08-04T08:09:00Z</lastmod>
  </url>
  <url>
   <loc>https://podestplatz.github.io/FreeCAD-blog/posts/dev-logs/</loc>
