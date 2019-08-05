@@ -157,6 +157,10 @@
 .. _`commit d25fdd1`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/d25fdd10f7df64cadffe272b678046e784eb30f6
 .. _`commit f8b0fc9`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/f8b0fc9d4db628f02159e31e2f3a3ec3df9b8d68
 .. _`commit ee46345`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/ee4634565a76792d4f29e93003c0d005f808383c
+.. _`commit 78d0724`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/78d0724d9238773311f11d1fd468c15c2558c6d3
+.. _`commit 5bf328f`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/5bf328fb1ddeedb4a543620fdbd708493e078d4c
+.. _`commit 65aae9d`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/65aae9d674540dc7940280b8d2604f20a67b7467
+.. _`commit 1167fd8`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/1167fd83a5707587fce51b128e4ce8695631101c
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
@@ -181,7 +185,7 @@
 .. _`pI.modifyElement()`:  https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/01fac660932fea2d580cff44421b0a352f893806/bcfplugin/programmaticInterface.py#L750
 .. _`pI.getTopic()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/bc9664236bf09c60cfd73cde8ea6160f342bf8a1/bcfplugin/programmaticInterface.py#L876
 .. _`pI.activateViewpoint()`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/d28b044173c13fa82e8d35b0ce59e45de9456de6/bcfplugin/programmaticInterface.py#L439
-.. _`BCFPlugin.FCMacro`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature/PI_retrieval/src/BCFPlugin.FCMacro
+.. _`BCFPlugin.FCMacro`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/develop/bcfplugin/BCFPlugin.FCMacro
 .. _`feature/PI_retrieval.project.py`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature/PI_retrieval/src/bcf/project.py
 .. _`feature/gui_switch_to_relative_sizes`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commits/feature/gui_switch_to_relative_sizes
 .. _`project.SimpleList`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/647b6845ae819e1175de2539e27ec42a08c45f1a/src/bcf/project.py#L68
@@ -269,6 +273,30 @@
   :format: html 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**August 5th:** Today was comprised mostly of bughunts and their fixing. It is
+staggering how much time just simple bugs can consume to fix. 
+
+So one that got to my nervers in recent days was an error message constantly
+being displayed right after a file was selected for opening. This was fixed in
+`commit 78d0724`_. 
+
+Another thing, I already noted yesterday, was that the save before exit dialog
+still showed up every time the plugin should have been closed. This is now also
+fixed by introducing a "dirty bit" in `commit 5bf328f`_. Also this commit
+morphes all imports of each source file into absolute imports, only affecting
+plugin local imports. 
+
+`commit 65aae9d`_ adds metadata to the `BCFPlugin.FCMacro`_ file, after I read
+about how to integrate addons or macros into the official FreeCAD repositories. 
+
+`commit 1167fd8`_ adds a check for `None` inside the `ModifiedDate.__str__()`
+function. This lead to an error if an original comment was being modified that
+didn't have any modified date set prior. 
+
+The wiki page got extended by one page, talking about the GUI, the concepts
+implemented, the UI elements and their behavior and the design decisions during
+development. 
 
 **August 4th:** For most of the time mostly I was on a bug hunt which resulted
 in not storing the path to the temporary working directory in a

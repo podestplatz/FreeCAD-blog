@@ -65,6 +65,24 @@
     </header><div class="e-content entry-content">
     <div>
 <p>This is a daily updated log of the work I do on the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/">BCF-plugin</a> for FreeCAD</p>
+<p><strong>August 5th:</strong> Today was comprised mostly of bughunts and their fixing. It is
+staggering how much time just simple bugs can consume to fix.</p>
+<p>So one that got to my nervers in recent days was an error message constantly
+being displayed right after a file was selected for opening. This was fixed in
+<a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/78d0724d9238773311f11d1fd468c15c2558c6d3">commit 78d0724</a>.</p>
+<p>Another thing, I already noted yesterday, was that the save before exit dialog
+still showed up every time the plugin should have been closed. This is now also
+fixed by introducing a "dirty bit" in <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/5bf328fb1ddeedb4a543620fdbd708493e078d4c">commit 5bf328f</a>. Also this commit
+morphes all imports of each source file into absolute imports, only affecting
+plugin local imports.</p>
+<p><a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/65aae9d674540dc7940280b8d2604f20a67b7467">commit 65aae9d</a> adds metadata to the <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/develop/bcfplugin/BCFPlugin.FCMacro">BCFPlugin.FCMacro</a> file, after I read
+about how to integrate addons or macros into the official FreeCAD repositories.</p>
+<p><a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/1167fd83a5707587fce51b128e4ce8695631101c">commit 1167fd8</a> adds a check for <cite>None</cite> inside the <cite>ModifiedDate.__str__()</cite>
+function. This lead to an error if an original comment was being modified that
+didn't have any modified date set prior.</p>
+<p>The wiki page got extended by one page, talking about the GUI, the concepts
+implemented, the UI elements and their behavior and the design decisions during
+development.</p>
 <p><strong>August 4th:</strong> For most of the time mostly I was on a bug hunt which resulted
 in not storing the path to the temporary working directory in a
 <cite>tempfile.TemporaryDirectory</cite> object, rather I store the path to it in a file in
@@ -300,19 +318,19 @@ this <cite>Markup</cite> object is not copied. The actual way that this can be a
 is really simple: each <cite>__deepcopy__()</cite> function has to set the
 <cite>containingObject</cite> member of its copied members after the copy was being
 created. To illustrate it consider the following code:</p>
-<pre class="code python"><a name="rest_code_8308508fa2a745c38fda7b2b3d65e7a3-1"></a><span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
-<a name="rest_code_8308508fa2a745c38fda7b2b3d65e7a3-2"></a>
-<a name="rest_code_8308508fa2a745c38fda7b2b3d65e7a3-3"></a><span class="k">class</span> <span class="nc">Markup</span><span class="p">(</span><span class="n">Hierarchy</span><span class="p">):</span>
-<a name="rest_code_8308508fa2a745c38fda7b2b3d65e7a3-4"></a>
-<a name="rest_code_8308508fa2a745c38fda7b2b3d65e7a3-5"></a>  <span class="k">def</span> <span class="nf">__deepcopy__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">memo</span><span class="p">):</span>
-<a name="rest_code_8308508fa2a745c38fda7b2b3d65e7a3-6"></a>    <span class="o">...</span>
-<a name="rest_code_8308508fa2a745c38fda7b2b3d65e7a3-7"></a>    <span class="n">cpyid</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">memo</span><span class="p">)</span>
-<a name="rest_code_8308508fa2a745c38fda7b2b3d65e7a3-8"></a>    <span class="n">cpyComment</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">comment</span><span class="p">,</span> <span class="n">memo</span><span class="p">)</span>
-<a name="rest_code_8308508fa2a745c38fda7b2b3d65e7a3-9"></a>    <span class="n">cpy</span> <span class="o">=</span> <span class="n">Markup</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<a name="rest_code_8308508fa2a745c38fda7b2b3d65e7a3-10"></a>    <span class="n">cpy</span><span class="o">.</span><span class="n">comment</span> <span class="o">=</span> <span class="n">cpyComment</span>
-<a name="rest_code_8308508fa2a745c38fda7b2b3d65e7a3-11"></a>    <span class="n">cpy</span><span class="o">.</span><span class="n">comment</span><span class="o">.</span><span class="n">containingObject</span> <span class="o">=</span> <span class="n">cpy</span>
-<a name="rest_code_8308508fa2a745c38fda7b2b3d65e7a3-12"></a>    <span class="n">cpy</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">cpyid</span>
-<a name="rest_code_8308508fa2a745c38fda7b2b3d65e7a3-13"></a>    <span class="o">...</span>
+<pre class="code python"><a name="rest_code_b78048de978b4fbdbb9db172a42950fd-1"></a><span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+<a name="rest_code_b78048de978b4fbdbb9db172a42950fd-2"></a>
+<a name="rest_code_b78048de978b4fbdbb9db172a42950fd-3"></a><span class="k">class</span> <span class="nc">Markup</span><span class="p">(</span><span class="n">Hierarchy</span><span class="p">):</span>
+<a name="rest_code_b78048de978b4fbdbb9db172a42950fd-4"></a>
+<a name="rest_code_b78048de978b4fbdbb9db172a42950fd-5"></a>  <span class="k">def</span> <span class="nf">__deepcopy__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">memo</span><span class="p">):</span>
+<a name="rest_code_b78048de978b4fbdbb9db172a42950fd-6"></a>    <span class="o">...</span>
+<a name="rest_code_b78048de978b4fbdbb9db172a42950fd-7"></a>    <span class="n">cpyid</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">memo</span><span class="p">)</span>
+<a name="rest_code_b78048de978b4fbdbb9db172a42950fd-8"></a>    <span class="n">cpyComment</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">comment</span><span class="p">,</span> <span class="n">memo</span><span class="p">)</span>
+<a name="rest_code_b78048de978b4fbdbb9db172a42950fd-9"></a>    <span class="n">cpy</span> <span class="o">=</span> <span class="n">Markup</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<a name="rest_code_b78048de978b4fbdbb9db172a42950fd-10"></a>    <span class="n">cpy</span><span class="o">.</span><span class="n">comment</span> <span class="o">=</span> <span class="n">cpyComment</span>
+<a name="rest_code_b78048de978b4fbdbb9db172a42950fd-11"></a>    <span class="n">cpy</span><span class="o">.</span><span class="n">comment</span><span class="o">.</span><span class="n">containingObject</span> <span class="o">=</span> <span class="n">cpy</span>
+<a name="rest_code_b78048de978b4fbdbb9db172a42950fd-12"></a>    <span class="n">cpy</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">cpyid</span>
+<a name="rest_code_b78048de978b4fbdbb9db172a42950fd-13"></a>    <span class="o">...</span>
 </pre>
 <p>Here you see for one that <cite>containingObject</cite> is set, and also that the <cite>id</cite>
 member is copied and overwritten in the new object of <cite>Markup</cite>.
@@ -413,13 +431,13 @@ but not in the model. Strangely my testbench for deleting objects, especially
 comments, worked. After long debugging I noticed that my policy of not exposing
 the real working data to the UI came back to haunt me. My <cite>pI.deleteObject</cite>
 function looked like this:</p>
-<pre class="code python"><a name="rest_code_2801497cec2745abb1663b82cd1b8fc9-1"></a><span class="k">def</span> <span class="nf">deleteObject</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-<a name="rest_code_2801497cec2745abb1663b82cd1b8fc9-2"></a>  <span class="k">global</span> <span class="n">curProject</span>
-<a name="rest_code_2801497cec2745abb1663b82cd1b8fc9-3"></a>  <span class="n">realObject</span> <span class="o">=</span> <span class="n">searchObject</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span>
-<a name="rest_code_2801497cec2745abb1663b82cd1b8fc9-4"></a>  <span class="n">realObject</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">State</span><span class="o">.</span><span class="n">State</span><span class="o">.</span><span class="n">DELETED</span>
-<a name="rest_code_2801497cec2745abb1663b82cd1b8fc9-5"></a>  <span class="n">writer</span><span class="o">.</span><span class="n">addProjectUpdate</span><span class="p">(</span><span class="n">curProject</span><span class="p">,</span> <span class="n">realObject</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
-<a name="rest_code_2801497cec2745abb1663b82cd1b8fc9-6"></a>  <span class="n">writer</span><span class="o">.</span><span class="n">processProjectUpdates</span><span class="p">()</span>
-<a name="rest_code_2801497cec2745abb1663b82cd1b8fc9-7"></a>  <span class="n">curProject</span><span class="o">.</span><span class="n">deleteObject</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span>
+<pre class="code python"><a name="rest_code_6ef2bc9b344f4bf18be7e5a7f6849bbc-1"></a><span class="k">def</span> <span class="nf">deleteObject</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<a name="rest_code_6ef2bc9b344f4bf18be7e5a7f6849bbc-2"></a>  <span class="k">global</span> <span class="n">curProject</span>
+<a name="rest_code_6ef2bc9b344f4bf18be7e5a7f6849bbc-3"></a>  <span class="n">realObject</span> <span class="o">=</span> <span class="n">searchObject</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span>
+<a name="rest_code_6ef2bc9b344f4bf18be7e5a7f6849bbc-4"></a>  <span class="n">realObject</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">State</span><span class="o">.</span><span class="n">State</span><span class="o">.</span><span class="n">DELETED</span>
+<a name="rest_code_6ef2bc9b344f4bf18be7e5a7f6849bbc-5"></a>  <span class="n">writer</span><span class="o">.</span><span class="n">addProjectUpdate</span><span class="p">(</span><span class="n">curProject</span><span class="p">,</span> <span class="n">realObject</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+<a name="rest_code_6ef2bc9b344f4bf18be7e5a7f6849bbc-6"></a>  <span class="n">writer</span><span class="o">.</span><span class="n">processProjectUpdates</span><span class="p">()</span>
+<a name="rest_code_6ef2bc9b344f4bf18be7e5a7f6849bbc-7"></a>  <span class="n">curProject</span><span class="o">.</span><span class="n">deleteObject</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span>
 </pre>
 <p>The last line here was the culprit. It is responsible for deleting the object
 from the data model after it was deleted from the file. Here I used the wrong
@@ -444,8 +462,8 @@ calculation of the length of an item in the list in
 taskpanel of FreeCAD. This functionality was added in <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/b2ebca5d15d628da4c150dc5a9db723688f49dc3">commit b2ebca5</a> and can
 be used (will be streamlined in the future) by executing the following two
 commands inside of the FreeCAD python console.</p>
-<pre class="code python"><a name="rest_code_23c5230279634e2ba5117b6034b0b4f0-1"></a><span class="kn">import</span> <span class="nn">bcfplugin.gui.plugin_panel</span> <span class="kn">as</span> <span class="nn">panel</span>
-<a name="rest_code_23c5230279634e2ba5117b6034b0b4f0-2"></a><span class="n">panel</span><span class="o">.</span><span class="n">launch_ui</span><span class="p">()</span>
+<pre class="code python"><a name="rest_code_a4992653faab4548ad8ad042347889e2-1"></a><span class="kn">import</span> <span class="nn">bcfplugin.gui.plugin_panel</span> <span class="kn">as</span> <span class="nn">panel</span>
+<a name="rest_code_a4992653faab4548ad8ad042347889e2-2"></a><span class="n">panel</span><span class="o">.</span><span class="n">launch_ui</span><span class="p">()</span>
 </pre>
 <p>I also had an issue with FreeCAD itself and its behavior of swallowing
 exceptions that are thrown inside of my plugin. It is really nice that an
@@ -477,8 +495,8 @@ viewpoint to the objects in the view.</li>
 caused by a wrong use of Qt. Previously the position, at which the next comment
 should be drawn, was calculated by hand. Now this position is taken from the
 argument <cite>options</cite> and its member <cite>rect</cite>.</p>
-<pre class="code python"><a name="rest_code_d338023e5da84ec48af1e9c473e5d35e-1"></a><span class="k">def</span> <span class="nf">paint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">painter</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
-<a name="rest_code_d338023e5da84ec48af1e9c473e5d35e-2"></a>  <span class="n">topY</span> <span class="o">=</span> <span class="n">option</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">y</span><span class="p">()</span>
+<pre class="code python"><a name="rest_code_1288f1905e604e5684a4452a0770c596-1"></a><span class="k">def</span> <span class="nf">paint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">painter</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+<a name="rest_code_1288f1905e604e5684a4452a0770c596-2"></a>  <span class="n">topY</span> <span class="o">=</span> <span class="n">option</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">y</span><span class="p">()</span>
 </pre>
 <p><a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/c93b00461a557db637f52b105b7a3c5c58f952a1">commit c93b004</a> extended <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/bc9664236bf09c60cfd73cde8ea6160f342bf8a1/bcfplugin/programmaticInterface.py#L876">pI.getTopic()</a> with some context awareness. The
 general approach is to not expose the data model to the UI layer. Thus for every
@@ -502,7 +520,7 @@ showing an error to the user.</p>
 the objects in the currently open view.</p>
 <p>To checkout the current state of the plugin run the following command from the
 directory <cite>./bcfplugin/gui</cite>:</p>
-<pre class="code bash"><a name="rest_code_9767625f755c4829b1a34c0132dc7977-1"></a>python plugin_view.py
+<pre class="code bash"><a name="rest_code_938b5d28557e49f7ae21ed48b74d5afa-1"></a>python plugin_view.py
 </pre>
 <p><strong>July 9th:</strong> Well I have learned a lot about Qt and how I can customize
 existing views with delegates and models. That said the main advancement of
@@ -513,7 +531,7 @@ adds the first (usable) version of the list. It is based on the <a class="refere
 approach of qt and uses a custom delegate to display the list items. The
 development files are located inside of <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/feature/gui_comment_list/bcfplugin/gui/comment-list">./bcfplugin/gui/comment-list/</a>.
 To try it just run</p>
-<pre class="code bash"><a name="rest_code_d9690f3d4eb54f4bab9c0082b9fb12f4-1"></a>python mainwindow.py
+<pre class="code bash"><a name="rest_code_282fd8916ded4093b511397c641cc927-1"></a>python mainwindow.py
 </pre>
 <p>from inside the before mentioned directory.</p>
 <p><strong>July 8th:</strong> Today I started with the first version of the gui. It is
@@ -650,7 +668,7 @@ returns a sorted list of comments mentioning that specific viewpoint.</p>
 <p><a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/e56747fa315171fdfa1be3c5c3ca53caa15e627b">commit e56747f</a> adds the function <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/7192ca8abb22d333d430b6549e9703a989c9161f/src/frontend/programmaticInterface.py#L228">pI.getRelevantIfcFiles()</a>. It returns the
 list of files listed in the header node of <cite>markup.bcf</cite>.</p>
 <p>Although <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/7192ca8abb22d333d430b6549e9703a989c9161f">commit 7192ca8</a> does not add that many new lines, it is quite
-significant. It adds the file <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/feature/PI_retrieval/src/BCFPlugin.FCMacro">BCFPlugin.FCMacro</a>. The plugin is now already
+significant. It adds the file <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/develop/bcfplugin/BCFPlugin.FCMacro">BCFPlugin.FCMacro</a>. The plugin is now already
 usable, to an extent, inside FreeCAD, without the gui, however. The wiki page
 will be updated tomorrow, still on branch <a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commits/feature/PI_retrieval">feature/PI_retrieval</a>.</p>
 <p>To explain a bit more about the work I put into FreeCAD and IFC files: first I
