@@ -161,6 +161,11 @@
 .. _`commit 5bf328f`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/5bf328fb1ddeedb4a543620fdbd708493e078d4c
 .. _`commit 65aae9d`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/65aae9d674540dc7940280b8d2604f20a67b7467
 .. _`commit 1167fd8`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/1167fd83a5707587fce51b128e4ce8695631101c
+.. _`commit 27ca9d9`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/27ca9d9565196d85ad0c5179193b56a7a297a36c
+.. _`commit f72fb9a`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/f72fb9a19563eb2392d4032a4c39767517d00d69
+.. _`commit 2413291`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/24132913ef1f4b1b9954796845fe55d393fa478c
+.. _`commit 7c847e4`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/7c847e4409f43fe1599f764415bdaebf355ac9c1
+.. _`commit 53742da`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/53742dad773024a463825a93ca28140fd7672318
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
@@ -268,11 +273,40 @@
 .. _guitutorial: https://github.com/podestplatz/BCF-Plugin-FreeCAD/wiki/GUI-Tutorial
 .. _modAuthorTopic: https://forum.freecadweb.org/viewtopic.php?p=323915#p323915
 .. _privacyWiki: https://github.com/podestplatz/BCF-Plugin-FreeCAD/wiki/Privacy
+.. _`feature/topic_list`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commits/feature/topic_list
+.. _topicListDemo: https://forum.freecadweb.org/viewtopic.php?p=325347#p325347
 
 .. role:: raw-html(raw)
   :format: html 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**August 6th:** Let's start right away: 
+`commit 7c847e4`_ fixes a, or rather adds a workaround, to the erroneous
+behavior occuring when the user wants to add a comment before a topic is
+selected. Prior to the first selected topic the line edit for a new comment is
+simply disabled. Additionally this commit adds a window title to the plugin.
+
+`commit 2413291`_ writes the errors reported by `xmlschema`_ to a error log file
+contained also in the temporary directory. Before the first line is written
+however the user is notified about it and given the path to the log file. This
+mechanism uses pythons logging library.
+
+`commit f72fb9a`_ adds a prefix to all temporary files and directories created
+by the plugin. In addition to that, the plugin deletes all files from the
+temporary directory with that prefix to rule out artifacts from a previous
+session. 
+
+`commit 27ca9d9`_ adds the `pI.closeProject()` function. It is solely intended
+for the nonGUI mode and sports some interactivity in the case of a dirty state. 
+
+Then as per suggestion of @saso from the FreeCAD forum, I swapped the combobox
+for the topic selection out in favor of a list showing all available topics.
+Work on this feature is currently done on the feature branch
+`feature/topic_list`_. I posted a little demo on the FreeCAD forum, you can see
+it here__
+
+__ topicListDemo_
 
 **August 5th:** Today was comprised mostly of bughunts and their fixing. It is
 staggering how much time just simple bugs can consume to fix. 
