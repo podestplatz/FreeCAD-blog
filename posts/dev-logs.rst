@@ -168,6 +168,9 @@
 .. _`commit 53742da`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/53742dad773024a463825a93ca28140fd7672318
 .. _`commit 69ec3b7`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/69ec3b7ba559bb13e4860621447ac3cd8cebff51
 .. _`commit 86d0c49`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/86d0c49142eb1dc5275b583fa66ad95387767de6
+.. _`commit 64d1e76`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/64d1e76420c6944c1b2a4865cb05053ae0f29275
+.. _`commit 290e805`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/290e8058237eaa6e76932af1fa5ca5f875457d4a
+.. _`commit 2f9e20f`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/2f9e20f439cf869b8c392307045aba050761fd20
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
@@ -278,11 +281,33 @@
 .. _`feature/topic_list`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commits/feature/topic_list
 .. _topicListDemo: https://forum.freecadweb.org/viewtopic.php?p=325347#p325347
 .. _`logging`: https://docs.python.org/3/library/logging.html
+.. _`develop bcfplugin/__init__.py`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/develop/bcfplugin/__init__.py
 
 .. role:: raw-html(raw)
   :format: html 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**August 8th:** More stable logging now available!
+Today the code was adapted to only use python's logging library. To integrate
+this also into FreeCAD a custom `logging.Handler` was added also. Everything now
+is logged to `bcfplugin_log.txt` in the working directory, which will be created
+already in `bcfplugin/__init__.py`__. The corresponding commit is `commit
+290e805`_. 
+
+__ `develop bcfplugin/__init__.py`_
+
+`commit 2f9e20f`_ just adds a little notification message when either an element
+in the first or second column of the additional documents table in the topic
+metrics window is selected. The notification informs the user about the effect a
+double click on that element has. 
+
+The other commit for the day is on the feature branch `feature/topic_list`_,
+`commit 64d1e76`_. It rearranges some UI elements in the top half of the plugin
+to encompass a ever visible list of available topics. This has the advantage to
+the combobox, that one click less is needed to open another topic, which might
+decrease friction. 
+
 
 **August 7th:** Today usability improved by a bit. 
 In the topic metrics window the list showing additional document references was
