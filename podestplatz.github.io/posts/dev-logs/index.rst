@@ -171,6 +171,10 @@
 .. _`commit 64d1e76`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/64d1e76420c6944c1b2a4865cb05053ae0f29275
 .. _`commit 290e805`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/290e8058237eaa6e76932af1fa5ca5f875457d4a
 .. _`commit 2f9e20f`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/2f9e20f439cf869b8c392307045aba050761fd20
+.. _`commit b0bb316`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/b0bb3161541a8d7fc2369d8a073d60534eb37bba
+.. _`commit bc4062c`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/bc4062c7b62c5e25d4abfdefa32434e01cf87cf0
+.. _`commit 8551955`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/85519556e6d03edea666a1c392f650b70906ea3d
+.. _`commit 1e7c87c`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/1e7c87cb963eff10a1ab43702ce23a5a576a7347
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
@@ -287,6 +291,26 @@
   :format: html 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**August 9th:** 
+`commit b0bb316`_ adds a filter to the log messages printed to the report view
+of FreeCAD and stdout in the way that validation errors reported by `xmlschema`_
+are only written to file. 
+
+`commit bc4062c`_ adds a stretch beneath the project group to force the plugin
+to assume its full size right from the start. After a project is opened the
+stretch is deleted again. 
+
+`commit 8551955`_ enables the user to also add topics to an existing, open
+project. Details are gathered through a separate dialog with a form layout. 
+
+`commit 1e7c87c`_ changes the default insertion index of new elements to denote
+the last possible position in a node. This prevents errors where an element is
+inserted _before_ its predecessor. More details are written down in the commit
+message. 
+
+Currently I am working on a feature to also add complete new projects. But this
+is still done locally.
 
 **August 8th:** More stable logging now available!
 Today the code was adapted to only use python's logging library. To integrate
