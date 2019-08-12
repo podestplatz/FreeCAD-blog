@@ -175,6 +175,19 @@
 .. _`commit bc4062c`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/bc4062c7b62c5e25d4abfdefa32434e01cf87cf0
 .. _`commit 8551955`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/85519556e6d03edea666a1c392f650b70906ea3d
 .. _`commit 1e7c87c`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/1e7c87cb963eff10a1ab43702ce23a5a576a7347
+.. _`commit 007c8b1`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/007c8b1abf34b6bc69d6c6f92800e951546e9740
+.. _`commit 44f6157`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/44f61573efe62a90fd35c78f95edc511ded1734d
+.. _`commit 2dcf7a0`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/2dcf7a078aed5dcd24fed5b2b46ff6bd52c5d5be
+.. _`commit 50d3fc1`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/50d3fc17160402038112c871836f80a0de9af160
+.. _`commit 5f9c48c`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/5f9c48c231c1716696b38d2b84c8940d2467ef60
+.. _`commit 8a6638e`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/8a6638e73217e344ad54c7d165a7902ee86e94b1
+.. _`commit 1140588`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/1140588066b89ac45ce8a1ebf3092aedb57838cc
+.. _`commit 16733bd`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/16733bd8c48066c567be9dfe4b09e361a953b98b
+.. _`commit beb60bd`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/beb60bd86d059c8fcc0fbed9de6f12eb9b4bf358
+.. _`commit 1650261`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/16502610ca2899da64e2a723b5e272157c986880
+.. _`commit b0df2f1`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/b0df2f1d21178ef20f9eec11947a22152e21c59b
+.. _`commit 827849c`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/827849c6779a79bd6a2efa418eda0bb6f3b851aa
+.. _`commit a770ba4`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/a770ba41022a4cacdad6506845e1306bf0b5875d
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
@@ -291,6 +304,39 @@
   :format: html 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**August 12th:** Dark theme should now be supported out of the box!
+Since today I have written rather many and small commits I will just list them
+and write a short description to each one: 
+
+- `commit a770ba4`_: adds a function that calculates the minimum vertical size
+  of tables and sets it. It is used in the topic metrics window
+- `commit 827849c`_: fixes the issues with the dark theme. The solution here was
+  to not use hardcoded colors for the comment list, now the QPalette is
+  utilized.
+- `commit b0df2f1`_: moves the delete button a bit downwards in relation to the
+  start of a comment. 
+- `commit 1650261`_: replaces the topic combobox with a list of topics. 
+- `commit 16733bd`_: Fixes a bug in the topic model, stemming from the time
+  where a combobox was displayed instead of the current list. If the first topic
+  would have been double clicked, nothing would have opened. This off by one
+  error was located in the model itself.
+- `commit 8a6638e`_: removes margins from the comment and snapshotarea groups.
+  Now more space is used for actual content of these two groups.
+- `commit 5f9c48c`_: changes the flow of the snapshot list from (default)
+  vertical to horizontal. 
+- `commit 50d3fc1`_: adds a bcf file designed for testing the snapshot list,
+  whether it rightfully scales its contents. 
+- `commit 2dcf7a0`_: documents functions in `bcfplugin/__init__.py` and
+  `bcfplugin/programmaticInterface.py`, also it deletes some unneded global
+  variables from `bcfplugin/__init__.py` and `bcfplugin/util.py`. 
+- `commit 44f6157`_: merges the feature branch `feature/create_project` into the
+  develop branch, and thus adding the feature of creating whole new projects
+  from inside the plugin itself.
+
+**August 11th:** No work done
+
+**August 10th:** No work done
 
 **August 9th:** 
 `commit b0bb316`_ adds a filter to the log messages printed to the report view
