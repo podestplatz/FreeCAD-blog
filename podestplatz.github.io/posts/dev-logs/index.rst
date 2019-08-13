@@ -188,6 +188,10 @@
 .. _`commit b0df2f1`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/b0df2f1d21178ef20f9eec11947a22152e21c59b
 .. _`commit 827849c`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/827849c6779a79bd6a2efa418eda0bb6f3b851aa
 .. _`commit a770ba4`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/a770ba41022a4cacdad6506845e1306bf0b5875d
+.. _`commit 8d03725`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/8d03725752f89e4e46c7fa432ed84a2301f843e4
+.. _`commit 5bc6675`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/5bc6675e3d78b447ace8902432800cdfb7994bfa
+.. _`commit 4cdbecb`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/4cdbecba83b1bb8238e6f05746bd92517864ad5e
+.. _`commit 38529f5`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/38529f5eb6b57635c5a807579738b9d5d35cc915
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
@@ -299,11 +303,33 @@
 .. _topicListDemo: https://forum.freecadweb.org/viewtopic.php?p=325347#p325347
 .. _`logging`: https://docs.python.org/3/library/logging.html
 .. _`develop bcfplugin/__init__.py`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/develop/bcfplugin/__init__.py
+.. _guiTutorial: https://github.com/podestplatz/BCF-Plugin-FreeCAD/wiki/GUI-Tutorial
 
 .. role:: raw-html(raw)
   :format: html 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**August 13th:** The third release is out!
+But before that was the case some changes were made: 
+
+- `commit 38529f5`_: Removes the margins from the outside borders of the
+  layouts to use more of the available screen real estate. 
+- `commit 4cdbecb`_: Lets the plugin add the `*.bcf` and `*.bcfzip` file types
+  to the list of supported filetypes of FreeCAD and registers a handler module
+  for opening such files. 
+- `commit 5bc6675`_: Pushes the release v0.3. 
+
+Apart from this, I updated the README.md and the `Tutorial/GUI`__ page on the wiki__
+to reflect the current release. I
+documented most functions in `./bcfplugin/gui/plugin_view.py`. And I moved to
+QSplitter in the plugin. Thus now the plugin is comprised of roughly three
+sections which are all resizable by the QSplitter. 
+
+__ guiTutorial_
+
+__ Wikipage_
+
 
 **August 12th:** Dark theme should now be supported out of the box!
 Since today I have written rather many and small commits I will just list them
