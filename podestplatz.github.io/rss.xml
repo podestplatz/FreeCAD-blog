@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>FreeCAD BCF-Plugin development blog</title><link>https://podestplatz.github.io/FreeCAD-blog/</link><description>Blog to the development of the BCF FreeCAD plugin.</description><atom:link href="https://podestplatz.github.io/FreeCAD-blog/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:podestplatz@gmail.com"&gt;Patrick Podest&lt;/a&gt; </copyright><lastBuildDate>Tue, 13 Aug 2019 12:52:42 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Dev Logs</title><link>https://podestplatz.github.io/FreeCAD-blog/posts/dev-logs/</link><dc:creator>Patrick Podest</dc:creator><description>&lt;div&gt;&lt;p&gt;This is a daily updated log of the work I do on the &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/"&gt;BCF-plugin&lt;/a&gt; for FreeCAD&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>FreeCAD BCF-Plugin development blog</title><link>https://podestplatz.github.io/FreeCAD-blog/</link><description>Blog to the development of the BCF FreeCAD plugin.</description><atom:link href="https://podestplatz.github.io/FreeCAD-blog/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:podestplatz@gmail.com"&gt;Patrick Podest&lt;/a&gt; </copyright><lastBuildDate>Wed, 14 Aug 2019 13:38:33 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Dev Logs</title><link>https://podestplatz.github.io/FreeCAD-blog/posts/dev-logs/</link><dc:creator>Patrick Podest</dc:creator><description>&lt;div&gt;&lt;p&gt;This is a daily updated log of the work I do on the &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/"&gt;BCF-plugin&lt;/a&gt; for FreeCAD&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;August 14th:&lt;/strong&gt; Working towards the final release for the GSoC'19.
+In that sense I added some documentation in the "then" &lt;cite&gt;plugin_model.py&lt;/cite&gt; and
+&lt;cite&gt;plugin_view.py&lt;/cite&gt; files. The associated commit is &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/0ae7746c149b8c4e7f96408e23c2a0df63bd6cad"&gt;commit 0ae7746&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/94a6f04e2a020a0d51ade2a351d3d5e691a7df7a"&gt;commit 94a6f04&lt;/a&gt; completely restructures the code of the gui subfolder. Now
+every view, delegate and model has its own file. This is still on the &lt;cite&gt;develop&lt;/cite&gt;
+branch since I am not quite confident that I didn't introduce some bugs with it.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/49915e2a0f974818d163037886bc5aa5cc286f51"&gt;commit 49915e2&lt;/a&gt; adds the LGPL-2.1 license preamble, which is used by FreeCAD
+also, to every source file. Also the license itself is added to the project in
+this commit.&lt;/p&gt;
+&lt;p&gt;Apart from that I added a section to the &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/wiki/GUI-Tutorial"&gt;gui tutorial&lt;/a&gt; on the wiki page,
+explaining the topic metrics window.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;August 13th:&lt;/strong&gt; The third release is out!
 But before that was the case some changes were made:&lt;/p&gt;
 &lt;ul class="simple"&gt;
@@ -361,19 +372,19 @@ this &lt;cite&gt;Markup&lt;/cite&gt; object is not copied. The actual way that t
 is really simple: each &lt;cite&gt;__deepcopy__()&lt;/cite&gt; function has to set the
 &lt;cite&gt;containingObject&lt;/cite&gt; member of its copied members after the copy was being
 created. To illustrate it consider the following code:&lt;/p&gt;
-&lt;pre class="code python"&gt;&lt;a name="rest_code_aa83f274e9fe48ee9cb75633c9b55beb-1"&gt;&lt;/a&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;copy&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;deepcopy&lt;/span&gt;
-&lt;a name="rest_code_aa83f274e9fe48ee9cb75633c9b55beb-2"&gt;&lt;/a&gt;
-&lt;a name="rest_code_aa83f274e9fe48ee9cb75633c9b55beb-3"&gt;&lt;/a&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Markup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Hierarchy&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;a name="rest_code_aa83f274e9fe48ee9cb75633c9b55beb-4"&gt;&lt;/a&gt;
-&lt;a name="rest_code_aa83f274e9fe48ee9cb75633c9b55beb-5"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;__deepcopy__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;memo&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;a name="rest_code_aa83f274e9fe48ee9cb75633c9b55beb-6"&gt;&lt;/a&gt;    &lt;span class="o"&gt;...&lt;/span&gt;
-&lt;a name="rest_code_aa83f274e9fe48ee9cb75633c9b55beb-7"&gt;&lt;/a&gt;    &lt;span class="n"&gt;cpyid&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;deepcopy&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;memo&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;a name="rest_code_aa83f274e9fe48ee9cb75633c9b55beb-8"&gt;&lt;/a&gt;    &lt;span class="n"&gt;cpyComment&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;deepcopy&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;comment&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;memo&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;a name="rest_code_aa83f274e9fe48ee9cb75633c9b55beb-9"&gt;&lt;/a&gt;    &lt;span class="n"&gt;cpy&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Markup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;...&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;a name="rest_code_aa83f274e9fe48ee9cb75633c9b55beb-10"&gt;&lt;/a&gt;    &lt;span class="n"&gt;cpy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;comment&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cpyComment&lt;/span&gt;
-&lt;a name="rest_code_aa83f274e9fe48ee9cb75633c9b55beb-11"&gt;&lt;/a&gt;    &lt;span class="n"&gt;cpy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;comment&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;containingObject&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cpy&lt;/span&gt;
-&lt;a name="rest_code_aa83f274e9fe48ee9cb75633c9b55beb-12"&gt;&lt;/a&gt;    &lt;span class="n"&gt;cpy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cpyid&lt;/span&gt;
-&lt;a name="rest_code_aa83f274e9fe48ee9cb75633c9b55beb-13"&gt;&lt;/a&gt;    &lt;span class="o"&gt;...&lt;/span&gt;
+&lt;pre class="code python"&gt;&lt;a name="rest_code_5de32e98ff4e4e0bb735046e94d4ef50-1"&gt;&lt;/a&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;copy&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;deepcopy&lt;/span&gt;
+&lt;a name="rest_code_5de32e98ff4e4e0bb735046e94d4ef50-2"&gt;&lt;/a&gt;
+&lt;a name="rest_code_5de32e98ff4e4e0bb735046e94d4ef50-3"&gt;&lt;/a&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Markup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Hierarchy&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_5de32e98ff4e4e0bb735046e94d4ef50-4"&gt;&lt;/a&gt;
+&lt;a name="rest_code_5de32e98ff4e4e0bb735046e94d4ef50-5"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;__deepcopy__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;memo&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_5de32e98ff4e4e0bb735046e94d4ef50-6"&gt;&lt;/a&gt;    &lt;span class="o"&gt;...&lt;/span&gt;
+&lt;a name="rest_code_5de32e98ff4e4e0bb735046e94d4ef50-7"&gt;&lt;/a&gt;    &lt;span class="n"&gt;cpyid&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;deepcopy&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;memo&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_5de32e98ff4e4e0bb735046e94d4ef50-8"&gt;&lt;/a&gt;    &lt;span class="n"&gt;cpyComment&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;deepcopy&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;comment&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;memo&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_5de32e98ff4e4e0bb735046e94d4ef50-9"&gt;&lt;/a&gt;    &lt;span class="n"&gt;cpy&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Markup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;...&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_5de32e98ff4e4e0bb735046e94d4ef50-10"&gt;&lt;/a&gt;    &lt;span class="n"&gt;cpy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;comment&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cpyComment&lt;/span&gt;
+&lt;a name="rest_code_5de32e98ff4e4e0bb735046e94d4ef50-11"&gt;&lt;/a&gt;    &lt;span class="n"&gt;cpy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;comment&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;containingObject&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cpy&lt;/span&gt;
+&lt;a name="rest_code_5de32e98ff4e4e0bb735046e94d4ef50-12"&gt;&lt;/a&gt;    &lt;span class="n"&gt;cpy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cpyid&lt;/span&gt;
+&lt;a name="rest_code_5de32e98ff4e4e0bb735046e94d4ef50-13"&gt;&lt;/a&gt;    &lt;span class="o"&gt;...&lt;/span&gt;
 &lt;/pre&gt;&lt;p&gt;Here you see for one that &lt;cite&gt;containingObject&lt;/cite&gt; is set, and also that the &lt;cite&gt;id&lt;/cite&gt;
 member is copied and overwritten in the new object of &lt;cite&gt;Markup&lt;/cite&gt;.
 This way it is guaranteed that a copy from &lt;cite&gt;Markup&lt;/cite&gt; is only copying everything
@@ -473,13 +484,13 @@ but not in the model. Strangely my testbench for deleting objects, especially
 comments, worked. After long debugging I noticed that my policy of not exposing
 the real working data to the UI came back to haunt me. My &lt;cite&gt;pI.deleteObject&lt;/cite&gt;
 function looked like this:&lt;/p&gt;
-&lt;pre class="code python"&gt;&lt;a name="rest_code_9d0089d307154499a0881e862430cabf-1"&gt;&lt;/a&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;deleteObject&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;object&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;a name="rest_code_9d0089d307154499a0881e862430cabf-2"&gt;&lt;/a&gt;  &lt;span class="k"&gt;global&lt;/span&gt; &lt;span class="n"&gt;curProject&lt;/span&gt;
-&lt;a name="rest_code_9d0089d307154499a0881e862430cabf-3"&gt;&lt;/a&gt;  &lt;span class="n"&gt;realObject&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;searchObject&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;object&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;a name="rest_code_9d0089d307154499a0881e862430cabf-4"&gt;&lt;/a&gt;  &lt;span class="n"&gt;realObject&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;state&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;State&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;State&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DELETED&lt;/span&gt;
-&lt;a name="rest_code_9d0089d307154499a0881e862430cabf-5"&gt;&lt;/a&gt;  &lt;span class="n"&gt;writer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;addProjectUpdate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;curProject&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;realObject&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;a name="rest_code_9d0089d307154499a0881e862430cabf-6"&gt;&lt;/a&gt;  &lt;span class="n"&gt;writer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;processProjectUpdates&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;a name="rest_code_9d0089d307154499a0881e862430cabf-7"&gt;&lt;/a&gt;  &lt;span class="n"&gt;curProject&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;deleteObject&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;object&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;pre class="code python"&gt;&lt;a name="rest_code_5766f054e5544658af2539ca5224ac2a-1"&gt;&lt;/a&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;deleteObject&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;object&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_5766f054e5544658af2539ca5224ac2a-2"&gt;&lt;/a&gt;  &lt;span class="k"&gt;global&lt;/span&gt; &lt;span class="n"&gt;curProject&lt;/span&gt;
+&lt;a name="rest_code_5766f054e5544658af2539ca5224ac2a-3"&gt;&lt;/a&gt;  &lt;span class="n"&gt;realObject&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;searchObject&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;object&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_5766f054e5544658af2539ca5224ac2a-4"&gt;&lt;/a&gt;  &lt;span class="n"&gt;realObject&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;state&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;State&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;State&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DELETED&lt;/span&gt;
+&lt;a name="rest_code_5766f054e5544658af2539ca5224ac2a-5"&gt;&lt;/a&gt;  &lt;span class="n"&gt;writer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;addProjectUpdate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;curProject&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;realObject&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_5766f054e5544658af2539ca5224ac2a-6"&gt;&lt;/a&gt;  &lt;span class="n"&gt;writer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;processProjectUpdates&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;a name="rest_code_5766f054e5544658af2539ca5224ac2a-7"&gt;&lt;/a&gt;  &lt;span class="n"&gt;curProject&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;deleteObject&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;object&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;p&gt;The last line here was the culprit. It is responsible for deleting the object
 from the data model after it was deleted from the file. Here I used the wrong
 reference, namely the one of the copy of the real object.&lt;/p&gt;
@@ -503,8 +514,8 @@ calculation of the length of an item in the list in
 taskpanel of FreeCAD. This functionality was added in &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/b2ebca5d15d628da4c150dc5a9db723688f49dc3"&gt;commit b2ebca5&lt;/a&gt; and can
 be used (will be streamlined in the future) by executing the following two
 commands inside of the FreeCAD python console.&lt;/p&gt;
-&lt;pre class="code python"&gt;&lt;a name="rest_code_4b43cbd9d1e9460dbffd10c2fcd22bc2-1"&gt;&lt;/a&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;bcfplugin.gui.plugin_panel&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;panel&lt;/span&gt;
-&lt;a name="rest_code_4b43cbd9d1e9460dbffd10c2fcd22bc2-2"&gt;&lt;/a&gt;&lt;span class="n"&gt;panel&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;launch_ui&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;pre class="code python"&gt;&lt;a name="rest_code_9c5467feb09b4d3183bcd672a0bd0cf9-1"&gt;&lt;/a&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;bcfplugin.gui.plugin_panel&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;panel&lt;/span&gt;
+&lt;a name="rest_code_9c5467feb09b4d3183bcd672a0bd0cf9-2"&gt;&lt;/a&gt;&lt;span class="n"&gt;panel&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;launch_ui&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;/pre&gt;&lt;p&gt;I also had an issue with FreeCAD itself and its behavior of swallowing
 exceptions that are thrown inside of my plugin. It is really nice that an
 exception inside an outside plugin does not crash FreeCAD, and that is how it is
@@ -535,8 +546,8 @@ viewpoint to the objects in the view.&lt;/li&gt;
 caused by a wrong use of Qt. Previously the position, at which the next comment
 should be drawn, was calculated by hand. Now this position is taken from the
 argument &lt;cite&gt;options&lt;/cite&gt; and its member &lt;cite&gt;rect&lt;/cite&gt;.&lt;/p&gt;
-&lt;pre class="code python"&gt;&lt;a name="rest_code_e01fa55d0a3a477ebeb0725db6943a43-1"&gt;&lt;/a&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;paint&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;painter&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;option&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;a name="rest_code_e01fa55d0a3a477ebeb0725db6943a43-2"&gt;&lt;/a&gt;  &lt;span class="n"&gt;topY&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;option&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rect&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;pre class="code python"&gt;&lt;a name="rest_code_277bf9475cda41bdab9b00e12ca619e6-1"&gt;&lt;/a&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;paint&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;painter&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;option&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_277bf9475cda41bdab9b00e12ca619e6-2"&gt;&lt;/a&gt;  &lt;span class="n"&gt;topY&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;option&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rect&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;/pre&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/c93b00461a557db637f52b105b7a3c5c58f952a1"&gt;commit c93b004&lt;/a&gt; extended &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/bc9664236bf09c60cfd73cde8ea6160f342bf8a1/bcfplugin/programmaticInterface.py#L876"&gt;pI.getTopic()&lt;/a&gt; with some context awareness. The
 general approach is to not expose the data model to the UI layer. Thus for every
 retrieve action, requested from &lt;cite&gt;pI&lt;/cite&gt;, a deep copy of the actual object is
@@ -559,7 +570,7 @@ showing an error to the user.&lt;/p&gt;
 the objects in the currently open view.&lt;/p&gt;
 &lt;p&gt;To checkout the current state of the plugin run the following command from the
 directory &lt;cite&gt;./bcfplugin/gui&lt;/cite&gt;:&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_e889010f285e42f8a929fcb4cbc22eab-1"&gt;&lt;/a&gt;python plugin_view.py
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_763d51f1020e44a88ab368caa16dff36-1"&gt;&lt;/a&gt;python plugin_view.py
 &lt;/pre&gt;&lt;p&gt;&lt;strong&gt;July 9th:&lt;/strong&gt; Well I have learned a lot about Qt and how I can customize
 existing views with delegates and models. That said the main advancement of
 today was the creation of the comments list, how I would like it.&lt;/p&gt;
@@ -569,7 +580,7 @@ adds the first (usable) version of the list. It is based on the &lt;a class="ref
 approach of qt and uses a custom delegate to display the list items. The
 development files are located inside of &lt;a class="reference external" href="https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/feature/gui_comment_list/bcfplugin/gui/comment-list"&gt;./bcfplugin/gui/comment-list/&lt;/a&gt;.
 To try it just run&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_81e70b8bcac94b2d9c61da00f0978bff-1"&gt;&lt;/a&gt;python mainwindow.py
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_962d3d4d4baf4f7f81b76c5c3c7b85a2-1"&gt;&lt;/a&gt;python mainwindow.py
 &lt;/pre&gt;&lt;p&gt;from inside the before mentioned directory.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;July 8th:&lt;/strong&gt; Today I started with the first version of the gui. It is
 completely contained in &lt;cite&gt;./bcfplugin/gui/plugin_view.py&lt;/cite&gt;, but uses
@@ -1186,8 +1197,8 @@ This object is itself a context manager and automatically deletes the
 temporary directory again when it is garbage collected.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;blockquote&gt;
-&lt;pre class="code python"&gt;&lt;a name="rest_code_14946304b91345498849ca7a80909d3c-1"&gt;&lt;/a&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;tempfile&lt;/span&gt;
-&lt;a name="rest_code_14946304b91345498849ca7a80909d3c-2"&gt;&lt;/a&gt;&lt;span class="n"&gt;tmpDir&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tempfile&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TemporaryDirectory&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;pre class="code python"&gt;&lt;a name="rest_code_8336a31726324dfb8079d4c6f4199fa4-1"&gt;&lt;/a&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;tempfile&lt;/span&gt;
+&lt;a name="rest_code_8336a31726324dfb8079d4c6f4199fa4-2"&gt;&lt;/a&gt;&lt;span class="n"&gt;tmpDir&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tempfile&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TemporaryDirectory&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;/pre&gt;&lt;/blockquote&gt;
 &lt;ol class="arabic simple" start="2"&gt;
 &lt;li&gt;when you are finished run &lt;cite&gt;del tmpDir&lt;/cite&gt; and the whole directory will be
@@ -1506,12 +1517,12 @@ itself). I knew it was possible to change a class object (not the object &lt;em&
 class) during runtime and add or remove members from it.  I thought maybe this
 is also possible with classes that derive from &lt;cite&gt;Enum&lt;/cite&gt;. In python to create an
 enumeration you just have to define a class like this:&lt;/p&gt;
-&lt;pre class="code python"&gt;&lt;a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-1"&gt;&lt;/a&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;enum&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Enum&lt;/span&gt;
-&lt;a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-2"&gt;&lt;/a&gt;
-&lt;a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-3"&gt;&lt;/a&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Example&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Enum&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-4"&gt;&lt;/a&gt;  &lt;span class="n"&gt;VAL1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
-&lt;a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-5"&gt;&lt;/a&gt;  &lt;span class="n"&gt;VAL2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
-&lt;a name="rest_code_28961d1f373348e78c69c7d9b79bcb1e-6"&gt;&lt;/a&gt;  &lt;span class="o"&gt;...&lt;/span&gt;
+&lt;pre class="code python"&gt;&lt;a name="rest_code_f72907922cb44f4795b7f719e12aba7d-1"&gt;&lt;/a&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;enum&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Enum&lt;/span&gt;
+&lt;a name="rest_code_f72907922cb44f4795b7f719e12aba7d-2"&gt;&lt;/a&gt;
+&lt;a name="rest_code_f72907922cb44f4795b7f719e12aba7d-3"&gt;&lt;/a&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Example&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Enum&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_f72907922cb44f4795b7f719e12aba7d-4"&gt;&lt;/a&gt;  &lt;span class="n"&gt;VAL1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;a name="rest_code_f72907922cb44f4795b7f719e12aba7d-5"&gt;&lt;/a&gt;  &lt;span class="n"&gt;VAL2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;a name="rest_code_f72907922cb44f4795b7f719e12aba7d-6"&gt;&lt;/a&gt;  &lt;span class="o"&gt;...&lt;/span&gt;
 &lt;/pre&gt;&lt;p&gt;The first obstacle was that classes can only derive from a class (that itself
 derives from &lt;cite&gt;Enum&lt;/cite&gt;) iff they don't introduce new members. Otherwise this would
 break some invariants the python interpreter has over enumerations.
@@ -1539,35 +1550,35 @@ returns them as list.  &lt;cite&gt;parseConstraints()&lt;/cite&gt; is intended t
 &lt;cite&gt;TopicType.__init__()&lt;/cite&gt;). To make things clearer I put a small code example below
 showing the classes &lt;cite&gt;SchemaConstraints&lt;/cite&gt; and &lt;cite&gt;TopicType&lt;/cite&gt; as well as all the
 members of both classes.&lt;/p&gt;
-&lt;pre class="code python"&gt;&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-1"&gt;&lt;/a&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;SchemaConstraint&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-2"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;validValues&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-3"&gt;&lt;/a&gt;    &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-4"&gt;&lt;/a&gt;    &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;validValues&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;validValues&lt;/span&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-5"&gt;&lt;/a&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-6"&gt;&lt;/a&gt;  &lt;span class="nd"&gt;@property&lt;/span&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-7"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;value&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-8"&gt;&lt;/a&gt;    &lt;span class="o"&gt;...&lt;/span&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-9"&gt;&lt;/a&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-10"&gt;&lt;/a&gt;  &lt;span class="nd"&gt;@value.setter&lt;/span&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-11"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;value&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;newValue&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-12"&gt;&lt;/a&gt;    &lt;span class="o"&gt;...&lt;/span&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-13"&gt;&lt;/a&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-14"&gt;&lt;/a&gt;  &lt;span class="nd"&gt;@property&lt;/span&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-15"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;validValues&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-16"&gt;&lt;/a&gt;    &lt;span class="o"&gt;...&lt;/span&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-17"&gt;&lt;/a&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-18"&gt;&lt;/a&gt;  &lt;span class="nd"&gt;@validValues.setter&lt;/span&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-19"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;validValues&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;newValue&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-20"&gt;&lt;/a&gt;    &lt;span class="k"&gt;pass&lt;/span&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-21"&gt;&lt;/a&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-22"&gt;&lt;/a&gt;  &lt;span class="nd"&gt;@staticmethod&lt;/span&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-23"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;parseConstraints&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;elementName&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-24"&gt;&lt;/a&gt;    &lt;span class="o"&gt;...&lt;/span&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-25"&gt;&lt;/a&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-26"&gt;&lt;/a&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;TopicType&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;SchemaConstraint&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-27"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-28"&gt;&lt;/a&gt;    &lt;span class="n"&gt;validValues&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;SchemaConstraint&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;parseConstraints&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"TopicType"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;a name="rest_code_09f9cd8c2a80497fb235fead45ccf328-29"&gt;&lt;/a&gt;    &lt;span class="nb"&gt;super&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TopicType&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;validValues&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;validValues&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;pre class="code python"&gt;&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-1"&gt;&lt;/a&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;SchemaConstraint&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-2"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;validValues&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-3"&gt;&lt;/a&gt;    &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-4"&gt;&lt;/a&gt;    &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;validValues&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;validValues&lt;/span&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-5"&gt;&lt;/a&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-6"&gt;&lt;/a&gt;  &lt;span class="nd"&gt;@property&lt;/span&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-7"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;value&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-8"&gt;&lt;/a&gt;    &lt;span class="o"&gt;...&lt;/span&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-9"&gt;&lt;/a&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-10"&gt;&lt;/a&gt;  &lt;span class="nd"&gt;@value.setter&lt;/span&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-11"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;value&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;newValue&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-12"&gt;&lt;/a&gt;    &lt;span class="o"&gt;...&lt;/span&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-13"&gt;&lt;/a&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-14"&gt;&lt;/a&gt;  &lt;span class="nd"&gt;@property&lt;/span&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-15"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;validValues&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-16"&gt;&lt;/a&gt;    &lt;span class="o"&gt;...&lt;/span&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-17"&gt;&lt;/a&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-18"&gt;&lt;/a&gt;  &lt;span class="nd"&gt;@validValues.setter&lt;/span&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-19"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;validValues&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;newValue&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-20"&gt;&lt;/a&gt;    &lt;span class="k"&gt;pass&lt;/span&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-21"&gt;&lt;/a&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-22"&gt;&lt;/a&gt;  &lt;span class="nd"&gt;@staticmethod&lt;/span&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-23"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;parseConstraints&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;elementName&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-24"&gt;&lt;/a&gt;    &lt;span class="o"&gt;...&lt;/span&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-25"&gt;&lt;/a&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-26"&gt;&lt;/a&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;TopicType&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;SchemaConstraint&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-27"&gt;&lt;/a&gt;  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-28"&gt;&lt;/a&gt;    &lt;span class="n"&gt;validValues&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;SchemaConstraint&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;parseConstraints&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"TopicType"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_1614531e7e214d6796433300fe60dbf5-29"&gt;&lt;/a&gt;    &lt;span class="nb"&gt;super&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TopicType&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;validValues&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;validValues&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;p&gt;One important thing to note here is that the setter method of &lt;cite&gt;validValues&lt;/cite&gt; has
 just one line which contains &lt;cite&gt;pass&lt;/cite&gt;. This is done in order to ensure that the
 set of valid values does not get overwritten, at least not that easily.&lt;/p&gt;

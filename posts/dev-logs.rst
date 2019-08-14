@@ -192,6 +192,9 @@
 .. _`commit 5bc6675`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/5bc6675e3d78b447ace8902432800cdfb7994bfa
 .. _`commit 4cdbecb`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/4cdbecba83b1bb8238e6f05746bd92517864ad5e
 .. _`commit 38529f5`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/38529f5eb6b57635c5a807579738b9d5d35cc915
+.. _`commit 49915e2`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/49915e2a0f974818d163037886bc5aa5cc286f51
+.. _`commit 94a6f04`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/94a6f04e2a020a0d51ade2a351d3d5e691a7df7a
+.. _`commit 0ae7746`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/0ae7746c149b8c4e7f96408e23c2a0df63bd6cad
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
@@ -309,6 +312,23 @@
   :format: html 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**August 14th:** Working towards the final release for the GSoC'19. 
+In that sense I added some documentation in the "then" `plugin_model.py` and
+`plugin_view.py` files. The associated commit is `commit 0ae7746`_. 
+
+`commit 94a6f04`_ completely restructures the code of the gui subfolder. Now
+every view, delegate and model has its own file. This is still on the `develop`
+branch since I am not quite confident that I didn't introduce some bugs with it. 
+
+`commit 49915e2`_ adds the LGPL-2.1 license preamble, which is used by FreeCAD
+also, to every source file. Also the license itself is added to the project in
+this commit. 
+
+Apart from that I added a section to the `gui tutorial`__ on the wiki page,
+explaining the topic metrics window. 
+
+__ guiTutorial_
 
 **August 13th:** The third release is out!
 But before that was the case some changes were made: 
