@@ -195,6 +195,10 @@
 .. _`commit 49915e2`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/49915e2a0f974818d163037886bc5aa5cc286f51
 .. _`commit 94a6f04`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/94a6f04e2a020a0d51ade2a351d3d5e691a7df7a
 .. _`commit 0ae7746`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/0ae7746c149b8c4e7f96408e23c2a0df63bd6cad
+.. _`commit e8a116b`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/e8a116b6cce4ddc6086258bc0f2a6e19003add8f
+.. _`commit 4a72793`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/4a727930a62bfd8d6b8a2d556f3c59a4669d774e
+.. _`commit 96e85f1`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/96e85f109ba2bcea9fd3c1641b8e7bafdc3da00d
+.. _`commit 5141a27`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/5141a276a608f1f9ed678275263b2176346cb4dd
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
@@ -312,6 +316,26 @@
   :format: html 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**August 15th:** Today was mostly about documentation. 
+Although, I changed the behavior of the notification label in the topic metrics
+window a bit, as well as fixed the bug that prevented the label from showing. 
+The added and deleted lines comprise the `commit e8a116b`_.
+
+Then `commit 4a72793`_ documents the classes `RelatedTopicsModel` and
+`AdditionalDocumentsModel`. 
+
+`commit 96e85f1`_ fixes the bug where a missing guid in the document reference
+type is read as `None` value instead of getting assigned its default value. 
+
+`commit 5141a27`_ adds documentation to the complete `bcfplugin.rdwr` module.
+Although files are currently not documented. This will follow tomorrow. 
+
+On the `wiki gui tutorial`__ page I added two sections. One showing how to
+create a complete new project, the other one showing how to add a topic to an
+open project. 
+
+__ guiTutorial_
 
 **August 14th:** Working towards the final release for the GSoC'19. 
 In that sense I added some documentation in the "then" `plugin_model.py` and
