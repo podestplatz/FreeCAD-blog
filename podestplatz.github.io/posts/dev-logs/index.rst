@@ -199,6 +199,12 @@
 .. _`commit 4a72793`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/4a727930a62bfd8d6b8a2d556f3c59a4669d774e
 .. _`commit 96e85f1`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/96e85f109ba2bcea9fd3c1641b8e7bafdc3da00d
 .. _`commit 5141a27`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/5141a276a608f1f9ed678275263b2176346cb4dd
+.. _`commit 10a0d74`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/10a0d74c32000df59316c7bad6f84ba6fe04a4ab
+.. _`commit 5987ef0`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/5987ef0e19f81a5108bc9b3a166a73a3b1c8b92b
+.. _`commit 98542fd`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/98542fd14dc5b8d635b9bc02e805cb85b8a154f2
+.. _`commit def313a`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/def313aa8c4dcc846520996d1ab3cbaa682c515f
+.. _`commit 93e9384`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/93e93845a5e9333acd48219d2d86f340c87ab6cf
+.. _`commit ba16cf4`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/ba16cf4f06f35a9f81e6bc1e302c5e306ba18792
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
@@ -311,11 +317,25 @@
 .. _`logging`: https://docs.python.org/3/library/logging.html
 .. _`develop bcfplugin/__init__.py`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/blob/develop/bcfplugin/__init__.py
 .. _guiTutorial: https://github.com/podestplatz/BCF-Plugin-FreeCAD/wiki/GUI-Tutorial
+.. _`v1.0`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/releases/tag/1.0
 
 .. role:: raw-html(raw)
   :format: html 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**August 16th:** Documentation rules!
+Apart from documenting code in `commit 98542fd`_, I added debug logs to
+`writer.py`, `reader.py` and the `programmaticInterface.py`. This was done in
+two commits: 
+
+- `commit 10a0d74`_: debug logs in `reader.py` and `writer.py`
+- `commit 5987ef0`_: debug logs in the `programmaticInterface.py`
+
+`commit def313a`_ adds placeholders to the topic metrics window's line edit
+fields, where it is unclear what value has to be entered. 
+
+And then finally the final release for GSoC'19 was released, `v1.0`_.
 
 **August 15th:** Today was mostly about documentation. 
 Although, I changed the behavior of the notification label in the topic metrics
