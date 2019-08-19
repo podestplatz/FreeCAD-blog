@@ -205,6 +205,7 @@
 .. _`commit def313a`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/def313aa8c4dcc846520996d1ab3cbaa682c515f
 .. _`commit 93e9384`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/93e93845a5e9333acd48219d2d86f340c87ab6cf
 .. _`commit ba16cf4`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/ba16cf4f06f35a9f81e6bc1e302c5e306ba18792
+.. _`commit f74b901`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/commit/f74b90120f9b457d0ff34c38a0acf860e2045af1
 .. _`mockup of the plugin interface`: https://forum.freecadweb.org/viewtopic.php?p=310515#p310515
 .. _`schema constraints revisited`: link://slug/schema-constraints-revisited
 .. _`branch unit_tests ./src/tests`: https://github.com/podestplatz/BCF-Plugin-FreeCAD/tree/unit_tests/src/tests
@@ -323,6 +324,24 @@
   :format: html 
 
 This is a daily updated log of the work I do on the `BCF-plugin`_ for FreeCAD
+
+**August 19th:** Wiki update!
+Yorik made me aware of an import error persisting in my code, as well as of the
+fact that there is a property for QTableViews to automatically let the last
+row/column stretch till the end of the widgets heigth/width. 
+Both things were fixed/integrated in `commit f74b901`_ directly on the master
+branch. 
+
+I also tried to recreate the misbehaviour, Yorik was experiencing, concerning
+selected comments not being readable. Thus I installed a dark theme myself in
+hope of reproducing the issue but for me it worked fine. 
+
+Other than that I updated the wiki pages to more reflect the current state of
+the repository. 
+
+**August 18th:** No work done today. 
+
+**August 17th:** No work done today.
 
 **August 16th:** Documentation rules!
 Apart from documenting code in `commit 98542fd`_, I added debug logs to
